@@ -255,7 +255,21 @@ function renderHome() {
   renderConditions();
   const pos = store.getPosition('flight');
   const pct = steps.length ? Math.round((pos / steps.length) * 100) : 0;
-  $('progress-flight').textContent = pos > 0 ? t('home.resume', pct) : '';
+  const flightPill = $('progress-flight');
+  flightPill.innerHTML = '';
+  if (pos > 0) {
+    flightPill.append(t('home.resume', pct));
+    const restart = document.createElement('span');
+    restart.className = 'restart-btn';
+    restart.textContent = '↺';
+    restart.title = t('home.restart');
+    restart.onclick = (e) => {
+      e.stopPropagation();            // don't start the flight, just rewind it
+      store.setPosition('flight', 0);
+      renderHome();
+    };
+    flightPill.appendChild(restart);
+  }
   const missCount = Object.keys(store.getMisses()).length;
   $('progress-review').textContent = missCount ? t('home.toReview', missCount) : '';
   const memCount = steps.filter(s => s.mem).length;
