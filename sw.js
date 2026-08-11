@@ -1,7 +1,7 @@
 // Service worker — bump VERSION on every deploy.
 // Strategy: network-first for navigations and data modules (fresh content
 // whenever online, cache fallback offline); cache-first for static assets.
-const VERSION = 'v1.8.0';
+const VERSION = 'v1.9.0';
 const CACHE = `kfo-trainer-${VERSION}`;
 
 const CORE = [

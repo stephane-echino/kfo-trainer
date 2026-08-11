@@ -272,6 +272,8 @@ export function createTrainer({ onExit }) {
   // XP and running streak — cosmetic motivation, never affects content.
   function award(ok) {
     if (session) session[ok ? 'ok' : 'miss'] += 1;
+    const cur = get();
+    if (cur?.phase?.id) store.recordPhase(cur.phase.id, ok);
     const streak = store.bumpStreak(ok);
     if (ok) {
       const bonus = streak >= 20 ? 6 : streak >= 10 ? 4 : streak >= 5 ? 2 : 0;

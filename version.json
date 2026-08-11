@@ -1,6 +1,24 @@
 {
- "version": "1.8.0",
+ "version": "1.9.0",
  "releases": [
+  {
+   "version": "1.9.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Mastery per phase: once a phase has at least 5 answers, its chip shows your accuracy — green above 90%, amber above 70%, red below. Tells you at a glance what to work on."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Maîtrise par phase : dès 5 réponses sur une phase, sa puce affiche ta précision — vert au-dessus de 90 %, orange au-dessus de 70 %, rouge en dessous. Tu vois d'un coup d'œil quoi travailler."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.8.0",
    "date": "2026-08-11",

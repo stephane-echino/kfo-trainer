@@ -198,6 +198,7 @@ function renderHome() {
   $('progress-memory').textContent = memCount ? `${memCount}` : '';
 
   const done = store.getPhaseDone();
+  const phaseStats = store.getPhaseStats();
   const currentPhase = steps[pos]?.phase.id;
   const chips = $('phase-chips');
   chips.innerHTML = '';
@@ -207,6 +208,16 @@ function renderHome() {
     if (done[phase.id]) btn.classList.add('done');
     if (phase.id === currentPhase) btn.classList.add('current');
     btn.textContent = phase.title;
+    // mastery, once there is enough signal to be meaningful
+    const st = phaseStats[phase.id];
+    const seen = st ? st.ok + st.miss : 0;
+    if (seen >= 5) {
+      const pct = Math.round((st.ok / seen) * 100);
+      const tag = document.createElement('span');
+      tag.className = `chip-pct ${pct >= 90 ? 'good' : pct >= 70 ? 'mid' : 'low'}`;
+      tag.textContent = `${pct}%`;
+      btn.appendChild(tag);
+    }
     btn.addEventListener('click', () => {
       const settings = store.getSettings();
       trainer.setVoicePref(settings.voice);
@@ -416,7 +427,12 @@ function renderSettings() {
   $('set-haptics').onchange = (e) => save({ haptics: e.target.checked });
   $('set-controls').checked = s.controls !== false;
   $('set-controls').onchange = (e) => save({ controls: e.target.checked });
-  $('btn-reset-progress').onclick = () => { store.setPosition('flight', 0); store.resetPhaseDone(); flashBtn('btn-reset-progress'); };
+  $('btn-reset-progress').onclick = () => {
+    store.setPosition('flight', 0);
+    store.resetPhaseDone();
+    store.resetPhaseStats();
+    flashBtn('btn-reset-progress');
+  };
   $('btn-reset-misses').onclick = () => { store.resetMisses(); flashBtn('btn-reset-misses'); };
   $('btn-reset-stats').onclick = () => {
     store.resetStats();

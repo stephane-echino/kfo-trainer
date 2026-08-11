@@ -177,6 +177,10 @@ h1 {
 }
 .phase-chip:active { transform: scale(0.94); background: var(--bg-raise); }
 .phase-chip.done { color: var(--green); border-color: rgba(79, 217, 130, 0.35); background: var(--green-dim); }
+.chip-pct { margin-left: 6px; font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.chip-pct.good { color: var(--green); }
+.chip-pct.mid { color: var(--amber); }
+.chip-pct.low { color: var(--red); }
 .phase-chip.current { color: var(--amber); border-color: var(--amber); background: var(--amber-dim); }
 
 .home-footer { margin-top: auto; padding: 22px var(--pad) calc(var(--safe-bottom) + 20px); text-align: center; }

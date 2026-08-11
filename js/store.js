@@ -40,6 +40,17 @@ export const store = {
   },
   resetMisses() { write('misses', {}); },
 
+  // rolling accuracy per phase: { [phaseId]: {ok, miss} }
+  getPhaseStats() { return read('phaseStats', {}); },
+  recordPhase(phaseId, ok) {
+    const s = store.getPhaseStats();
+    const p = s[phaseId] || { ok: 0, miss: 0 };
+    p[ok ? 'ok' : 'miss'] += 1;
+    s[phaseId] = p;
+    write('phaseStats', s);
+  },
+  resetPhaseStats() { write('phaseStats', {}); },
+
   // per-phase completion: { [phaseId]: true }
   getPhaseDone() { return read('phasesDone', {}); },
   setPhaseDone(phaseId) {
