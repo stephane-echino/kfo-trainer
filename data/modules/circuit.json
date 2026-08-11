@@ -1,0 +1,2371 @@
+{
+ "id": "circuit",
+ "name": "Full circuit — HB-KFO",
+ "version": "1.0.0",
+ "aircraft": "HB-KFO",
+ "speeds": [
+  {
+   "code": "Vr",
+   "kias": "54",
+   "label": "rotation"
+  },
+  {
+   "code": "Vx",
+   "kias": "70",
+   "label": "best angle of climb"
+  },
+  {
+   "code": "Vy",
+   "kias": "80",
+   "label": "best rate of climb"
+  },
+  {
+   "code": "Vcc",
+   "kias": "90-(76 at ceiling altitude)",
+   "label": "cruise climb"
+  },
+  {
+   "code": "Va",
+   "kias": "116",
+   "label": "maneuvering"
+  },
+  {
+   "code": "Vfe",
+   "kias": "92",
+   "label": "flaps extended"
+  },
+  {
+   "code": "Vfo",
+   "kias": "81",
+   "label": "flaps full ops"
+  },
+  {
+   "code": "Vref",
+   "kias": "62",
+   "label": "reference (MTOW)"
+  },
+  {
+   "code": "Best glide",
+   "kias": "78",
+   "label": "flaps up"
+  },
+  {
+   "code": "Xwind",
+   "kias": "22",
+   "label": "max demonstrated crosswind"
+  }
+ ],
+ "examiner": [
+  {
+   "q": "You are at 400 ft on the initial climb out of LSGN, flaps 1, and the engine quits. Airfield elevation plus 1000 ft is 2500 ft. What exactly do you do?",
+   "a": "Speed according to flaps setting: 78 KIAS flaps up, 73 KIAS flaps 1 notch. Maximum +- 45 degrees of RWY axis (or flight path). Full flaps when landing is ensured. Speed Vref 62 KIAS.",
+   "tag": "EFATO below 1000 ft"
+  },
+  {
+   "q": "Same failure, but you are already above airfield altitude + 1000 ft (eg. for LSGN 2500 ft). What changes in the briefing?",
+   "a": "Speed 78 KIAS, back to opposite runway, full flaps when landing is ensured, speed Vref 62 KIAS. Only above the airfield altitude + 1000 ft gate may a return to the opposite runway be considered.",
+   "tag": "EFATO above 1000 ft"
+  },
+  {
+   "q": "Rough running on the take-off roll, before rotation. Give me the three actions from your take-off briefing.",
+   "a": "Throttle idle, brakes applied, inform ATC (radio).",
+   "tag": "malfunction before rotation"
+  },
+  {
+   "q": "Why is a turn-back to the field forbidden low after take-off?",
+   "a": "AFM: land straight ahead, making only small heading changes to avoid obstacles; never attempt to turn back to the runway, because the altitude after take-off generally does not allow it. Turn back only above airfield altitude + 1000 ft.",
+   "tag": "turn-back rule"
+  },
+  {
+   "q": "What is the maximum demonstrated crosswind for HB-KFO?",
+   "a": "22 kt (40 km/h). It appears in the checklist speed table as Xwind 22 and in the AFM as the demonstrated crosswind, section take-off in crosswind.",
+   "tag": "limits / crosswind"
+  },
+  {
+   "q": "Run up: at what RPM do you check the magnetos and what are the two limits?",
+   "a": "Throttle SET 2000 RPM. Magnetos — CHECKED (max drop 175-max diff 50): max 175 RPM drop between (L) or (R) and BOTH, max 50 RPM difference between (L) and (R).",
+   "tag": "limits / magnetos"
+  },
+  {
+   "q": "What drop do you expect on the carburettor heat check, and at what power?",
+   "a": "Carburator heater — CHECKED (drop 100), done at 2000 RPM: pull hot, check the drop of about 100 RPM, then push cold again.",
+   "tag": "run up / carb heat"
+  },
+  {
+   "q": "What idle RPM must you see during the run up, and what is the last item of that check?",
+   "a": "Throttle idle — CHECKED (600-650 rpm). Last item: Throttle — SET 1000 RPM.",
+   "tag": "limits / idle RPM"
+  },
+  {
+   "q": "The engine does not fire. What are the starter limitations?",
+   "a": "Starter — DEPRESSED (max 30 sec. then wait 1'). AFM: avoid using the starter more than 30 seconds, and wait at least one minute before attempting a new start.",
+   "tag": "limits / starter"
+  },
+  {
+   "q": "Engine has just started. What do you check, and by when must you see it?",
+   "a": "Oil pressure — CHECKED RISING (green arc). AFM: if oil pressure is nil after 15 to 20 seconds, shut down and look for the cause. Green arc 3.8-6.5 bar (55-95 psi), red line idle minimum 1.70 bar (25 psi).",
+   "tag": "limits / oil pressure"
+  },
+  {
+   "q": "Walk me through the RPM values of the RUN UP CHECK.",
+   "a": "Parking brake SET, throttle SET 1000 RPM, engine instruments GREEN ARC, area clear, throttle SET 2000 RPM for magnetos, carb heat and mixture, throttle idle CHECKED (600-650 rpm), throttle SET 1000 RPM.",
+   "tag": "run up / RPM"
+  },
+  {
+   "q": "Lined up. What power do you set and what is the minimum you must see before going?",
+   "a": "Power — SET FULL (min 2200 RPM); engine instruments and annunciator lights checked. AFM normal take-off: minimum full-throttle RPM 2200, take-off speed 54 kt (100 km/h).",
+   "tag": "line up / take-off power"
+  },
+  {
+   "q": "You are levelled off, leaned in cruise, and you now want to climb. What must you do first with the mixture, and why?",
+   "a": "AFM: ALWAYS ENRICH THE MIXTURE BEFORE A POWER INCREASE. Care must be taken not to lean excessively, to avoid engine overheating; mixture stays full rich for take-off and climb.",
+   "tag": "procedure logic / mixture"
+  },
+  {
+   "q": "Give me Vfe and Vfo and what each one gates.",
+   "a": "Flaps (Vfe) 92 KIAS, Flaps full ops (Vfo) 81 KIAS. Flaps 1 on downwind: 'SPEED BELOW 92, FLAPS 1'. Full flaps: extend below 81 KIAS.",
+   "tag": "limits / flap speeds"
+  },
+  {
+   "q": "When exactly do you select flaps 2 in the standard circuit?",
+   "a": "At the Point Of Descent: 'APPROACHING GLIDE' speed 85 KIAS, SPEED BELOW 81, START DESCENT, FLAPS 2, speed 80 KIAS and maintain 80 KIAS. FINAL CHECK then confirms Flaps — FULL DOWN (extend below 81 KIAS).",
+   "tag": "circuit / flaps 2"
+  },
+  {
+   "q": "Short final, the runway is not clear. Give me the go-around sequence and speeds.",
+   "a": "'GO AROUND' — Set T/O PWR — 'SPEED ABOVE 60, FLAPS 1' — climb with 70 KIAS. AFM reference: carburettor heat cold checked, full throttle, speed 65 kt, flaps progressively back to take-off position, climb 75 kt.",
+   "tag": "go around"
+  },
+  {
+   "q": "Callouts for a touch and go?",
+   "a": "Set T/O PWR — 'SPEED ABOVE 54, ROTATE' — 'SPEED ABOVE 60, POSITIVE ROC, FLAPS 1' — climb with 70 KIAS, then according to proc.",
+   "tag": "touch and go"
+  },
+  {
+   "q": "Why must carburettor heat never be left half way?",
+   "a": "AFM: always use carburettor heat all-or-nothing (full hot or full cold); an intermediate position can in certain cases make the icing worse. Checked at run up with a drop of about 100 RPM, then pushed cold.",
+   "tag": "procedure logic / carb heat"
+  },
+  {
+   "q": "Which checklist items drive the transponder mode, and to what?",
+   "a": "CLIMB CHECK item 3: Transponder — CHECK MODE 'ALT'. AFTER LANDING CHECK item 3: Transponder — CHECK MODE 'GND'.",
+   "tag": "transponder"
+  },
+  {
+   "q": "Explain the 'First Push' principle and where PAT and APT apply.",
+   "a": "At every change of flight phase you always start by pushing, either the elevator or the power. Entering a climb = PAT (Power, Attitude, Trim); level off from a climb = APT; entering a descent = APT; leaving a descent = PAT.",
+   "tag": "SPHAIR / First Push"
+  },
+  {
+   "q": "You are climbing at 1000 FPM to 4500 ft. When do you start the level off and in what order?",
+   "a": "Anticipate by 1/10 of the ROC: with 1000 FPM start 100 ft before, i.e. at 4400 ft. Order APT: Attitude SET, Power SET, Trim SET. Power is reduced only once the speed stops increasing; trim after that.",
+   "tag": "SPHAIR / 1/10 ROC"
+  },
+  {
+   "q": "On final you are below the glide path. What do you use for the angle and what for the speed?",
+   "a": "Pitch controls the rate of descent / approach angle, power controls the speed, corrected simultaneously and preventively (PITCH / POWER PROPHYLAXIS). Only exception: the initial approach descent, flown 'Speed on Stick' with power at a fixed value.",
+   "tag": "SPHAIR / pitch vs power"
+  },
+  {
+   "q": "Rolling into a turn, what do you do about adverse yaw?",
+   "a": "Compensate adverse yaw with a measured rudder input in the direction of the turn, the ball showing how much — 'put rudder on the side the ball goes'. With basic training aircraft adverse yaw must always be compensated.",
+   "tag": "SPHAIR / adverse yaw"
+  },
+  {
+   "q": "How much does stall speed increase in a 30 degree bank?",
+   "a": "About +7% (eg. Vstall 60 KIAS becomes 65 KIAS). AFM table at 1000 kg, power reduced: flaps up 54 kt at 0 deg / 58 kt at 30 deg; flaps 1st notch 51 / 54 kt; flaps 2nd notch 47 / 51 kt.",
+   "tag": "SPHAIR / stall in bank"
+  },
+  {
+   "q": "From rotation to circuit altitude, give me the speeds and callouts.",
+   "a": "Vrotate 54 KIAS 'ROTATE', climb with Vx 70 KIAS. At or above 300 ft/AAL: 'CLEAR OF OBSTACLES', 'SPEED ABOVE 70, FLAPS UP', climb with Vy 80 KIAS. Above 2000 ft/AGL: climb with Vcc 85 KIAS.",
+   "tag": "initial climb"
+  }
+ ],
+ "phases": [
+  {
+   "id": "preflight",
+   "title": "Preflight",
+   "subtitle": "Walk-around done, cockpit and papers checked",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Location",
+     "v": "Apron"
+    },
+    {
+     "k": "Engine",
+     "v": "Off"
+    },
+    {
+     "k": "Baggage max",
+     "v": "40 kg"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PREFLIGHT CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Cockpit and outside checks",
+       "r": "COMPLETED"
+      },
+      {
+       "c": "Aircraft papers",
+       "r": "ON BOARD"
+      },
+      {
+       "c": "Aircraft logbook",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Tow bar",
+       "r": "SECURED"
+      },
+      {
+       "c": "Baggage",
+       "r": "SECURED",
+       "note": "AFM: baggage compartment max 40 kg, within mass and balance limits."
+      }
+     ],
+     "closing": "PREFLIGHT CHECK COMPLETED"
+    }
+   ]
+  },
+  {
+   "id": "before-start",
+   "title": "Before engine start",
+   "subtitle": "Cockpit secured, electrics and fuel set",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Location",
+     "v": "Apron"
+    },
+    {
+     "k": "Engine",
+     "v": "Off"
+    },
+    {
+     "k": "Usable fuel",
+     "v": "109 l"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "BEFORE ENGINE START CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Parking brake",
+       "r": "SET",
+       "note": "AFM: press both pedals, hold pressure and pull the parking brake control; release pedals, the knob must stay up."
+      },
+      {
+       "c": "Seat belts",
+       "r": "FASTENED"
+      },
+      {
+       "c": "Pax briefing",
+       "r": "COMPLETED"
+      },
+      {
+       "c": "Electrical switches",
+       "r": "ALL OFF"
+      },
+      {
+       "c": "Circuit breakers",
+       "r": "CHECKED IN"
+      },
+      {
+       "c": "Control",
+       "r": "FREE and CORRECT",
+       "note": "AFM: no play or excessive friction. Steering is checked during taxi. Elevator trim: full travel, then back to take-off position."
+      },
+      {
+       "c": "Battery master switch",
+       "r": "ON"
+      },
+      {
+       "c": "Fuel",
+       "r": "QUANTITY and ENDURANCE",
+       "note": "AFM: total usable 109 l; 1 l unusable. AVGAS 100 LL."
+      },
+      {
+       "c": "Fuel valve",
+       "r": "OPEN"
+      },
+      {
+       "c": "ELT",
+       "r": "CHECK ARMED (no red led)"
+      }
+     ],
+     "closing": "BEFORE ENGINE START CHECK COMPLETED"
+    }
+   ]
+  },
+  {
+   "id": "engine-start",
+   "title": "Engine start",
+   "subtitle": "Start sequence and AFM variants",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Starter",
+     "v": "max 30 s, then wait 1 min"
+    },
+    {
+     "k": "Idle after start",
+     "v": "1000 RPM (1200 RPM with engine cold)"
+    },
+    {
+     "k": "Oil pressure",
+     "v": "green arc 3.8–6.5 bar"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "STARTING ENGINE CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Strobe",
+       "r": "ON"
+      },
+      {
+       "c": "Mixture",
+       "r": "FULL RICH"
+      },
+      {
+       "c": "Carburetor heater",
+       "r": "COLD"
+      },
+      {
+       "c": "Fuel pump",
+       "r": "ON and PRESSURE CHECKED",
+       "note": "AFM: normal fuel pressure 35 to 550 mbar (0.5 to 8 psi)."
+      },
+      {
+       "c": "Magnetos",
+       "r": "SET POSITION TO BOTH",
+       "note": "AFM differs: selector on L for the start, then L+R (Both) once the engine runs. Fly the checklist, know the AFM."
+      },
+      {
+       "c": "Area",
+       "r": "CLEAR"
+      },
+      {
+       "c": "Throttle",
+       "r": "INJECT DURING START",
+       "note": "AFM normal start: 2 or 3 injections, then throttle 1/4 forward."
+      },
+      {
+       "c": "Starter",
+       "r": "DEPRESSED (max 30 sec. then wait 1')"
+      },
+      {
+       "c": "Throttle",
+       "r": "SET 1000 RPM (1200 RPM with engine cold)"
+      },
+      {
+       "c": "Oil pressure",
+       "r": "CHECKED RISING (green arc)"
+      }
+     ],
+     "closing": "STARTING ENGINE CHECK COMPLETED"
+    },
+    {
+     "type": "note",
+     "title": "AFM start variants",
+     "source": "AFM",
+     "text": "Hot engine: same procedure, no injections. Cold weather: sustain RPM with successive injections up to 900–1000 RPM. Flooded: fuel pump OFF, mixture CUT OFF, throttle FULL, starter a few seconds; when it fires, mixture back to RICH, then normal procedure without injection. Oil pressure zero after 15–20 s: shut down and investigate."
+    }
+   ]
+  },
+  {
+   "id": "after-start",
+   "title": "After engine start",
+   "subtitle": "Systems, avionics and instruments set",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Location",
+     "v": "Apron"
+    },
+    {
+     "k": "Engine",
+     "v": "Running"
+    },
+    {
+     "k": "Before taxi",
+     "v": "Check fully completed"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "AFTER ENGINE START CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Navigation lights",
+       "r": "ON"
+      },
+      {
+       "c": "Fuel pump",
+       "r": "OFF and PRESSURE CHECKED"
+      },
+      {
+       "c": "Alternator",
+       "r": "ON"
+      },
+      {
+       "c": "Voltmeter",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Pressure indicators",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Annunciator lights",
+       "r": "TESTED"
+      },
+      {
+       "c": "Avionics master switched & FLARM",
+       "r": "ON"
+      },
+      {
+       "c": "Flaps",
+       "r": "UP"
+      },
+      {
+       "c": "Altimeters",
+       "r": "SET and CHECKED"
+      },
+      {
+       "c": "Avionics (COM, NAV, GPS)",
+       "r": "SET and CHECKED"
+      },
+      {
+       "c": "Transponder",
+       "r": "SET and CHECKED"
+      }
+     ],
+     "closing": "AFTER ENGINE CHECK COMPLETED"
+    },
+    {
+     "type": "callout",
+     "title": "Before taxi announcements",
+     "source": "SPHAIR ch.5",
+     "items": [
+      {
+       "when": "Before starting to taxi",
+       "say": "Ventilation, Heater, Defroster — AS REQUIRED / Avionics — ON, SET / Directional gyro — SET"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Gate before moving",
+     "source": "SPHAIR ch.5",
+     "text": "Before starting to taxi, the CHECK AFTER ENGINE START must be fully completed. Flight instruments are checked in principle with the aircraft stopped; they are set during this check."
+    }
+   ]
+  },
+  {
+   "id": "taxi-out",
+   "title": "Taxi",
+   "subtitle": "Parking to holding point",
+   "map": {
+    "point": "taxi"
+   },
+   "context": [
+    {
+     "k": "Taxi power",
+     "v": "1000 RPM"
+    },
+    {
+     "k": "Oil temp in yellow",
+     "v": "do not exceed 1200 RPM"
+    },
+    {
+     "k": "Distance from active rwy",
+     "v": "min 50 m (rwy > 900 m) / 30 m (rwy < 900 m)"
+    },
+    {
+     "k": "Grass ↔ hard surface",
+     "v": "cross at 45°"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "radio",
+     "title": "Taxi request",
+     "source": "SPHAIR ch.21",
+     "items": [
+      {
+       "when": "Controlled aerodrome — first call to GROUND",
+       "say": "LOCARNO GROUND — HB-CFR — CESSNA 172 — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Readback of the taxi clearance",
+       "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — HB-CFR",
+       "note": "Read back taxi instruction, runway and QNH, ending with your callsign."
+      },
+      {
+       "when": "Uncontrolled aerodrome — state intention, no REQUEST",
+       "say": "LOMMIS AERODROME — HB-CFR — CESSNA 172 — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
+       "note": "Adapt callsign/station to local procedures."
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "FOR EVERY STARTING TAXI",
+     "source": "Checklist EN V9",
+     "intro": "Memory items, before every taxi start.",
+     "steps": [
+      {
+       "do": "Taxi light — ON"
+      },
+      {
+       "do": "Throttle — SET 1000 RPM"
+      },
+      {
+       "do": "Parking brakes — RELEASED"
+      },
+      {
+       "do": "Throttle — ADJUST TO TAXI WITHOUT BRAKES",
+       "note": "Small power increase to get moving, then reduce to hold a steady speed."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "title": "MOVE / BRAKE CHECK",
+     "source": "SPHAIR ch.5",
+     "items": [
+      {
+       "when": "MOVE — before the aircraft moves",
+       "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED",
+       "note": "Check and announce each item; the whole area in front, beside and behind must be clear."
+      },
+      {
+       "when": "BRAKE CHECK — as soon as rolling for the first time",
+       "say": "Brakes – CHECKED",
+       "note": "Taxi very slowly until brakes are checked. Apply just enough to feel efficiency and symmetry — the aircraft must not stop rolling."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "TAXI CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Brakes and Steering",
+       "r": "CHECKED",
+       "note": "Done only once clear of the parking area."
+      },
+      {
+       "c": "Flight instruments (TC/PFD/HSI/Comp)",
+       "r": "CHECKED",
+       "note": "SPHAIR: AI – ERECTED / STABLE; DG or HDG indicator – DECREASING in a left turn, INCREASING in a right turn. Scan one instrument at a time."
+      }
+     ],
+     "closing": "TAXI CHECK COMPLETED"
+    },
+    {
+     "type": "flow",
+     "title": "FOR EVERY STOPPING TAXI (not on rwy!)",
+     "source": "Checklist EN V9",
+     "intro": "Actions from the checklist; STOP announcements from SPHAIR ch.5.",
+     "steps": [
+      {
+       "do": "Parking brakes — SET",
+       "say": "Parking Brake – SET"
+      },
+      {
+       "do": "Throttle — SET 1000 RPM",
+       "say": "Power – ….SET"
+      },
+      {
+       "do": "Taxi light — OFF",
+       "say": "Taxi Light – OFF",
+       "note": "At every stop, leave the nosewheel in the neutral position."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Taxi technique",
+     "source": "SPHAIR ch.5",
+     "text": "Nosewheel on the yellow centerline; look at the taxi line over the sighting line (eye offset ≈ 25 cm). Walking pace max on aprons, near aircraft and in turns. Headwind: elevator neutral. Tailwind: elevator pushed, power reduced. Crosswind: roll into the wind. Do not taxi with constant braking — adapt power setting accordingly."
+    }
+   ]
+  },
+  {
+   "id": "runup",
+   "title": "Run-up",
+   "subtitle": "Engine run-up at the holding point",
+   "map": {
+    "point": "holding"
+   },
+   "context": [
+    {
+     "k": "Run-up RPM",
+     "v": "2000 RPM"
+    },
+    {
+     "k": "Mag drop",
+     "v": "max 175 / max diff 50"
+    },
+    {
+     "k": "Carb heat drop",
+     "v": "100"
+    },
+    {
+     "k": "Idle",
+     "v": "600-650 rpm"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "RUN UP CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Parking brake",
+       "r": "SET"
+      },
+      {
+       "c": "Throttle",
+       "r": "SET 1000 RPM"
+      },
+      {
+       "c": "Engine instruments",
+       "r": "GREEN ARC"
+      },
+      {
+       "c": "Rear and propeller area",
+       "r": "CLEAR"
+      },
+      {
+       "c": "Throttle",
+       "r": "SET 2000 RPM"
+      },
+      {
+       "c": "Magnetos",
+       "r": "CHECKED (max drop 175-max diff 50)"
+      },
+      {
+       "c": "Carburator heater",
+       "r": "CHECKED (drop 100)"
+      },
+      {
+       "c": "Mixture",
+       "r": "CHECKED (EGT and RPM)"
+      },
+      {
+       "c": "Engine instruments",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Voltmeter",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Annunciator lights",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Throttle idle",
+       "r": "CHECKED (600-650 rpm)"
+      },
+      {
+       "c": "Throttle",
+       "r": "SET 1000 RPM"
+      }
+     ],
+     "closing": "RUN UP CHECK COMPLETED"
+    }
+   ]
+  },
+  {
+   "id": "before-takeoff",
+   "title": "Before take-off",
+   "subtitle": "Last checks, then the departure briefing",
+   "map": {
+    "point": "holding"
+   },
+   "context": [
+    {
+     "k": "Vr",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "Vx",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Vy",
+     "v": "80 KIAS"
+    },
+    {
+     "k": "Vref",
+     "v": "62 KIAS"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "BEFORE TAKE-OFF CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Magnetos",
+       "r": "L+R (BOTH)"
+      },
+      {
+       "c": "Fuel",
+       "r": "QUANTITY and ENDURANCE"
+      },
+      {
+       "c": "Fuel pump",
+       "r": "ON and PRESSURE CHECKED"
+      },
+      {
+       "c": "Fuel valve",
+       "r": "OPEN"
+      },
+      {
+       "c": "Mixture",
+       "r": "RICH or AS REQUIRED"
+      },
+      {
+       "c": "Carburator heater",
+       "r": "COLD"
+      },
+      {
+       "c": "Engine instruments",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Flight instruments and avionics",
+       "r": "SET and CHECKED"
+      },
+      {
+       "c": "Trim",
+       "r": "SET FOR TAKE-OFF"
+      },
+      {
+       "c": "Flaps",
+       "r": "FULL THEN UP 1ST NOTCH"
+      },
+      {
+       "c": "Seats",
+       "r": "ADJUSTED and LOCKED"
+      },
+      {
+       "c": "Seats belts",
+       "r": "FASTENED"
+      },
+      {
+       "c": "Control",
+       "r": "FREE and CORECT",
+       "note": "Printed CORECT on the club checklist - answer it as printed."
+      },
+      {
+       "c": "Departure briefing",
+       "r": "COMPLETED",
+       "note": "The briefing is the last item of this check and is normally spoken aloud."
+      }
+     ],
+     "closing": "BEFORE TAKE-OFF CHECK COMPLETED"
+    },
+    {
+     "type": "briefing",
+     "title": "Departure briefing",
+     "source": "TO Briefing GVMN",
+     "intro": "Two groups: normal, then abnormal. The club publishes this briefing in French; the wording below is the SOP's own English version. Say it aloud before every take-off.",
+     "steps": [
+      {
+       "do": "Conditions",
+       "say": "Runway in use xx (concrete, grass), conditions dry (wet), wind strength and direction (eg. 10 Kts headwind)",
+       "note": "Fill in the actual runway, surface, condition and wind of the day before you speak."
+      },
+      {
+       "do": "Speeds",
+       "say": "Rotation 54 KIAS, Vx 70 KIAS, Vy 80 KIAS, initial climb at xxxx ft direction x (eg. Climb at 4500ft direction Cudrefin)",
+       "note": "Saying the speeds aloud puts them in short-term memory - it matters most when you fly several types."
+      },
+      {
+       "do": "Any malfunctions before rotation",
+       "say": "Throttle idle, brakes applied, inform ATC (Radio)"
+      },
+      {
+       "do": "Engine failure after rotation below airfield altitude + 1000 ft (eg. for LSGN 2500 ft)",
+       "say": "Speed according to flaps setting (78 KIAS flaps up, 73 KIAS flaps 1 notch), maximum +/- 45 degrees of RWY axis (or flight path), full flaps when landing is ensured, speed Vref 62 KIAS"
+      },
+      {
+       "do": "Engine failure after rotation above airfield altitude + 1000 ft (eg. for LSGN 2500 ft)",
+       "say": "Speed 78 KIAS, back to opposite runway, full flaps when landing is ensured, speed Vref 62 KIAS",
+       "note": "A turn back to land on the opposite runway is only to be considered above terrain + 1000 ft."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lineup",
+   "title": "Line-up",
+   "subtitle": "Entering the runway",
+   "map": {
+    "point": "lineup"
+   },
+   "context": [
+    {
+     "k": "Take-off power",
+     "v": "min 2200 RPM"
+    },
+    {
+     "k": "Check timing",
+     "v": "Before entering and when lined up"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "radio",
+     "title": "Departure calls",
+     "source": "SPHAIR ch.21",
+     "items": [
+      {
+       "when": "Ready at the holding point, uncontrolled aerodrome",
+       "say": "HB-CFR, READY FOR DEPARTURE, RUNWAY 24",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Runway and approach clear - announcing your intention",
+       "say": "HB-CFR, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
+       "note": "At an uncontrolled aerodrome there is no clearance: you state your intention, taking into account what other pilots have announced."
+      },
+      {
+       "when": "Ready at the holding point, controlled aerodrome with TOWER",
+       "say": "HB-CFR, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE"
+      },
+      {
+       "when": "Reading back the take-off clearance",
+       "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, HB-CFR",
+       "note": "WILCO confirms you will make the position report the tower asked for."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "LINE UP CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Landing and Taxi lights",
+       "r": "ON"
+      },
+      {
+       "c": "Approach sectors",
+       "r": "FREE",
+       "note": "SOP: the line up check is done before entering the runway and again when lined up."
+      },
+      {
+       "c": "Runway",
+       "r": "IDENTIFIED",
+       "note": "SPHAIR: read the runway number (QFU) painted on the runway aloud; on parallel runways check L / C / R, and state clearly whether you line up on concrete or grass."
+      },
+      {
+       "c": "Canopy",
+       "r": "CLOSED and LOCKED"
+      },
+      {
+       "c": "Power",
+       "r": "SET FULL (min 2200 RPM)"
+      },
+      {
+       "c": "Engine instruments",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Annunciator lights",
+       "r": "CHECKED"
+      }
+     ],
+     "closing": "LINE UP CHECK COMPLETED"
+    }
+   ]
+  },
+  {
+   "id": "takeoff",
+   "title": "Take-off roll",
+   "subtitle": "Power, acceleration, rotation",
+   "map": {
+    "point": "roll"
+   },
+   "context": [
+    {
+     "k": "Min power",
+     "v": "2200 RPM"
+    },
+    {
+     "k": "Rotate",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "Initial climb",
+     "v": "Vx 70 KIAS"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Take-off",
+     "source": "SOP GVMN",
+     "intro": "Static take-off: power is set and checked before the brakes are released.",
+     "steps": [
+      {
+       "do": "TO Power Set"
+      },
+      {
+       "do": "Check RPM - min 2200 RPM"
+      },
+      {
+       "do": "Brakes released"
+      },
+      {
+       "do": "At Vrotate 54 KIAS, rotate to the take-off attitude",
+       "say": "ROTATE"
+      },
+      {
+       "do": "Climb with Vx 70 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Take-off run technique",
+     "source": "SPHAIR ch.12",
+     "text": "Heels down, off the brakes. Power goes in smoothly over about 2-3 seconds, never abruptly, throttle full forward. Hold the centerline with rudder - the aircraft yaws left - and keep the wings level with aileron. Glance at the ASI (airspeed rising), then back to the runway and the distant reference point. Never pull the aircraft off the ground."
+    },
+    {
+     "type": "note",
+     "title": "Rejected take-off",
+     "source": "SPHAIR ch.12",
+     "text": "Abort immediately if the engine does not reach the minimum power during the take-off run. Engine failure before VR, or just after leaving the runway, means stopping on the runway remaining; on a short runway, take the best ground in the runway axis. Rule of thumb 50/70: 70% of take-off speed reached by mid-runway."
+    }
+   ]
+  },
+  {
+   "id": "initial-climb",
+   "title": "Initial climb",
+   "subtitle": "300 ft AAL to the climb check",
+   "map": {
+    "point": "upwind",
+    "altFt": 300
+   },
+   "context": [
+    {
+     "k": "Obstacle call",
+     "v": "300 ft AAL"
+    },
+    {
+     "k": "Climb",
+     "v": "Vy 80 KIAS"
+    },
+    {
+     "k": "Above 2000 ft AGL",
+     "v": "Vcc 85 KIAS"
+    },
+    {
+     "k": "Fuel pump off",
+     "v": "earliest 500 ft AAL"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "callout",
+     "title": "Clear of obstacles",
+     "source": "SOP GVMN",
+     "items": [
+      {
+       "when": "At or above 300 ft/AAL",
+       "say": "CLEAR OF OBSTACLES"
+      },
+      {
+       "when": "Speed checked, obstacles passed, climb attitude stable",
+       "say": "SPEED ABOVE 70, FLAPS UP",
+       "note": "Flap retraction gives a brief loss of lift - correct with a small attitude change - then the speed builds as drag drops."
+      },
+      {
+       "when": "Clean, climb established",
+       "say": "Climb with Vy 80KIAS",
+       "note": "Above 2000 ft/AGL: climb with Vcc 85 KIAS."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "CLIMB CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Flaps",
+       "r": "UP"
+      },
+      {
+       "c": "Fuel pump",
+       "r": "OFF and PRESSURE CHECKED",
+       "note": "SPHAIR: switch the electric pump off only at the climb check, earliest 500 ft/AAL, and check fuel pressure in the green - if the mechanical pump had failed, the engine would stop."
+      },
+      {
+       "c": "Transponder",
+       "r": "CHECK MODE \"ALT\""
+      },
+      {
+       "c": "Power",
+       "r": "CHECK FULL POWER (lean for climb > 5000ft)"
+      }
+     ],
+     "closing": "CLIMB CHECK COMPLETED"
+    },
+    {
+     "type": "note",
+     "title": "Finished by 1000 ft AAL",
+     "source": "SPHAIR ch.7",
+     "text": "Normally the procedures and checks after take-off should be completed by 1000 ft above ground: flaps up and the auxiliary fuel pump off. You decide the moment for the climb check and for switching the landing lights off. Keep scanning the engine limitations - oil temperature, cylinder head temperature - throughout the climb."
+    },
+    {
+     "type": "note",
+     "title": "First turn",
+     "source": "SPHAIR ch.12",
+     "text": "The climb check ends the take-off phase. Unless something else is prescribed, the first turn is not started below 500 ft/AAL. The criteria are the VAC, the shape of the terrain and local noise rules."
+    }
+   ]
+  },
+  {
+   "id": "crosswind",
+   "title": "Crosswind turn",
+   "subtitle": "First turn — lookout, announce, climbing turn",
+   "map": {
+    "point": "crosswind",
+    "altFt": 500
+   },
+   "context": [
+    {
+     "k": "First turn",
+     "v": "MNM 500 ft AAL"
+    },
+    {
+     "k": "Climb speed",
+     "v": "Vy 80 KIAS"
+    },
+    {
+     "k": "Climbing turn bank",
+     "v": "15°–20° max"
+    },
+    {
+     "k": "Standard downwind",
+     "v": "1000 ft AAL, 1 NM"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "First turn to crosswind",
+     "source": "SPHAIR ch.12",
+     "intro": "The take-off phase ends with the CLIMB CHECK; the first turn comes after it.",
+     "steps": [
+      {
+       "do": "Climb straight ahead on the runway axis until the first-turn height",
+       "note": "If nothing else is prescribed, the first turn is only started from 500 ft AGL. Criteria: VAC chart, terrain configuration, local noise procedures."
+      },
+      {
+       "do": "Finish flap retraction and the CLIMB CHECK before turning",
+       "note": "Flaps up criteria: clean-configuration climb speed reached, all significant obstacles passed, climb attitude stabilised. Fuel pump off at the CLIMB CHECK, earliest 500 ft AAL, fuel pressure checked."
+      },
+      {
+       "do": "LOOKOUT into the direction of the turn, then start the turn immediately",
+       "note": "Priority to the airspace in the turn direction. On a low-wing aircraft the outside of the turn is hidden by the rising wing."
+      },
+      {
+       "do": "Roll into a climbing turn toward the crosswind leg with coordinated rudder",
+       "note": "Keep full power and the climb attitude; the nose-up attitude leaves a blind spot ahead and below."
+      },
+      {
+       "do": "Hold Vy, roll out on the crosswind heading",
+       "note": "Start the rollout about 10° before the new heading."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "title": "Announce before the turn",
+     "source": "SPHAIR ch.9",
+     "items": [
+      {
+       "when": "After the lookout, before a left turn",
+       "say": "left side clear"
+      },
+      {
+       "when": "After the lookout, before a right turn",
+       "say": "right side clear"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Climbing turn",
+     "source": "SPHAIR ch.9",
+     "text": "On an aircraft with little power reserve, climbing turns are flown with 15° to 20° of bank maximum; with more bank the climb becomes flatter. In a climbing turn the margin between Vx and V_STALL is very small and the critical angle of attack can be exceeded quickly."
+    },
+    {
+     "type": "note",
+     "title": "Standard circuit geometry",
+     "source": "SPHAIR ch.13",
+     "text": "Standard circuit: crosswind turn at 500 ft AAL or as defined by the local procedure; downwind parallel to the runway at 1000 ft AAL, 1 NM abeam. Circuit height, direction and headings of the local circuit must be taken from the local VAC."
+    }
+   ]
+  },
+  {
+   "id": "departure",
+   "title": "Departure climb (PAT)",
+   "subtitle": "Power, Attitude, Trim",
+   "map": {
+    "point": "departure"
+   },
+   "context": [
+    {
+     "k": "Order",
+     "v": "PAT — Power, Attitude, Trim"
+    },
+    {
+     "k": "Vx",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Vy",
+     "v": "80 KIAS"
+    },
+    {
+     "k": "Vcc",
+     "v": "85 KIAS above 2000 ft AGL"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Entry into the climb",
+     "source": "SPHAIR ch.7",
+     "intro": "First Push: at every change of flight phase you start by pushing — either the elevator or the power. Climb entry is Power, Attitude, Trim.",
+     "steps": [
+      {
+       "do": "LOOKOUT — the airspace above and behind must be clear for the new flight path",
+       "say": "LOOKOUT",
+       "note": "The nose-up attitude creates a blind spot ahead of and below the nose; small heading changes let you check it."
+      },
+      {
+       "do": "Mixture — RICH (OR ACC AFM)",
+       "say": "Mixture RICH",
+       "note": "AFM: mixture full rich for take-off and climb; above 5000 ft adjust the mixture. Checklist CLIMB CHECK: lean for climb > 5000ft."
+      },
+      {
+       "do": "Climb Power — SET (REQUIRED) FULL POWER",
+       "say": "Climb Power SET",
+       "note": "Fixed-pitch propeller: the climb is flown at full power, throttle fully forward."
+      },
+      {
+       "do": "Climb Attitude — ADJUST FOR TYPE OF CLIMB",
+       "say": "Climb Attitude",
+       "note": "Take the reference attitude known for Vx or Vy and hold it; priority to the attitude, the speed stabilises slowly and progressively."
+      },
+      {
+       "do": "Trim — REDUCE LOAD ON CONTROLS",
+       "say": "Trim",
+       "note": "Trim only once the aircraft and the speed are stabilised."
+      },
+      {
+       "do": "Check symmetry and engine limits during the whole climb",
+       "note": "Put your foot on the side the ball goes. Check oil temperature and cylinder head temperature periodically."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Overrotation",
+     "source": "SPHAIR ch.7",
+     "text": "A careless rotation to an unrealistic climb attitude — overrotation — makes the speed fall fast. It can drop below the chosen climb speed and the wing can even stall. Hold the reference attitude first, let the speed stabilise slowly, and trim only after stabilisation."
+    },
+    {
+     "type": "note",
+     "title": "Vx and Vy with altitude",
+     "source": "SPHAIR ch.7",
+     "text": "Vx increases by about 1/2 kt per 1000 ft gained, Vy decreases by about 1 kt per 1000 ft, so the two speeds converge with altitude. Basic training climb: full power at constant speed — the rate of climb decreases with altitude because the available power decreases."
+    }
+   ]
+  },
+  {
+   "id": "level-off",
+   "title": "Level off (APT)",
+   "subtitle": "Attitude, Power, Trim",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Order",
+     "v": "APT — Attitude, Power, Trim"
+    },
+    {
+     "k": "Anticipation",
+     "v": "1/10 ROC below target"
+    },
+    {
+     "k": "Example",
+     "v": "ROC 1000 fpm → 100 ft below"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Level off cruise",
+     "source": "SPHAIR ch.7",
+     "intro": "Start the transition 1/10 of the rate of climb below the target altitude — with a ROC of 1000 fpm, begin 100 ft below.",
+     "steps": [
+      {
+       "do": "Anticipate the level off and announce it",
+       "say": "Approaching …… ft"
+      },
+      {
+       "do": "Attitude — measured and continuous change toward nose down",
+       "say": "Attitude ….. ADJUST FOR LEVEL FLIGHT",
+       "note": "The acceleration phase starts; the increasing control pressure is held by hand with a progressive push on the elevator."
+      },
+      {
+       "do": "Power — reduce to cruise power per the AFM performance tables",
+       "say": "Power ….. SET",
+       "note": "Reduce only when the speed stops increasing."
+      },
+      {
+       "do": "Trim — set, after the power reduction",
+       "say": "Trim ……… SET"
+      },
+      {
+       "do": "Mixture — set for altitude",
+       "say": "Mixture …. SET FOR ALTITUDE"
+      },
+      {
+       "do": "Landing light — AS REQUIRED"
+      },
+      {
+       "do": "CRUISE CHECK"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Classic errors",
+     "source": "SPHAIR ch.7",
+     "text": "Reduce power only when the speed stops increasing. Trim only after the power reduction — trimming before makes the attitude very hard to stabilise. Reaching the target altitude at low speed and taking a level attitude straight away makes the aircraft sink: lift is not yet sufficient."
+    }
+   ]
+  },
+  {
+   "id": "cruise",
+   "title": "Cruise",
+   "subtitle": "CRUISE CHECK and mixture",
+   "map": {
+    "point": "areaHigh"
+   },
+   "context": [
+    {
+     "k": "Cruise power (SOP)",
+     "v": "2400 RPM, max 2500 RPM"
+    },
+    {
+     "k": "Checklist power",
+     "v": "SET 2500 RPM or AS REQUIRED"
+    },
+    {
+     "k": "Mixture",
+     "v": "EGT Peak -50F at any altitude"
+    },
+    {
+     "k": "Repeat",
+     "v": "Min. every 30 minutes"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CRUISE CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "Altimeter",
+       "r": "SET and CHECKED"
+      },
+      {
+       "c": "HSI",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Engine instruments",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Fuel",
+       "r": "QUANTITY and ENDURANCE"
+      },
+      {
+       "c": "Power",
+       "r": "SET 2500 RPM or AS REQUIRED",
+       "note": "SOP GVMN: set cruise power 2400 RPM (max 2500 RPM)."
+      },
+      {
+       "c": "Mixture",
+       "r": "SET (EGT Peak -50F at any altitude)"
+      }
+     ],
+     "closing": "CRUISE CHECK COMPLETED"
+    },
+    {
+     "type": "callout",
+     "title": "Announce",
+     "source": "SPHAIR ch.6",
+     "items": [
+      {
+       "when": "Cruise check finished",
+       "say": "CRUISE CHECK COMPLETED",
+       "note": "Repeat the cruise check after every altitude change or significant temperature change, and at minimum every 30 minutes."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Mixture rule",
+     "source": "AFM",
+     "text": "ALWAYS ENRICH THE MIXTURE BEFORE ANY POWER INCREASE. Full rich for take-off and climb. Leaning in cruise after stabilisation: lower the mixture lever progressively until a slight RPM drop, then push it up slightly to restore the RPM and smooth running. Never over-lean — engine overheating."
+    }
+   ]
+  },
+  {
+   "id": "turns",
+   "title": "Medium turns",
+   "subtitle": "25°–30° bank, coordinated",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Medium turn",
+     "v": "25°–30° bank"
+    },
+    {
+     "k": "Speed loss",
+     "v": "~5 kt up to 30°"
+    },
+    {
+     "k": "Vs flaps up (AFM)",
+     "v": "54 kt at 0° / 58 kt at 30°"
+    },
+    {
+     "k": "Rollout lead",
+     "v": "~10° before the new heading"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Lookout before the turn",
+     "source": "SPHAIR ch.9",
+     "intro": "Before starting a turn, run the lookout to a defined procedure. Priority to the airspace in the direction of the turn.",
+     "steps": [
+      {
+       "do": "Start with a head movement toward the intended turn direction"
+      },
+      {
+       "do": "From there, scan the airspace horizontally across to the opposite direction"
+      },
+      {
+       "do": "Raise the head and scan back the other way to check the airspace above the aircraft",
+       "note": "Move the head at a moderate rate — fast rotation can cause vertigo and loss of orientation."
+      },
+      {
+       "do": "Announce, then start the turn immediately",
+       "note": "Low-wing aircraft: the outside of the turn is hidden by the rising wing."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "title": "Turn announcements",
+     "source": "SPHAIR ch.9",
+     "items": [
+      {
+       "when": "Before a left turn",
+       "say": "left side clear"
+      },
+      {
+       "when": "Before a right turn",
+       "say": "right side clear"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Roll in, maintain, roll out",
+     "source": "SPHAIR ch.9",
+     "steps": [
+      {
+       "do": "Roll in smoothly with aileron toward the turn",
+       "note": "The aileron deflection produces the roll and the aircraft starts to turn."
+      },
+      {
+       "do": "Add coordinated rudder in the direction of the turn to cancel adverse yaw",
+       "note": "On basic training aircraft adverse yaw must always be compensated; the ball shows how much rudder pressure is needed."
+      },
+      {
+       "do": "At the desired bank, stop the roll and neutralise the ailerons",
+       "note": "Hold a slight opposite aileron input to keep the bank steady."
+      },
+      {
+       "do": "Add measured back pressure for the additional lift — do not trim in the turn",
+       "note": "Without back pressure the vertical component no longer balances the weight and the aircraft descends."
+      },
+      {
+       "do": "Keep the ball centred: press the rudder on the side the ball goes",
+       "note": "Ball outside the turn: skidding. Ball inside the turn: slipping."
+      },
+      {
+       "do": "Keep the lookout going, especially in the direction of the turn",
+       "note": "Holding the attitude on instruments must not make you neglect the airspace."
+      },
+      {
+       "do": "Roll out with coordinated aileron, rudder and elevator, about 10° before the new heading",
+       "note": "Release the back pressure then push slightly, otherwise the aircraft climbs during the rollout. Roll out on a distant reference point."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Bank, speed and stall margin",
+     "source": "SPHAIR ch.9",
+     "text": "Medium turn: 25° to 30° of bank. Up to 30° the speed loss is small — about 5 kt on a basic trainer — and is normally not compensated with power in cruise. The higher load factor raises V_STALL by about 7% at 30° of bank (example: 60 KIAS becomes 65 KIAS)."
+    }
+   ]
+  },
+  {
+   "id": "descent",
+   "title": "Descent (APT)",
+   "subtitle": "Cruise descent towards the airfield",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Standard ROD",
+     "v": "500 FPM"
+    },
+    {
+     "k": "Short descent max",
+     "v": "1000 FPM"
+    },
+    {
+     "k": "Engine care",
+     "v": "power burst every 1500 ft"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Starting Descent",
+     "source": "SPHAIR ch.8",
+     "intro": "Transition to descent is A-P-T (First Push): attitude first, then power, then trim.",
+     "steps": [
+      {
+       "do": "Clear the airspace below and behind before leaving level flight",
+       "say": "LOOKOUT",
+       "note": "Small heading changes improve the view under the aircraft."
+      },
+      {
+       "do": "Set the mixture for the descent",
+       "say": "Mixture SET"
+      },
+      {
+       "do": "Lower the nose to the descent reference attitude",
+       "say": "Attitude FOR DESCENT"
+      },
+      {
+       "do": "Adjust power for the type of descent flown",
+       "say": "Power ADJUST"
+      },
+      {
+       "do": "Trim once the attitude is stabilised",
+       "say": "Trim ADJUST",
+       "note": "Trimming before the descent is stabilised makes the aircraft level off again."
+      },
+      {
+       "do": "Run the DESCENT CHECK",
+       "say": "DESCENT CHECK COMPLETED"
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "DESCENT CHECK",
+     "source": "Checklist EN V9",
+     "items": [
+      {
+       "c": "ATIS",
+       "r": "RECEIVED (if applicable)",
+       "note": "First letters printed bold: A-A-B-C-H-E-F-F."
+      },
+      {
+       "c": "Altimeter",
+       "r": "SET and CHECKED"
+      },
+      {
+       "c": "Briefing for approach",
+       "r": "COMPLETED"
+      },
+      {
+       "c": "Circuit breakers",
+       "r": "CHECKED"
+      },
+      {
+       "c": "HSI",
+       "r": "CHECKED"
+      },
+      {
+       "c": "Elements for heating",
+       "r": "AS REQUIRED"
+      },
+      {
+       "c": "Flight instruments and Avionics",
+       "r": "CHECKED and SET"
+      },
+      {
+       "c": "Fasten seats belts",
+       "r": "SET"
+      }
+     ],
+     "closing": "DESCENT CHECK COMPLETED"
+    },
+    {
+     "type": "note",
+     "title": "Rate of descent",
+     "source": "SPHAIR ch.8",
+     "text": "Long descents are flown at a constant 500 FPM, which is comfortable for healthy passengers. Short-duration descents: max 1000 FPM. Take care with ear, sinus or heart problems. POD calculation: height to lose divided by ROD = minutes; GS divided by 60 = NM per minute (120 kt gives 2 NM/min)."
+    },
+    {
+     "type": "note",
+     "title": "Engine care in descent",
+     "source": "AFM",
+     "text": "Power as required to obtain the desired path. Carburettor heat is used all-or-nothing, full hot or full cold; an intermediate position can make icing worse. Every 1500 ft apply a burst of power (go-around) to avoid over-cooling the engine and to clean the plugs."
+    }
+   ]
+  },
+  {
+   "id": "rejoin",
+   "title": "Circuit rejoin",
+   "subtitle": "From cruise descent to circuit altitude and speed",
+   "map": {
+    "point": "rejoin",
+    "altFt": 1000
+   },
+   "context": [
+    {
+     "k": "Approaching circuit",
+     "v": "90 KIAS"
+    },
+    {
+     "k": "Circuit power",
+     "v": "approx 2000 RPM"
+    },
+    {
+     "k": "Circuit speed",
+     "v": "85 KIAS"
+    },
+    {
+     "k": "Downwind (standard)",
+     "v": "1000 ft AAL, 1 NM"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Approaching the circuit",
+     "source": "SOP GVMN",
+     "intro": "Circuit standard: from the descent to level flight at circuit altitude.",
+     "steps": [
+      {
+       "do": "Reduce to 90 KIAS approaching the circuit"
+      },
+      {
+       "do": "Level off at circuit altitude"
+      },
+      {
+       "do": "Reduce power approx 2000 RPM"
+      },
+      {
+       "do": "Stabilise at 85 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Level off from the descent",
+     "source": "SPHAIR ch.8",
+     "text": "Level off is PAT: Power SET, Attitude SET, Trim SET, then Mixture SET FOR ALTITUDE. Rule of thumb: begin the transition 1/10 of the ROD above the new level (500 FPM gives 50 ft). In the last part of the descent, preselect the power known from experience for level downwind flight."
+    },
+    {
+     "type": "note",
+     "title": "Before joining",
+     "source": "SPHAIR ch.13",
+     "text": "Except for the aerodrome circuit itself, the APPROACH CHECK is completed before integration: before the entry point or at an adequate distance from the circuit. Reduce speed to the initial approach speed before joining; the downwind is then flown speed-controlled until the approach configuration is set."
+    },
+    {
+     "type": "note",
+     "title": "Integration",
+     "source": "SPHAIR ch.13",
+     "text": "Join per the VAC procedure, which is binding in Switzerland. Standard = left hand circuit, non standard = right hand. Overfly the downwind 500 to 1000 ft above circuit altitude, observe the landing direction, descend on the dead side to circuit altitude, then integrate at 90 degrees from inside the circuit. Never descend in the downwind."
+    },
+    {
+     "type": "radio",
+     "title": "Rejoin calls",
+     "source": "SPHAIR ch.21",
+     "items": [
+      {
+       "when": "First call, controlled aerodrome, inbound",
+       "say": "LOCARNO TOWER, HB-CFR, CESSNA 172, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Readback of the joining instruction",
+       "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, HB-CFR",
+       "note": "Tower gave: JOIN AND REPORT DOWNWIND, RUNWAY 26 CENTER, QNH 1021. Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "First call, uncontrolled aerodrome, inbound",
+       "say": "LOMMIS AERODROME, HB-CFR, CESSNA 172, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Overhead the field, uncontrolled",
+       "say": "HB-CFR, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Established downwind",
+       "say": "HB-CFR, DOWNWIND, RUNWAY 24",
+       "note": "Adapt callsign/station to local procedures."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "downwind",
+   "title": "Downwind",
+   "subtitle": "Approach check, initial approach configuration",
+   "map": {
+    "point": "downwind",
+    "altFt": 1000
+   },
+   "context": [
+    {
+     "k": "Speed",
+     "v": "85 KIAS"
+    },
+    {
+     "k": "Flaps 1",
+     "v": "below 92 KIAS (Vfe)"
+    },
+    {
+     "k": "Circuit",
+     "v": "1000 ft AAL"
+    },
+    {
+     "k": "Spacing",
+     "v": "about 1 NM from runway"
+    },
+    {
+     "k": "Abeam THR",
+     "v": "time check, approach config set"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "source": "Checklist EN V9",
+     "title": "APPROACH CHECK",
+     "items": [
+      {
+       "c": "Landing and Taxi lights",
+       "r": "Check ON"
+      },
+      {
+       "c": "Altimeter",
+       "r": "SET and CHECKED"
+      },
+      {
+       "c": "Fuel",
+       "r": "QUANTITY and ENDURANCE"
+      },
+      {
+       "c": "Fuel pump",
+       "r": "ON and PRESSURE CHECKED"
+      },
+      {
+       "c": "Carburator heater",
+       "r": "AS REQUIRED"
+      },
+      {
+       "c": "Mixture",
+       "r": "FULL RICH or AS REQUIRED"
+      },
+      {
+       "c": "Flaps",
+       "r": "1st NOTCH or AS REQUIRED",
+       "note": "Start as early as possible on downwind; check completed and approach configuration established at the latest abeam threshold."
+      }
+     ],
+     "closing": "APPROACH CHECK COMPLETED"
+    },
+    {
+     "type": "callout",
+     "source": "SOP GVMN",
+     "title": "Downwind callout",
+     "items": [
+      {
+       "when": "On Downwind, latest abeam Threshold",
+       "say": "SPEED BELOW 92, FLAPS 1",
+       "note": "Then speed 85 KIAS, adjust power to maintain speed, trim."
+      }
+     ]
+    },
+    {
+     "type": "radio",
+     "source": "SPHAIR ch.21",
+     "title": "Downwind report",
+     "items": [
+      {
+       "when": "Controlled aerodrome, downwind report",
+       "say": "HB-CFR — DOWNWIND RUNWAY 26 CENTER",
+       "note": "Tower answers e.g. NUMBER 1, RUNWAY 26 CENTER — read it back. Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Uncontrolled aerodrome, downwind report",
+       "say": "HB-CFR — DOWNWIND — RUNWAY 24",
+       "note": "Adapt callsign/station to local procedures."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Flap discipline",
+     "text": "Glance at the ASI and call SPEED CHECKED before every flap movement - never select flaps 'in anticipation'. The extra lift causes ballooning: counter it with elevator, then trim once stable. Flaps 1 below Vfe 92 KIAS, flaps full below 81 KIAS."
+    }
+   ]
+  },
+  {
+   "id": "base",
+   "title": "Base",
+   "subtitle": "Point of descent - start descent, flaps 2",
+   "map": {
+    "point": "base"
+   },
+   "context": [
+    {
+     "k": "Approaching glide",
+     "v": "85 KIAS"
+    },
+    {
+     "k": "Flaps 2",
+     "v": "below 81 KIAS"
+    },
+    {
+     "k": "Descent speed",
+     "v": "80 KIAS"
+    },
+    {
+     "k": "Base turn",
+     "v": "passing 45° to the THR"
+    },
+    {
+     "k": "Glide path",
+     "v": "3° to 5°"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "callout",
+     "source": "SOP GVMN",
+     "title": "Point of Descent (POD)",
+     "items": [
+      {
+       "when": "At the point of descent, speed 85 KIAS",
+       "say": "APPROACHING GLIDE"
+      },
+      {
+       "when": "Speed below 81",
+       "say": "START DESCENT, FLAPS 2",
+       "note": "Reduce power, set the descent attitude, then speed 80 KIAS and trim."
+      },
+      {
+       "when": "Descending on base",
+       "say": "MAINTAINS 80 KIAS",
+       "note": "Speed held at 80 KIAS to the final turn."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "source": "SPHAIR ch.13",
+     "title": "Glide monitoring",
+     "items": [
+      {
+       "when": "Once the approach angle can be judged",
+       "say": "ABOVE/ON/BELOW GLIDE",
+       "note": "Adjust attitude to maintain glide, adjust power to maintain the intermediate approach speed."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Approach descent technique",
+     "text": "Initial approach descent is the exception: power reduced to a fixed value, speed held with attitude ('speed on stick'). From about mid base, once the approach angle can be judged: pitch controls the descent rate and path, power controls the speed. Final approach configuration: 400-700 FPM, path 3 to 5 degrees."
+    }
+   ]
+  },
+  {
+   "id": "final",
+   "title": "Final",
+   "subtitle": "Final check, stabilised approach",
+   "map": {
+    "point": "final",
+    "altFt": 500
+   },
+   "context": [
+    {
+     "k": "Vfinal",
+     "v": "62 KIAS + wind correction"
+    },
+    {
+     "k": "Flaps full",
+     "v": "below 81 KIAS"
+    },
+    {
+     "k": "Final turn",
+     "v": "min 500 ft AAL"
+    },
+    {
+     "k": "Approach path",
+     "v": "3° to 5°"
+    },
+    {
+     "k": "Tolerance",
+     "v": "+15 / -5 kt on final"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "radio",
+     "source": "SPHAIR ch.21",
+     "title": "Final report",
+     "items": [
+      {
+       "when": "Controlled aerodrome, final report",
+       "say": "HB-CFR — FINAL RUNWAY 26 CENTER",
+       "note": "Tower: WIND CALM — RUNWAY 26 CENTER — CLEARED TO LAND; read back runway and clearance. Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Uncontrolled aerodrome, final report",
+       "say": "HB-CFR — FINAL — RUNWAY 24 — FOR LANDING",
+       "note": "Adapt callsign/station to local procedures."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "source": "Checklist EN V9",
+     "title": "FINAL CHECK",
+     "items": [
+      {
+       "c": "Flaps",
+       "r": "FULL DOWN (extend below 81 KIAS)",
+       "note": "Established after the final turn if not done before."
+      },
+      {
+       "c": "Mixture",
+       "r": "FULL RICH"
+      },
+      {
+       "c": "Carburator heater",
+       "r": "COLD"
+      }
+     ],
+     "closing": "FINAL CHECK COMPLETED"
+    },
+    {
+     "type": "flow",
+     "source": "SOP GVMN",
+     "title": "Final speed",
+     "intro": "Earliest on Final.",
+     "steps": [
+      {
+       "do": "Set Vfinal 62 KIAS + wind correction",
+       "note": "AFM: final approach speed 62 kt (115 km/h) with flaps 2nd notch, elevator trim set."
+      },
+      {
+       "do": "Hold the speed with power, the approach path with pitch, and trim"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Wind additions to Vfinal",
+     "text": "Vfinal is 62 KIAS plus a wind increment: headwind over 10 kt, add one third of the headwind component; gusts, add the difference between the steady headwind and the gust peaks. The increments are not cumulative - use the larger one."
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Aiming point and stabilised approach",
+     "text": "In a stabilised descent the end of the flight vector is a motionless spot - it must sit on the aiming point at the start of the landing zone. Correct in the first two thirds, pitch and power together. Last third: stabilised on centreline and glide path, trimmed - otherwise go around."
+    }
+   ]
+  },
+  {
+   "id": "landing",
+   "title": "Flare & landing",
+   "subtitle": "Power gate, round-out, touchdown",
+   "map": {
+    "point": "landing"
+   },
+   "context": [
+    {
+     "k": "Power gate",
+     "v": "POWER IDLE"
+    },
+    {
+     "k": "Flare start",
+     "v": "5-10 ft above ground"
+    },
+    {
+     "k": "Final sink reduction",
+     "v": "about 2 m"
+    },
+    {
+     "k": "Touchdown",
+     "v": "main wheels first, in the touchdown zone"
+    },
+    {
+     "k": "Demonstrated crosswind",
+     "v": "22 kt"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "callout",
+     "source": "SPHAIR ch.13",
+     "title": "Power gate",
+     "items": [
+      {
+       "when": "At the power gate",
+       "say": "POWER — IDLE",
+       "note": "Throttle to idle smoothly, not abruptly. The aircraft becomes nose heavy - hold the aiming point. Right hand stays on the throttle until the runway is vacated."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Round-out and hold-off",
+     "text": "The flare starts after the power gate, about 5-10 ft above the ground. Raise the nose progressively to a level-flight attitude close to the ground; no nose-down change once the round-out has started. Look well beyond the end of the runway to judge the rate of descent."
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Touchdown",
+     "text": "At about 2 m keep reducing the sink by increasing angle of attack - smoothly, never over-rotate. Hold that attitude to the end: main wheels first, in the touchdown zone. Rudder keeps the axis on the centreline, ailerons keep the aircraft over it - independent, often opposed. Heels on the floor, toes off the brakes."
+    },
+    {
+     "type": "note",
+     "source": "AFM",
+     "title": "Crosswind or strong gusts",
+     "text": "Crosswind or strong gusts: flaps 1st notch, approach speed 70 kt (130 km/h) plus half the gust value. Kill the drift the classic way. Demonstrated crosswind 22 kt (40 km/h)."
+    }
+   ]
+  },
+  {
+   "id": "go-around",
+   "title": "Go around / Touch & go",
+   "subtitle": "Missed approach and touch & go standard",
+   "map": {
+    "point": "upwind"
+   },
+   "context": [
+    {
+     "k": "Flaps 1",
+     "v": "speed above 60"
+    },
+    {
+     "k": "Climb",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Touch & go rotate",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "AFM go around",
+     "v": "carb heater cold, full throttle, flaps progressively to 1st notch"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "source": "SOP GVMN",
+     "title": "In case of missed approach",
+     "intro": "Decide early - if the approach is too high, cannot be stabilised, spacing is too tight, anything is unclear or ATC orders it, go around.",
+     "steps": [
+      {
+       "do": "Commit to the go around",
+       "say": "GO AROUND"
+      },
+      {
+       "do": "Set T/O PWR",
+       "note": "AFM: carburettor heater cold (pushed) checked, full throttle. Counter the yaw with rudder."
+      },
+      {
+       "do": "Check speed, then flaps 1",
+       "say": "SPEED ABOVE 60, FLAPS 1"
+      },
+      {
+       "do": "Climb with 70 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "source": "SOP GVMN",
+     "title": "In case of Touch & Go",
+     "steps": [
+      {
+       "do": "Set T/O PWR"
+      },
+      {
+       "do": "Rotate",
+       "say": "SPEED ABOVE 54, ROTATE"
+      },
+      {
+       "do": "Check positive rate of climb, then flaps 1",
+       "say": "SPEED ABOVE 60, POSITIVE ROC, FLAPS 1"
+      },
+      {
+       "do": "Climb with 70 KIAS, then according to proc"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Trim and follow-up",
+     "text": "Go around control loads are heavy: first set the trim wheel to a predetermined setting known from experience, fine-tune after stabilising. Flight stability has absolute priority - handle switches only once the aircraft is under control. After every go around: Climb Check."
+    }
+   ]
+  },
+  {
+   "id": "after-landing",
+   "title": "Runway vacated",
+   "subtitle": "Stop past the separation marks, then run the check",
+   "map": {
+    "point": "exit"
+   },
+   "context": [
+    {
+     "k": "Flaps",
+     "v": "UP"
+    },
+    {
+     "k": "Transponder",
+     "v": "GND"
+    },
+    {
+     "k": "Grass rwy clearance",
+     "v": "30 m (rwy <900 m) / 50 m (rwy >900 m)"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "source": "SPHAIR ch.5",
+     "title": "Where this check is done",
+     "text": "Never run the After Landing Check while still rolling on the runway or while vacating it — risk of mishandling through inattention. Vacate first, pass the marks separating the runway from the taxi area, then run it on a straight section of taxiway, normally stopped."
+    },
+    {
+     "type": "checklist",
+     "source": "Checklist EN V9",
+     "title": "AFTER LANDING CHECK",
+     "items": [
+      {
+       "c": "Flaps",
+       "r": "UP"
+      },
+      {
+       "c": "Fuel pump",
+       "r": "OFF"
+      },
+      {
+       "c": "Transponder",
+       "r": "CHECK MODE \"GND\""
+      },
+      {
+       "c": "Lights",
+       "r": "AS REQUIRED"
+      }
+     ],
+     "closing": "AFTER LANDING CHECK COMPLETED"
+    },
+    {
+     "type": "radio",
+     "source": "SPHAIR ch.21",
+     "title": "Runway vacated call",
+     "items": [
+      {
+       "when": "Runway vacated",
+       "say": "HB-CFR — RUNWAY 26 CENTER VACATED",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Tower transfers you to Ground — readback",
+       "say": "121.7 — HB-CFR",
+       "note": "Answer to \"CONTACT LOCARNO GROUND ON 121.7\". If the aerodrome has no GROUND, taxi clearance is given directly by TOWER."
+      },
+      {
+       "when": "First call on Ground",
+       "say": "LOCARNO GROUND — HB-CFR — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
+       "note": "Adapt callsign/station to local procedures."
+      },
+      {
+       "when": "Ground approves — readback",
+       "say": "TAXI TO FUEL STATION — HB-CFR"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "taxi-in",
+   "title": "Taxi in",
+   "subtitle": "Back to the parking, from memory",
+   "map": {
+    "point": "taxi"
+   },
+   "context": [
+    {
+     "k": "Throttle",
+     "v": "1000 RPM"
+    },
+    {
+     "k": "Taxi power",
+     "v": "avoid exceeding 1200 RPM while oil temp is in the yellow"
+    },
+    {
+     "k": "Apron speed",
+     "v": "walking pace"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "source": "Checklist EN V9",
+     "title": "FOR EVERY STARTING TAXI",
+     "intro": "From memory, every time you start rolling.",
+     "steps": [
+      {
+       "do": "Taxi light — ON"
+      },
+      {
+       "do": "Throttle — SET 1000 RPM"
+      },
+      {
+       "do": "Parking brakes — RELEASED"
+      },
+      {
+       "do": "Throttle — ADJUST TO TAXI WITHOUT BRAKES",
+       "note": "Do not taxi with constant braking actions! Adapt power setting accordingly!"
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "source": "SPHAIR ch.5",
+     "title": "MOVE / STOP announcements",
+     "items": [
+      {
+       "when": "Before moving off (MOVE)",
+       "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED"
+      },
+      {
+       "when": "After every stop (STOP)",
+       "say": "Parking Brake – SET / Power – ….SET / Taxi Light – OFF",
+       "note": "Nosewheel neutral at every stop: a wheel left cocked needs excessive power to start rolling again."
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "source": "Checklist EN V9",
+     "title": "FOR EVERY STOPPING TAXI (not on rwy!)",
+     "steps": [
+      {
+       "do": "Parking brakes — SET"
+      },
+      {
+       "do": "Throttle — SET 1000 RPM"
+      },
+      {
+       "do": "Taxi light — OFF"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.5",
+     "title": "Airmanship on the apron",
+     "text": "Walking pace maximum on the apron, close to other aircraft and in taxiway turns. Give way to clearly larger and heavier aircraft. Scan ahead, to the sides and behind continuously, from brake release until the parking brake is set again — you alone are responsible for avoiding a collision."
+    }
+   ]
+  },
+  {
+   "id": "shutdown",
+   "title": "Engine shutdown",
+   "subtitle": "Secure the aircraft",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Throttle",
+     "v": "1000 RPM"
+    },
+    {
+     "k": "Mixture",
+     "v": "CUT OFF"
+    },
+    {
+     "k": "Flaps",
+     "v": "DOWN"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "source": "Checklist EN V9",
+     "title": "ENGINE SHUT DOWN CHECK",
+     "items": [
+      {
+       "c": "Parking brakes",
+       "r": "SET"
+      },
+      {
+       "c": "Throttle",
+       "r": "SET 1000 RPM"
+      },
+      {
+       "c": "Avionics master switch & FLARM",
+       "r": "OFF (G5 Switch Off automatically after 45\")"
+      },
+      {
+       "c": "ELT",
+       "r": "CHECK NO RED LED"
+      },
+      {
+       "c": "Throttle",
+       "r": "IDLE"
+      },
+      {
+       "c": "Magnetos",
+       "r": "OFF then BOTH rapidly",
+       "note": "AFM: magneto cut-off test is done at idle, then back to L + R (Both)."
+      },
+      {
+       "c": "Throttle",
+       "r": "SET 1000 RPM"
+      },
+      {
+       "c": "Mixture",
+       "r": "CUT OFF"
+      },
+      {
+       "c": "Magnetos",
+       "r": "OFF"
+      },
+      {
+       "c": "Alternator",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery master switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Lights",
+       "r": "OFF"
+      },
+      {
+       "c": "Throttle",
+       "r": "IDLE"
+      },
+      {
+       "c": "Flaps",
+       "r": "DOWN",
+       "note": "Newer FR V10 revision prints this item as flaps 2nd notch."
+      },
+      {
+       "c": "Auxiliary tank lever",
+       "r": "CHECK PUSHED (closed or as required)"
+      }
+     ],
+     "closing": "ENGINE SHUT DOWN CHECK COMPLETED"
+    },
+    {
+     "type": "note",
+     "source": "AFM",
+     "title": "Chocks, then release the brake",
+     "text": "Once the chocks are in place, push the parking brake control back in. To set the brake: press both pedals, hold the pressure, pull the parking brake control, then release the pedals — the knob must stay in the up position. To release: push the control in."
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.5",
+     "title": "Long parking",
+     "text": "Hydraulic parking brakes can lose pressure during a long parking — place chocks under the wheels."
+    }
+   ]
+  }
+ ]
+}

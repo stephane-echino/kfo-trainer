@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b1020">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KFO Trainer">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<link rel="icon" href="./icons/icon-192.png">
+<link rel="stylesheet" href="./css/app.css">
+<title>KFO Trainer — DR400 Chair Flying</title>
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ HOME ============ -->
+  <section id="screen-home" class="screen active">
+    <header class="home-header">
+      <div class="home-title">
+        <h1>KFO&nbsp;Trainer</h1>
+        <p class="subtitle">Robin DR400 · HB-KFO · chair flying</p>
+      </div>
+      <button class="icon-btn" id="btn-settings" aria-label="Settings">⚙︎</button>
+    </header>
+
+    <nav class="mode-list" id="mode-list">
+      <button class="mode-card" data-mode="flight">
+        <span class="mode-icon">🛫</span>
+        <span class="mode-text">
+          <span class="mode-name">Full flight</span>
+          <span class="mode-desc">Say each step out loud, tap to reveal, tap to advance</span>
+        </span>
+        <span class="mode-progress" id="progress-flight"></span>
+      </button>
+      <button class="mode-card" data-mode="examiner">
+        <span class="mode-icon">🎓</span>
+        <span class="mode-text">
+          <span class="mode-name">Examiner</span>
+          <span class="mode-desc">Random questions: speeds, next step, briefings, failures</span>
+        </span>
+      </button>
+      <button class="mode-card" data-mode="review">
+        <span class="mode-icon">🔁</span>
+        <span class="mode-text">
+          <span class="mode-name">Review misses</span>
+          <span class="mode-desc">Replay only the steps you marked as missed</span>
+        </span>
+        <span class="mode-progress" id="progress-review"></span>
+      </button>
+      <button class="mode-card" data-mode="reference">
+        <span class="mode-icon">📖</span>
+        <span class="mode-text">
+          <span class="mode-name">Reference</span>
+          <span class="mode-desc">Browse all checklists, flows, callouts and speeds</span>
+        </span>
+      </button>
+    </nav>
+
+    <div class="phase-jump">
+      <h2>Jump to phase</h2>
+      <div class="phase-chips" id="phase-chips"></div>
+    </div>
+
+    <footer class="home-footer">
+      <p id="app-version"></p>
+      <p class="disclaimer">Training aid only — not for operational use.<br>Always fly per your club's current documents.</p>
+    </footer>
+  </section>
+
+  <!-- ============ TRAINER ============ -->
+  <section id="screen-trainer" class="screen">
+    <header class="trainer-header">
+      <button class="icon-btn" id="btn-trainer-back" aria-label="Back">←</button>
+      <div class="trainer-phase-info">
+        <div class="trainer-phase-title" id="trainer-phase-title">—</div>
+        <div class="trainer-context" id="trainer-context"></div>
+      </div>
+      <button class="icon-btn" id="btn-voice-toggle" aria-label="Voice check">🎙︎</button>
+    </header>
+
+    <div class="circuit-wrap" id="circuit-wrap"></div>
+
+    <div class="progress-track"><div class="progress-fill" id="trainer-progress"></div></div>
+
+    <main class="step-area" id="step-area">
+      <div class="step-block-title" id="step-block-title"></div>
+      <div class="step-card" id="step-card">
+        <div class="step-kind" id="step-kind"></div>
+        <div class="step-prompt" id="step-prompt"></div>
+        <div class="step-answer hidden" id="step-answer"></div>
+        <div class="step-note hidden" id="step-note"></div>
+        <div class="voice-feedback hidden" id="voice-feedback"></div>
+        <div class="step-hint" id="step-hint">say it out loud · tap to reveal</div>
+      </div>
+    </main>
+
+    <footer class="trainer-actions">
+      <button class="action-btn ghost" id="btn-step-prev">← Prev</button>
+      <button class="action-btn miss" id="btn-step-miss">✗ Missed</button>
+      <button class="action-btn ok" id="btn-step-ok">✓ Got it</button>
+    </footer>
+  </section>
+
+  <!-- ============ EXAMINER ============ -->
+  <section id="screen-examiner" class="screen">
+    <header class="trainer-header">
+      <button class="icon-btn" id="btn-exam-back" aria-label="Back">←</button>
+      <div class="trainer-phase-info">
+        <div class="trainer-phase-title">Examiner</div>
+        <div class="trainer-context" id="exam-score">—</div>
+      </div>
+      <span class="icon-btn" style="visibility:hidden">·</span>
+    </header>
+    <main class="step-area">
+      <div class="step-block-title" id="exam-tag"></div>
+      <div class="step-card" id="exam-card">
+        <div class="step-kind" id="exam-kind"></div>
+        <div class="step-prompt" id="exam-question"></div>
+        <div class="step-answer hidden" id="exam-answer"></div>
+        <div class="step-hint" id="exam-hint">answer out loud · tap to reveal</div>
+      </div>
+    </main>
+    <footer class="trainer-actions">
+      <button class="action-btn ghost" id="btn-exam-quit">End session</button>
+      <button class="action-btn miss" id="btn-exam-miss">✗ Missed</button>
+      <button class="action-btn ok" id="btn-exam-ok">✓ Got it</button>
+    </footer>
+  </section>
+
+  <!-- ============ REFERENCE ============ -->
+  <section id="screen-reference" class="screen">
+    <header class="trainer-header">
+      <button class="icon-btn" id="btn-ref-back" aria-label="Back">←</button>
+      <div class="trainer-phase-info">
+        <div class="trainer-phase-title">Reference</div>
+      </div>
+      <span class="icon-btn" style="visibility:hidden">·</span>
+    </header>
+    <main class="ref-area" id="ref-area"></main>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section id="screen-settings" class="screen">
+    <header class="trainer-header">
+      <button class="icon-btn" id="btn-settings-back" aria-label="Back">←</button>
+      <div class="trainer-phase-info">
+        <div class="trainer-phase-title">Settings</div>
+      </div>
+      <span class="icon-btn" style="visibility:hidden">·</span>
+    </header>
+    <main class="settings-area">
+      <label class="setting-row">
+        <span>Voice check (experimental)<small>Listens in English and compares with the expected step. On iOS this may only work in Safari, not from the installed app.</small></span>
+        <input type="checkbox" id="set-voice">
+      </label>
+      <label class="setting-row">
+        <span>Keep screen awake<small>Prevents the screen from sleeping during a session.</small></span>
+        <input type="checkbox" id="set-wakelock">
+      </label>
+      <label class="setting-row">
+        <span>Haptic tick<small>Small vibration when revealing a step (if supported).</small></span>
+        <input type="checkbox" id="set-haptics">
+      </label>
+      <div class="setting-row">
+        <span>Reset flight progress<small>Restart the full flight from the beginning.</small></span>
+        <button class="action-btn ghost" id="btn-reset-progress">Reset</button>
+      </div>
+      <div class="setting-row">
+        <span>Clear missed steps<small>Forget everything marked as missed.</small></span>
+        <button class="action-btn ghost" id="btn-reset-misses">Clear</button>
+      </div>
+      <p class="settings-note" id="voice-support-note"></p>
+    </main>
+  </section>
+
+</div>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
