@@ -13,7 +13,11 @@ import { ACHIEVEMENTS, unlocked, resetAchievements } from './achievements.js';
 
 const $ = (id) => document.getElementById(id);
 
-const MODULE_FOR_LANG = { en: 'circuit', fr: 'circuit-fr' };
+// A "course" is a body of content; each has an EN and an FR module file.
+const COURSES = [
+  { id: 'circuit', icon: '🛫', file: { en: 'circuit', fr: 'circuit-fr' } },
+  { id: 'emergency', icon: '🚨', file: { en: 'emergency', fr: 'emergency-fr' } },
+];
 
 let mod = null;
 let steps = [];
@@ -51,15 +55,73 @@ function includeMap() {
   };
 }
 
+function currentCourse() {
+  const want = store.getSettings().course || 'circuit';
+  return COURSES.find(c => c.id === want) || COURSES[0];
+}
+
 async function loadContent() {
-  const id = MODULE_FOR_LANG[getLang()] || 'circuit';
-  try {
-    mod = await loadModule(id);
-  } catch {
-    if (id !== 'circuit') mod = await loadModule('circuit'); // FR module missing → fall back
-    else throw new Error('missing content');
+  const course = currentCourse();
+  store.setScope(course.id);
+  const lang = getLang();
+  const tries = [course.file[lang], course.file.en, 'circuit'];
+  let lastErr = null;
+  for (const id of tries) {
+    if (!id) continue;
+    try {
+      mod = await loadModule(id);
+      lastErr = null;
+      break;
+    } catch (e) { lastErr = e; }
   }
+  if (lastErr) throw new Error('missing content');
   rebuildSteps();
+}
+
+// Courses whose module file actually exists; probed once at boot so the
+// switcher never offers content that has not shipped yet.
+let availableCourses = ['circuit'];
+async function probeCourses() {
+  const lang = getLang();
+  const found = [];
+  for (const c of COURSES) {
+    try {
+      const res = await fetch(`./data/modules/${c.file[lang] || c.file.en}.json`, { method: 'HEAD' });
+      if (res.ok) { found.push(c.id); continue; }
+    } catch { /* fall through to the EN probe */ }
+    try {
+      const res = await fetch(`./data/modules/${c.file.en}.json`, { method: 'HEAD' });
+      if (res.ok) found.push(c.id);
+    } catch { /* not available */ }
+  }
+  availableCourses = found.length ? found : ['circuit'];
+  renderCourseSwitch();
+}
+
+function renderCourseSwitch() {
+  const box = $('course-switch');
+  box.innerHTML = '';
+  if (availableCourses.length < 2) return;   // nothing to switch between
+  const active = currentCourse().id;
+  for (const id of availableCourses) {
+    const c = COURSES.find(x => x.id === id);
+    const btn = document.createElement('button');
+    btn.className = `course-btn${id === active ? ' active' : ''}`;
+    btn.dataset.course = id;
+    btn.textContent = `${c.icon} ${t(`course.${id}`)}`;
+    btn.onclick = () => switchCourse(id);
+    box.appendChild(btn);
+  }
+}
+
+async function switchCourse(id) {
+  if (id === currentCourse().id) return;
+  store.setSettings({ ...store.getSettings(), course: id });
+  await loadContent();
+  refRendered = false;
+  renderVersionLine();
+  renderCourseSwitch();
+  renderHome();
 }
 
 function rebuildSteps() {
@@ -103,6 +165,7 @@ async function boot() {
   renderHome();
   registerSW();
   checkOnLaunch();
+  probeCourses();
 }
 
 function renderVersionLine() {
@@ -120,6 +183,7 @@ async function switchLang(l) {
   refRendered = false;
   renderVersionLine();
   paintUpdateButton();
+  renderCourseSwitch();
   renderSettings();
   renderHome();
 }

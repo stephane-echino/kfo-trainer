@@ -84,6 +84,20 @@ h1 {
 .icon-btn:active { background: var(--bg-card); transform: scale(0.92); }
 .icon-btn.on { color: var(--amber); background: var(--amber-dim); }
 
+/* course switch (circuit / emergencies) */
+.course-switch {
+  display: flex; gap: 6px; padding: 10px var(--pad) 0;
+}
+.course-btn {
+  flex: 1; font-size: 13.5px; font-weight: 650; padding: 10px 8px; border-radius: 12px;
+  background: var(--bg-card); border: 1px solid var(--line-soft); color: var(--text-dim);
+  transition: transform 0.12s var(--ease), color 0.2s, border-color 0.2s, background 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.course-btn:active { transform: scale(0.96); }
+.course-btn.active { color: var(--text); border-color: var(--line); background: var(--bg-card-2); }
+.course-btn.active[data-course="emergency"] { color: var(--red); border-color: rgba(244, 115, 100, 0.5); background: var(--red-dim); }
+
 /* stats strip */
 .stats-strip {
   display: flex; gap: 8px; padding: 12px var(--pad) 4px;
@@ -252,7 +266,11 @@ h1 {
 .circuit-line { stroke: var(--line); stroke-width: 2; fill: none; }
 .circuit-rwy { fill: var(--line); }
 .circuit-label { fill: var(--text-faint); font-size: 9px; letter-spacing: 0.5px; }
-.circuit-dot { fill: var(--amber); transition: cx 0.5s var(--ease), cy 0.5s var(--ease); }
+.circuit-plane {
+  fill: var(--amber);
+  transition: transform 0.55s var(--ease);
+  filter: drop-shadow(0 0 4px rgba(248, 189, 74, 0.55));
+}
 .circuit-dot-halo {
   fill: var(--amber); opacity: 0.22;
   transition: cx 0.5s var(--ease), cy 0.5s var(--ease);

@@ -4,6 +4,8 @@
 
 const STR = {
   en: {
+    'course.circuit': 'Circuit',
+    'course.emergency': 'Emergencies',
     'mode.flight.name': 'Full flight',
     'mode.flight.desc': 'Say each step out loud, tap to reveal, tap to advance',
     'mode.exam.name': 'Examiner',
@@ -132,6 +134,8 @@ const STR = {
     'settings.storage': 'Note: in a Safari tab (not installed), Safari may erase saved progress after ~7 days without a visit. The installed home-screen app keeps data reliably.',
   },
   fr: {
+    'course.circuit': 'Circuit',
+    'course.emergency': 'Urgences',
     'mode.flight.name': 'Vol complet',
     'mode.flight.desc': 'Dis chaque étape à voix haute, tape pour révéler, tape pour avancer',
     'mode.exam.name': 'Examinateur',

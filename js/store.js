@@ -5,6 +5,11 @@ function defaultLang() {
   return (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
 }
 
+// Progress is per course (circuit, emergencies…) so switching content does not
+// mix up positions, misses or per-phase accuracy. Settings and stats stay global.
+let scope = 'circuit';
+const scoped = (key) => (scope === 'circuit' ? key : `${scope}:${key}`);
+
 function read(key, fallback) {
   try {
     const raw = localStorage.getItem(`${NS}:${key}`);
@@ -23,41 +28,43 @@ function write(key, value) {
 }
 
 export const store = {
+  setScope(courseId) { scope = courseId || 'circuit'; },
+
   // trainer position: { stepIndex } per sequence id ('flight' | 'review')
-  getPosition(seq) { return read(`pos:${seq}`, 0); },
-  setPosition(seq, i) { write(`pos:${seq}`, i); },
+  getPosition(seq) { return read(scoped(`pos:${seq}`), 0); },
+  setPosition(seq, i) { write(scoped(`pos:${seq}`), i); },
 
   // missed steps: { [stepKey]: count }
-  getMisses() { return read('misses', {}); },
+  getMisses() { return read(scoped('misses'), {}); },
   addMiss(stepKey) {
     const m = store.getMisses();
     m[stepKey] = (m[stepKey] || 0) + 1;
-    write('misses', m);
+    write(scoped('misses'), m);
   },
   clearMiss(stepKey) {
     const m = store.getMisses();
-    if (stepKey in m) { delete m[stepKey]; write('misses', m); }
+    if (stepKey in m) { delete m[stepKey]; write(scoped('misses'), m); }
   },
-  resetMisses() { write('misses', {}); },
+  resetMisses() { write(scoped('misses'), {}); },
 
   // rolling accuracy per phase: { [phaseId]: {ok, miss} }
-  getPhaseStats() { return read('phaseStats', {}); },
+  getPhaseStats() { return read(scoped('phaseStats'), {}); },
   recordPhase(phaseId, ok) {
     const s = store.getPhaseStats();
     const p = s[phaseId] || { ok: 0, miss: 0 };
     p[ok ? 'ok' : 'miss'] += 1;
     s[phaseId] = p;
-    write('phaseStats', s);
+    write(scoped('phaseStats'), s);
   },
-  resetPhaseStats() { write('phaseStats', {}); },
+  resetPhaseStats() { write(scoped('phaseStats'), {}); },
 
   // per-phase completion: { [phaseId]: true }
-  getPhaseDone() { return read('phasesDone', {}); },
+  getPhaseDone() { return read(scoped('phasesDone'), {}); },
   setPhaseDone(phaseId) {
     const d = store.getPhaseDone();
-    if (!d[phaseId]) { d[phaseId] = true; write('phasesDone', d); }
+    if (!d[phaseId]) { d[phaseId] = true; write(scoped('phasesDone'), d); }
   },
-  resetPhaseDone() { write('phasesDone', {}); },
+  resetPhaseDone() { write(scoped('phasesDone'), {}); },
 
   // settings
   getSettings() {

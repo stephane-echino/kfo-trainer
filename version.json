@@ -1,6 +1,32 @@
 {
- "version": "1.10.1",
+ "version": "1.11.0",
  "releases": [
+  {
+   "version": "1.11.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "The circuit map now shows an aircraft symbol pointing the way you are flying, and it turns as you move through the circuit."
+    ],
+    "changed": [
+     "Groundwork for a second course (emergencies): progress, misses and per-phase mastery are now tracked separately per course."
+    ],
+    "fixed": [
+     "Two French checklist blocks were credited to the English V9 checklist instead of the French V10."
+    ]
+   },
+   "fr": {
+    "added": [
+     "La carte de volte affiche une silhouette d'avion orientée dans le sens du vol, qui pivote au fil du circuit."
+    ],
+    "changed": [
+     "Préparation d'un second cours (urgences) : progression, ratés et maîtrise par phase sont désormais suivis séparément par cours."
+    ],
+    "fixed": [
+     "Deux blocs de checklist française étaient attribués à la checklist anglaise V9 au lieu de la V10 française."
+    ]
+   }
+  },
   {
    "version": "1.10.1",
    "date": "2026-08-11",

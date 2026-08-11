@@ -65,18 +65,32 @@ export function renderCircuit(container) {
     <text class="circuit-label" x="${W - 6}" y="12" text-anchor="end" opacity="0.8">TRAINING AREA</text>
     <!-- current position -->
     <circle class="circuit-dot-halo" id="circuit-dot-halo" cx="0" cy="0" r="9" />
-    <circle class="circuit-dot" id="circuit-dot" cx="0" cy="0" r="4" />
+    <g id="circuit-plane" class="circuit-plane" transform="translate(0 0)">
+      <path d="M 0 -5 L 1.6 -1 L 7 1.2 L 7 2.6 L 1.6 1.8 L 1.4 5 L 3.4 6.2 L 3.4 7.2
+               L 0 6.4 L -3.4 7.2 L -3.4 6.2 L -1.4 5 L -1.6 1.8 L -7 2.6 L -7 1.2 L -1.6 -1 Z" />
+    </g>
     <!-- altitude readout -->
     <text class="circuit-label" id="circuit-alt" x="6" y="12" opacity="0.9"></text>
   </svg>`;
 }
 
+// Heading of the aircraft symbol, so the marker points the way it flies.
+const HEADINGS = {
+  parking: 45, taxi: 45, holding: 20, lineup: 0, roll: 0, upwind: 0,
+  crosswind: -45, downwindEarly: 180, downwind: 180, downwindLate: 180,
+  base: 135, final: 90, 'short-final': 60, landing: 0, exit: 200,
+  departure: -30, area: 0, areaHigh: 0, rejoin: 200,
+};
+
 export function moveDot(container, map) {
   const p = POINTS[map?.point] || POINTS.parking;
+  const heading = HEADINGS[map?.point] ?? 0;
   for (const id of ['circuit-dot', 'circuit-dot-halo']) {
     const el = container.querySelector(`#${id}`);
     if (el) { el.setAttribute('cx', p.x); el.setAttribute('cy', p.y); }
   }
+  const plane = container.querySelector('#circuit-plane');
+  if (plane) plane.setAttribute('transform', `translate(${p.x} ${p.y}) rotate(${heading})`);
   const alt = container.querySelector('#circuit-alt');
   if (alt) alt.textContent = map?.altFt ? `${map.altFt} ft AAL` : '';
 }
