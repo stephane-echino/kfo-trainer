@@ -181,12 +181,18 @@ export function createTrainer({ onExit }) {
   }
 
   function renderEmpty() {
-    els.phaseTitle.textContent = t('trainer.emptyReview');
+    const isMemory = seqId === 'memory';
+    els.phaseTitle.textContent = isMemory ? t('trainer.emptyMarked') : t('trainer.emptyReview');
     els.context.textContent = '';
     els.blockTitle.textContent = '';
     els.kind.className = 'step-kind';
     els.kind.textContent = '';
-    els.prompt.textContent = t('trainer.emptyReviewMsg');
+    els.mem.classList.add('hidden');
+    els.source.classList.add('hidden');
+    els.rpm.classList.add('hidden');
+    els.spoken.classList.add('hidden');
+    els.stateHint.classList.add('hidden');
+    els.prompt.textContent = isMemory ? t('trainer.emptyMarkedMsg') : t('trainer.emptyReviewMsg');
     els.answer.classList.add('hidden');
     els.note.classList.add('hidden');
     els.voiceFb.classList.add('hidden');
