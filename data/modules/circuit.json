@@ -255,7 +255,7 @@
     },
     {
      "k": "Usable fuel",
-     "v": "109 l"
+     "v": "109 l main + 50 l aux"
     }
    ],
    "blocks": [
@@ -298,7 +298,7 @@
       {
        "c": "Fuel",
        "r": "QUANTITY and ENDURANCE",
-       "note": "AFM: total usable 109 l; 1 l unusable. AVGAS 100 LL.",
+       "note": "AFM: main tank 110 l total, 109 l usable, 1 l unusable. HB-KFO also has the 50 l auxiliary tank (AFM Supplement 1) — 159 l usable in total when filled. AVGAS 100 LL.",
        "spoken": "Fuel — gauges checked, [example: ninety] litres indicated on the main tank; main tank usable one hundred and nine litres out of one hundred and ten total, one litre unusable; auxiliary tank fifty litres [example: empty], one hundred and fifty-nine litres usable in total when it is filled. Quantity and endurance checked against the planned flight time plus reserve."
       },
       {

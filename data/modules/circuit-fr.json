@@ -264,7 +264,7 @@
     },
     {
      "k": "Essence consommable",
-     "v": "109 l"
+     "v": "109 l principal + 50 l aux"
     }
    ],
    "blocks": [
@@ -307,7 +307,7 @@
       {
        "c": "Essence",
        "r": "QUANTITE et ENDURANCE",
-       "note": "AFM : capacité totale consommable 109 l ; capacité inutilisable 1 l. AVGAS 100 LL.",
+       "note": "AFM : réservoir principal 110 l au total, 109 l consommables, 1 l inutilisable. HB-KFO dispose en plus du réservoir supplémentaire de 50 l (AFM Additif 1) — 159 l consommables au total s'il est plein. AVGAS 100 LL.",
        "spoken": "Essence — jaugeurs vérifiés, [exemple : quatre-vingt-dix] litres affichés au réservoir principal ; réservoir principal cent neuf litres consommables sur cent dix au total, un litre inutilisable ; réservoir supplémentaire cinquante litres [exemple : vide], soit cent cinquante-neuf litres consommables au total s'il est plein. Quantité et endurance contrôlées face au temps de vol prévu plus la réserve."
       },
       {

@@ -1,6 +1,24 @@
 {
- "version": "1.10.0",
+ "version": "1.10.1",
  "releases": [
+  {
+   "version": "1.10.1",
+   "date": "2026-08-11",
+   "en": {
+    "added": [],
+    "changed": [
+     "Fuel figures on the before-start card now show both tanks: 109 l main + 50 l auxiliary, 159 l usable in total when filled."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Les chiffres carburant de la carte « avant mise en route » montrent les deux réservoirs : 109 l principal + 50 l auxiliaire, 159 l consommables au total s'il est plein."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.10.0",
    "date": "2026-08-11",
