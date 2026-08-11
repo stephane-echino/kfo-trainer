@@ -1,6 +1,28 @@
 {
- "version": "1.4.0",
+ "version": "1.5.0",
  "releases": [
+  {
+   "version": "1.5.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Flight conditions on the home screen — engine warm/cold, day/night, dry/wet runway, calm/crosswind. Tap a chip to change it, or 🎲 for a random scenario.",
+     "Condition reminders appear on the steps they actually affect (cold engine → 1200 RPM, crosswind landing → flaps 1st notch and 70 kt + half the gust, and so on).",
+     "Interactive throttle: when a step calls for an RPM value, set the lever yourself and the app checks it — including 1000 vs 1200 RPM depending on the engine."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Conditions du vol sur l'accueil — moteur chaud/froid, jour/nuit, piste sèche/mouillée, vent calme/travers. Tape une puce pour la changer, ou 🎲 pour un scénario aléatoire.",
+     "Les rappels liés aux conditions apparaissent sur les étapes concernées (moteur froid → 1200 RPM, atterrissage vent de travers → volets 1er cran et 70 kt + 1/2 rafale, etc.).",
+     "Manette des gaz interactive : quand une étape demande un régime, tu règles la manette et l'app vérifie — y compris 1000 vs 1200 RPM selon le moteur."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.4.0",
    "date": "2026-08-11",

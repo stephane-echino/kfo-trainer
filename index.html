@@ -28,6 +28,11 @@
 
     <div class="stats-strip" id="stats-strip"></div>
 
+    <div class="conditions-bar">
+      <div class="conditions-chips" id="conditions-chips"></div>
+      <button class="dice-btn" id="btn-randomize" aria-label="Random conditions">🎲</button>
+    </div>
+
     <nav class="mode-list" id="mode-list">
       <button class="mode-card" data-mode="flight">
         <span class="mode-icon">🛫</span>
@@ -109,8 +114,16 @@
           <span class="step-source hidden" id="step-source"></span>
         </div>
         <div class="step-prompt" id="step-prompt"></div>
+        <div class="rpm-control hidden" id="rpm-control">
+          <div class="rpm-readout" id="rpm-readout">1000</div>
+          <div class="rpm-unit">RPM</div>
+          <input type="range" id="rpm-slider" min="500" max="2700" step="50" value="1000">
+          <div class="rpm-scale"><span>500</span><span>1600</span><span>2700</span></div>
+          <button class="rpm-set" id="rpm-set" data-i18n="rpm.set"></button>
+        </div>
         <div class="step-answer hidden" id="step-answer"></div>
         <div class="step-note hidden" id="step-note"></div>
+        <div class="state-hint hidden" id="state-hint"></div>
         <div class="voice-feedback hidden" id="voice-feedback"></div>
         <div class="step-hint" id="step-hint"></div>
       </div>
@@ -204,6 +217,10 @@
       <label class="setting-row">
         <span data-i18n="settings.haptics" data-i18n-small="settings.hapticsSmall"></span>
         <input type="checkbox" id="set-haptics">
+      </label>
+      <label class="setting-row">
+        <span data-i18n="settings.controls" data-i18n-small="settings.controlsSmall"></span>
+        <input type="checkbox" id="set-controls">
       </label>
       <div class="setting-row">
         <span data-i18n="settings.reset" data-i18n-small="settings.resetSmall"></span>

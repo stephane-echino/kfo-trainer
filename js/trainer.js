@@ -4,6 +4,8 @@ import { renderCircuit, moveDot } from './circuit.js';
 import { voiceSupported, createRecognizer, matchScore } from './voice.js';
 import { t } from './i18n.js';
 import { haptic, burst, floatLabel, todayIso } from './fx.js';
+import { hintFor, rpmTarget, summary as conditionsSummary } from './state.js';
+import { getLang } from './i18n.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -16,6 +18,7 @@ export function createTrainer({ onExit }) {
   let recognizer = null;
   let voiceOn = false;
   let lastHeard = '';
+  let rpmGoal = null;
 
   const els = {};
   function bindEls() {
@@ -32,6 +35,11 @@ export function createTrainer({ onExit }) {
       prompt: $('step-prompt'),
       answer: $('step-answer'),
       note: $('step-note'),
+      stateHint: $('state-hint'),
+      rpm: $('rpm-control'),
+      rpmReadout: $('rpm-readout'),
+      rpmSlider: $('rpm-slider'),
+      rpmSet: $('rpm-set'),
       voiceFb: $('voice-feedback'),
       hint: $('step-hint'),
       btnPrev: $('btn-step-prev'),
@@ -46,6 +54,12 @@ export function createTrainer({ onExit }) {
     bindEls();
     renderCircuit(els.circuit);
     els.card.addEventListener('click', onCardTap);
+    els.rpm.addEventListener('click', (e) => e.stopPropagation()); // slider must not advance the card
+    els.rpmSlider.addEventListener('input', () => {
+      els.rpmReadout.textContent = els.rpmSlider.value;
+      els.rpmReadout.className = 'rpm-readout';
+    });
+    els.rpmSet.addEventListener('click', checkRpm);
     els.btnPrev.addEventListener('click', prev);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
@@ -88,9 +102,13 @@ export function createTrainer({ onExit }) {
     const phase = s.phase;
 
     els.phaseTitle.textContent = phase.title;
-    els.context.innerHTML = (phase.context || [])
-      .map(c => `<span>${c.k ? `${esc(c.k)} ` : ''}<b>${esc(c.v)}</b></span>`)
-      .join('<span class="ctx-sep">·</span>');
+    const conds = conditionsSummary(getLang())
+      .filter(c => !c.isDefault)
+      .map(c => `<span>${c.icon} <b>${esc(c.text)}</b></span>`);
+    els.context.innerHTML = [
+      ...conds,
+      ...(phase.context || []).map(c => `<span>${c.k ? `${esc(c.k)} ` : ''}<b>${esc(c.v)}</b></span>`),
+    ].join('<span class="ctx-sep">·</span>');
     moveDot(els.circuit, phase.map);
 
     els.progress.style.width = `${(index / Math.max(steps.length - 1, 1)) * 100}%`;
@@ -110,7 +128,21 @@ export function createTrainer({ onExit }) {
     els.card.classList.remove('revealed');
     els.answer.classList.add('hidden');
     els.note.classList.add('hidden');
+    els.stateHint.classList.add('hidden');
     els.voiceFb.classList.add('hidden');
+
+    // interactive throttle when the step sets an RPM value
+    rpmGoal = store.getSettings().controls === false ? null : rpmTarget(s);
+    els.rpm.classList.toggle('hidden', !rpmGoal);
+    if (rpmGoal) {
+      els.rpmSlider.value = 1000;
+      els.rpmReadout.textContent = '1000';
+      els.rpmReadout.className = 'rpm-readout';
+      els.rpmSet.textContent = t('rpm.set');
+    }
+
+    const hint = hintFor(s, getLang());
+    if (hint) els.stateHint.textContent = hint;
     els.answer.classList.toggle('long', !!s.answerLong);
     // dim the official item number so the response itself carries the eye
     const numbered = /^(\d+)\.\s/.exec(s.answer);
@@ -165,12 +197,29 @@ export function createTrainer({ onExit }) {
     const s = get();
     revealed = true;
     els.card.classList.add('revealed');
+    els.rpm.classList.add('hidden');
     els.answer.classList.remove('hidden');
     if (s.note) els.note.classList.remove('hidden');
+    if (hintFor(s, getLang())) els.stateHint.classList.remove('hidden');
     els.hint.textContent = s.graded ? t('hint.revealed') : t('hint.next');
     stopVoice(false);
     haptic();
     setActionState();
+  }
+
+  // Interactive throttle: set the lever, then check against the printed value.
+  function checkRpm() {
+    if (!rpmGoal || revealed) return;
+    const v = +els.rpmSlider.value;
+    const ok = v >= rpmGoal.min && v <= rpmGoal.max;
+    els.rpmReadout.className = `rpm-readout ${ok ? 'ok' : 'no'}`;
+    els.rpmSet.textContent = ok ? t('rpm.good') : t('rpm.bad', rpmGoal.label);
+    haptic(ok ? 8 : [14, 50, 14]);
+    if (ok) {
+      floatLabel(els.rpm, '+5 XP');
+      store.addXp(5);
+    }
+    setTimeout(reveal, ok ? 420 : 1100);
   }
 
   function grade(ok) {

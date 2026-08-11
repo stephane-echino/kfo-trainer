@@ -8,6 +8,7 @@ import { t, setLang, getLang } from './i18n.js';
 import { APP_VERSION } from './version.js';
 import { fetchVersionInfo, isNewer, applyUpdate, currentVersion } from './updates.js';
 import { dayStreak } from './fx.js';
+import { CONDITIONS, getState, cycleCondition, randomize } from './state.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -89,6 +90,7 @@ async function boot() {
   $('btn-settings').addEventListener('click', () => { renderSettings(); show('screen-settings'); });
   $('btn-update').addEventListener('click', onUpdateClick);
   $('app-version').addEventListener('click', openChangelog);
+  $('btn-randomize').addEventListener('click', () => { randomize(); renderConditions(); });
   $('btn-ref-back').addEventListener('click', () => show('screen-home'));
   $('btn-settings-back').addEventListener('click', () => show('screen-home'));
   $('btn-changelog-back').addEventListener('click', () => show('screen-home'));
@@ -148,8 +150,24 @@ function renderStats() {
   }
 }
 
+function renderConditions() {
+  const st = getState();
+  const lang = getLang();
+  const box = $('conditions-chips');
+  box.innerHTML = '';
+  for (const c of CONDITIONS) {
+    const opt = c.options.find(o => o.id === st[c.id]) || c.options[0];
+    const btn = document.createElement('button');
+    btn.className = `cond-chip${opt.id === c.options[0].id ? '' : ' alt'}`;
+    btn.textContent = `${opt.icon} ${opt.label[lang] || opt.label.en}`;
+    btn.onclick = () => { cycleCondition(c.id); renderConditions(); };
+    box.appendChild(btn);
+  }
+}
+
 function renderHome() {
   renderStats();
+  renderConditions();
   const pos = store.getPosition('flight');
   const pct = steps.length ? Math.round((pos / steps.length) * 100) : 0;
   $('progress-flight').textContent = pos > 0 ? t('home.resume', pct) : '';
@@ -326,6 +344,8 @@ function renderSettings() {
   $('set-voice').onchange = (e) => save({ voice: e.target.checked });
   $('set-wakelock').onchange = (e) => save({ wakelock: e.target.checked });
   $('set-haptics').onchange = (e) => save({ haptics: e.target.checked });
+  $('set-controls').checked = s.controls !== false;
+  $('set-controls').onchange = (e) => save({ controls: e.target.checked });
   $('btn-reset-progress').onclick = () => { store.setPosition('flight', 0); store.resetPhaseDone(); flashBtn('btn-reset-progress'); };
   $('btn-reset-misses').onclick = () => { store.resetMisses(); flashBtn('btn-reset-misses'); };
   $('btn-reset-stats').onclick = () => { store.resetStats(); renderStats(); flashBtn('btn-reset-stats'); };
