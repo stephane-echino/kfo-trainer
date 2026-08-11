@@ -9,6 +9,7 @@ import { APP_VERSION } from './version.js';
 import { fetchVersionInfo, isNewer, applyUpdate, currentVersion } from './updates.js';
 import { dayStreak } from './fx.js';
 import { CONDITIONS, getState, cycleCondition, randomize } from './state.js';
+import { ACHIEVEMENTS, unlocked, resetAchievements } from './achievements.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -166,8 +167,25 @@ function renderConditions() {
   }
 }
 
+function renderBadges() {
+  const have = unlocked();
+  const row = $('badges-row');
+  row.innerHTML = '';
+  const lang = getLang();
+  for (const a of ACHIEVEMENTS) {
+    const got = !!have[a.id];
+    const l = a[lang] || a.en;
+    const el = document.createElement('span');
+    el.className = `badge${got ? ' got' : ''}`;
+    el.textContent = a.icon;
+    el.title = got ? `${l.name} — ${l.desc}` : l.desc;
+    row.appendChild(el);
+  }
+}
+
 function renderHome() {
   renderStats();
+  renderBadges();
   renderConditions();
   const pos = store.getPosition('flight');
   const pct = steps.length ? Math.round((pos / steps.length) * 100) : 0;
@@ -249,7 +267,19 @@ function renderReference() {
       }
 
       if (block.type === 'checklist') {
-        block.items.forEach((it, i) => b.appendChild(refItem(`${i + 1}. ${it.c}`, it.r, it.note)));
+        block.items.forEach((it, i) => {
+          const row = refItem(`${i + 1}. ${it.c}`, it.r, it.note);
+          if (it.mem) row.querySelector('.ref-item .c').insertAdjacentHTML('afterbegin', '<span class="ref-mem">🧠</span> ');
+          if (it.spoken) {
+            const sp = document.createElement('div');
+            sp.className = 'ref-spoken';
+            sp.innerHTML = `<span class="spoken-label"></span>`;
+            sp.querySelector('.spoken-label').textContent = t('badge.spoken');
+            sp.appendChild(document.createTextNode(it.spoken));
+            row.appendChild(sp);
+          }
+          b.appendChild(row);
+        });
         if (block.closing) {
           const c = document.createElement('div');
           c.className = 'ref-closing';
@@ -351,7 +381,13 @@ function renderSettings() {
   $('set-controls').onchange = (e) => save({ controls: e.target.checked });
   $('btn-reset-progress').onclick = () => { store.setPosition('flight', 0); store.resetPhaseDone(); flashBtn('btn-reset-progress'); };
   $('btn-reset-misses').onclick = () => { store.resetMisses(); flashBtn('btn-reset-misses'); };
-  $('btn-reset-stats').onclick = () => { store.resetStats(); renderStats(); flashBtn('btn-reset-stats'); };
+  $('btn-reset-stats').onclick = () => {
+    store.resetStats();
+    resetAchievements();
+    renderStats();
+    renderBadges();
+    flashBtn('btn-reset-stats');
+  };
 
   function save(patch) { store.setSettings({ ...store.getSettings(), ...patch }); }
   function flashBtn(id) {

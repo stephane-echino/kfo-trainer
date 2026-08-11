@@ -1,6 +1,28 @@
 {
- "version": "1.6.0",
+ "version": "1.7.0",
  "releases": [
+  {
+   "version": "1.7.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Flight summary at the end of a session: accuracy, correct/missed count, XP earned and time spent.",
+     "Eight achievements — first flight, a flight with no miss, streaks of 25 and 100, 3 and 7 practice days in a row, 10 flights, 5000 XP. Locked ones stay greyed on the home screen.",
+     "Reference now shows the 🧠 marks and the \"said out loud\" forms too."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Bilan de session à la fin d'un vol : précision, nombre de su/ratés, XP gagnés et temps passé.",
+     "Huit succès — premier vol, vol sans faute, séries de 25 et 100, 3 et 7 jours de pratique d'affilée, 10 vols, 5000 XP. Les succès non débloqués restent grisés sur l'accueil.",
+     "La Référence affiche aussi les marques 🧠 et les formes « ce qui se dit »."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.6.0",
    "date": "2026-08-11",

@@ -6,6 +6,7 @@ import { t } from './i18n.js';
 import { haptic, burst, floatLabel, todayIso } from './fx.js';
 import { hintFor, rpmTarget, summary as conditionsSummary } from './state.js';
 import { getLang } from './i18n.js';
+import { checkUnlocks } from './achievements.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -19,6 +20,7 @@ export function createTrainer({ onExit }) {
   let voiceOn = false;
   let lastHeard = '';
   let rpmGoal = null;
+  let session = null;   // { ok, miss, startedAt, xpStart, complete }
 
   const els = {};
   function bindEls() {
@@ -100,6 +102,7 @@ export function createTrainer({ onExit }) {
     }
     revealed = false;
     finished = false;
+    session = { ok: 0, miss: 0, startedAt: Date.now(), xpStart: store.getStats().xp, complete: false };
     render();
   }
 
@@ -246,6 +249,7 @@ export function createTrainer({ onExit }) {
 
   // XP and running streak — cosmetic motivation, never affects content.
   function award(ok) {
+    if (session) session[ok ? 'ok' : 'miss'] += 1;
     const streak = store.bumpStreak(ok);
     if (ok) {
       const bonus = streak >= 20 ? 6 : streak >= 10 ? 4 : streak >= 5 ? 2 : 0;
@@ -314,6 +318,7 @@ export function createTrainer({ onExit }) {
       store.countFlight();
     }
     store.touchDay(todayIso());
+    if (session) session.complete = true;
     burst(els.card, 34);
     haptic([12, 60, 12, 60, 20]);
     els.phaseTitle.textContent = t('trainer.done');
@@ -321,10 +326,40 @@ export function createTrainer({ onExit }) {
     els.blockTitle.textContent = '';
     els.kind.className = 'step-kind';
     els.kind.textContent = '';
+    els.mem.classList.add('hidden');
+    els.source.classList.add('hidden');
+    els.rpm.classList.add('hidden');
+    els.spoken.classList.add('hidden');
+    els.stateHint.classList.add('hidden');
+
+    const total = (session?.ok || 0) + (session?.miss || 0);
+    const pct = total ? Math.round((session.ok / total) * 100) : 0;
+    const xp = store.getStats().xp - (session?.xpStart || 0);
+    const mins = Math.max(1, Math.round(((Date.now() - (session?.startedAt || Date.now())) / 60000)));
     const missCount = Object.keys(store.getMisses()).length;
-    els.prompt.textContent = missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean');
+
+    els.prompt.innerHTML = total
+      ? `<span class="summary-score">${pct}<span class="pct">%</span></span>
+         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗ · +${xp} XP · ${mins}′</span>`
+      : esc(missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean'));
+
+    const fresh = checkUnlocks(session);
+    const lines = [];
+    if (missCount) lines.push(t('trainer.doneMiss', missCount));
+    else if (total) lines.push(t('trainer.doneClean'));
+    for (const a of fresh) {
+      const l = a[getLang()] || a.en;
+      lines.push(`${a.icon} ${t('trainer.unlocked')} — ${l.name}: ${l.desc}`);
+    }
+    if (lines.length) {
+      els.note.textContent = lines.join('\n');
+      els.note.classList.remove('hidden');
+    } else {
+      els.note.classList.add('hidden');
+    }
+    if (fresh.length) setTimeout(() => burst(els.card, 22), 500);
+
     els.answer.classList.add('hidden');
-    els.note.classList.add('hidden');
     els.hint.textContent = t('hint.goHome');
     els.btnPrev.disabled = true;
     els.btnMiss.disabled = true;
