@@ -456,6 +456,15 @@ h1 {
    REFERENCE / CHANGELOG
    ========================================================================== */
 
+.ref-search-wrap { padding: 12px var(--pad) 0; }
+.ref-search {
+  width: 100%; font: inherit; font-size: 15px; color: var(--text);
+  background: var(--bg-card); border: 1px solid var(--line-soft);
+  border-radius: 12px; padding: 11px 14px; -webkit-appearance: none; appearance: none;
+}
+.ref-search:focus { outline: none; border-color: var(--amber); }
+.ref-search::placeholder { color: var(--text-faint); }
+
 .ref-area { padding: 14px var(--pad) calc(var(--safe-bottom) + 24px); overflow-y: auto; }
 .ref-phase {
   margin-bottom: 9px; border: 1px solid var(--line-soft); border-radius: var(--radius);

@@ -31,6 +31,7 @@ function show(screenId) {
 // Applies every data-i18n / data-i18n-small binding in the static markup.
 function applyStaticStrings() {
   document.documentElement.lang = getLang();
+  $('ref-search').placeholder = t('ref.search');
   for (const el of document.querySelectorAll('[data-i18n]')) {
     const smallKey = el.dataset.i18nSmall;
     el.textContent = t(el.dataset.i18n);
@@ -94,6 +95,7 @@ async function boot() {
   $('app-version').addEventListener('click', openChangelog);
   $('btn-randomize').addEventListener('click', () => { randomize(); renderConditions(); });
   $('btn-ref-back').addEventListener('click', () => show('screen-home'));
+  $('ref-search').addEventListener('input', (e) => filterReference(e.target.value));
   $('btn-settings-back').addEventListener('click', () => show('screen-home'));
   $('btn-changelog-back').addEventListener('click', () => show('screen-home'));
 
@@ -301,6 +303,41 @@ function renderReference() {
     div.appendChild(head);
     div.appendChild(body);
     area.appendChild(div);
+  }
+}
+
+// Live filter over the reference: hides non-matching rows and auto-opens
+// the phases that still have something to show.
+function filterReference(query) {
+  const q = query.trim().toLowerCase();
+  const phases = document.querySelectorAll('#ref-area .ref-phase');
+  for (const phase of phases) {
+    if (!q) {
+      phase.style.display = '';
+      phase.classList.remove('open', 'force-open');
+      for (const row of phase.querySelectorAll('.ref-item, .ref-note, .ref-spoken, .ref-block')) row.style.display = '';
+      continue;
+    }
+    let hits = 0;
+    for (const block of phase.querySelectorAll('.ref-block')) {
+      let blockHits = 0;
+      for (const row of block.children) {
+        if (row.classList.contains('ref-block-title')) continue;
+        const match = row.textContent.toLowerCase().includes(q);
+        row.style.display = match ? '' : 'none';
+        if (match) blockHits += 1;
+      }
+      const titleMatch = (block.querySelector('.ref-block-title')?.textContent || '').toLowerCase().includes(q);
+      if (titleMatch) {
+        for (const row of block.children) row.style.display = '';
+        blockHits += 1;
+      }
+      block.style.display = blockHits ? '' : 'none';
+      hits += blockHits;
+    }
+    const headMatch = (phase.querySelector('.ref-phase-head')?.textContent || '').toLowerCase().includes(q);
+    phase.style.display = (hits || headMatch) ? '' : 'none';
+    phase.classList.toggle('open', !!(hits || headMatch));
   }
 }
 

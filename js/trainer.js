@@ -64,6 +64,7 @@ export function createTrainer({ onExit }) {
       els.rpmReadout.className = 'rpm-readout';
     });
     els.rpmSet.addEventListener('click', checkRpm);
+    bindSwipe($('step-area'));
     els.btnPrev.addEventListener('click', prev);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
@@ -207,6 +208,27 @@ export function createTrainer({ onExit }) {
     if (finished || !get()) return;
     if (!revealed) reveal();
     else advanceFromTap();
+  }
+
+  // Horizontal swipes: left = next, right = previous. Vertical movement is
+  // left alone so the note panel can still scroll.
+  function bindSwipe(el) {
+    let x0 = null, y0 = null;
+    el.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) { x0 = null; return; }
+      x0 = e.touches[0].clientX;
+      y0 = e.touches[0].clientY;
+    }, { passive: true });
+    el.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      const dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+      if (finished || !get()) return;
+      if (dx < 0) { if (!revealed) reveal(); else advanceFromTap(); }
+      else prev();
+    }, { passive: true });
   }
 
   function reveal() {

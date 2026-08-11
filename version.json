@@ -1,6 +1,26 @@
 {
- "version": "1.7.0",
+ "version": "1.8.0",
  "releases": [
+  {
+   "version": "1.8.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Search in Reference — type a word and only the matching checks, items and callouts remain.",
+     "Swipe left for the next step, right to go back — easier one-handed on a train."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Recherche dans la Référence — tape un mot et seuls les checks, items et annonces correspondants restent affichés.",
+     "Balaye vers la gauche pour l'étape suivante, vers la droite pour revenir — plus pratique à une main dans le train."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.7.0",
    "date": "2026-08-11",
