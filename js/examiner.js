@@ -63,10 +63,39 @@ export function createExaminer({ onExit }) {
       });
     }
 
-    // Checklists are deliberately excluded from the examiner: in the aircraft
-    // a checklist is READ, not recalled by item position. Only memory content
-    // is quizzed — speeds, flows, callouts, radio, briefings and scenarios.
+    // A checklist is READ in the aircraft, never recalled by item position, so
+    // checklist items are not quizzed individually. Two things about them are
+    // fair game because they are memory work: the items the checklist marks
+    // with a bar (recited in printed order), and what you actually say aloud.
     const memory = (s) => s.kind !== 'checklist' && s.kind !== 'note';
+
+    // 1b. recite the marked items of a check, in order
+    const markedByBlock = new Map();
+    for (const s of steps) {
+      if (!s.mem) continue;
+      const key = `${s.phase.id}::${s.blockTitle}`;
+      if (!markedByBlock.has(key)) markedByBlock.set(key, { title: s.blockTitle, items: [] });
+      markedByBlock.get(key).items.push(s.answer);
+    }
+    for (const { title, items } of markedByBlock.values()) {
+      if (items.length < 2) continue;
+      qs.push({
+        tag: title, kind: t('exam.kind.marked'),
+        q: t('exam.markedQ', title, items.length),
+        a: items.join('\n'),
+        long: true,
+      });
+    }
+
+    // 1c. what you actually say out loud for a given item
+    for (const s of pickRandom(steps.filter(x => x.spoken), 12)) {
+      qs.push({
+        tag: s.blockTitle, kind: t('exam.kind.spoken'),
+        q: t('exam.spokenQ', `${s.challenge} — ${s.response}`),
+        a: s.spoken,
+        long: true,
+      });
+    }
 
     // 2. what comes next (within the same memory block)
     for (let i = 1; i < steps.length; i++) {
