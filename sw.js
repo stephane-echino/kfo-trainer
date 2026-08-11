@@ -14,6 +14,8 @@ const CORE = [
 const ASSETS = [
   ...CORE,
   './data/modules/circuit-fr.json',
+  './data/modules/emergency.json',
+  './data/modules/emergency-fr.json',
   './js/data.js',
   './js/store.js',
   './js/trainer.js',

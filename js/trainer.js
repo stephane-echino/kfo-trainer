@@ -109,6 +109,11 @@ export function createTrainer({ onExit }) {
 
   function get() { return steps[index]; }
 
+  // In the emergency course a marked item is a vital action to be done from
+  // memory, not a checklist item flagged in the margin — so it is labelled
+  // differently and coloured as a warning.
+  function isEmergency() { return (store.getSettings().course || 'circuit') === 'emergency'; }
+
   function render() {
     const s = get();
     if (!s) { renderEmpty(); return; }
@@ -131,8 +136,9 @@ export function createTrainer({ onExit }) {
     els.kind.className = `step-kind k-${s.kind}`;
     els.source.textContent = s.source || '';
     els.source.classList.toggle('hidden', !s.source);
-    els.mem.textContent = t('badge.mem');
+    els.mem.textContent = t(isEmergency() ? 'badge.memAction' : 'badge.mem');
     els.mem.classList.toggle('hidden', !s.mem);
+    els.mem.classList.toggle('vital', isEmergency());
 
     // "Item 3 of 10" reads as a counter, not as the question
     const counter = /^(Item|Step|Étape) /.test(s.prompt) && /\d/.test(s.prompt);

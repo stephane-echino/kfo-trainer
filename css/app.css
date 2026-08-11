@@ -611,3 +611,8 @@ h1 {
   background: rgba(0, 0, 0, 0.28); color: var(--amber); font-size: 13px; line-height: 1;
 }
 .restart-btn:active { background: rgba(0, 0, 0, 0.5); }
+
+.step-mem.vital {
+  color: var(--red); background: var(--red-dim);
+  border-color: rgba(244, 115, 100, 0.5);
+}

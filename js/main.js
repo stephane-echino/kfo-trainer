@@ -36,6 +36,13 @@ function show(screenId) {
 function applyStaticStrings() {
   document.documentElement.lang = getLang();
   $('ref-search').placeholder = t('ref.search');
+  // the marked-items mode means something different in the emergency course
+  const emg = (store.getSettings().course || 'circuit') === 'emergency';
+  const memCard = document.querySelector('.mode-card[data-mode="memory"]');
+  if (memCard) {
+    memCard.querySelector('.mode-name').dataset.i18n = emg ? 'mode.memory.nameEmg' : 'mode.memory.name';
+    memCard.querySelector('.mode-desc').dataset.i18n = emg ? 'mode.memory.descEmg' : 'mode.memory.desc';
+  }
   for (const el of document.querySelectorAll('[data-i18n]')) {
     const smallKey = el.dataset.i18nSmall;
     el.textContent = t(el.dataset.i18n);
@@ -118,6 +125,7 @@ async function switchCourse(id) {
   if (id === currentCourse().id) return;
   store.setSettings({ ...store.getSettings(), course: id });
   await loadContent();
+  applyStaticStrings();
   refRendered = false;
   renderVersionLine();
   renderCourseSwitch();
