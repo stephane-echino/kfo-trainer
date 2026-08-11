@@ -4,8 +4,14 @@ import { store } from './store.js';
 import { createTrainer } from './trainer.js';
 import { createExaminer } from './examiner.js';
 import { voiceSupported } from './voice.js';
+import { t, setLang, getLang } from './i18n.js';
+import { APP_VERSION } from './version.js';
+import { fetchVersionInfo, isNewer, applyUpdate, currentVersion } from './updates.js';
+import { dayStreak } from './fx.js';
 
 const $ = (id) => document.getElementById(id);
+
+const MODULE_FOR_LANG = { en: 'circuit', fr: 'circuit-fr' };
 
 let mod = null;
 let steps = [];
@@ -20,14 +26,52 @@ function show(screenId) {
   window.scrollTo(0, 0);
 }
 
-async function boot() {
+// Applies every data-i18n / data-i18n-small binding in the static markup.
+function applyStaticStrings() {
+  document.documentElement.lang = getLang();
+  for (const el of document.querySelectorAll('[data-i18n]')) {
+    const smallKey = el.dataset.i18nSmall;
+    el.textContent = t(el.dataset.i18n);
+    if (smallKey) {
+      const small = document.createElement('small');
+      small.textContent = t(smallKey);
+      el.appendChild(small);
+    }
+  }
+}
+
+function includeMap() {
+  const s = store.getSettings();
+  return {
+    checklist: s.incChecklists, flow: s.incFlows, callout: s.incCallouts,
+    radio: s.incRadio, briefing: s.incBriefings, note: s.incNotes,
+  };
+}
+
+async function loadContent() {
+  const id = MODULE_FOR_LANG[getLang()] || 'circuit';
   try {
-    mod = await loadModule('circuit');
+    mod = await loadModule(id);
+  } catch {
+    if (id !== 'circuit') mod = await loadModule('circuit'); // FR module missing → fall back
+    else throw new Error('missing content');
+  }
+  rebuildSteps();
+}
+
+function rebuildSteps() {
+  steps = flattenSteps(mod, includeMap());
+}
+
+async function boot() {
+  setLang(store.getSettings().lang);
+  applyStaticStrings();
+  try {
+    await loadContent();
   } catch (e) {
     document.body.innerHTML = `<p style="padding:40px;text-align:center">Could not load flight data.<br>${e.message}</p>`;
     return;
   }
-  steps = flattenSteps(mod);
 
   trainer = createTrainer({ onExit: () => { releaseWake(); show('screen-home'); } });
   examiner = createExaminer({ onExit: () => { releaseWake(); show('screen-home'); } });
@@ -43,14 +87,35 @@ async function boot() {
     });
   });
   $('btn-settings').addEventListener('click', () => { renderSettings(); show('screen-settings'); });
-  $('btn-update').addEventListener('click', checkForUpdates);
+  $('btn-update').addEventListener('click', onUpdateClick);
+  $('app-version').addEventListener('click', openChangelog);
   $('btn-ref-back').addEventListener('click', () => show('screen-home'));
   $('btn-settings-back').addEventListener('click', () => show('screen-home'));
+  $('btn-changelog-back').addEventListener('click', () => show('screen-home'));
 
-  $('app-version').textContent = `${mod.name} · module v${mod.version}`;
-
+  renderVersionLine();
   renderHome();
   registerSW();
+  checkOnLaunch();
+}
+
+function renderVersionLine() {
+  $('app-version').textContent = `KFO Trainer ${APP_VERSION} · ${mod.name} v${mod.version}`;
+  if (pendingVersion) $('app-version').innerHTML += ` <span class="new-badge">NEW</span>`;
+}
+
+// Language switch: reload content in the new language and re-render everything.
+async function switchLang(l) {
+  if (l === getLang()) return;
+  store.setSettings({ ...store.getSettings(), lang: l });
+  setLang(l);
+  applyStaticStrings();
+  await loadContent(); // trainer/examiner receive `steps` on every start()
+  refRendered = false;
+  renderVersionLine();
+  paintUpdateButton();
+  renderSettings();
+  renderHome();
 }
 
 function startTrainer(seq) {
@@ -62,12 +127,34 @@ function startTrainer(seq) {
 }
 
 // ---------- home ----------
+function renderStats() {
+  const st = store.getStats();
+  const days = dayStreak(st.days || {});
+  const cards = [
+    { v: st.xp, l: t('stat.xp'), c: 'amber' },
+    { v: st.best, l: t('stat.best'), c: 'green' },
+    { v: days, l: t('stat.days'), c: 'blue' },
+    { v: st.flights, l: t('stat.flights'), c: '' },
+  ];
+  const strip = $('stats-strip');
+  strip.innerHTML = '';
+  for (const c of cards) {
+    const d = document.createElement('div');
+    d.className = 'stat-pill';
+    d.innerHTML = `<span class="stat-value ${c.c}"></span><span class="stat-label"></span>`;
+    d.querySelector('.stat-value').textContent = c.v;
+    d.querySelector('.stat-label').textContent = c.l;
+    strip.appendChild(d);
+  }
+}
+
 function renderHome() {
+  renderStats();
   const pos = store.getPosition('flight');
   const pct = steps.length ? Math.round((pos / steps.length) * 100) : 0;
-  $('progress-flight').textContent = pos > 0 ? `resume · ${pct}%` : '';
+  $('progress-flight').textContent = pos > 0 ? t('home.resume', pct) : '';
   const missCount = Object.keys(store.getMisses()).length;
-  $('progress-review').textContent = missCount ? `${missCount} to review` : '';
+  $('progress-review').textContent = missCount ? t('home.toReview', missCount) : '';
 
   const done = store.getPhaseDone();
   const currentPhase = steps[pos]?.phase.id;
@@ -186,7 +273,8 @@ function refItem(c, r, note) {
 function refSpeedsCard() {
   const div = document.createElement('div');
   div.className = 'ref-phase open';
-  div.innerHTML = `<button class="ref-phase-head"><span>Speeds — KIAS (MTOW)</span><span class="chev">›</span></button>`;
+  div.innerHTML = `<button class="ref-phase-head"><span></span><span class="chev">›</span></button>`;
+  div.querySelector('.ref-phase-head span').textContent = t('ref.speeds');
   div.querySelector('.ref-phase-head').addEventListener('click', () => div.classList.toggle('open'));
   const body = document.createElement('div');
   body.className = 'ref-phase-body';
@@ -205,19 +293,50 @@ function renderSettings() {
   $('set-voice').disabled = !voiceSupported;
   $('set-wakelock').checked = s.wakelock;
   $('set-haptics').checked = s.haptics;
-  $('voice-support-note').textContent = (voiceSupported
-    ? 'Speech recognition detected in this browser. It needs network and a mic permission the first time.'
-    : 'Speech recognition is NOT available in this browser. On iPhone, open the app in Safari itself to try it — the installed home-screen app usually cannot use the microphone for recognition.')
-    + ' Note: if you use the app in a Safari tab (not installed), Safari may erase saved progress after ~7 days without a visit. The installed home-screen app keeps data reliably.';
+  $('voice-support-note').textContent = `${voiceSupported ? t('settings.voiceYes') : t('settings.voiceNo')} ${t('settings.storage')}`;
+
+  for (const btn of document.querySelectorAll('.lang-btn')) {
+    btn.classList.toggle('active', btn.dataset.lang === getLang());
+    btn.onclick = () => switchLang(btn.dataset.lang);
+  }
+
+  // what to train
+  const SETTING_OF_TYPE = {
+    checklist: 'incChecklists', flow: 'incFlows', callout: 'incCallouts',
+    radio: 'incRadio', briefing: 'incBriefings', note: 'incNotes',
+  };
+  for (const btn of document.querySelectorAll('.train-toggle')) {
+    const key = SETTING_OF_TYPE[btn.dataset.type];
+    btn.classList.toggle('on', store.getSettings()[key] !== false);
+    btn.onclick = () => {
+      const cur = store.getSettings();
+      const next = cur[key] === false;
+      // never let the student switch everything off
+      const others = Object.entries(SETTING_OF_TYPE)
+        .filter(([type]) => type !== btn.dataset.type)
+        .some(([, k]) => cur[k] !== false);
+      if (!next && !others) return;
+      save({ [key]: next });
+      btn.classList.toggle('on', next);
+      rebuildSteps();
+      renderHome();
+    };
+  }
 
   $('set-voice').onchange = (e) => save({ voice: e.target.checked });
   $('set-wakelock').onchange = (e) => save({ wakelock: e.target.checked });
   $('set-haptics').onchange = (e) => save({ haptics: e.target.checked });
   $('btn-reset-progress').onclick = () => { store.setPosition('flight', 0); store.resetPhaseDone(); flashBtn('btn-reset-progress'); };
   $('btn-reset-misses').onclick = () => { store.resetMisses(); flashBtn('btn-reset-misses'); };
+  $('btn-reset-stats').onclick = () => { store.resetStats(); renderStats(); flashBtn('btn-reset-stats'); };
 
   function save(patch) { store.setSettings({ ...store.getSettings(), ...patch }); }
-  function flashBtn(id) { const b = $(id); const t = b.textContent; b.textContent = 'Done ✓'; setTimeout(() => { b.textContent = t; }, 1200); }
+  function flashBtn(id) {
+    const b = $(id);
+    const label = b.textContent;
+    b.textContent = t('settings.done');
+    setTimeout(() => { b.textContent = label; }, 1200);
+  }
 }
 
 // ---------- wake lock ----------
@@ -235,37 +354,113 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // ---------- updates ----------
-// The SW takes over immediately after install (skipWaiting + clients.claim),
-// so a successful reg.update() with a new version fires 'controllerchange'.
-let updateReloading = false;
-async function checkForUpdates() {
-  const btn = $('btn-update');
-  btn.textContent = 'Checking…';
+let versionInfo = null;      // parsed version.json (also feeds the changelog)
+let pendingVersion = null;   // newer version available on the server
+
+// Silent check on launch: only paints the button, never interrupts.
+async function checkOnLaunch() {
   try {
-    if (!('serviceWorker' in navigator)) { location.reload(); return; }
-    const reg = await navigator.serviceWorker.getRegistration();
-    if (!reg) { location.reload(); return; }
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (updateReloading) return;
-      updateReloading = true;
-      btn.textContent = 'Updating…';
-      btn.classList.add('ready');
-      location.reload();
-    });
-    await reg.update();
-    setTimeout(() => {
-      if (updateReloading) return;
-      if (reg.installing || reg.waiting) {
-        btn.textContent = 'Update found — installing…';
-        btn.classList.add('ready');
-      } else {
-        btn.textContent = 'Up to date ✓';
-        setTimeout(() => { btn.textContent = '↻ Check for updates'; btn.classList.remove('ready'); }, 2500);
-      }
-    }, 3000);
+    versionInfo = await fetchVersionInfo();
+    if (isNewer(versionInfo.version)) {
+      pendingVersion = versionInfo.version;
+      paintUpdateButton();
+      $('app-version').innerHTML += ` <span class="new-badge">NEW</span>`;
+    }
   } catch {
-    location.reload(); // worst case: plain reload still refreshes via network-first
+    /* offline — the cached changelog (if any) still opens */
   }
+}
+
+function paintUpdateButton() {
+  const btn = $('btn-update');
+  btn.classList.toggle('available', !!pendingVersion);
+  btn.textContent = pendingVersion ? t('update.available', pendingVersion) : t('update.check');
+}
+
+async function onUpdateClick() {
+  const btn = $('btn-update');
+  if (pendingVersion) {
+    btn.textContent = t('update.updating');
+    await applyUpdate(pendingVersion);
+    return;
+  }
+  btn.textContent = t('update.checking');
+  try {
+    versionInfo = await fetchVersionInfo();
+    if (isNewer(versionInfo.version)) {
+      pendingVersion = versionInfo.version;
+      paintUpdateButton();
+      btn.textContent = t('update.updating');
+      await applyUpdate(pendingVersion);
+    } else {
+      btn.classList.add('ready');
+      btn.textContent = t('update.uptodate');
+      setTimeout(() => { btn.classList.remove('ready'); paintUpdateButton(); }, 2500);
+    }
+  } catch {
+    btn.textContent = t('update.offline');
+    setTimeout(paintUpdateButton, 2500);
+  }
+}
+
+// ---------- changelog ----------
+async function openChangelog() {
+  const area = $('changelog-area');
+  area.innerHTML = '';
+  if (!versionInfo) {
+    try { versionInfo = await fetchVersionInfo(); } catch { /* handled below */ }
+  }
+  if (!versionInfo) {
+    const p = document.createElement('p');
+    p.className = 'settings-note';
+    p.textContent = t('changelog.unavailable');
+    area.appendChild(p);
+  } else {
+    const lang = getLang();
+    for (const rel of versionInfo.releases || []) {
+      const box = document.createElement('div');
+      box.className = 'rel';
+      const head = document.createElement('div');
+      head.className = 'rel-head';
+      const isCurrent = rel.version === currentVersion();
+      head.innerHTML = `<span class="rel-ver${isCurrent ? ' current' : ''}">v${rel.version}</span>`;
+      if (isCurrent) {
+        const tag = document.createElement('span');
+        tag.className = 'rel-date';
+        tag.textContent = `${rel.date} · ${t('changelog.current')}`;
+        head.appendChild(tag);
+      } else {
+        const d = document.createElement('span');
+        d.className = 'rel-date';
+        d.textContent = rel.date;
+        head.appendChild(d);
+      }
+      const body = document.createElement('div');
+      body.className = 'rel-body';
+      const notes = rel[lang] || rel.en || {};
+      for (const group of ['added', 'changed', 'fixed']) {
+        const lines = notes[group] || [];
+        if (!lines.length) continue;
+        const g = document.createElement('div');
+        g.className = `rel-group ${group}`;
+        const h = document.createElement('h4');
+        h.textContent = t(`changelog.${group}`);
+        const ul = document.createElement('ul');
+        for (const line of lines) {
+          const li = document.createElement('li');
+          li.textContent = line;
+          ul.appendChild(li);
+        }
+        g.appendChild(h);
+        g.appendChild(ul);
+        body.appendChild(g);
+      }
+      box.appendChild(head);
+      box.appendChild(body);
+      area.appendChild(box);
+    }
+  }
+  show('screen-changelog');
 }
 
 // ---------- service worker ----------

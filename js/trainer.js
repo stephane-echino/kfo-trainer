@@ -2,6 +2,8 @@
 import { store } from './store.js';
 import { renderCircuit, moveDot } from './circuit.js';
 import { voiceSupported, createRecognizer, matchScore } from './voice.js';
+import { t } from './i18n.js';
+import { haptic, burst, floatLabel, todayIso } from './fx.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -25,6 +27,8 @@ export function createTrainer({ onExit }) {
       blockTitle: $('step-block-title'),
       card: $('step-card'),
       kind: $('step-kind'),
+      source: $('step-source'),
+      streak: $('streak-chip'),
       prompt: $('step-prompt'),
       answer: $('step-answer'),
       note: $('step-note'),
@@ -94,38 +98,50 @@ export function createTrainer({ onExit }) {
 
     els.kind.textContent = kindLabel(s.kind);
     els.kind.className = `step-kind k-${s.kind}`;
+    els.source.textContent = s.source || '';
+    els.source.classList.toggle('hidden', !s.source);
 
+    // "Item 3 of 10" reads as a counter, not as the question
+    const counter = /^(Item|Step|Étape) /.test(s.prompt) && /\d/.test(s.prompt);
     els.prompt.innerHTML =
-      (s.promptPre ? `<span class="prompt-pre">${esc(s.promptPre)}</span>` : '') + esc(s.prompt);
+      (s.promptPre ? `<span class="prompt-pre">${esc(s.promptPre)}</span>` : '') +
+      (counter ? `<span class="count">${esc(s.prompt)}</span>` : esc(s.prompt));
 
+    els.card.classList.remove('revealed');
     els.answer.classList.add('hidden');
     els.note.classList.add('hidden');
     els.voiceFb.classList.add('hidden');
     els.answer.classList.toggle('long', !!s.answerLong);
-    els.answer.textContent = s.answer;
+    // dim the official item number so the response itself carries the eye
+    const numbered = /^(\d+)\.\s/.exec(s.answer);
+    if (numbered && !s.answerLong) {
+      els.answer.innerHTML = `<span class="num">${numbered[1]}.</span> ${esc(s.answer.slice(numbered[0].length))}`;
+    } else {
+      els.answer.textContent = s.answer;
+    }
     if (s.note) els.note.textContent = s.note;
 
     revealed = false;
     lastHeard = '';
     els.hint.textContent = s.kind === 'note'
-      ? 'tap to read'
-      : (voiceOn ? 'say it out loud — I\'m listening · or tap to reveal' : 'say it out loud · tap to reveal');
+      ? t('hint.read')
+      : (voiceOn ? t('hint.sayListen') : t('hint.say'));
     setActionState();
 
     if (voiceOn && s.sayTarget && recognizer) recognizer.start();
   }
 
   function renderEmpty() {
-    els.phaseTitle.textContent = 'Nothing to review';
+    els.phaseTitle.textContent = t('trainer.emptyReview');
     els.context.textContent = '';
     els.blockTitle.textContent = '';
     els.kind.className = 'step-kind';
     els.kind.textContent = '';
-    els.prompt.textContent = 'No missed steps — nice work. Fly the full flight to collect new ones.';
+    els.prompt.textContent = t('trainer.emptyReviewMsg');
     els.answer.classList.add('hidden');
     els.note.classList.add('hidden');
     els.voiceFb.classList.add('hidden');
-    els.hint.textContent = 'tap ← to go back';
+    els.hint.textContent = t('hint.goBack');
     els.btnPrev.disabled = true;
     els.btnMiss.disabled = true;
     els.btnOk.disabled = true;
@@ -142,15 +158,16 @@ export function createTrainer({ onExit }) {
   function onCardTap() {
     if (finished || !get()) return;
     if (!revealed) reveal();
-    else advance(true); // tap after reveal = implicit "got it"
+    else advanceFromTap();
   }
 
   function reveal() {
     const s = get();
     revealed = true;
+    els.card.classList.add('revealed');
     els.answer.classList.remove('hidden');
     if (s.note) els.note.classList.remove('hidden');
-    els.hint.textContent = s.graded ? 'tap = got it · or grade below' : 'tap for next';
+    els.hint.textContent = s.graded ? t('hint.revealed') : t('hint.next');
     stopVoice(false);
     haptic();
     setActionState();
@@ -160,7 +177,45 @@ export function createTrainer({ onExit }) {
     const s = get();
     if (!s || !revealed) return;
     if (ok) store.clearMiss(s.key); else store.addMiss(s.key);
+    if (s.graded) award(ok);
     advance(ok);
+  }
+
+  // XP and running streak — cosmetic motivation, never affects content.
+  function award(ok) {
+    const streak = store.bumpStreak(ok);
+    if (ok) {
+      const bonus = streak >= 20 ? 6 : streak >= 10 ? 4 : streak >= 5 ? 2 : 0;
+      store.addXp(10 + bonus);
+      floatLabel(els.card, `+${10 + bonus} XP`);
+      if (streak > 0 && streak % 10 === 0) {
+        burst(els.streak, 20);
+        haptic([10, 40, 14]);
+      }
+    } else {
+      haptic([14, 50, 14]);
+    }
+    paintStreak(streak, ok);
+  }
+
+  function paintStreak(streak, grew) {
+    els.streak.textContent = `🔥 ${streak}`;
+    els.streak.classList.toggle('show', streak >= 3);
+    if (grew && streak >= 3) {
+      els.streak.classList.remove('bump');
+      void els.streak.offsetWidth; // restart the animation
+      els.streak.classList.add('bump');
+    }
+  }
+
+  // tapping the card past the reveal counts as "got it"
+  function advanceFromTap() {
+    const s = get();
+    if (s && revealed && s.graded) {
+      store.clearMiss(s.key);
+      award(true);
+    }
+    advance();
   }
 
   function advance() {
@@ -191,19 +246,23 @@ export function createTrainer({ onExit }) {
     stopVoice();
     finished = true;
     index = 0; // so exiting after completion doesn't re-save a stale position
-    if (seqId === 'flight') store.setPosition('flight', 0);
-    els.phaseTitle.textContent = 'Flight complete';
+    if (seqId === 'flight') {
+      store.setPosition('flight', 0);
+      store.countFlight();
+    }
+    store.touchDay(todayIso());
+    burst(els.card, 34);
+    haptic([12, 60, 12, 60, 20]);
+    els.phaseTitle.textContent = t('trainer.done');
     els.context.textContent = '';
     els.blockTitle.textContent = '';
     els.kind.className = 'step-kind';
     els.kind.textContent = '';
     const missCount = Object.keys(store.getMisses()).length;
-    els.prompt.textContent = missCount
-      ? `Done — ${missCount} step${missCount > 1 ? 's' : ''} to review. They're waiting in "Review misses".`
-      : 'Done — no missed steps. Solid.';
+    els.prompt.textContent = missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean');
     els.answer.classList.add('hidden');
     els.note.classList.add('hidden');
-    els.hint.textContent = 'tap ← to go home';
+    els.hint.textContent = t('hint.goHome');
     els.btnPrev.disabled = true;
     els.btnMiss.disabled = true;
     els.btnOk.disabled = true;
@@ -213,7 +272,7 @@ export function createTrainer({ onExit }) {
   function toggleVoice() {
     if (!voiceSupported) {
       els.voiceFb.className = 'voice-feedback bad';
-      els.voiceFb.textContent = 'Speech recognition is not available in this browser.';
+      els.voiceFb.textContent = t('voice.unsupported');
       els.voiceFb.classList.remove('hidden');
       return;
     }
@@ -248,11 +307,11 @@ export function createTrainer({ onExit }) {
         els.voiceFb.classList.remove('hidden');
         if (score >= 0.6) {
           els.voiceFb.className = 'voice-feedback good';
-          els.voiceFb.textContent = `Heard: "${text}" ✓`;
+          els.voiceFb.textContent = t('voice.heardOk', text);
           reveal();
         } else if (final) {
           els.voiceFb.className = 'voice-feedback bad';
-          els.voiceFb.textContent = `Heard: "${text}" — check yourself, tap to reveal`;
+          els.voiceFb.textContent = t('voice.heardBad', text);
         } else {
           els.voiceFb.className = 'voice-feedback listening';
           els.voiceFb.textContent = `"${text}"`;
@@ -262,12 +321,12 @@ export function createTrainer({ onExit }) {
         if (!voiceOn || revealed) return;
         if (state === 'listening') {
           els.voiceFb.className = 'voice-feedback listening';
-          els.voiceFb.textContent = 'Listening…';
+          els.voiceFb.textContent = t('voice.listening');
           els.voiceFb.classList.remove('hidden');
         } else if (state === 'error') {
           voiceErrors += 1;
           els.voiceFb.className = 'voice-feedback bad';
-          els.voiceFb.textContent = 'Mic unavailable — tap flow still works. On iOS, try Safari (not the installed app).';
+          els.voiceFb.textContent = t('voice.unavailable');
           els.voiceFb.classList.remove('hidden');
         } else if (state === 'idle') {
           // recognition ends on silence — restart while the step still wants a voice answer
@@ -304,7 +363,7 @@ export function createTrainer({ onExit }) {
   }
 
   function kindLabel(kind) {
-    return { checklist: 'Checklist', flow: 'Flow', callout: 'Callout', radio: 'Radio', briefing: 'Briefing', note: 'Technique' }[kind] || kind;
+    return t(`kind.${kind}`) || kind;
   }
 
   init();

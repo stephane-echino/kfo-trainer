@@ -1,7 +1,7 @@
 // Service worker — bump VERSION on every deploy.
 // Strategy: network-first for navigations and data modules (fresh content
 // whenever online, cache fallback offline); cache-first for static assets.
-const VERSION = 'v1.1.0';
+const VERSION = 'v1.4.0';
 const CACHE = `kfo-trainer-${VERSION}`;
 
 const CORE = [
@@ -13,12 +13,17 @@ const CORE = [
 ];
 const ASSETS = [
   ...CORE,
+  './data/modules/circuit-fr.json',
   './js/data.js',
   './js/store.js',
   './js/trainer.js',
   './js/examiner.js',
   './js/circuit.js',
   './js/voice.js',
+  './js/i18n.js',
+  './js/version.js',
+  './js/updates.js',
+  './js/fx.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -64,6 +69,9 @@ function isFreshFirst(request) {
 
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+  // version.json must never be answered from cache — it is how the app detects
+  // that a new build exists. Let the browser fetch it directly.
+  if (new URL(e.request.url).pathname.endsWith('/version.json')) return;
   const sameOrigin = new URL(e.request.url).origin === location.origin;
 
   if (sameOrigin && isFreshFirst(e.request)) {

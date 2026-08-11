@@ -1,0 +1,2381 @@
+{
+ "id": "circuit-fr",
+ "name": "Circuit complet — HB-KFO",
+ "version": "1.0.0",
+ "aircraft": "HB-KFO",
+ "speeds": [
+  {
+   "code": "Vr",
+   "kias": "54",
+   "label": "rotation",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Vx",
+   "kias": "70",
+   "label": "meilleure pente de montée",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Vy",
+   "kias": "80",
+   "label": "meilleur taux de montée",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Vcc",
+   "kias": "90-(76 at ceiling altitude)",
+   "label": "montée de croisière",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Va",
+   "kias": "116",
+   "label": "manœuvre",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Vfe",
+   "kias": "92",
+   "label": "volets sortis",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Vfo",
+   "kias": "81",
+   "label": "sortie volets pleins",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Vref",
+   "kias": "62",
+   "label": "référence (MTOW)",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Best glide",
+   "kias": "78",
+   "label": "volets rentrés",
+   "unit": "KIAS"
+  },
+  {
+   "code": "Xwind",
+   "kias": "22",
+   "label": "vent traversier max démontré",
+   "unit": "kt"
+  }
+ ],
+ "examiner": [
+  {
+   "q": "Vous êtes à 400 ft en montée initiale au départ de LSGN, volets 1, et le moteur s'arrête. L'altitude du terrain + 1000 ft correspond à 2500 ft. Que faites-vous exactement ?",
+   "a": "Vitesse selon la configuration volets : 78 KIAS volets rentrés, 73 KIAS volets 1 cran. Maximum +- 45 degrés de l'axe de piste (ou de la trajectoire). Volets pleins quand l'atterrissage est assuré. Vitesse Vref 62 KIAS.",
+   "tag": "EFATO below 1000 ft"
+  },
+  {
+   "q": "Même panne, mais vous êtes déjà au-dessus de l'altitude du terrain + 1000 ft (p. ex. 2500 ft pour LSGN). Qu'est-ce qui change dans le briefing ?",
+   "a": "Vitesse 78 KIAS, retour vers la piste opposée, volets pleins quand l'atterrissage est assuré, vitesse Vref 62 KIAS. Le retour vers la piste opposée ne peut être envisagé qu'au-dessus du seuil altitude terrain + 1000 ft.",
+   "tag": "EFATO above 1000 ft"
+  },
+  {
+   "q": "Fonctionnement irrégulier du moteur pendant le roulement au décollage, avant la rotation. Donnez-moi les trois actions de votre briefing départ.",
+   "a": "Manette des gaz au ralenti, freins appliqués, informer l'ATC (radio).",
+   "tag": "malfunction before rotation"
+  },
+  {
+   "q": "Pourquoi le demi-tour vers le terrain est-il interdit à basse hauteur après le décollage ?",
+   "a": "AFM : atterrir droit devant, avec seulement de petits changements de cap pour éviter les obstacles ; ne jamais tenter de retour vers la piste, car l'altitude après le décollage ne le permet généralement pas. Demi-tour uniquement au-dessus de altitude terrain + 1000 ft.",
+   "tag": "turn-back rule"
+  },
+  {
+   "q": "Quel est le vent traversier maximal démontré pour HB-KFO ?",
+   "a": "22 kt (40 km/h). Il figure dans le tableau des vitesses de la check-list sous Xwind 22 et dans l'AFM comme vent traversier démontré, section décollage par vent traversier.",
+   "tag": "limits / crosswind"
+  },
+  {
+   "q": "Run-up : à quel régime vérifiez-vous les magnétos et quelles sont les deux limites ?",
+   "a": "Manette des gaz « SET 2000 RPM ». Magnétos « CHECKED (max drop 175-max diff 50) » : chute max de 175 RPM entre (L) ou (R) et BOTH, différence max de 50 RPM entre (L) et (R).",
+   "tag": "limits / magnetos"
+  },
+  {
+   "q": "Quelle chute de régime attendez-vous au test du réchauffage carburateur, et à quelle puissance ?",
+   "a": "« Carburator heater — CHECKED (drop 100) », effectué à 2000 RPM : tirer sur chaud, vérifier la chute d'environ 100 RPM, puis repousser sur froid.",
+   "tag": "run up / carb heat"
+  },
+  {
+   "q": "Quel régime de ralenti devez-vous constater pendant le run-up, et quel est le dernier point de ce check ?",
+   "a": "« Throttle idle — CHECKED (600-650 rpm) ». Dernier point : « Throttle — SET 1000 RPM ».",
+   "tag": "limits / idle RPM"
+  },
+  {
+   "q": "Le moteur ne démarre pas. Quelles sont les limitations du démarreur ?",
+   "a": "« Starter — DEPRESSED (max 30 sec. then wait 1') ». AFM : éviter d'utiliser le démarreur plus de 30 secondes, et attendre au moins une minute avant toute nouvelle tentative de démarrage.",
+   "tag": "limits / starter"
+  },
+  {
+   "q": "Le moteur vient de démarrer. Que vérifiez-vous, et dans quel délai devez-vous le voir ?",
+   "a": "« Oil pressure — CHECKED RISING (green arc) ». AFM : si la pression d'huile est nulle après 15 à 20 secondes, couper et chercher la cause. Arc vert 3.8-6.5 bar (55-95 psi), trait rouge ralenti minimum 1.70 bar (25 psi).",
+   "tag": "limits / oil pressure"
+  },
+  {
+   "q": "Détaillez-moi les valeurs de régime du RUN UP CHECK.",
+   "a": "Frein de parc SET, gaz SET 1000 RPM, instruments moteur GREEN ARC, zone dégagée, gaz SET 2000 RPM pour magnétos, réchauffage carbu et mélange, ralenti CHECKED (600-650 rpm), gaz SET 1000 RPM.",
+   "tag": "run up / RPM"
+  },
+  {
+   "q": "Aligné. Quelle puissance affichez-vous et quel minimum devez-vous constater avant de partir ?",
+   "a": "« Power — SET FULL (min 2200 RPM) » ; instruments moteur et voyants vérifiés. AFM décollage normal : régime plein gaz minimum 2200 RPM, vitesse de décollage 54 kt (100 km/h).",
+   "tag": "line up / take-off power"
+  },
+  {
+   "q": "Vous êtes en palier, mélange appauvri en croisière, et vous voulez maintenant monter. Que devez-vous faire d'abord avec le mélange, et pourquoi ?",
+   "a": "AFM : TOUJOURS ENRICHIR LE MÉLANGE AVANT UNE AUGMENTATION DE PUISSANCE. Il faut veiller à ne pas appauvrir excessivement, pour éviter la surchauffe du moteur ; le mélange reste plein riche au décollage et en montée.",
+   "tag": "procedure logic / mixture"
+  },
+  {
+   "q": "Donnez-moi Vfe et Vfo et ce que chacune conditionne.",
+   "a": "Volets (Vfe) 92 KIAS, sortie volets pleins (Vfo) 81 KIAS. Volets 1 en vent arrière : « SPEED BELOW 92, FLAPS 1 ». Volets pleins : sortir en dessous de 81 KIAS.",
+   "tag": "limits / flap speeds"
+  },
+  {
+   "q": "Quand sélectionnez-vous exactement les volets 2 dans le circuit standard ?",
+   "a": "Au Point Of Descent : « APPROACHING GLIDE » vitesse 85 KIAS, « SPEED BELOW 81, START DESCENT, FLAPS 2 », vitesse 80 KIAS puis maintenir 80 KIAS. Le FINAL CHECK confirme ensuite Flaps — FULL DOWN (sortie en dessous de 81 KIAS).",
+   "tag": "circuit / flaps 2"
+  },
+  {
+   "q": "En courte finale, la piste n'est pas dégagée. Donnez-moi la séquence de remise de gaz et les vitesses.",
+   "a": "« GO AROUND » — afficher la puissance de décollage — « SPEED ABOVE 60, FLAPS 1 » — montée à 70 KIAS. Référence AFM : réchauffage carbu froid vérifié, plein gaz, vitesse 65 kt, volets progressivement en position décollage, montée 75 kt.",
+   "tag": "go around"
+  },
+  {
+   "q": "Annonces pour un touch and go ?",
+   "a": "Afficher la puissance de décollage — « SPEED ABOVE 54, ROTATE » — « SPEED ABOVE 60, POSITIVE ROC, FLAPS 1 » — montée à 70 KIAS, puis selon procédure.",
+   "tag": "touch and go"
+  },
+  {
+   "q": "Pourquoi le réchauffage carburateur ne doit-il jamais être laissé à mi-course ?",
+   "a": "AFM : toujours utiliser le réchauffage carburateur en tout ou rien (plein chaud ou plein froid) ; une position intermédiaire peut dans certains cas aggraver le givrage. Vérifié au run-up avec une chute d'environ 100 RPM, puis repoussé sur froid.",
+   "tag": "procedure logic / carb heat"
+  },
+  {
+   "q": "Quels points de check-list imposent le mode du transpondeur, et vers quoi ?",
+   "a": "CLIMB CHECK point 3 : Transponder — CHECK MODE « ALT ». AFTER LANDING CHECK point 3 : Transponder — CHECK MODE « GND ».",
+   "tag": "transponder"
+  },
+  {
+   "q": "Expliquez le principe du « First Push » et où s'appliquent PAT et APT.",
+   "a": "À chaque changement de phase de vol, on commence toujours par pousser, soit la profondeur, soit la puissance. Mise en montée = PAT (Power, Attitude, Trim) ; palier depuis une montée = APT ; mise en descente = APT ; sortie de descente = PAT.",
+   "tag": "SPHAIR / First Push"
+  },
+  {
+   "q": "Vous montez à 1000 FPM vers 4500 ft. Quand commencez-vous la mise en palier et dans quel ordre ?",
+   "a": "Anticiper de 1/10 du taux de montée : avec 1000 FPM commencer 100 ft avant, soit à 4400 ft. Ordre APT : Attitude SET, Power SET, Trim SET. La puissance n'est réduite qu'une fois que la vitesse cesse d'augmenter ; le trim après cela.",
+   "tag": "SPHAIR / 1/10 ROC"
+  },
+  {
+   "q": "En finale vous êtes sous le plan. Qu'utilisez-vous pour l'angle et qu'utilisez-vous pour la vitesse ?",
+   "a": "L'assiette contrôle le taux de descente / l'angle d'approche, la puissance contrôle la vitesse, corrigés simultanément et préventivement (PITCH / POWER PROPHYLAXIS). Seule exception : la descente d'approche initiale, volée « Speed on Stick », puissance à valeur fixe.",
+   "tag": "SPHAIR / pitch vs power"
+  },
+  {
+   "q": "À la mise en virage, que faites-vous du lacet inverse ?",
+   "a": "Compenser le lacet inverse par une action dosée au palonnier du côté du virage, la bille indiquant le dosage — « pied du côté où part la bille ». Sur les avions d'école de base, le lacet inverse doit toujours être compensé.",
+   "tag": "SPHAIR / adverse yaw"
+  },
+  {
+   "q": "De combien augmente la vitesse de décrochage à 30 degrés d'inclinaison ?",
+   "a": "Environ +7 % (p. ex. Vstall 60 KIAS devient 65 KIAS). Table AFM à 1000 kg, puissance réduite : volets rentrés 54 kt à 0 deg / 58 kt à 30 deg ; volets 1er cran 51 / 54 kt ; volets 2e cran 47 / 51 kt.",
+   "tag": "SPHAIR / stall in bank"
+  },
+  {
+   "q": "De la rotation à l'altitude du circuit, donnez-moi les vitesses et les annonces.",
+   "a": "Vrotate 54 KIAS « ROTATE », montée à Vx 70 KIAS. À 300 ft/AAL ou au-dessus : « CLEAR OF OBSTACLES », « SPEED ABOVE 70, FLAPS UP », montée à Vy 80 KIAS. Au-dessus de 2000 ft/AGL : montée à Vcc 85 KIAS.",
+   "tag": "initial climb"
+  }
+ ],
+ "phases": [
+  {
+   "id": "preflight",
+   "title": "Prévol",
+   "subtitle": "Tour de l'avion effectué, cockpit et documents contrôlés",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Position",
+     "v": "Aire de stationnement"
+    },
+    {
+     "k": "Moteur",
+     "v": "Arrêté"
+    },
+    {
+     "k": "Bagages max",
+     "v": "40 kg"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CONTROLE PREVOL",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Inspection pré vol",
+       "r": "EFFECTUEE"
+      },
+      {
+       "c": "Documents avion",
+       "r": "A BORD"
+      },
+      {
+       "c": "Carnet de vol",
+       "r": "VERIFIE"
+      },
+      {
+       "c": "Timon",
+       "r": "A BORD ARRIME"
+      },
+      {
+       "c": "Baggages",
+       "r": "ARRIMES",
+       "note": "AFM : coffre à bagages, masse maxi autorisée 40 kg, dans les limites autorisées de masse et de centrage."
+      }
+     ],
+     "closing": "CONTROLE PREVOL TERMINE"
+    }
+   ]
+  },
+  {
+   "id": "before-start",
+   "title": "Avant mise en route",
+   "subtitle": "Cockpit sécurisé, électricité et essence réglées",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Position",
+     "v": "Aire de stationnement"
+    },
+    {
+     "k": "Moteur",
+     "v": "Arrêté"
+    },
+    {
+     "k": "Essence consommable",
+     "v": "109 l"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CONTROLE AVANT MISE EN ROUTE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Frein de parc",
+       "r": "BLOQUE",
+       "note": "AFM : appuyer sur les deux pédales, maintenir la pression et tirer la commande de frein de parc ; relâcher les pédales, la tirette doit rester en position haute."
+      },
+      {
+       "c": "Ceintures",
+       "r": "BOUCLEES"
+      },
+      {
+       "c": "Briefing passagers",
+       "r": "EFFECTUE"
+      },
+      {
+       "c": "Consommateurs électriques",
+       "r": "COUPES"
+      },
+      {
+       "c": "Fusibles",
+       "r": "CONTROLES"
+      },
+      {
+       "c": "Commandes",
+       "r": "LIBRES et COHERENTES",
+       "note": "AFM : commandes de vol libres, sans jeux ni frottement excessifs ; la direction est à vérifier au roulage. Trim de profondeur : débattements vérifiés puis ramenés à la position décollage."
+      },
+      {
+       "c": "Interrupteur batterie",
+       "r": "MARCHE"
+      },
+      {
+       "c": "Essence",
+       "r": "QUANTITE et ENDURANCE",
+       "note": "AFM : capacité totale consommable 109 l ; capacité inutilisable 1 l. AVGAS 100 LL."
+      },
+      {
+       "c": "Robinet essence",
+       "r": "OUVERT"
+      },
+      {
+       "c": "ELT",
+       "r": "CONTROLE ARME (led rouge éteinte)"
+      }
+     ],
+     "closing": "CONTROLE AVANT MISE EN ROUTE TERMINE"
+    }
+   ]
+  },
+  {
+   "id": "engine-start",
+   "title": "Mise en route",
+   "subtitle": "Séquence de démarrage et variantes AFM",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Démarreur",
+     "v": "max 30 s, puis attendre 1 min"
+    },
+    {
+     "k": "Régime après démarrage",
+     "v": "1000 RPM (1200 RPM si moteur froid)"
+    },
+    {
+     "k": "Pression d'huile",
+     "v": "arc vert 3.8–6.5 bar"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "MISE EN ROUTE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Strobe",
+       "r": "ENCLENCHE"
+      },
+      {
+       "c": "Mixture",
+       "r": "PLEIN RICHE"
+      },
+      {
+       "c": "Réchauffage carburateur",
+       "r": "FROID"
+      },
+      {
+       "c": "Pompe électrique",
+       "r": "ENCLENCHEE et PRESSION CONTROLEE",
+       "note": "AFM : pression essence normale 35 à 550 mbar (0.5 à 8 psi)."
+      },
+      {
+       "c": "Magnetos",
+       "r": "POSITION BOTH",
+       "note": "L'AFM diffère : sélecteur magnéto sur L pour le démarrage, puis L+R (Both) dès que le moteur tourne. Appliquer la checklist, connaître l'AFM."
+      },
+      {
+       "c": "Zone",
+       "r": "DEGAGEE"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "INJECTEZ DURANT DEMARRAGE",
+       "note": "AFM, procédure normale : effectuer 2 ou 3 injections puis manette 1/4 en avant."
+      },
+      {
+       "c": "Démarreur",
+       "r": "MARCHE (max 30 sec. ensuite attendre 1')"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "AJUSTE 1000 RPM (1200 si moteur froid)"
+      },
+      {
+       "c": "Pression d'huile",
+       "r": "CONTROLEE (arc vert)"
+      }
+     ],
+     "closing": "CONTROLE MISE EN ROUTE TERMINEE"
+    },
+    {
+     "type": "note",
+     "title": "Variantes de démarrage AFM",
+     "source": "AFM",
+     "text": "Moteur chaud : même procédure, mais sans injections. Temps froid : même procédure, en soutenant le régime par injections successives jusqu'à 900 à 1000 tr/mn. Moteur « noyé » : pompe électrique arrêt, mixture étouffoir (vers le bas), manette des gaz plein gaz, démarreur actionné pendant quelques secondes ; dès que le moteur démarre, ramener la mixture sur « riche », puis reprendre la procédure normale, sans injection. Pression d'huile nulle après 15 à 20 secondes : couper et rechercher la cause."
+    }
+   ]
+  },
+  {
+   "id": "after-start",
+   "title": "Après mise en route",
+   "subtitle": "Systèmes, avionique et instruments réglés",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Position",
+     "v": "Aire de stationnement"
+    },
+    {
+     "k": "Moteur",
+     "v": "En marche"
+    },
+    {
+     "k": "Avant de rouler",
+     "v": "Contrôle entièrement accompli"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CONTROLE APRES MISE EN ROUTE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Feux de navigation",
+       "r": "ENCLENCHES"
+      },
+      {
+       "c": "Pompe électrique",
+       "r": "DECLENCHEE et PRESSION CONTROLEE"
+      },
+      {
+       "c": "Alternateur",
+       "r": "ENCLENCHE"
+      },
+      {
+       "c": "Voltmètre",
+       "r": "CONTROLE"
+      },
+      {
+       "c": "Indicateurs de pression",
+       "r": "CONTROLE"
+      },
+      {
+       "c": "Voyants lumineux",
+       "r": "CONTROLES"
+      },
+      {
+       "c": "Interrupteur avionique & FLARM",
+       "r": "ENCLENCHES"
+      },
+      {
+       "c": "Volets",
+       "r": "RENTRES"
+      },
+      {
+       "c": "Altimètres",
+       "r": "REGLES et CONTROLES"
+      },
+      {
+       "c": "Avionique (COM, NAV, GPS)",
+       "r": "REGLE et CONTROLE"
+      },
+      {
+       "c": "Transpondeur",
+       "r": "REGLE et CONTROLE"
+      }
+     ],
+     "closing": "CONTROLE APRES MISE EN ROUTE TERMINEE"
+    },
+    {
+     "type": "callout",
+     "title": "Annonces avant de rouler",
+     "source": "SPHAIR ch.5",
+     "items": [
+      {
+       "when": "Avant de commencer à rouler",
+       "say": "Ventilation, Heater, Defroster — AS REQUIRED / Avionics — ON, SET / Directional gyro — SET"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Préalable au roulage",
+     "source": "SPHAIR ch.5",
+     "text": "Avant de commencer à rouler, le CHECK AFTER ENGINE START doit être entièrement accompli. La vérification des instruments de vol se fait en principe avion à l'arrêt ; leur réglage s'effectue lors de ce check."
+    }
+   ]
+  },
+  {
+   "id": "taxi-out",
+   "title": "Roulage",
+   "subtitle": "De l'aire de stationnement au point d'attente",
+   "map": {
+    "point": "taxi"
+   },
+   "context": [
+    {
+     "k": "Régime de roulage",
+     "v": "1000 RPM"
+    },
+    {
+     "k": "Température d'huile en plage jaune",
+     "v": "ne pas dépasser 1200 RPM"
+    },
+    {
+     "k": "Distance de la piste active",
+     "v": "min 50 m (piste > 900 m) / 30 m (piste < 900 m)"
+    },
+    {
+     "k": "Herbe ↔ surface dure",
+     "v": "passage à 45°"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "radio",
+     "title": "Demande de roulage",
+     "source": "SPHAIR ch.21",
+     "items": [
+      {
+       "when": "Aérodrome contrôlé — premier appel à GROUND",
+       "say": "LOCARNO GROUND — HB-CFR — CESSNA 172 — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Collationnement de l'autorisation de roulage",
+       "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — HB-CFR",
+       "note": "Collationner l'instruction de roulage, la piste et le QNH, en terminant par son indicatif."
+      },
+      {
+       "when": "Aérodrome non contrôlé — annoncer son intention, pas de REQUEST",
+       "say": "LOMMIS AERODROME — HB-CFR — CESSNA 172 — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "AVANT CHAQUE ROULAGE:",
+     "source": "Checklist FR V10",
+     "intro": "Actions de mémoire, avant chaque mise en roulage.",
+     "steps": [
+      {
+       "do": "Feu de roulage — ENCLENCHE"
+      },
+      {
+       "do": "Manette de gaz — AJUSTE 1000 RPM"
+      },
+      {
+       "do": "Frein de parc — DEBLOQUE"
+      },
+      {
+       "do": "Manette de gaz — AJUSTE AFIN DE ROULER SANS FREINER",
+       "note": "Faible augmentation de la puissance pour se mettre en mouvement, puis réduction pour maintenir une vitesse stable."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "title": "MOVE / BRAKE CHECK",
+     "source": "SPHAIR ch.5",
+     "items": [
+      {
+       "when": "MOVE — avant que l'avion ne se déplace",
+       "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED",
+       "note": "Contrôler et annoncer chaque élément ; l'espace devant, de côté et derrière l'avion doit être dégagé."
+      },
+      {
+       "when": "BRAKE CHECK — dès que l'on roule pour la première fois",
+       "say": "Brakes – CHECKED",
+       "note": "Rouler très lentement tant que les freins ne sont pas contrôlés. Les actionner juste ce qu'il faut pour constater leur efficacité et leur symétrie — l'avion ne doit pas s'arrêter de rouler."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "CONTROLE ROULAGE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Freins et direction",
+       "r": "CONTROLES",
+       "note": "Ces contrôles ne se font qu'une fois l'aire de stationnement quittée."
+      },
+      {
+       "c": "Instruments vols (TC/PFD/HSI/Comp)",
+       "r": "CONTROLES",
+       "note": "SPHAIR : AI – ERECTED / STABLE ; DG ou indicateur de cap – DECREASING en virage à gauche, INCREASING en virage à droite. Méthode du SCANNING : ne contrôler qu'un seul instrument à la fois."
+      }
+     ],
+     "closing": "CONTROLE ROULAGE TERMINE"
+    },
+    {
+     "type": "flow",
+     "title": "A CHAQUE ARRET (pas sur la piste !):",
+     "source": "Checklist FR V10",
+     "intro": "Actions issues de la checklist ; annonces STOP selon SPHAIR ch.5.",
+     "steps": [
+      {
+       "do": "Frein de parc — BLOQUE",
+       "say": "Parking Brake – SET"
+      },
+      {
+       "do": "Manette de gaz — AJUSTE 1000 RPM",
+       "say": "Power – ….SET"
+      },
+      {
+       "do": "Feu de roulage — DECLENCHE",
+       "say": "Taxi Light – OFF",
+       "note": "À chaque arrêt, laisser la roue de proue en position neutre."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Technique de roulage",
+     "source": "SPHAIR ch.5",
+     "text": "La roue de proue sur la ligne jaune médiane ; regarder la ligne de roulage par dessus la ligne de visée (décalage yeux/axe ≈ 25 cm). Vitesse du pas au maximum sur les aires de stationnement, à proximité d'autres avions et dans les virages. Vent de face : profondeur neutre. Vent de dos : profondeur poussée, puissance réduite. Vent de travers : roulis contre le vent. Ne pas rouler en actionnant les freins en permanence — adapter la puissance au besoin."
+    }
+   ]
+  },
+  {
+   "id": "runup",
+   "title": "Point fixe",
+   "subtitle": "Contrôle moteur au point d'attente",
+   "map": {
+    "point": "holding"
+   },
+   "context": [
+    {
+     "k": "RPM point fixe",
+     "v": "2000 RPM"
+    },
+    {
+     "k": "Baisse magnétos",
+     "v": "max 175 / diff max 50"
+    },
+    {
+     "k": "Baisse réchauffage carbu",
+     "v": "100"
+    },
+    {
+     "k": "Ralenti",
+     "v": "600-650 rpm"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CONTROLE POINT FIXE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Frein de parc",
+       "r": "BLOQUE"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "AJUSTE 1000 RPM"
+      },
+      {
+       "c": "Instruments moteur",
+       "r": "ARC VERT"
+      },
+      {
+       "c": "Zone",
+       "r": "DEGAGEE"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "AJUSTE 2000 RPM"
+      },
+      {
+       "c": "Magnetos",
+       "r": "CONTROLES (baisse max 175- diff max 50)"
+      },
+      {
+       "c": "Réchauffage carburateur",
+       "r": "CONTROLE (baisse 100 rpm)"
+      },
+      {
+       "c": "Mixture",
+       "r": "CONTROLEE (EGT et RPM)"
+      },
+      {
+       "c": "Instruments moteur",
+       "r": "CONTROLE"
+      },
+      {
+       "c": "Voltmètre",
+       "r": "CONTROLE"
+      },
+      {
+       "c": "Voyants lumineux",
+       "r": "CONTROLE"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "RALENTI (600-650 rpm)"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "AJUSTE 1000 RPM"
+      }
+     ],
+     "closing": "CONTROLE POINT FIXE TERMINE"
+    }
+   ]
+  },
+  {
+   "id": "before-takeoff",
+   "title": "Avant décollage",
+   "subtitle": "Derniers contrôles, puis le briefing de décollage",
+   "map": {
+    "point": "holding"
+   },
+   "context": [
+    {
+     "k": "Vr",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "Vx",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Vy",
+     "v": "80 KIAS"
+    },
+    {
+     "k": "Vref",
+     "v": "62 KIAS"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CONTROLE AVANT DECOLLAGE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Magnetos",
+       "r": "L+R (BOTH)"
+      },
+      {
+       "c": "Essence",
+       "r": "QUANTITE and ENDURANCE"
+      },
+      {
+       "c": "Pompe électrique",
+       "r": "ENCLENCHEE et PRESSION CONTROLEE"
+      },
+      {
+       "c": "Robinet essence",
+       "r": "OUVERT"
+      },
+      {
+       "c": "Mixture",
+       "r": "RICHE ou SELON BESOIN"
+      },
+      {
+       "c": "Réchauffage carburateur",
+       "r": "FROID"
+      },
+      {
+       "c": "Instruments moteur",
+       "r": "CONTROLES"
+      },
+      {
+       "c": "Instruments de vol et avionique",
+       "r": "REGLES et CONTROLES"
+      },
+      {
+       "c": "Trim",
+       "r": "REGLE pour DECOLLAGE"
+      },
+      {
+       "c": "Volets",
+       "r": "PLEIN SORTIS ensuite 1er CRAN"
+      },
+      {
+       "c": "Sièges",
+       "r": "AJUSTES et CONTROLES"
+      },
+      {
+       "c": "Ceintures",
+       "r": "AJUSTEES et CONTROLEES"
+      },
+      {
+       "c": "Commandes",
+       "r": "LIBRES et COHERENTES",
+       "note": "Dernier contrôle des commandes avant le décollage : débattement libre, sans jeux ni frottement excessifs, et déplacement des gouvernes cohérent avec le sens des commandes."
+      },
+      {
+       "c": "Briefing de décollage",
+       "r": "EFFECTUE",
+       "note": "Le briefing est le dernier point du groupe « contrôle avant décollage » et se fait normalement à haute voix."
+      }
+     ],
+     "closing": "CONTROLE AVANT DECOLLAGE TERMINE"
+    },
+    {
+     "type": "briefing",
+     "title": "Briefing de décollage",
+     "source": "TO Briefing GVMN",
+     "intro": "Il se compose de 2 groupes : normal, puis anormal. Le texte ci-dessous est la version française publiée par le club. Ce briefing devrait se faire avant chaque décollage, à haute voix si possible.",
+     "steps": [
+      {
+       "do": "Conditions",
+       "say": "Piste en service xx béton/herbe, condition sèche (mouillée), vent force et direction (ex. 10 Kts de face)",
+       "note": "Renseignez la piste, la nature de la surface, les conditions et le vent du jour avant de l'énoncer."
+      },
+      {
+       "do": "Vitesses",
+       "say": "Rotation 54 KIAS, Vx 70 KIAS, Vy 80 KIAS, montée initiale à xxxx ft direction x (ex. montée à 4500 ft direction Cudrefin)",
+       "note": "Énoncer les vitesses à haute voix les met en mémoire courte - important quand un pilote vole plusieurs types d'avions."
+      },
+      {
+       "do": "Toutes malfonctions avant rotation",
+       "say": "Puissance au ralenti, freinage, informer ATC (radio)"
+      },
+      {
+       "do": "Panne moteur après la rotation en dessous de « altitude du terrain + 1000ft » (ex. pour LSGN 2500 ft)",
+       "say": "Vitesse selon volets (78 KIA volets rentrés, 73 KIA 1 cran), maximum +- 45 degrés dans l'axe de piste (ou de vol), pleins volets quand attérissage assuré, vitesse Vref 62 KIAS"
+      },
+      {
+       "do": "Panne moteur après la rotation en dessus de « altitude du terrain + 1000 ft » (ex. pour LSGN 2500 ft)",
+       "say": "Vitesse 78 KIAS, retour piste opposée, pleins volets quand atterrissage assuré, vitesse Vref 62 KIAS",
+       "note": "Un demi-tour pour revenir se poser sur la piste opposée n'est à prendre en considération qu'au-dessus de 1000 ft/AAL."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lineup",
+   "title": "Alignement",
+   "subtitle": "Entrée sur la piste",
+   "map": {
+    "point": "lineup"
+   },
+   "context": [
+    {
+     "k": "Puissance de décollage",
+     "v": "min 2200 RPM"
+    },
+    {
+     "k": "Moment du contrôle",
+     "v": "Avant d'entrer et une fois aligné"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "radio",
+     "title": "Annonces au départ",
+     "source": "SPHAIR ch.21",
+     "items": [
+      {
+       "when": "Prêt au point d'attente, aérodrome non contrôlé",
+       "say": "HB-CFR, READY FOR DEPARTURE, RUNWAY 24",
+       "note": "Adaptez l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Piste et approche libres - annonce de votre intention",
+       "say": "HB-CFR, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
+       "note": "Sur un aérodrome non contrôlé il n'y a pas d'autorisation : vous annoncez votre intention, en tenant compte de ce que les autres pilotes ont annoncé."
+      },
+      {
+       "when": "Prêt au point d'attente, aérodrome contrôlé avec TOWER",
+       "say": "HB-CFR, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE"
+      },
+      {
+       "when": "Collationnement de l'autorisation de décoller",
+       "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, HB-CFR",
+       "note": "WILCO confirme que vous effectuerez le report de position demandé par la tour."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "CONTROLE A L'ALIGNEMENT",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Feux d'atterissage et de roulage",
+       "r": "ENCLENCHES"
+      },
+      {
+       "c": "Secteurs d'approche",
+       "r": "LIBRE",
+       "note": "SOP : le contrôle à l'alignement se fait avant d'entrer sur la piste, puis à nouveau une fois aligné."
+      },
+      {
+       "c": "Piste",
+       "r": "IDENTIFIEE",
+       "note": "SPHAIR : pendant l'alignement, on lit à haute voix le numéro d'identification inscrit sur la piste (QFU) ; sur des pistes parallèles, assurez-vous en lisant les lettres L / C / R, et mettez clairement en évidence si le LINE UP se fait sur la piste en dur ou en herbe."
+      },
+      {
+       "c": "Verrière",
+       "r": "FERMEE et VERROUILLEE"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "PLEIN GAZ (min 2200 RPM)"
+      },
+      {
+       "c": "Instruments moteur",
+       "r": "CONTROLES"
+      },
+      {
+       "c": "Voyants lumineux",
+       "r": "CONTROLES"
+      }
+     ],
+     "closing": "CONTROLE A L'ALIGNMENT TERMINE"
+    }
+   ]
+  },
+  {
+   "id": "takeoff",
+   "title": "Roulage au décollage",
+   "subtitle": "Puissance, accélération, rotation",
+   "map": {
+    "point": "roll"
+   },
+   "context": [
+    {
+     "k": "Puissance minimale",
+     "v": "2200 RPM"
+    },
+    {
+     "k": "Rotation",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "Montée initiale",
+     "v": "Vx 70 KIAS"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Décollage",
+     "source": "SOP GVMN",
+     "intro": "STATIC TAKE-OFF : la puissance de décollage est affichée et contrôlée avant que les freins ne soient lâchés.",
+     "steps": [
+      {
+       "do": "Mise de la puissance de décollage"
+      },
+      {
+       "do": "Contrôle du régime - min 2200 RPM"
+      },
+      {
+       "do": "Freins lâchés"
+      },
+      {
+       "do": "A Vrotate 54 KIAS, amener l'avion à l'assiette de décollage",
+       "say": "ROTATE"
+      },
+      {
+       "do": "Montée à Vx 70 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Technique du roulage au décollage",
+     "source": "SPHAIR ch.12",
+     "text": "Talons en bas pour ne pas freiner malencontreusement. Mise de puissance fluide, en 2 à 3 secondes, jamais brusque, manette de gaz en butée avant. Direction au palonnier - l'avion dévie à gauche - ailes horizontales aux ailerons. Brefs coups d'oeil sur l'ASI, le regard revient sur la piste et le repère éloigné. Ne pas arracher l'avion du sol."
+    },
+    {
+     "type": "note",
+     "title": "Décollage interrompu",
+     "source": "SPHAIR ch.12",
+     "text": "Si le moteur n'atteint pas la puissance minimale durant le roulage, interrompez le décollage immédiatement. Panne avant VR ou juste après avoir quitté la piste : arrêter l'avion sur la piste restante ; sur piste courte, choisir le terrain le plus approprié dans l'axe de piste. Règle 50/70 : 70% de la vitesse de décollage au milieu de la piste."
+    }
+   ]
+  },
+  {
+   "id": "initial-climb",
+   "title": "Montée initiale",
+   "subtitle": "De 300 ft/AAL au contrôle de montée",
+   "map": {
+    "point": "upwind",
+    "altFt": 300
+   },
+   "context": [
+    {
+     "k": "Annonce obstacles",
+     "v": "300 ft AAL"
+    },
+    {
+     "k": "Montée",
+     "v": "Vy 80 KIAS"
+    },
+    {
+     "k": "Au-dessus de 2000 ft AGL",
+     "v": "Vcc 85 KIAS"
+    },
+    {
+     "k": "Pompe électrique déclenchée",
+     "v": "au plus tôt 500 ft AAL"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "callout",
+     "title": "Passage des obstacles",
+     "source": "SOP GVMN",
+     "items": [
+      {
+       "when": "A 300 ft/AAL ou au-dessus",
+       "say": "CLEAR OF OBSTACLES"
+      },
+      {
+       "when": "Vitesse contrôlée, obstacles passés, assiette de montée stabilisée",
+       "say": "SPEED ABOVE 70, FLAPS UP",
+       "note": "La rentrée des volets provoque une diminution brève mais sensible de la portance - à compenser en modifiant légèrement l'assiette - puis la vitesse augmente progressivement avec la diminution de la résistance."
+      },
+      {
+       "when": "Configuration lisse, montée stabilisée",
+       "say": "Climb with Vy 80KIAS",
+       "note": "Au-dessus de 2000 ft/AGL : montée à Vcc 85 KIAS."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "CONTROLE DE MONTEE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Volets",
+       "r": "RENTRES"
+      },
+      {
+       "c": "Pompe électrique",
+       "r": "DECLENCHEE et PRESSION CONTROLEE",
+       "note": "SPHAIR : la pompe électrique n'est déclenchée qu'au CLIMB CHECK, au plus tôt à 500 ft/AAL, et la pression carburant est contrôlée dans la plage verte - si la pompe mécanique était défectueuse, le moteur s'arrêterait."
+      },
+      {
+       "c": "Transpondeur",
+       "r": "CONTROLE MODE \"ALT\""
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "PLEIN GAZ (appauvrir en montée > 5000ft)"
+      }
+     ],
+     "closing": "CONTRÔLE DE MONTEE TERMINE"
+    },
+    {
+     "type": "note",
+     "title": "Terminé à 1000 ft/AAL",
+     "source": "SPHAIR ch.7",
+     "text": "Les procédures et contrôles après le décollage devraient normalement être terminés à 1000 ft/sol : volets rentrés et pompe électrique déclenchée. Vous décidez du moment du contrôle de montée et de l'extinction des phares d'atterrissage. Surveillez les limitations moteur - température d'huile, température de culasse - pendant toute la montée."
+    },
+    {
+     "type": "note",
+     "title": "Premier virage",
+     "source": "SPHAIR ch.12",
+     "text": "Le CLIMB CHECK termine la phase de décollage. Si rien d'autre n'est prescrit, le premier virage n'est amorcé qu'à partir de 500 ft/AAL. Les critères sont la VAC, la configuration du terrain et les prescriptions locales (problématique du bruit)."
+    }
+   ]
+  },
+  {
+   "id": "crosswind",
+   "title": "Virage en vent de travers",
+   "subtitle": "Premier virage — lookout, annonce, virage en montée",
+   "map": {
+    "point": "crosswind",
+    "altFt": 500
+   },
+   "context": [
+    {
+     "k": "Premier virage",
+     "v": "MNM 500 ft AAL"
+    },
+    {
+     "k": "Vitesse de montée",
+     "v": "Vy 80 KIAS"
+    },
+    {
+     "k": "Inclinaison en virage montant",
+     "v": "15°–20° max"
+    },
+    {
+     "k": "Vent arrière standard",
+     "v": "1000 ft AAL, 1 NM"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Premier virage vers le vent de travers",
+     "source": "SPHAIR ch.12",
+     "intro": "Le CLIMB CHECK termine la phase de décollage ; le premier virage vient ensuite.",
+     "steps": [
+      {
+       "do": "Monter dans l'axe de piste jusqu'à la hauteur du premier virage",
+       "note": "Si rien d'autre n'est prescrit, le premier virage n'est amorcé qu'à partir de 500 ft/sol. Critères : la VISUAL APPROACH CHART / VAC, la configuration du terrain, les prescriptions locales (problématique du bruit)."
+      },
+      {
+       "do": "Terminer la rentrée des volets et le CLIMB CHECK avant de virer",
+       "note": "Critères de rentrée des volets : la vitesse de montée pour la CLEAN CONFIGURATION est atteinte, tous les obstacles importants ont été passés, l'assiette de montée est stabilisée. Pompe électrique déclenchée au CLIMB CHECK, au plus tôt à 500 ft/AAL, pression carburant contrôlée."
+      },
+      {
+       "do": "LOOKOUT en direction du virage, puis commencer immédiatement le virage",
+       "note": "La priorité est donnée à l'espace aérien situé dans la direction du virage. Avec un avion à ailes basses, le côté extérieur du virage est caché par l'aile montante."
+      },
+      {
+       "do": "Amorcer le virage en montée vers le vent de travers avec du pied coordonné",
+       "note": "Garder la pleine puissance et l'assiette de montée ; par l'assiette cabrée il se crée un angle mort devant et sous le nez de l'avion."
+      },
+      {
+       "do": "Maintenir Vy, sortir sur le cap du vent de travers",
+       "note": "Commencer la sortie environ 10 degrés avant d'atteindre le nouveau cap."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "title": "Annonce avant le virage",
+     "source": "SPHAIR ch.9",
+     "items": [
+      {
+       "when": "Après le lookout, avant un virage à gauche",
+       "say": "left side clear"
+      },
+      {
+       "when": "Après le lookout, avant un virage à droite",
+       "say": "right side clear"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Virage en montée",
+     "source": "SPHAIR ch.9",
+     "text": "Dans un avion avec peu de réserve de puissance, les virages en montée doivent être faits avec une inclinaison maximale de 15 à 20 degrés ; pour de plus grandes inclinaisons, la montée devient plus plate. Lors des virages en montée, la marge entre Vx et V_STALL est très petite et l'angle d'attaque critique peut être rapidement dépassé."
+    },
+    {
+     "type": "note",
+     "title": "Géométrie du circuit standard",
+     "source": "SPHAIR ch.13",
+     "text": "Circuit standard : virage en vent de travers / CROSSWIND à 500 ft AAL ou défini par la procédure locale ; vent arrière / DOWNWIND parallèle à la piste à 1000 ft AAL, éloignement latéral 1 NM. La hauteur du circuit, son sens et les caps du circuit local doivent être tirés de la VAC locale."
+    }
+   ]
+  },
+  {
+   "id": "departure",
+   "title": "Montée de départ (PAT)",
+   "subtitle": "Power, Attitude, Trim",
+   "map": {
+    "point": "departure"
+   },
+   "context": [
+    {
+     "k": "Ordre",
+     "v": "PAT — Power, Attitude, Trim"
+    },
+    {
+     "k": "Vx",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Vy",
+     "v": "80 KIAS"
+    },
+    {
+     "k": "Vcc",
+     "v": "85 KIAS above 2000 ft AGL"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Mise en montée",
+     "source": "SPHAIR ch.7",
+     "intro": "First Push : lors de chaque passage à une autre phase de vol, on commence toujours par pousser, soit la commande de profondeur, soit la puissance. La mise en montée se fait par Power, Attitude, Trim.",
+     "steps": [
+      {
+       "do": "LOOKOUT — l'espace au-dessus et derrière l'avion doit être libre pour la nouvelle trajectoire",
+       "say": "LOOKOUT",
+       "note": "Par l'assiette cabrée il se crée un angle mort devant et sous le nez de l'avion ; de légers changements de cap permettent de le contrôler."
+      },
+      {
+       "do": "Mixture — PLEIN RICHE (ou selon AFM)",
+       "say": "Mixture RICH",
+       "note": "AFM : maintenir la mixture sur « plein riche » lors du décollage et de la montée ; au-dessus de 5000 ft, régler la mixture. CONTROLE DE MONTEE : appauvrir en montée > 5000ft."
+      },
+      {
+       "do": "Puissance de montée — RÉGLÉE, PLEIN GAZ",
+       "say": "Climb Power SET",
+       "note": "Hélice à pas fixe : la montée est exécutée à pleine puissance, la manette des gaz en butée avant."
+      },
+      {
+       "do": "Assiette de montée — ADAPTÉE AU TYPE DE MONTÉE",
+       "say": "Climb Attitude",
+       "note": "Prendre l'assiette de référence connue par l'expérience pour Vx ou Vy et la maintenir ; la priorité est donnée au maintien de l'assiette, la stabilisation de la vitesse se fait lentement et progressivement."
+      },
+      {
+       "do": "Trim — DIMINUER LA PRESSION SUR LES COMMANDES",
+       "say": "Trim",
+       "note": "Le vol de montée n'est trimmé qu'après la stabilisation de l'avion et de la vitesse de vol."
+      },
+      {
+       "do": "Contrôler la symétrie et les limites du moteur pendant toute la montée",
+       "note": "Mettre du pied du côté où va la bille. Contrôler périodiquement la température de l'huile et la température des têtes de cylindres."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Surrotation",
+     "source": "SPHAIR ch.7",
+     "text": "Une rotation irréfléchie à une assiette de montée irréaliste — la surrotation — conduit à une chute rapide de la vitesse. Elle peut alors tomber au-dessous de la vitesse de montée choisie, et il est même possible qu'un décrochage des filets d'air se produise sur les ailes. Maintenir d'abord l'assiette de référence, laisser la vitesse se stabiliser lentement, et ne trimmer qu'après la stabilisation."
+    },
+    {
+     "type": "note",
+     "title": "Vx et Vy en fonction de l'altitude",
+     "source": "SPHAIR ch.7",
+     "text": "Vx augmente pour un gain d'altitude de 1000 ft d'environ 1/2 kt, Vy diminue d'environ 1 kt par 1000 ft : les deux vitesses se rapprochent avec l'altitude. Montée d'écolage de base : pleine puissance à vitesse de vol constante — le taux de montée diminue avec l'altitude à cause de la diminution de la puissance disponible."
+    }
+   ]
+  },
+  {
+   "id": "level-off",
+   "title": "Mise en palier (APT)",
+   "subtitle": "Attitude, Power, Trim",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Ordre",
+     "v": "APT — Attitude, Power, Trim"
+    },
+    {
+     "k": "Anticipation",
+     "v": "1/10 ROC below target"
+    },
+    {
+     "k": "Exemple",
+     "v": "ROC 1000 fpm → 100 ft below"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Passage au vol de croisière",
+     "source": "SPHAIR ch.7",
+     "intro": "Commencer le passage 1/10 du taux de montée au-dessous de l'altitude cible — avec un ROC de 1000 FPM, débuter 100 ft au-dessous.",
+     "steps": [
+      {
+       "do": "Anticiper la mise en palier et l'annoncer",
+       "say": "Approaching …… ft"
+      },
+      {
+       "do": "Assiette — variation mesurée et continue en direction nez bas",
+       "say": "Attitude ….. ADJUST FOR LEVEL FLIGHT",
+       "note": "La phase d'accélération commence ; l'accroissement permanent de la pression sur les commandes doit être contrecarré à la main par une poussée progressive sur la commande de profondeur."
+      },
+      {
+       "do": "Puissance — réduire à la puissance de croisière selon les PERFORMANCE TABLES de l'AFM",
+       "say": "Power ….. SET",
+       "note": "Ne réduire que lorsque la vitesse de vol n'augmente plus."
+      },
+      {
+       "do": "Trim — réglé, après la réduction de puissance",
+       "say": "Trim ……… SET"
+      },
+      {
+       "do": "Mixture — réglée pour l'altitude",
+       "say": "Mixture …. SET FOR ALTITUDE"
+      },
+      {
+       "do": "Phare d'atterrissage — SELON BESOIN"
+      },
+      {
+       "do": "CONTRÔLE DE CROISIERE"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Erreurs classiques",
+     "source": "SPHAIR ch.7",
+     "text": "Ne réduire la puissance que lorsque la vitesse n'augmente plus. Ne trimmer qu'après la réduction de la puissance — si la pression sur les commandes est déjà trimmée avant, l'assiette ne peut être stabilisée qu'avec peine. Si l'on atteint l'altitude cible à basse vitesse et que l'on prend tout de suite une assiette de vol horizontal, l'avion va redescendre : la portance n'est pas encore suffisante."
+    }
+   ]
+  },
+  {
+   "id": "cruise",
+   "title": "Croisière",
+   "subtitle": "CONTRÔLE DE CROISIERE et mixture",
+   "map": {
+    "point": "areaHigh"
+   },
+   "context": [
+    {
+     "k": "Puissance de croisière (SOP)",
+     "v": "2400 RPM, max 2500 RPM"
+    },
+    {
+     "k": "Régime checklist",
+     "v": "SET 2500 RPM or AS REQUIRED"
+    },
+    {
+     "k": "Mixture",
+     "v": "EGT Peak -50F at any altitude"
+    },
+    {
+     "k": "Répétition",
+     "v": "Min. every 30 minutes"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "CONTRÔLE DE CROISIERE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "Altimètres",
+       "r": "REGLE et CONTROLE"
+      },
+      {
+       "c": "HSI",
+       "r": "CONTROLE"
+      },
+      {
+       "c": "Instruments moteur",
+       "r": "CONTROLES"
+      },
+      {
+       "c": "Essence",
+       "r": "QUANTITE et ENDURANCE"
+      },
+      {
+       "c": "Régime moteur",
+       "r": "REGLE 2500 RPM ou SELON BESOIN",
+       "note": "SOP GVMN : régler la puissance de croisière à 2400 RPM (max 2500 RPM)."
+      },
+      {
+       "c": "Mixture",
+       "r": "REGLE (EGT Peak -50F)"
+      }
+     ],
+     "closing": "CONTRÔLE DE CROISIERE TERMINE"
+    },
+    {
+     "type": "callout",
+     "title": "Annonce",
+     "source": "SPHAIR ch.6",
+     "items": [
+      {
+       "when": "Contrôle de croisière terminé",
+       "say": "CRUISE CHECK COMPLETED",
+       "note": "Répéter le contrôle de croisière après chaque changement d'altitude ou variation importante de température, mais au minimum toutes les 30 minutes."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Règle de la mixture",
+     "source": "AFM",
+     "text": "ENRICHIR TOUJOURS LE MELANGE AVANT UNE AUGMENTATION DE PUISSANCE. Plein riche pour le décollage et la montée. Réglage de la mixture en croisière après stabilisation : abaisser progressivement la manette de mixture jusqu'à observer une légère diminution de régime, puis la repousser légèrement vers le haut pour rétablir le régime et un fonctionnement régulier du moteur. Prendre soin de ne pas appauvrir excessivement le mélange, afin d'éviter une surchauffe du moteur."
+    }
+   ]
+  },
+  {
+   "id": "turns",
+   "title": "Virages moyens",
+   "subtitle": "Inclinaison 25°–30°, coordonnés",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Virage moyen",
+     "v": "25°–30° bank"
+    },
+    {
+     "k": "Perte de vitesse",
+     "v": "~5 kt up to 30°"
+    },
+    {
+     "k": "Vs volets rentrés (AFM)",
+     "v": "54 kt at 0° / 58 kt at 30°"
+    },
+    {
+     "k": "Anticipation de la sortie",
+     "v": "~10° before the new heading"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "LOOKOUT avant le virage",
+     "source": "SPHAIR ch.9",
+     "intro": "Avant de commencer un virage, exécuter un LOOKOUT selon une procédure définie. La priorité est donnée à l'espace aérien situé dans la direction du virage.",
+     "steps": [
+      {
+       "do": "Commencer par un mouvement de la tête en direction du virage prévu"
+      },
+      {
+       "do": "De cette position, examiner horizontalement l'espace aérien jusque dans la direction opposée"
+      },
+      {
+       "do": "Lever la tête et, dans un mouvement de rotation en sens inverse, contrôler l'espace aérien situé au-dessus de l'avion",
+       "note": "La recherche se fait à une vitesse de rotation appropriée de la tête : les rotations rapides peuvent provoquer une sensation de vertige et une perte de l'orientation."
+      },
+      {
+       "do": "Annoncer, puis commencer immédiatement le virage",
+       "note": "Avion à ailes basses : le côté extérieur du virage est caché par l'aile montante."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "title": "Annonces de virage",
+     "source": "SPHAIR ch.9",
+     "items": [
+      {
+       "when": "Avant un virage à gauche",
+       "say": "left side clear"
+      },
+      {
+       "when": "Avant un virage à droite",
+       "say": "right side clear"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Mise en virage, maintien, sortie",
+     "source": "SPHAIR ch.9",
+     "steps": [
+      {
+       "do": "Amorcer le virage de manière fluide par le braquage de la commande d'aileron dans la direction prévue",
+       "note": "Le braquage des ailerons produit un mouvement de roulis et l'avion commence à tourner dans la direction du braquage."
+      },
+      {
+       "do": "Compenser le lacet inverse par une intervention mesurée du pied dans la direction du virage",
+       "note": "Lors de vols en virages avec des avions pour l'écolage de base, il faut toujours compenser le lacet inverse / ADVERSE YAW ; le degré de pression nécessaire est indiqué par la bille."
+      },
+      {
+       "do": "À l'inclinaison désirée, stopper le mouvement de roulis et mettre la commande des ailerons au neutre",
+       "note": "Maintenir un léger « appui », ailerons quelque peu à l'opposé de la direction du virage, pour tenir l'inclinaison."
+      },
+      {
+       "do": "Produire la portance additionnelle par une traction mesurée sur la commande de profondeur — ne pas trimmer en virage",
+       "note": "Sans traction, la force verticale ne compense plus le poids et l'avion commence à descendre."
+      },
+      {
+       "do": "Garder la bille centrée : mettre du pied du côté où va la bille",
+       "note": "Bille du côté extérieur du virage : l'avion « dérape » / SKIDDING. Bille du côté intérieur du virage : l'avion « glisse » / SLIPPING."
+      },
+      {
+       "do": "Poursuivre le contrôle de l'espace aérien, spécialement dans la direction du virage amorcé",
+       "note": "Le danger réside dans le fait que lorsque l'on maintient une assiette à l'aide d'instruments, on néglige le contrôle de l'espace aérien."
+      },
+      {
+       "do": "Sortir par une action coordonnée des ailerons, de la commande de direction et de la profondeur, environ 10 degrés avant le nouveau cap",
+       "note": "Relâcher la traction sur la commande de profondeur puis pousser légèrement, sinon l'avion monte pendant la sortie. Sortir à l'aide d'un point de repère le plus éloigné possible."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Inclinaison, vitesse et marge au décrochage",
+     "source": "SPHAIR ch.9",
+     "text": "Virage moyen / MEDIUM TURN : inclinaison de 25° à 30°. Jusqu'à 30° la diminution de vitesse n'est pas signifiante — environ 5 KTS pour les avions d'écolage de base — et n'est en règle générale pas compensée par une augmentation de la puissance en vol de croisière. Le facteur de charge plus élevé augmente la V_STALL d'environ 7% pour une inclinaison de 30° (exemple : 60 KIAS devient 65 KIAS)."
+    }
+   ]
+  },
+  {
+   "id": "descent",
+   "title": "Descente (APT)",
+   "subtitle": "Descente de croisière vers l'aérodrome",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "ROD standard",
+     "v": "500 FPM"
+    },
+    {
+     "k": "Descente courte max",
+     "v": "1000 FPM"
+    },
+    {
+     "k": "Ménagement moteur",
+     "v": "power burst every 1500 ft"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Passage au vol de descente",
+     "source": "SPHAIR ch.8",
+     "intro": "La mise en descente se fait en A-P-T (« First Push ») : d'abord l'assiette, puis la puissance, puis le trim.",
+     "steps": [
+      {
+       "do": "Dégager l'espace aérien au-dessous et en arrière avant de quitter le vol horizontal",
+       "say": "LOOKOUT",
+       "note": "Souvenez-vous de l'angle mort en dessous du nez de l'avion : de petites variations de cap permettent d'observer cette zone du chemin de vol."
+      },
+      {
+       "do": "Régler la mixture pour la descente",
+       "say": "Mixture SET"
+      },
+      {
+       "do": "Abaisser le nez à l'assiette de référence de descente",
+       "say": "Attitude FOR DESCENT"
+      },
+      {
+       "do": "Ajuster la puissance selon le type de descente exécuté",
+       "say": "Power ADJUST"
+      },
+      {
+       "do": "Trimmer une fois l'assiette stabilisée",
+       "say": "Trim ADJUST",
+       "note": "Lorsque le trim s'effectue avant la stabilisation de la descente, l'avion retrouve rapidement la position de vol en palier (sorte de LEVEL OFF)."
+      },
+      {
+       "do": "Exécuter le CONTRÔLE DE DESCENTE",
+       "say": "DESCENT CHECK COMPLETED"
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "CONTRÔLE DE DESCENTE",
+     "source": "Checklist FR V10",
+     "items": [
+      {
+       "c": "ATIS",
+       "r": "RECUE (si disponible)",
+       "note": "Les huit points s'enchaînent dans l'ordre A-A-B-F-H-R-I-C (initiales des libellés français)."
+      },
+      {
+       "c": "Altimètres",
+       "r": "REGLE et CONTROLE"
+      },
+      {
+       "c": "Briefing d'approche",
+       "r": "EFFECTUE"
+      },
+      {
+       "c": "Fusibles",
+       "r": "CONTROLES"
+      },
+      {
+       "c": "HSI",
+       "r": "REGLE et CONTROLE"
+      },
+      {
+       "c": "Réchauffage carburateur",
+       "r": "SELON BESOIN"
+      },
+      {
+       "c": "Instruments de vol et avionique",
+       "r": "REGLES et CONTROLES"
+      },
+      {
+       "c": "Ceintures",
+       "r": "AJUSTEES et CONTROLEES"
+      }
+     ],
+     "closing": "CONTROLE DE DESCENTE TERMINE"
+    },
+    {
+     "type": "note",
+     "title": "Taux de descente",
+     "source": "SPHAIR ch.8",
+     "text": "Descentes de longue durée : taux de descente constant de 500 FPM, vitesse verticale supportable pour des personnes en bonne santé. Descentes de courte durée : max. 1000 FPM. Prendre garde aux problèmes d'oreilles, de sinus et aux cardiaques. Calcul du POD : hauteur à perdre ÷ ROD = minutes ; GS ÷ 60 = NM par minute (120 KTS donne 2 NM/min)."
+    },
+    {
+     "type": "note",
+     "title": "Ménagement du moteur en descente",
+     "source": "AFM",
+     "text": "Puissance à la demande pour la trajectoire désirée. Utiliser toujours le réchauffage carburateur en « tout ou rien » (plein chaud ou plein froid) ; une position intermédiaire peut, dans certains cas, aggraver le givrage. Tous les 1500 ft, effectuer une remise de gaz pour éviter un trop grand refroidissement du moteur et décrasser les bougies."
+    }
+   ]
+  },
+  {
+   "id": "rejoin",
+   "title": "Intégration volte",
+   "subtitle": "De la descente de croisière à l'altitude et à la vitesse du circuit",
+   "map": {
+    "point": "rejoin",
+    "altFt": 1000
+   },
+   "context": [
+    {
+     "k": "Approche du circuit",
+     "v": "90 KIAS"
+    },
+    {
+     "k": "Puissance en volte",
+     "v": "approx 2000 RPM"
+    },
+    {
+     "k": "Vitesse en volte",
+     "v": "85 KIAS"
+    },
+    {
+     "k": "Vent arrière (standard)",
+     "v": "1000 ft AAL, 1 NM"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Approche du circuit",
+     "source": "SOP GVMN",
+     "intro": "Circuit standard : de la descente au vol horizontal à l'altitude de volte.",
+     "steps": [
+      {
+       "do": "Réduire à 90 KIAS à l'approche du circuit"
+      },
+      {
+       "do": "Mise en palier à l'altitude de volte"
+      },
+      {
+       "do": "Réduire la puissance à environ 2000 RPM"
+      },
+      {
+       "do": "Stabiliser à 85 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Sortie de descente",
+     "source": "SPHAIR ch.8",
+     "text": "La sortie de descente se fait en PAT : Power SET, Attitude SET, Trim SET, puis Mixture SET FOR ALTITUDE. Règle empirique : début de la transition 1/10 du ROD au-dessus du nouveau niveau de vol (500 FPM donne 50 ft). Dans la dernière partie de la descente, on applique la puissance connue par expérience pour un vol horizontal en DOWNWIND (PRESELECT)."
+    },
+    {
+     "type": "note",
+     "title": "Avant l'intégration",
+     "source": "SPHAIR ch.13",
+     "text": "Sauf pour les circuits d'aérodrome, l'APPROACH CHECK doit être terminé avant l'intégration : avant le point d'entrée ou à bonne distance du circuit. Réduire la vitesse à la vitesse d'approche initiale par une diminution de puissance ; le DOWNWIND est ensuite volé à vitesse contrôlée jusqu'à ce que l'avion rejoigne la configuration d'approche."
+    },
+    {
+     "type": "note",
+     "title": "Intégration",
+     "source": "SPHAIR ch.13",
+     "text": "Intégrer selon la VAC, obligatoire en Suisse. STANDARD = LEFT HAND CIRCUIT, NON STANDARD = RIGHT HAND CIRCUIT. Survoler le DOWNWIND 500 à 1000 ft au-dessus de l'altitude du circuit, observer le sens d'atterrissage, descendre du « côté mort » à l'altitude de volte, puis intégrer à 90°, côté intérieur du circuit. Ne jamais descendre dans le DOWNWIND."
+    },
+    {
+     "type": "radio",
+     "title": "Annonces d'intégration",
+     "source": "SPHAIR ch.21",
+     "items": [
+      {
+       "when": "Premier appel à l'arrivée, aérodrome contrôlé",
+       "say": "LOCARNO TOWER, HB-CFR, CESSNA 172, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Collationnement de l'instruction d'intégration",
+       "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, HB-CFR",
+       "note": "La tour a donné : JOIN AND REPORT DOWNWIND, RUNWAY 26 CENTER, QNH 1021. Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Premier appel à l'arrivée, aérodrome non contrôlé",
+       "say": "LOMMIS AERODROME, HB-CFR, CESSNA 172, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "À la verticale du terrain, aérodrome non contrôlé",
+       "say": "HB-CFR, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Établi en vent arrière",
+       "say": "HB-CFR, DOWNWIND, RUNWAY 24",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "downwind",
+   "title": "Vent arrière",
+   "subtitle": "Contrôle d'approche, configuration d'approche initiale",
+   "map": {
+    "point": "downwind",
+    "altFt": 1000
+   },
+   "context": [
+    {
+     "k": "Vitesse",
+     "v": "85 KIAS"
+    },
+    {
+     "k": "Volets 1er cran",
+     "v": "au-dessous de 92 KIAS (Vfe)"
+    },
+    {
+     "k": "Circuit",
+     "v": "1000 ft AAL"
+    },
+    {
+     "k": "Écart",
+     "v": "environ 1 NM de la piste"
+    },
+    {
+     "k": "Au travers du seuil",
+     "v": "TIME CHECK, configuration d'approche établie"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "source": "Checklist EN V9",
+     "title": "CONTROLE D'APPROCHE",
+     "items": [
+      {
+       "c": "Feux d'atterissage et de roulage",
+       "r": "ENCLENCHES"
+      },
+      {
+       "c": "Altimètres",
+       "r": "REGLE et CONTROLE"
+      },
+      {
+       "c": "Essence",
+       "r": "QUANTITE and ENDURANCE"
+      },
+      {
+       "c": "Pompe électrique",
+       "r": "ENCLENCHEE et PRESSION CONTROLEE"
+      },
+      {
+       "c": "Réchauffage carburateur",
+       "r": "SELON BESOIN"
+      },
+      {
+       "c": "Mixture",
+       "r": "RICHE ou SELON BESOIN"
+      },
+      {
+       "c": "Volets",
+       "r": "1er CRAN ou SELON BESOIN",
+       "note": "Dans le circuit, commencer le plus tôt possible sur le DOWNWIND ; l'APPROACH CHECK doit être terminé et l'APPROACH CONFIGURATION établie au plus tard à la position ABEAM THRESHOLD."
+      }
+     ],
+     "closing": "CONTRÔLE D'APPROCHE TERMIN"
+    },
+    {
+     "type": "callout",
+     "source": "SOP GVMN",
+     "title": "Annonce en vent arrière",
+     "items": [
+      {
+       "when": "En vent arrière, au plus tard au travers du seuil",
+       "say": "SPEED BELOW 92, FLAPS 1",
+       "note": "Ensuite vitesse 85 KIAS, ajuster la puissance moteur pour maintenir la vitesse, puis compenser (trim)."
+      }
+     ]
+    },
+    {
+     "type": "radio",
+     "source": "SPHAIR ch.21",
+     "title": "Message vent arrière",
+     "items": [
+      {
+       "when": "Aérodrome contrôlé, annonce vent arrière",
+       "say": "HB-CFR — DOWNWIND RUNWAY 26 CENTER",
+       "note": "La tour répond p. ex. NUMBER 1, RUNWAY 26 CENTER — collationner. Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Aérodrome non contrôlé, annonce vent arrière",
+       "say": "HB-CFR — DOWNWIND — RUNWAY 24",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Discipline des volets",
+     "text": "Avant chaque changement de position des volets, vérifiez la vitesse et annoncez SPEED CHECKED - ne jamais sortir les volets « en prévision ». La portance accrue provoque le BALLOONING : le compenser à la commande de profondeur, puis trimmer une fois stabilisé. Volets 1er cran au-dessous de Vfe 92 KIAS, pleins volets au-dessous de 81 KIAS."
+    }
+   ]
+  },
+  {
+   "id": "base",
+   "title": "Base",
+   "subtitle": "Point de descente - début de descente, volets 2me cran",
+   "map": {
+    "point": "base"
+   },
+   "context": [
+    {
+     "k": "Interception du plan",
+     "v": "85 KIAS"
+    },
+    {
+     "k": "Volets 2me cran",
+     "v": "au-dessous de 81 KIAS"
+    },
+    {
+     "k": "Vitesse de descente",
+     "v": "80 KIAS"
+    },
+    {
+     "k": "Virage en base",
+     "v": "au passage des 45° par rapport au THR"
+    },
+    {
+     "k": "Plan de descente",
+     "v": "3° à 5°"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "callout",
+     "source": "SOP GVMN",
+     "title": "Point de descente (POD)",
+     "items": [
+      {
+       "when": "Au point de descente, vitesse 85 KIAS",
+       "say": "APPROACHING GLIDE"
+      },
+      {
+       "when": "Vitesse au-dessous de 81",
+       "say": "START DESCENT, FLAPS 2",
+       "note": "Réduire la puissance moteur, prendre l'assiette de descente, puis vitesse 80 KIAS et trimmer."
+      },
+      {
+       "when": "En descente en base",
+       "say": "MAINTAINS 80 KIAS",
+       "note": "Vitesse maintenue à 80 KIAS jusqu'au virage en finale."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "source": "SPHAIR ch.13",
+     "title": "Contrôle du plan",
+     "items": [
+      {
+       "when": "Dès qu'il est possible de juger l'angle d'approche",
+       "say": "ABOVE/ON/BELOW GLIDE",
+       "note": "Corriger l'angle d'approche à l'aide de l'assiette de vol, et la vitesse à l'aide de la puissance moteur (vitesse d'approche intermédiaire)."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Technique de la descente d'approche",
+     "text": "La descente initiale d'approche est l'exception : puissance réduite à une valeur fixe, vitesse tenue à l'assiette (« Speed on Stick »). Dès que l'angle d'approche peut être jugé, environ dès le milieu de la base : l'assiette corrige l'angle et la trajectoire, la puissance la vitesse. Configuration finale : 400-700 FPM, trajectoire de 3 à 5 degrés."
+    }
+   ]
+  },
+  {
+   "id": "final",
+   "title": "Finale",
+   "subtitle": "Contrôle final, approche stabilisée",
+   "map": {
+    "point": "final",
+    "altFt": 500
+   },
+   "context": [
+    {
+     "k": "Vfinal",
+     "v": "62 KIAS + correction de vent"
+    },
+    {
+     "k": "Pleins volets",
+     "v": "au-dessous de 81 KIAS"
+    },
+    {
+     "k": "Virage en finale",
+     "v": "min 500 ft AAL"
+    },
+    {
+     "k": "Angle d'approche",
+     "v": "3° à 5°"
+    },
+    {
+     "k": "Tolérance",
+     "v": "+15 / -5 kt en finale"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "radio",
+     "source": "SPHAIR ch.21",
+     "title": "Message finale",
+     "items": [
+      {
+       "when": "Aérodrome contrôlé, annonce finale",
+       "say": "HB-CFR — FINAL RUNWAY 26 CENTER",
+       "note": "La tour : WIND CALM — RUNWAY 26 CENTER — CLEARED TO LAND ; collationner la piste et l'autorisation. Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Aérodrome non contrôlé, annonce finale",
+       "say": "HB-CFR — FINAL — RUNWAY 24 — FOR LANDING",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "source": "Checklist EN V9",
+     "title": "CONTROLE FINAL",
+     "items": [
+      {
+       "c": "Volets",
+       "r": "2me CRAN (sortie en dessous de 81 KIAS)",
+       "note": "Configuration établie après le FINAL TURN si cela n'a pas été fait auparavant."
+      },
+      {
+       "c": "Mixture",
+       "r": "PLEIN RICHE"
+      },
+      {
+       "c": "Réchauffage carburateur",
+       "r": "FROID"
+      }
+     ],
+     "closing": "CONTROLE FINAL TERMINE"
+    },
+    {
+     "type": "flow",
+     "source": "SOP GVMN",
+     "title": "Vitesse en finale",
+     "intro": "Au plus tôt en finale.",
+     "steps": [
+      {
+       "do": "Afficher Vfinal 62 KIAS + correction de vent",
+       "note": "AFM : vitesse d'approche finale (62 kt) 115 km/h, volets (2e cran) position atterrissage, trim de profondeur réglé."
+      },
+      {
+       "do": "Maintenir la vitesse à l'aide de la puissance moteur, l'angle d'approche à l'aide de l'assiette, puis compenser (trim)"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Suppléments de vent pour Vfinal",
+     "text": "Vfinal vaut 62 KIAS plus un supplément de vent : vent de face de plus de 10 kt, ajout de 1/3 de la composante de vent de face ; rafales, ajout de la valeur égale à la différence entre la composante du vent de face constant et la vitesse estimée des pointes de rafales. Les ajouts ne sont pas cumulés - la valeur la plus importante doit être utilisée."
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Point d'aboutissement et approche stabilisée",
+     "text": "En vol de descente stabilisé, la zone en fin du vecteur de vol reste immobile - elle doit se confondre avec l'AIMING POINT, au début de la zone d'atterrissage. Corrections dans les premiers 2/3 de l'approche, assiette et puissance en même temps. Dernier tiers : stabilisé sur la CENTERLINE et le GLIDE PATH, avion trimmé - autrement remise de gaz."
+    }
+   ]
+  },
+  {
+   "id": "landing",
+   "title": "Arrondi et atterrissage",
+   "subtitle": "Power gate, arrondi, toucher des roues",
+   "map": {
+    "point": "landing"
+   },
+   "context": [
+    {
+     "k": "Power gate",
+     "v": "POWER IDLE"
+    },
+    {
+     "k": "Début de l'arrondi",
+     "v": "5-10 ft au-dessus du sol"
+    },
+    {
+     "k": "Réduction finale du taux de chute",
+     "v": "environ 2 m"
+    },
+    {
+     "k": "Toucher des roues",
+     "v": "train principal en premier, dans la zone de toucher"
+    },
+    {
+     "k": "Vent de travers démontré",
+     "v": "22 kt"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "callout",
+     "source": "SPHAIR ch.13",
+     "title": "Power gate",
+     "items": [
+      {
+       "when": "À la Power Gate",
+       "say": "POWER — IDLE",
+       "note": "Amener la puissance du moteur au ralenti de manière fluide, mais pas brusque. L'avion devient « nose heavy » - contrecarrer cette tendance en maintenant rigoureusement l'AIMING POINT. La main droite reste à la manette des gaz jusqu'à la libération de la piste."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Arrondi et maintien de l'assiette",
+     "text": "Le flare commence après la PWR-GATE, à environ 5-10 ft au-dessus du sol. Levez le nez progressivement jusqu'à une assiette de vol horizontal à proximité du sol ; plus aucun changement d'assiette direction « nose down » une fois l'arrondi commencé. Regardez au-delà de l'extrémité de la piste pour évaluer le taux de descente."
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Toucher des roues",
+     "text": "À environ 2 m, réduisez encore le taux de chute en augmentant l'angle d'attaque, sans surrotation. Tenez l'assiette jusqu'au bout : train principal en premier, dans la zone de toucher. Palonnier : visée sur la CENTERLINE ; ailerons : avion au-dessus d'elle - corrections indépendantes, souvent opposées. Talons au plancher, pieds hors des freins."
+    },
+    {
+     "type": "note",
+     "source": "AFM",
+     "title": "Vent de travers ou fortes rafales",
+     "text": "Atterrissage par vent de travers ou par fortes rafales : volets (1er cran) position décollage, vitesse d'approche (70 kt) 130 km/h + 1/2 valeur rafale. Dérive : annuler de façon classique. Vent de travers démontré : (22 kt) 40 km/h."
+    }
+   ]
+  },
+  {
+   "id": "go-around",
+   "title": "Remise de gaz / Posé-décollé",
+   "subtitle": "Approche manquée et posé-décollé standard",
+   "map": {
+    "point": "upwind"
+   },
+   "context": [
+    {
+     "k": "Volets 1er cran",
+     "v": "vitesse au-dessus de 60"
+    },
+    {
+     "k": "Montée",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Rotation posé-décollé",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "Remise de gaz AFM",
+     "v": "réchauffage carburateur froid, plein gaz, volets progressivement en 1er cran"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "source": "SOP GVMN",
+     "title": "En cas d'approche manquée",
+     "intro": "Décider tôt - vous devez interrompre immédiatement l'approche si elle s'avère trop haute ou ne peut plus être stabilisée, si l'écart avec l'avion précédent devient trop faible, s'il reste des incertitudes quant à son déroulement ou si c'est ordonné par le contrôleur du trafic aérien.",
+     "steps": [
+      {
+       "do": "Décider la remise de gaz",
+       "say": "GO AROUND"
+      },
+      {
+       "do": "Afficher la puissance de décollage (T/O PWR)",
+       "note": "AFM : réchauffage carburateur coupé (poussé) vérifié, manette des gaz plein gaz. Compenser le lacet au palonnier."
+      },
+      {
+       "do": "Contrôler la vitesse, puis volets 1er cran",
+       "say": "SPEED ABOVE 60, FLAPS 1"
+      },
+      {
+       "do": "Monter à 70 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "source": "SOP GVMN",
+     "title": "En cas de posé-décollé (Touch & Go)",
+     "steps": [
+      {
+       "do": "Afficher la puissance de décollage (T/O PWR)"
+      },
+      {
+       "do": "Rotation",
+       "say": "SPEED ABOVE 54, ROTATE"
+      },
+      {
+       "do": "Contrôler un taux de montée positif, puis volets 1er cran",
+       "say": "SPEED ABOVE 60, POSITIVE ROC, FLAPS 1"
+      },
+      {
+       "do": "Monter à 70 KIAS, puis selon la procédure"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.13",
+     "title": "Trim et suites",
+     "text": "La remise de gaz nécessite une importante action de compensation / TRIM : placez d'abord la roue de trim sur une valeur prédéterminée connue par expérience, affinez après stabilisation. Priorité absolue à la stabilité du vol - manipulation seulement quand le vol est sous contrôle et stabilisé. Après chaque remise de gaz : CLIMB CHECK."
+    }
+   ]
+  },
+  {
+   "id": "after-landing",
+   "title": "Piste dégagée",
+   "subtitle": "S'arrêter après les marques de séparation, puis exécuter le check",
+   "map": {
+    "point": "exit"
+   },
+   "context": [
+    {
+     "k": "Volets",
+     "v": "UP"
+    },
+    {
+     "k": "Transpondeur",
+     "v": "GND"
+    },
+    {
+     "k": "Distance de sécurité piste active (herbe)",
+     "v": "30 m (piste <900 m) / 50 m (piste >900 m)"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "source": "SPHAIR ch.5",
+     "title": "Où exécuter ce check",
+     "text": "Ce check ne doit pas être exécuté durant le roulage sur la piste ou lorsque l'on quitte celle-ci — danger de faute de manipulation due à l'inattention. Quitter d'abord la piste, dépasser les marques séparant la piste de l'aire de roulage, puis exécuter le check sur un tronçon rectiligne de la voie de circulation, normalement à l'arrêt."
+    },
+    {
+     "type": "checklist",
+     "source": "Checklist FR V10",
+     "title": "CONTROLE APRES ATTERISSAGE",
+     "items": [
+      {
+       "c": "Volets",
+       "r": "RENTRES"
+      },
+      {
+       "c": "Pompe électrique",
+       "r": "DECLENCHEE"
+      },
+      {
+       "c": "Transpondeur",
+       "r": "CONTROLE MODE \"GND\""
+      },
+      {
+       "c": "Feux",
+       "r": "SELON BESOIN"
+      }
+     ],
+     "closing": "CONTROLE APRES ATTERISSAGE TERMINE"
+    },
+    {
+     "type": "radio",
+     "source": "SPHAIR ch.21",
+     "title": "Annonce piste dégagée",
+     "items": [
+      {
+       "when": "Piste quittée",
+       "say": "HB-CFR — RUNWAY 26 CENTER VACATED",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "La tour vous transfère au Ground — readback",
+       "say": "121.7 — HB-CFR",
+       "note": "Réponse à « CONTACT LOCARNO GROUND ON 121.7 ». Si l'aérodrome n'a pas de GROUND, l'autorisation de rouler est délivrée directement par la TOWER."
+      },
+      {
+       "when": "Premier appel au Ground",
+       "say": "LOCARNO GROUND — HB-CFR — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
+       "note": "Adapter l'indicatif et la station aux procédures locales."
+      },
+      {
+       "when": "Le Ground autorise — readback",
+       "say": "TAXI TO FUEL STATION — HB-CFR"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "taxi-in",
+   "title": "Roulage retour",
+   "subtitle": "Retour au parking, de mémoire",
+   "map": {
+    "point": "taxi"
+   },
+   "context": [
+    {
+     "k": "Manette de gaz",
+     "v": "1000 RPM"
+    },
+    {
+     "k": "Puissance de roulage",
+     "v": "éviter de dépasser 1200 RPM tant que la température d'huile reste en plage jaune"
+    },
+    {
+     "k": "Vitesse sur l'aire de stationnement",
+     "v": "vitesse du pas"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "source": "Checklist FR V10",
+     "title": "AVANT CHAQUE ROULAGE:",
+     "intro": "De mémoire, à chaque fois que vous commencez à rouler.",
+     "steps": [
+      {
+       "do": "Feu de roulage — ENCLENCHE"
+      },
+      {
+       "do": "Manette de gaz — AJUSTE 1000 RPM"
+      },
+      {
+       "do": "Frein de parc — DEBLOQUE"
+      },
+      {
+       "do": "Manette de gaz — AJUSTE AFIN DE ROULER SANS FREINER",
+       "note": "Ne pas rouler en actionnant les freins en permanence ! Adaptez la puissance au besoin !"
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "source": "SPHAIR ch.5",
+     "title": "Annonces MOVE / STOP",
+     "items": [
+      {
+       "when": "Avant de se mettre en mouvement (MOVE)",
+       "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED"
+      },
+      {
+       "when": "À chaque arrêt (STOP)",
+       "say": "Parking Brake – SET / Power – ….SET / Taxi Light – OFF",
+       "note": "À chaque arrêt, roue de proue en position neutre : une roue de travers exige une puissance excessive à la remise en mouvement."
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "source": "Checklist FR V10",
+     "title": "A CHAQUE ARRET (pas sur la piste !):",
+     "steps": [
+      {
+       "do": "Frein de parc — BLOQUE"
+      },
+      {
+       "do": "Manette de gaz — AJUSTE 1000 RPM"
+      },
+      {
+       "do": "Feu de roulage — DECLENCHE"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.5",
+     "title": "Airmanship sur l'aire de stationnement",
+     "text": "Sur les aires de stationnement, près d'autres avions et dans les virages des voies de roulage : rouler au maximum à la vitesse du pas. Priorité aux avions nettement plus grands et lourds. Contrôler constamment l'espace devant, de côté et derrière, du lâcher du frein de parc jusqu'à son blocage — vous êtes le seul responsable d'éviter une collision."
+    }
+   ]
+  },
+  {
+   "id": "shutdown",
+   "title": "Arrêt moteur",
+   "subtitle": "Sécuriser l'avion",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Manette de gaz",
+     "v": "1000 RPM"
+    },
+    {
+     "k": "Mixture",
+     "v": "CUT OFF"
+    },
+    {
+     "k": "Volets",
+     "v": "DOWN"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "source": "Checklist FR V10",
+     "title": "CONTROLE ARRET MOTEUR",
+     "items": [
+      {
+       "c": "Frein de parc",
+       "r": "BLOQUE"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "AJUSTE 1000 RPM"
+      },
+      {
+       "c": "Interrupteur avionique & FLARM",
+       "r": "DECLENCHES (G5 s'éteignent auto après 45\")"
+      },
+      {
+       "c": "ELT",
+       "r": "CONTRÔLE ARME (led rouge éteinte)"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "RALENTI"
+      },
+      {
+       "c": "Magnetos",
+       "r": "OFF then BOTH",
+       "note": "AFM : essais coupure magnétos au ralenti — coupé, puis L + R (« Both »)."
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "AJUSTE 1000 RPM"
+      },
+      {
+       "c": "Mixture",
+       "r": "ETOUFFOIR (contre le bas)"
+      },
+      {
+       "c": "Magnetos",
+       "r": "OFF"
+      },
+      {
+       "c": "Alternateur",
+       "r": "DECLENCHE"
+      },
+      {
+       "c": "Interrupteur batterie",
+       "r": "DECLENCHE"
+      },
+      {
+       "c": "Feux",
+       "r": "DECLENCHES"
+      },
+      {
+       "c": "Manette de gaz",
+       "r": "RALENTI"
+      },
+      {
+       "c": "Volets",
+       "r": "2me CRAN",
+       "note": "Exposant d'origine dans le document : « 2me CRAN » (2e cran). L'ancienne révision EN V9 imprimait cet item « Flaps — DOWN »."
+      },
+      {
+       "c": "Poignée réservoir auxiliaire",
+       "r": "CONTRÔLE POUSSE (fermé)"
+      }
+     ],
+     "closing": "CONTRÔLE ARRET MOTEUR TERMINE"
+    },
+    {
+     "type": "note",
+     "source": "AFM",
+     "title": "Cales en place, puis relâcher le frein",
+     "text": "Après la mise en place des cales : repousser le frein de parc. Frein bloqué : appuyer sur les deux pédales, maintenir la pression et tirer la commande de frein de parc ; relâcher les pédales, la tirette doit rester en position haute. Frein débloqué : pousser la commande de frein de parc."
+    },
+    {
+     "type": "note",
+     "source": "SPHAIR ch.5",
+     "title": "Parcage de longue durée",
+     "text": "Lors d'un parcage de longue durée, les freins de parc hydrauliques peuvent perdre de leur pression — placer des cales / CHOCKS sous les roues."
+    }
+   ]
+  }
+ ]
+}

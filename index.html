@@ -26,49 +26,63 @@
       <button class="icon-btn" id="btn-settings" aria-label="Settings">⚙︎</button>
     </header>
 
+    <div class="stats-strip" id="stats-strip"></div>
+
     <nav class="mode-list" id="mode-list">
       <button class="mode-card" data-mode="flight">
         <span class="mode-icon">🛫</span>
         <span class="mode-text">
-          <span class="mode-name">Full flight</span>
-          <span class="mode-desc">Say each step out loud, tap to reveal, tap to advance</span>
+          <span class="mode-name" data-i18n="mode.flight.name"></span>
+          <span class="mode-desc" data-i18n="mode.flight.desc"></span>
         </span>
         <span class="mode-progress" id="progress-flight"></span>
       </button>
       <button class="mode-card" data-mode="examiner">
         <span class="mode-icon">🎓</span>
         <span class="mode-text">
-          <span class="mode-name">Examiner</span>
-          <span class="mode-desc">Random questions: speeds, next step, briefings, failures</span>
+          <span class="mode-name" data-i18n="mode.exam.name"></span>
+          <span class="mode-desc" data-i18n="mode.exam.desc"></span>
         </span>
       </button>
       <button class="mode-card" data-mode="review">
         <span class="mode-icon">🔁</span>
         <span class="mode-text">
-          <span class="mode-name">Review misses</span>
-          <span class="mode-desc">Replay only the steps you marked as missed</span>
+          <span class="mode-name" data-i18n="mode.review.name"></span>
+          <span class="mode-desc" data-i18n="mode.review.desc"></span>
         </span>
         <span class="mode-progress" id="progress-review"></span>
       </button>
       <button class="mode-card" data-mode="reference">
         <span class="mode-icon">📖</span>
         <span class="mode-text">
-          <span class="mode-name">Reference</span>
-          <span class="mode-desc">Browse all checklists, flows, callouts and speeds</span>
+          <span class="mode-name" data-i18n="mode.ref.name"></span>
+          <span class="mode-desc" data-i18n="mode.ref.desc"></span>
         </span>
       </button>
     </nav>
 
     <div class="phase-jump">
-      <h2>Jump to phase</h2>
+      <h2 data-i18n="home.jump"></h2>
       <div class="phase-chips" id="phase-chips"></div>
     </div>
 
     <footer class="home-footer">
-      <p id="app-version"></p>
-      <button class="update-btn" id="btn-update">↻ Check for updates</button>
-      <p class="disclaimer">Training aid only — not for operational use.<br>Always fly per your club's current documents.</p>
+      <button class="version-line" id="app-version"></button>
+      <button class="update-btn" id="btn-update" data-i18n="update.check"></button>
+      <p class="disclaimer" data-i18n="home.disclaimer"></p>
     </footer>
+  </section>
+
+  <!-- ============ CHANGELOG ============ -->
+  <section id="screen-changelog" class="screen">
+    <header class="trainer-header">
+      <button class="icon-btn" id="btn-changelog-back" aria-label="Back">←</button>
+      <div class="trainer-phase-info">
+        <div class="trainer-phase-title" data-i18n="changelog.title"></div>
+      </div>
+      <span class="icon-btn" style="visibility:hidden">·</span>
+    </header>
+    <main class="ref-area" id="changelog-area"></main>
   </section>
 
   <!-- ============ TRAINER ============ -->
@@ -82,6 +96,7 @@
       <button class="icon-btn" id="btn-voice-toggle" aria-label="Voice check">🎙︎</button>
     </header>
 
+    <div class="streak-chip" id="streak-chip"></div>
     <div class="circuit-wrap" id="circuit-wrap"></div>
 
     <div class="progress-track"><div class="progress-fill" id="trainer-progress"></div></div>
@@ -89,19 +104,22 @@
     <main class="step-area" id="step-area">
       <div class="step-block-title" id="step-block-title"></div>
       <div class="step-card" id="step-card">
-        <div class="step-kind" id="step-kind"></div>
+        <div class="step-badges">
+          <span class="step-kind" id="step-kind"></span>
+          <span class="step-source hidden" id="step-source"></span>
+        </div>
         <div class="step-prompt" id="step-prompt"></div>
         <div class="step-answer hidden" id="step-answer"></div>
         <div class="step-note hidden" id="step-note"></div>
         <div class="voice-feedback hidden" id="voice-feedback"></div>
-        <div class="step-hint" id="step-hint">say it out loud · tap to reveal</div>
+        <div class="step-hint" id="step-hint"></div>
       </div>
     </main>
 
     <footer class="trainer-actions">
-      <button class="action-btn ghost" id="btn-step-prev">← Prev</button>
-      <button class="action-btn miss" id="btn-step-miss">✗ Missed</button>
-      <button class="action-btn ok" id="btn-step-ok">✓ Got it</button>
+      <button class="action-btn ghost" id="btn-step-prev" data-i18n="btn.prev"></button>
+      <button class="action-btn miss" id="btn-step-miss" data-i18n="btn.miss"></button>
+      <button class="action-btn ok" id="btn-step-ok" data-i18n="btn.ok"></button>
     </footer>
   </section>
 
@@ -110,7 +128,7 @@
     <header class="trainer-header">
       <button class="icon-btn" id="btn-exam-back" aria-label="Back">←</button>
       <div class="trainer-phase-info">
-        <div class="trainer-phase-title">Examiner</div>
+        <div class="trainer-phase-title" data-i18n="exam.title"></div>
         <div class="trainer-context" id="exam-score">—</div>
       </div>
       <span class="icon-btn" style="visibility:hidden">·</span>
@@ -118,16 +136,16 @@
     <main class="step-area">
       <div class="step-block-title" id="exam-tag"></div>
       <div class="step-card" id="exam-card">
-        <div class="step-kind" id="exam-kind"></div>
+        <div class="step-badges"><span class="step-kind" id="exam-kind"></span></div>
         <div class="step-prompt" id="exam-question"></div>
         <div class="step-answer hidden" id="exam-answer"></div>
-        <div class="step-hint" id="exam-hint">answer out loud · tap to reveal</div>
+        <div class="step-hint" id="exam-hint" data-i18n="exam.hint"></div>
       </div>
     </main>
     <footer class="trainer-actions">
-      <button class="action-btn ghost" id="btn-exam-quit">End session</button>
-      <button class="action-btn miss" id="btn-exam-miss">✗ Missed</button>
-      <button class="action-btn ok" id="btn-exam-ok">✓ Got it</button>
+      <button class="action-btn ghost" id="btn-exam-quit" data-i18n="exam.end"></button>
+      <button class="action-btn miss" id="btn-exam-miss" data-i18n="btn.miss"></button>
+      <button class="action-btn ok" id="btn-exam-ok" data-i18n="btn.ok"></button>
     </footer>
   </section>
 
@@ -136,7 +154,7 @@
     <header class="trainer-header">
       <button class="icon-btn" id="btn-ref-back" aria-label="Back">←</button>
       <div class="trainer-phase-info">
-        <div class="trainer-phase-title">Reference</div>
+        <div class="trainer-phase-title" data-i18n="ref.title"></div>
       </div>
       <span class="icon-btn" style="visibility:hidden">·</span>
     </header>
@@ -148,30 +166,56 @@
     <header class="trainer-header">
       <button class="icon-btn" id="btn-settings-back" aria-label="Back">←</button>
       <div class="trainer-phase-info">
-        <div class="trainer-phase-title">Settings</div>
+        <div class="trainer-phase-title" data-i18n="settings.title"></div>
       </div>
       <span class="icon-btn" style="visibility:hidden">·</span>
     </header>
     <main class="settings-area">
+      <div class="setting-row">
+        <span data-i18n="settings.lang" data-i18n-small="settings.langSmall"></span>
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+      </div>
+
+      <h3 class="settings-group-title" data-i18n="settings.trainGroup"></h3>
+      <div class="setting-row" style="flex-direction:column;align-items:stretch;gap:10px">
+        <span data-i18n="settings.train" data-i18n-small="settings.trainSmall"></span>
+        <div class="train-toggles" id="train-toggles">
+          <button class="train-toggle" data-type="checklist" data-i18n="block.checklist"></button>
+          <button class="train-toggle" data-type="flow" data-i18n="block.flow"></button>
+          <button class="train-toggle" data-type="callout" data-i18n="block.callout"></button>
+          <button class="train-toggle" data-type="briefing" data-i18n="block.briefing"></button>
+          <button class="train-toggle" data-type="radio" data-i18n="block.radio"></button>
+          <button class="train-toggle" data-type="note" data-i18n="block.note"></button>
+        </div>
+      </div>
+
+      <h3 class="settings-group-title" data-i18n="settings.otherGroup"></h3>
       <label class="setting-row">
-        <span>Voice check (experimental)<small>Listens in English and compares with the expected step. On iOS this may only work in Safari, not from the installed app.</small></span>
+        <span data-i18n="settings.voice" data-i18n-small="settings.voiceSmall"></span>
         <input type="checkbox" id="set-voice">
       </label>
       <label class="setting-row">
-        <span>Keep screen awake<small>Prevents the screen from sleeping during a session.</small></span>
+        <span data-i18n="settings.wake" data-i18n-small="settings.wakeSmall"></span>
         <input type="checkbox" id="set-wakelock">
       </label>
       <label class="setting-row">
-        <span>Haptic tick<small>Small vibration when revealing a step (if supported).</small></span>
+        <span data-i18n="settings.haptics" data-i18n-small="settings.hapticsSmall"></span>
         <input type="checkbox" id="set-haptics">
       </label>
       <div class="setting-row">
-        <span>Reset flight progress<small>Restart the full flight from the beginning.</small></span>
-        <button class="action-btn ghost" id="btn-reset-progress">Reset</button>
+        <span data-i18n="settings.reset" data-i18n-small="settings.resetSmall"></span>
+        <button class="action-btn ghost" id="btn-reset-progress" data-i18n="settings.resetBtn"></button>
       </div>
       <div class="setting-row">
-        <span>Clear missed steps<small>Forget everything marked as missed.</small></span>
-        <button class="action-btn ghost" id="btn-reset-misses">Clear</button>
+        <span data-i18n="settings.clear" data-i18n-small="settings.clearSmall"></span>
+        <button class="action-btn ghost" id="btn-reset-misses" data-i18n="settings.clearBtn"></button>
+      </div>
+      <div class="setting-row">
+        <span data-i18n="settings.stats" data-i18n-small="settings.statsSmall"></span>
+        <button class="action-btn ghost" id="btn-reset-stats" data-i18n="settings.statsBtn"></button>
       </div>
       <p class="settings-note" id="voice-support-note"></p>
     </main>

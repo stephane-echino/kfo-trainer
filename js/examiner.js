@@ -1,5 +1,7 @@
 // Examiner mode: 10 random questions per session, drawn from
-// speeds, checklist items, "what comes next", block recitation and scenarios.
+// speeds, memory flows ("what comes next", recitation) and scenarios.
+import { t } from './i18n.js';
+
 const $ = (id) => document.getElementById(id);
 
 export function createExaminer({ onExit }) {
@@ -55,57 +57,50 @@ export function createExaminer({ onExit }) {
     // 1. speeds
     for (const s of mod.speeds || []) {
       qs.push({
-        tag: 'Speeds', kind: 'Speed',
+        tag: t('ref.speeds'), kind: t('exam.kind.speed'),
         q: `${s.code}${s.label ? ` — ${s.label}` : ''}?`,
         a: /^\d/.test(s.kias) ? `${s.kias} ${s.unit || 'KIAS'}` : s.kias,
       });
     }
 
-    // 2. checklist items (challenge → response)
-    const clSteps = steps.filter(s => s.challenge);
-    for (const s of pickRandom(clSteps, 25)) {
-      qs.push({
-        tag: s.blockTitle, kind: 'Item',
-        q: `${s.challenge} — ?`,
-        a: s.response,
-        long: s.response.length > 60,
-      });
-    }
+    // Checklists are deliberately excluded from the examiner: in the aircraft
+    // a checklist is READ, not recalled by item position. Only memory content
+    // is quizzed — speeds, flows, callouts, radio, briefings and scenarios.
+    const memory = (s) => s.kind !== 'checklist' && s.kind !== 'note';
 
-    // 3. what comes next (within the same block)
+    // 2. what comes next (within the same memory block)
     for (let i = 1; i < steps.length; i++) {
       const prev = steps[i - 1], cur = steps[i];
-      if (prev.blockTitle !== cur.blockTitle || prev.phase.id !== cur.phase.id || cur.kind === 'note') continue;
-      if (Math.random() > 0.15) continue;
+      if (!memory(cur) || !memory(prev)) continue;
+      if (prev.blockTitle !== cur.blockTitle || prev.phase.id !== cur.phase.id) continue;
+      if (Math.random() > 0.3) continue;
       const a = cur.answer;
       qs.push({
-        tag: cur.blockTitle, kind: 'Next step',
-        q: `After "${shorten(prev.answer)}" — what comes next?`,
+        tag: cur.blockTitle, kind: t('exam.kind.next'),
+        q: t('exam.nextQ', shorten(prev.answer)),
         a,
         long: a.length > 60,
       });
     }
 
-    // 4. recite a whole block (per phase — same title can exist in several phases)
+    // 3. recite a whole memory block (flows, callouts — never checklists)
     const blocks = new Map();
     for (const s of steps) {
-      if (s.kind === 'note' || String(s.key).endsWith('/open')) continue;
+      if (!memory(s)) continue;
       const key = `${s.phase.id}::${s.blockTitle}`;
-      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [], numbered: false });
-      const b = blocks.get(key);
-      b.items.push(s.answer);
-      if (s.challenge) b.numbered = true; // checklist items carry their official numbers
+      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [] });
+      blocks.get(key).items.push(s.answer);
     }
     const seenRecites = new Set();
-    for (const { title, items, numbered } of blocks.values()) {
+    for (const { title, items } of blocks.values()) {
       if (items.length < 3) continue;
       const sig = `${title}::${items.join('|')}`;
       if (seenRecites.has(sig)) continue; // identical block repeated in another phase
       seenRecites.add(sig);
       qs.push({
-        tag: title, kind: 'Recite',
-        q: `Recite: ${title} (${items.length} items)`,
-        a: numbered ? items.join('\n') : items.map((t, i) => `${i + 1}. ${t}`).join('\n'),
+        tag: title, kind: t('exam.kind.recite'),
+        q: t('exam.reciteQ', title, items.length),
+        a: items.map((it, i) => `${i + 1}. ${it}`).join('\n'),
         long: true,
       });
     }
@@ -123,7 +118,7 @@ export function createExaminer({ onExit }) {
   function render() {
     const q = get();
     if (!q) { finish(); return; }
-    els.score.textContent = `Question ${index + 1}/${questions.length} · ✓ ${score.ok} · ✗ ${score.miss}`;
+    els.score.textContent = t('exam.score', index + 1, questions.length, score.ok, score.miss);
     els.tag.textContent = q.tag;
     els.kind.textContent = q.kind;
     els.kind.className = 'step-kind k-callout';
@@ -131,7 +126,7 @@ export function createExaminer({ onExit }) {
     els.answer.textContent = q.a;
     els.answer.classList.add('hidden');
     els.answer.classList.toggle('long', !!q.long);
-    els.hint.textContent = 'answer out loud · tap to reveal';
+    els.hint.textContent = t('exam.hint');
     revealed = false;
     setActionState();
   }
@@ -146,7 +141,7 @@ export function createExaminer({ onExit }) {
     if (!revealed) {
       revealed = true;
       els.answer.classList.remove('hidden');
-      els.hint.textContent = 'grade yourself below';
+      els.hint.textContent = t('exam.grade');
       setActionState();
     }
   }
@@ -162,20 +157,20 @@ export function createExaminer({ onExit }) {
   function finish() {
     finished = true;
     const total = score.ok + score.miss;
-    els.score.textContent = 'Session over';
+    els.score.textContent = t('exam.over');
     els.tag.textContent = '';
-    els.kind.textContent = 'Result';
+    els.kind.textContent = t('exam.result');
     els.kind.className = 'step-kind k-checklist';
     els.question.textContent = total
-      ? `${score.ok}/${total} correct${score.ok === total ? ' — examiner is impressed.' : '. Rerun the weak ones in Review.'}`
-      : 'No questions answered.';
+      ? (score.ok === total ? t('exam.resultPerfect', score.ok, total) : t('exam.resultPartial', score.ok, total))
+      : t('exam.resultNone');
     els.answer.classList.add('hidden');
     els.answer.textContent = '';
-    els.hint.textContent = 'tap ← to go back · New session for a new draw';
+    els.hint.textContent = t('exam.overHint');
     revealed = false;
     setActionState();
-    els.btnQuit.textContent = 'New session';
-    els.btnQuit.onclick = () => { els.btnQuit.textContent = 'End session'; els.btnQuit.onclick = finish; restart(); };
+    els.btnQuit.textContent = t('exam.new');
+    els.btnQuit.onclick = () => { els.btnQuit.textContent = t('exam.end'); els.btnQuit.onclick = finish; restart(); };
   }
 
   let lastArgs = null;

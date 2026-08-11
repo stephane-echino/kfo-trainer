@@ -1,3 +1,5 @@
+import { t } from './i18n.js';
+
 // Module loading and flattening into a linear list of trainer steps.
 //
 // Data schema (data/modules/*.json):
@@ -28,15 +30,20 @@ export async function loadModule(id) {
 
 // One trainer step = one tap-to-reveal unit.
 // {key, phase, block, kind, prompt, promptPre, answer, answerLong, note, sayTarget, graded}
-export function flattenSteps(mod) {
+//
+// `include` filters block types out of training (Settings → what to train).
+export function flattenSteps(mod, include = null) {
+  const wanted = (type) => !include || include[type] !== false;
   const steps = [];
   for (const phase of mod.phases) {
     for (const [bi, block] of phase.blocks.entries()) {
+      if (!wanted(block.type)) continue;
       const blockTitle = block.title || defaultBlockTitle(block.type);
       const push = (i, s) => steps.push({
         key: `${phase.id}/${bi}/${i}`,
         phase, blockTitle,
         kind: block.type,
+        source: block.source || null,
         graded: block.type !== 'note',
         ...s,
       });
@@ -44,7 +51,7 @@ export function flattenSteps(mod) {
       if (block.type === 'checklist') {
         // announce which check is starting…
         push('open', {
-          prompt: 'Which check starts now?',
+          prompt: t('prompt.whichCheck'),
           answer: blockTitle,
           note: null,
           sayTarget: blockTitle,
@@ -52,7 +59,7 @@ export function flattenSteps(mod) {
         // …then recall each item in full: number + challenge + response
         const n = block.items.length;
         block.items.forEach((it, i) => push(i, {
-          prompt: `Item ${i + 1} of ${n}`,
+          prompt: t('prompt.item', i + 1, n),
           answer: `${i + 1}. ${it.c} — ${it.r}`,
           answerLong: (it.c.length + it.r.length) > 55,
           note: it.note || null,
@@ -63,14 +70,14 @@ export function flattenSteps(mod) {
         }));
         if (block.closing) push('close', {
           kind: 'checklist',
-          prompt: 'Close the check',
+          prompt: t('prompt.close'),
           answer: block.closing,
           note: null,
           sayTarget: block.closing,
         });
       } else if (block.type === 'flow' || block.type === 'briefing') {
         (block.steps || []).forEach((st, i) => push(i, {
-          prompt: `Step ${i + 1} of ${block.steps.length} — what do you do?`,
+          prompt: t('prompt.flowStep', i + 1, block.steps.length),
           promptPre: i === 0 ? (block.intro || null) : null,
           answer: st.say ? st.say : st.do,
           answerLong: (st.say ? st.say : st.do).length > 60,
@@ -80,7 +87,7 @@ export function flattenSteps(mod) {
       } else if (block.type === 'callout' || block.type === 'radio') {
         block.items.forEach((it, i) => push(i, {
           prompt: it.when,
-          promptPre: block.type === 'radio' ? 'Radio call' : null,
+          promptPre: block.type === 'radio' ? t('prompt.radio') : null,
           answer: it.say,
           answerLong: it.say.length > 60,
           note: it.note || null,
@@ -88,7 +95,7 @@ export function flattenSteps(mod) {
         }));
       } else if (block.type === 'note') {
         push(0, {
-          prompt: block.title || 'Technique',
+          prompt: block.title || t('kind.note'),
           answer: block.text,
           answerLong: true,
           note: null,
@@ -109,5 +116,5 @@ export function combineNote(st) {
 }
 
 function defaultBlockTitle(type) {
-  return { checklist: 'Checklist', flow: 'Memory flow', callout: 'Callouts', radio: 'Radio', briefing: 'Briefing', note: 'Technique' }[type] || '';
+  return t(`block.${type}`) || '';
 }

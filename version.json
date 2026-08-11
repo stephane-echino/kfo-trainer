@@ -1,0 +1,133 @@
+{
+ "version": "1.4.0",
+ "releases": [
+  {
+   "version": "1.4.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Score, streaks and practice-day counter on the home screen — with a live 🔥 streak while you train.",
+     "\"What to train\" in Settings: include or leave out radio calls, briefings, technique notes, callouts, flows or checklists.",
+     "Each card now shows where the content comes from (checklist, SOP, AFM, SPHAIR chapter).",
+     "Confetti when you finish a flight, and haptic feedback on reveal."
+    ],
+    "changed": [
+     "Full visual refresh: new colour system, softer cards, animated reveals and a smoother circuit map.",
+     "Notes are now a proper info panel instead of grey text, so guidance never reads as the answer.",
+     "Item counters (\"Item 3 of 10\") are styled as counters, not as the question."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Score, séries et compteur de jours de pratique sur l'accueil — avec une série 🔥 en direct pendant l'entraînement.",
+     "« Quoi travailler » dans les Réglages : inclure ou retirer la radio, les briefings, les notes de technique, les annonces, les flows ou les checklists.",
+     "Chaque carte indique d'où vient le contenu (checklist, SOP, AFM, chapitre SPHAIR).",
+     "Confettis à la fin d'un vol et retour haptique à la révélation."
+    ],
+    "changed": [
+     "Refonte visuelle complète : nouveau système de couleurs, cartes plus douces, révélations animées et carte de volte plus fluide.",
+     "Les notes deviennent un vrai encadré d'information au lieu de texte gris, pour ne jamais se confondre avec la réponse.",
+     "Les compteurs d'items (« Item 3 sur 10 ») sont stylés comme des compteurs, pas comme la question."
+    ],
+    "fixed": []
+   }
+  },
+  {
+   "version": "1.3.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Release notes screen — tap the version line at the bottom of the home screen.",
+     "Reliable update check for iOS: the app now compares its version with the server and force-clears the cache."
+    ],
+    "changed": [
+     "Version line now shows the app version, so you can confirm an update actually landed."
+    ],
+    "fixed": [
+     "\"Check for updates\" did nothing in the installed iOS app."
+    ]
+   },
+   "fr": {
+    "added": [
+     "Écran des nouveautés — tape la ligne de version en bas de l'accueil.",
+     "Vérification de mise à jour fiable sur iOS : l'app compare sa version avec le serveur et vide le cache de force."
+    ],
+    "changed": [
+     "La ligne de version affiche la version de l'app, pour confirmer qu'une mise à jour est bien passée."
+    ],
+    "fixed": [
+     "« Vérifier les mises à jour » ne faisait rien dans l'app iOS installée."
+    ]
+   }
+  },
+  {
+   "version": "1.2.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "French version of the whole app — switch EN/FR in Settings (official FR V10 checklist, French GVMN briefing).",
+     "Published callouts stay in English in both languages, as spoken in the cockpit."
+    ],
+    "changed": [
+     "Examiner no longer quizzes checklist items: a checklist is read, not recalled by position. It now covers speeds, memory flows, callouts, briefings and failure scenarios."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Version française de toute l'app — bascule EN/FR dans les Réglages (checklist officielle FR V10, briefing GVMN français).",
+     "Les annonces publiées restent en anglais dans les deux langues, comme en vol."
+    ],
+    "changed": [
+     "L'examinateur n'interroge plus les items de checklist : une checklist se lit, elle ne s'apprend pas par position. Il couvre les vitesses, flows mémoire, annonces, briefings et pannes."
+    ],
+    "fixed": []
+   }
+  },
+  {
+   "version": "1.1.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Each checklist opens with a \"which check starts now?\" step and closes with its printed completion line.",
+     "Official item numbers everywhere."
+    ],
+    "changed": [
+     "Checklist items now hide both challenge and response — full recall, not recognition."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Chaque checklist s'ouvre par « quel check commence ? » et se clôt par sa ligne de fin imprimée.",
+     "Numéros officiels des items partout."
+    ],
+    "changed": [
+     "Les items de checklist masquent challenge ET réponse — rappel complet, pas reconnaissance."
+    ],
+    "fixed": []
+   }
+  },
+  {
+   "version": "1.0.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "Full circuit flight: 25 phases from preflight to shutdown, with circuit mini-map.",
+     "Examiner, review of missed steps, reference browser, experimental voice check."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Vol complet en circuit : 25 phases de la prévol à l'arrêt moteur, avec mini-carte de volte.",
+     "Examinateur, révision des ratés, référence consultable, contrôle vocal expérimental."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  }
+ ]
+}
