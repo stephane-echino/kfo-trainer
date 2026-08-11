@@ -532,6 +532,7 @@ document.addEventListener('visibilitychange', () => {
 // ---------- updates ----------
 let versionInfo = null;      // parsed version.json (also feeds the changelog)
 let pendingVersion = null;   // newer version available on the server
+let updateReloading = false; // guards against reload loops during an update
 
 // Silent check on launch: only paints the button, never interrupts.
 async function checkOnLaunch() {
@@ -663,6 +664,17 @@ function registerSW() {
     if (window.caches) caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
     return;
   }
+
+  // A page loaded just before a new worker takes over ends up mixing fresh HTML
+  // with cached scripts. When the new worker claims this page, reload once so
+  // every file comes from the same version.
+  const hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || updateReloading) return;
+    updateReloading = true;
+    location.reload();
+  });
+
   navigator.serviceWorker.register('./sw.js').catch(() => { /* offline still fine on next visit */ });
 }
 

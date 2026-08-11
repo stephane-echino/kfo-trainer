@@ -1,6 +1,30 @@
 {
- "version": "1.12.0",
+ "version": "1.13.0",
  "releases": [
+  {
+   "version": "1.13.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [],
+    "changed": [
+     "Home screen tightened: smaller achievement badges, denser mode cards."
+    ],
+    "fixed": [
+     "After an update the app could load fresh HTML with cached scripts and look half-broken until you reloaded. It now reloads itself once, automatically, as soon as the new version takes over.",
+     "The marked-items mode now explains itself when checklists are switched off in Settings."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Accueil resserré : badges de succès plus petits, cartes de mode plus denses."
+    ],
+    "fixed": [
+     "Après une mise à jour, l'app pouvait charger le HTML neuf avec les scripts en cache et paraître à moitié cassée jusqu'au rechargement. Elle se recharge maintenant toute seule, une fois, dès que la nouvelle version prend la main.",
+     "Le mode « Items marqués » explique désormais pourquoi il est vide quand les checklists sont désactivées dans les Réglages."
+    ]
+   }
+  },
   {
    "version": "1.12.0",
    "date": "2026-08-11",
