@@ -5,7 +5,9 @@
    "version": "1.13.0",
    "date": "2026-08-11",
    "en": {
-    "added": [],
+    "added": [
+     "A rewind button on the flight card: set the flight back to its first step without leaving the home screen."
+    ],
     "changed": [
      "Home screen tightened: smaller achievement badges, denser mode cards."
     ],
@@ -15,7 +17,9 @@
     ]
    },
    "fr": {
-    "added": [],
+    "added": [
+     "Un bouton de retour au début sur la carte du vol : remets le vol à sa première étape sans quitter l'accueil."
+    ],
     "changed": [
      "Accueil resserré : badges de succès plus petits, cartes de mode plus denses."
     ],
