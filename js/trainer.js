@@ -21,6 +21,7 @@ export function createTrainer({ onExit }) {
   let lastHeard = '';
   let rpmGoal = null;
   let session = null;   // { ok, miss, startedAt, xpStart, complete }
+  let swipedAt = 0;     // timestamp of the last handled swipe
 
   const els = {};
   function bindEls() {
@@ -217,6 +218,7 @@ export function createTrainer({ onExit }) {
   }
 
   function onCardTap() {
+    if (swipedAt && Date.now() - swipedAt < 400) return; // a flick can also fire a click
     if (finished || !get()) return;
     if (!revealed) reveal();
     else advanceFromTap();
@@ -238,6 +240,7 @@ export function createTrainer({ onExit }) {
       x0 = null;
       if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
       if (finished || !get()) return;
+      swipedAt = Date.now();
       if (dx < 0) { if (!revealed) reveal(); else advanceFromTap(); }
       else prev();
     }, { passive: true });
