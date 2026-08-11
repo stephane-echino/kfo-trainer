@@ -483,7 +483,8 @@ h1 {
 
 .ref-search-wrap { padding: 12px var(--pad) 0; }
 .ref-search {
-  width: 100%; font: inherit; font-size: 15px; color: var(--text);
+  /* 16px minimum: anything smaller makes iOS Safari zoom the page on focus */
+  width: 100%; font: inherit; font-size: 16px; color: var(--text);
   background: var(--bg-card); border: 1px solid var(--line-soft);
   border-radius: 12px; padding: 11px 14px; -webkit-appearance: none; appearance: none;
 }
