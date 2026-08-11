@@ -52,7 +52,8 @@
   {
    "code": "Xwind",
    "kias": "22",
-   "label": "max demonstrated crosswind"
+   "label": "max demonstrated crosswind",
+   "unit": "kt"
   }
  ],
  "examiner": [

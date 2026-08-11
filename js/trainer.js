@@ -168,13 +168,14 @@ export function createTrainer({ onExit }) {
     if (!s) return;
     if (!revealed) { reveal(); return; }
     const prevPhase = s.phase.id;
+    const marksPhases = seqId === 'flight' || seqId === 'flight-phase';
     if (index >= steps.length - 1) {
-      store.setPhaseDone(prevPhase);
+      if (marksPhases) store.setPhaseDone(prevPhase);
       finish();
       return;
     }
     index += 1;
-    if (steps[index].phase.id !== prevPhase) store.setPhaseDone(prevPhase);
+    if (marksPhases && steps[index].phase.id !== prevPhase) store.setPhaseDone(prevPhase);
     if (seqId === 'flight') store.setPosition(seqId, index);
     render();
   }
@@ -234,11 +235,13 @@ export function createTrainer({ onExit }) {
     els.btnVoice.style.display = voiceSupported ? '' : 'none';
   }
 
+  let voiceErrors = 0;
   function ensureRecognizer() {
     if (recognizer) return;
     recognizer = createRecognizer({
       onResult: ({ text, final }) => {
         lastHeard = text;
+        voiceErrors = 0;
         const s = get();
         if (!s || !s.sayTarget || revealed) return;
         const score = matchScore(text, s.sayTarget);
@@ -262,11 +265,19 @@ export function createTrainer({ onExit }) {
           els.voiceFb.textContent = 'Listening…';
           els.voiceFb.classList.remove('hidden');
         } else if (state === 'error') {
+          voiceErrors += 1;
           els.voiceFb.className = 'voice-feedback bad';
           els.voiceFb.textContent = 'Mic unavailable — tap flow still works. On iOS, try Safari (not the installed app).';
           els.voiceFb.classList.remove('hidden');
-        } else if (state === 'idle' && !lastHeard) {
-          els.voiceFb.classList.add('hidden');
+        } else if (state === 'idle') {
+          // recognition ends on silence — restart while the step still wants a voice answer
+          if (voiceErrors < 3 && get()?.sayTarget && !finished) {
+            setTimeout(() => {
+              if (voiceOn && !revealed && !finished && get()?.sayTarget && recognizer) recognizer.start();
+            }, 400);
+          } else if (!lastHeard) {
+            els.voiceFb.classList.add('hidden');
+          }
         }
       },
     });

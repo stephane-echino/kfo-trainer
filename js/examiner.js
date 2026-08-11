@@ -7,6 +7,7 @@ export function createExaminer({ onExit }) {
   let index = 0;
   let score = { ok: 0, miss: 0 };
   let revealed = false;
+  let finished = false;
 
   const els = {};
   function bindEls() {
@@ -30,7 +31,8 @@ export function createExaminer({ onExit }) {
     els.card.addEventListener('click', onTap);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
-    els.btnQuit.addEventListener('click', finish);
+    // single handler slot — finish() swaps it for the "new session" handler
+    els.btnQuit.onclick = finish;
     els.btnBack.addEventListener('click', onExit);
   }
 
@@ -43,6 +45,7 @@ export function createExaminer({ onExit }) {
     index = 0;
     score = { ok: 0, miss: 0 };
     revealed = false;
+    finished = false;
     render();
   }
 
@@ -54,7 +57,7 @@ export function createExaminer({ onExit }) {
       qs.push({
         tag: 'Speeds', kind: 'Speed',
         q: `${s.code}${s.label ? ` — ${s.label}` : ''}?`,
-        a: `${s.kias} KIAS`,
+        a: /^\d/.test(s.kias) ? `${s.kias} ${s.unit || 'KIAS'}` : s.kias,
       });
     }
 
@@ -65,30 +68,38 @@ export function createExaminer({ onExit }) {
         tag: s.blockTitle, kind: 'Item',
         q: `${s.prompt} — ?`,
         a: s.answer,
+        long: s.answer.length > 60,
       });
     }
 
     // 3. what comes next (within the same block)
     for (let i = 1; i < steps.length; i++) {
       const prev = steps[i - 1], cur = steps[i];
-      if (prev.blockTitle !== cur.blockTitle || cur.kind === 'note') continue;
+      if (prev.blockTitle !== cur.blockTitle || prev.phase.id !== cur.phase.id || cur.kind === 'note') continue;
       if (Math.random() > 0.15) continue;
+      const a = cur.kind === 'checklist' ? `${cur.prompt} — ${cur.answer}` : cur.answer;
       qs.push({
         tag: cur.blockTitle, kind: 'Next step',
         q: `After "${shorten(prev.kind === 'checklist' ? `${prev.prompt} — ${prev.answer}` : prev.answer)}" — what comes next?`,
-        a: cur.kind === 'checklist' ? `${cur.prompt} — ${cur.answer}` : cur.answer,
+        a,
+        long: a.length > 60,
       });
     }
 
-    // 4. recite a whole block
+    // 4. recite a whole block (per phase — same title can exist in several phases)
     const blocks = new Map();
     for (const s of steps) {
       if (s.kind === 'note') continue;
-      if (!blocks.has(s.blockTitle)) blocks.set(s.blockTitle, []);
-      blocks.get(s.blockTitle).push(s.kind === 'checklist' ? `${s.prompt} — ${s.answer}` : s.answer);
+      const key = `${s.phase.id}::${s.blockTitle}`;
+      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [] });
+      blocks.get(key).items.push(s.kind === 'checklist' ? `${s.prompt} — ${s.answer}` : s.answer);
     }
-    for (const [title, items] of blocks) {
+    const seenRecites = new Set();
+    for (const { title, items } of blocks.values()) {
       if (items.length < 3) continue;
+      const sig = `${title}::${items.join('|')}`;
+      if (seenRecites.has(sig)) continue; // identical block repeated in another phase
+      seenRecites.add(sig);
       qs.push({
         tag: title, kind: 'Recite',
         q: `Recite: ${title} (${items.length} items)`,
@@ -129,7 +140,7 @@ export function createExaminer({ onExit }) {
   }
 
   function onTap() {
-    if (!get()) return;
+    if (finished || !get()) return;
     if (!revealed) {
       revealed = true;
       els.answer.classList.remove('hidden');
@@ -139,7 +150,7 @@ export function createExaminer({ onExit }) {
   }
 
   function grade(ok) {
-    if (!revealed) return;
+    if (finished || !revealed) return;
     if (ok) score.ok += 1; else score.miss += 1;
     if (index >= questions.length - 1) { finish(); return; }
     index += 1;
@@ -147,6 +158,7 @@ export function createExaminer({ onExit }) {
   }
 
   function finish() {
+    finished = true;
     const total = score.ok + score.miss;
     els.score.textContent = 'Session over';
     els.tag.textContent = '';
@@ -156,7 +168,8 @@ export function createExaminer({ onExit }) {
       ? `${score.ok}/${total} correct${score.ok === total ? ' — examiner is impressed.' : '. Rerun the weak ones in Review.'}`
       : 'No questions answered.';
     els.answer.classList.add('hidden');
-    els.hint.textContent = 'tap ← to go back · End session for a new draw';
+    els.answer.textContent = '';
+    els.hint.textContent = 'tap ← to go back · New session for a new draw';
     revealed = false;
     setActionState();
     els.btnQuit.textContent = 'New session';

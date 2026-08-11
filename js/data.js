@@ -61,7 +61,7 @@ export function flattenSteps(mod) {
           promptPre: i === 0 ? (block.intro || null) : null,
           answer: st.say ? st.say : st.do,
           answerLong: (st.say ? st.say : st.do).length > 60,
-          note: st.say && st.do && st.say !== st.do ? st.do : (st.note || null),
+          note: combineNote(st),
           sayTarget: st.say || st.do,
         }));
       } else if (block.type === 'callout' || block.type === 'radio') {
@@ -85,6 +85,14 @@ export function flattenSteps(mod) {
     }
   }
   return steps;
+}
+
+// For flow/briefing steps where "say" is the answer, keep the action ("do")
+// visible as a note — and never drop an authored note.
+export function combineNote(st) {
+  const doDiffers = st.say && st.do && st.say !== st.do;
+  if (doDiffers) return st.note ? `${st.do} — ${st.note}` : st.do;
+  return st.note || null;
 }
 
 function defaultBlockTitle(type) {

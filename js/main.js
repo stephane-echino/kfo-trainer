@@ -1,5 +1,5 @@
 // App shell: screen routing, home rendering, reference browser, settings.
-import { loadModule, flattenSteps } from './data.js';
+import { loadModule, flattenSteps, combineNote } from './data.js';
 import { store } from './store.js';
 import { createTrainer } from './trainer.js';
 import { createExaminer } from './examiner.js';
@@ -105,7 +105,15 @@ function renderReference() {
     div.className = 'ref-phase';
     const head = document.createElement('button');
     head.className = 'ref-phase-head';
-    head.innerHTML = `<span>${phase.title}</span><span class="chev">›</span>`;
+    head.innerHTML = `<span class="ref-head-text"></span><span class="chev">›</span>`;
+    const headText = head.querySelector('.ref-head-text');
+    headText.textContent = phase.title;
+    if (phase.subtitle) {
+      const sub = document.createElement('span');
+      sub.className = 'ref-phase-sub';
+      sub.textContent = phase.subtitle;
+      headText.appendChild(sub);
+    }
     head.addEventListener('click', () => div.classList.toggle('open'));
     const body = document.createElement('div');
     body.className = 'ref-phase-body';
@@ -116,7 +124,20 @@ function renderReference() {
       const title = document.createElement('div');
       title.className = `ref-block-title k-${block.type}`;
       title.textContent = block.title || block.type;
+      if (block.source) {
+        const src = document.createElement('span');
+        src.className = 'ref-source';
+        src.textContent = block.source;
+        title.appendChild(src);
+      }
       b.appendChild(title);
+
+      if (block.intro) {
+        const intro = document.createElement('div');
+        intro.className = 'ref-note';
+        intro.textContent = block.intro;
+        b.appendChild(intro);
+      }
 
       if (block.type === 'checklist') {
         for (const it of block.items) b.appendChild(refItem(it.c, it.r, it.note));
@@ -127,7 +148,7 @@ function renderReference() {
           b.appendChild(c);
         }
       } else if (block.type === 'flow' || block.type === 'briefing') {
-        (block.steps || []).forEach((st, i) => b.appendChild(refItem(`${i + 1}.`, st.say || st.do, st.say && st.do && st.say !== st.do ? st.do : st.note)));
+        (block.steps || []).forEach((st, i) => b.appendChild(refItem(`${i + 1}.`, st.say || st.do, combineNote(st))));
       } else if (block.type === 'callout' || block.type === 'radio') {
         for (const it of block.items) b.appendChild(refItem(it.when, it.say, it.note));
       } else if (block.type === 'note') {
@@ -183,9 +204,10 @@ function renderSettings() {
   $('set-voice').disabled = !voiceSupported;
   $('set-wakelock').checked = s.wakelock;
   $('set-haptics').checked = s.haptics;
-  $('voice-support-note').textContent = voiceSupported
+  $('voice-support-note').textContent = (voiceSupported
     ? 'Speech recognition detected in this browser. It needs network and a mic permission the first time.'
-    : 'Speech recognition is NOT available in this browser. On iPhone, open the app in Safari itself to try it — the installed home-screen app usually cannot use the microphone for recognition.';
+    : 'Speech recognition is NOT available in this browser. On iPhone, open the app in Safari itself to try it — the installed home-screen app usually cannot use the microphone for recognition.')
+    + ' Note: if you use the app in a Safari tab (not installed), Safari may erase saved progress after ~7 days without a visit. The installed home-screen app keeps data reliably.';
 
   $('set-voice').onchange = (e) => save({ voice: e.target.checked });
   $('set-wakelock').onchange = (e) => save({ wakelock: e.target.checked });
@@ -207,7 +229,8 @@ function releaseWake() {
   wakeLock = null;
 }
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && $('screen-trainer').classList.contains('active')) requestWake();
+  const inSession = $('screen-trainer').classList.contains('active') || $('screen-examiner').classList.contains('active');
+  if (document.visibilityState === 'visible' && inSession) requestWake();
 });
 
 // ---------- service worker ----------
