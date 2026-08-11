@@ -73,6 +73,12 @@ h1 { font-size: 30px; letter-spacing: 0.5px; }
 
 .home-footer { margin-top: auto; padding: 20px var(--pad) calc(var(--safe-bottom) + 20px); text-align: center; }
 #app-version { color: var(--text-dim); font-size: 12px; }
+.update-btn {
+  margin-top: 10px; font-size: 13px; color: var(--text-dim);
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px;
+}
+.update-btn:active { background: var(--bg-card); }
+.update-btn.ready { color: var(--green); border-color: var(--green); }
 .disclaimer { color: var(--text-dim); font-size: 11px; margin-top: 8px; line-height: 1.5; opacity: 0.8; }
 
 /* ---------- TRAINER ---------- */

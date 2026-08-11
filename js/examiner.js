@@ -62,13 +62,13 @@ export function createExaminer({ onExit }) {
     }
 
     // 2. checklist items (challenge → response)
-    const clSteps = steps.filter(s => s.kind === 'checklist' && !String(s.key).endsWith('/close'));
+    const clSteps = steps.filter(s => s.challenge);
     for (const s of pickRandom(clSteps, 25)) {
       qs.push({
         tag: s.blockTitle, kind: 'Item',
-        q: `${s.prompt} — ?`,
-        a: s.answer,
-        long: s.answer.length > 60,
+        q: `${s.challenge} — ?`,
+        a: s.response,
+        long: s.response.length > 60,
       });
     }
 
@@ -77,10 +77,10 @@ export function createExaminer({ onExit }) {
       const prev = steps[i - 1], cur = steps[i];
       if (prev.blockTitle !== cur.blockTitle || prev.phase.id !== cur.phase.id || cur.kind === 'note') continue;
       if (Math.random() > 0.15) continue;
-      const a = cur.kind === 'checklist' ? `${cur.prompt} — ${cur.answer}` : cur.answer;
+      const a = cur.answer;
       qs.push({
         tag: cur.blockTitle, kind: 'Next step',
-        q: `After "${shorten(prev.kind === 'checklist' ? `${prev.prompt} — ${prev.answer}` : prev.answer)}" — what comes next?`,
+        q: `After "${shorten(prev.answer)}" — what comes next?`,
         a,
         long: a.length > 60,
       });
@@ -89,13 +89,15 @@ export function createExaminer({ onExit }) {
     // 4. recite a whole block (per phase — same title can exist in several phases)
     const blocks = new Map();
     for (const s of steps) {
-      if (s.kind === 'note') continue;
+      if (s.kind === 'note' || String(s.key).endsWith('/open')) continue;
       const key = `${s.phase.id}::${s.blockTitle}`;
-      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [] });
-      blocks.get(key).items.push(s.kind === 'checklist' ? `${s.prompt} — ${s.answer}` : s.answer);
+      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [], numbered: false });
+      const b = blocks.get(key);
+      b.items.push(s.answer);
+      if (s.challenge) b.numbered = true; // checklist items carry their official numbers
     }
     const seenRecites = new Set();
-    for (const { title, items } of blocks.values()) {
+    for (const { title, items, numbered } of blocks.values()) {
       if (items.length < 3) continue;
       const sig = `${title}::${items.join('|')}`;
       if (seenRecites.has(sig)) continue; // identical block repeated in another phase
@@ -103,7 +105,7 @@ export function createExaminer({ onExit }) {
       qs.push({
         tag: title, kind: 'Recite',
         q: `Recite: ${title} (${items.length} items)`,
-        a: items.map((t, i) => `${i + 1}. ${t}`).join('\n'),
+        a: numbered ? items.join('\n') : items.map((t, i) => `${i + 1}. ${t}`).join('\n'),
         long: true,
       });
     }

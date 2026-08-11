@@ -43,6 +43,7 @@ async function boot() {
     });
   });
   $('btn-settings').addEventListener('click', () => { renderSettings(); show('screen-settings'); });
+  $('btn-update').addEventListener('click', checkForUpdates);
   $('btn-ref-back').addEventListener('click', () => show('screen-home'));
   $('btn-settings-back').addEventListener('click', () => show('screen-home'));
 
@@ -140,7 +141,7 @@ function renderReference() {
       }
 
       if (block.type === 'checklist') {
-        for (const it of block.items) b.appendChild(refItem(it.c, it.r, it.note));
+        block.items.forEach((it, i) => b.appendChild(refItem(`${i + 1}. ${it.c}`, it.r, it.note)));
         if (block.closing) {
           const c = document.createElement('div');
           c.className = 'ref-closing';
@@ -232,6 +233,40 @@ document.addEventListener('visibilitychange', () => {
   const inSession = $('screen-trainer').classList.contains('active') || $('screen-examiner').classList.contains('active');
   if (document.visibilityState === 'visible' && inSession) requestWake();
 });
+
+// ---------- updates ----------
+// The SW takes over immediately after install (skipWaiting + clients.claim),
+// so a successful reg.update() with a new version fires 'controllerchange'.
+let updateReloading = false;
+async function checkForUpdates() {
+  const btn = $('btn-update');
+  btn.textContent = 'Checking…';
+  try {
+    if (!('serviceWorker' in navigator)) { location.reload(); return; }
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (!reg) { location.reload(); return; }
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (updateReloading) return;
+      updateReloading = true;
+      btn.textContent = 'Updating…';
+      btn.classList.add('ready');
+      location.reload();
+    });
+    await reg.update();
+    setTimeout(() => {
+      if (updateReloading) return;
+      if (reg.installing || reg.waiting) {
+        btn.textContent = 'Update found — installing…';
+        btn.classList.add('ready');
+      } else {
+        btn.textContent = 'Up to date ✓';
+        setTimeout(() => { btn.textContent = '↻ Check for updates'; btn.classList.remove('ready'); }, 2500);
+      }
+    }, 3000);
+  } catch {
+    location.reload(); // worst case: plain reload still refreshes via network-first
+  }
+}
 
 // ---------- service worker ----------
 function registerSW() {

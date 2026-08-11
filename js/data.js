@@ -42,11 +42,24 @@ export function flattenSteps(mod) {
       });
 
       if (block.type === 'checklist') {
+        // announce which check is starting…
+        push('open', {
+          prompt: 'Which check starts now?',
+          answer: blockTitle,
+          note: null,
+          sayTarget: blockTitle,
+        });
+        // …then recall each item in full: number + challenge + response
+        const n = block.items.length;
         block.items.forEach((it, i) => push(i, {
-          prompt: it.c,
-          answer: it.r,
+          prompt: `Item ${i + 1} of ${n}`,
+          answer: `${i + 1}. ${it.c} — ${it.r}`,
+          answerLong: (it.c.length + it.r.length) > 55,
           note: it.note || null,
           sayTarget: `${it.c} ${it.r}`,
+          challenge: it.c,
+          response: it.r,
+          num: i + 1,
         }));
         if (block.closing) push('close', {
           kind: 'checklist',
