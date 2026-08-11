@@ -308,12 +308,12 @@
        "c": "Essence",
        "r": "QUANTITE et ENDURANCE",
        "note": "AFM : capacité totale consommable 109 l ; capacité inutilisable 1 l. AVGAS 100 LL.",
-       "spoken": "Essence — jaugeurs vérifiés, [exemple : cent neuf] litres à bord sur cent dix litres au total, cent neuf consommables, un litre inutilisable ; à trente-trois litres par heure à deux mille cinq cents tours, cela fait trois heures dix-huit brut, moins la réserve. Quantité et endurance contrôlées."
+       "spoken": "Essence — jaugeurs vérifiés, [exemple : quatre-vingt-dix] litres affichés au réservoir principal ; réservoir principal cent neuf litres consommables sur cent dix au total, un litre inutilisable ; réservoir supplémentaire cinquante litres [exemple : vide], soit cent cinquante-neuf litres consommables au total s'il est plein. Quantité et endurance contrôlées face au temps de vol prévu plus la réserve."
       },
       {
        "c": "Robinet essence",
        "r": "OUVERT",
-       "spoken": "Robinet essence — fonctionnement vérifié, levier plein ouvert, sur le réservoir le plus plein ; poignée du réservoir auxiliaire poussée, fermée, sauf besoin."
+       "spoken": "Robinet essence — fonctionnement vérifié, levier plein ouvert sur l'unique réservoir principal ; pas de sélecteur de réservoir sur cet avion ; poignée du réservoir auxiliaire poussée, fermée, sauf transfert vers le réservoir principal."
       },
       {
        "c": "ELT",
@@ -477,7 +477,7 @@
       {
        "c": "Volets",
        "r": "RENTRES",
-       "spoken": "Volets — commande en position haute, volets rentrés, indicateur à zéro, position contrôlée visuellement."
+       "spoken": "Volets — levier au cran rentré, volets rentrés, répétiteur de position confirmant volets rentrés et voyant « volets sortis » éteint, position contrôlée visuellement."
       },
       {
        "c": "Altimètres",
@@ -795,7 +795,7 @@
       {
        "c": "Essence",
        "r": "QUANTITE and ENDURANCE",
-       "spoken": "Essence — [exemple : quatre-vingt-dix] litres affichés, capacité consommable cent neuf litres ; à trente-trois litres par heure cela donne [exemple : deux heures quarante-cinq] d'endurance pour un temps de vol prévu de [exemple : une heure], minimum fuel on board et réserve satisfaits."
+       "spoken": "Essence — [exemple : quatre-vingt-dix] litres affichés à la jauge du réservoir principal, capacité consommable du réservoir principal cent neuf litres, plus le réservoir supplémentaire de cinquante litres [exemple : vide], soit cent cinquante-neuf litres consommables au total s'il est plein ; à la consommation de planification du club de trente-cinq litres par heure, cela donne [exemple : environ deux heures trente] d'endurance pour un temps de vol prévu de [exemple : une heure], minimum fuel on board et réserve satisfaits."
       },
       {
        "c": "Pompe électrique",
@@ -1620,7 +1620,7 @@
       {
        "c": "Altimètres",
        "r": "REGLE et CONTROLE",
-       "spoken": "Altimètre — QNH [exemple : un zéro deux un] reçu de l'ATIS, réglé sur les deux altimètres et recontrôlé, transition selon les procédures locales effectuée, altitude de volte mille pieds sol."
+       "spoken": "Altimètres — QNH [exemple : un zéro un trois] réglé sur les deux altimètres, altitude indiquée comparée à l'altitude du terrain ; altitude de volte selon la publication du terrain — mille pieds au-dessus du terrain pour un circuit standard."
       },
       {
        "c": "Briefing d'approche",
@@ -2234,7 +2234,7 @@
       {
        "c": "Transpondeur",
        "r": "CONTROLE MODE \"GND\"",
-       "spoken": "Transpondeur — mode GND sélectionné et contrôlé, report d'altitude coupé ; contrôle effectué après avoir quitté la piste et dépassé les marques de séparation, sur un tronçon rectiligne, normalement à l'arrêt."
+       "spoken": "Transpondeur — mode GND sélectionné et contrôlé ; contrôle effectué après avoir quitté la piste et dépassé les marques de séparation, sur un tronçon rectiligne, normalement à l'arrêt."
       },
       {
        "c": "Feux",
@@ -2388,7 +2388,7 @@
       {
        "c": "Manette de gaz",
        "r": "AJUSTE 1000 RPM",
-       "spoken": "Frein de parc bloqué — manette de gaz ajustée, mille tours/minute, moteur stabilisé pour le refroidissement avant l'arrêt."
+       "spoken": "Frein de parc bloqué — manette de gaz ajustée, mille tours/minute, moteur stabilisé à ce régime avant la suite du contrôle d'arrêt moteur."
       },
       {
        "c": "Interrupteur avionique & FLARM",

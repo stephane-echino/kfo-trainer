@@ -299,12 +299,12 @@
        "c": "Fuel",
        "r": "QUANTITY and ENDURANCE",
        "note": "AFM: total usable 109 l; 1 l unusable. AVGAS 100 LL.",
-       "spoken": "Fuel — gauges checked, [example: one hundred and nine] litres on board out of one hundred and ten total, one hundred and nine usable, one litre unusable; at thirty-three litres per hour at two thousand five hundred RPM that is three hours eighteen minutes gross endurance, minus reserve. Quantity and endurance checked."
+       "spoken": "Fuel — gauges checked, [example: ninety] litres indicated on the main tank; main tank usable one hundred and nine litres out of one hundred and ten total, one litre unusable; auxiliary tank fifty litres [example: empty], one hundred and fifty-nine litres usable in total when it is filled. Quantity and endurance checked against the planned flight time plus reserve."
       },
       {
        "c": "Fuel valve",
        "r": "OPEN",
-       "spoken": "Fuel valve — operation checked, lever fully open, on the fuller tank; auxiliary tank lever pushed in, closed, unless required."
+       "spoken": "Fuel valve — operation checked, lever fully open on the single main tank; there is no tank selector on this aircraft; auxiliary tank lever pushed in, closed, unless a transfer to the main tank is required."
       },
       {
        "c": "ELT",
@@ -468,7 +468,7 @@
       {
        "c": "Flaps",
        "r": "UP",
-       "spoken": "Flaps — lever fully up, flaps up, indicator confirms zero, position checked visually."
+       "spoken": "Flaps — lever in the retracted detent, flaps up, position repeater confirms flaps up and the FLAPS OUT warning light is out, position checked visually."
       },
       {
        "c": "Altimeters",
@@ -786,7 +786,7 @@
       {
        "c": "Fuel",
        "r": "QUANTITY and ENDURANCE",
-       "spoken": "Fuel — [example: ninety] litres indicated, usable capacity one hundred and nine litres; at thirty-three litres per hour that is [example: two hours forty-five] of endurance against a planned flight time of [example: one hour], minimum fuel on board and reserve satisfied."
+       "spoken": "Fuel — [example: ninety] litres indicated on the main tank gauge, main tank usable capacity one hundred and nine litres, plus the fifty litre auxiliary tank [example: empty], one hundred and fifty-nine litres usable in total when it is filled; at the club planning figure of thirty-five litres per hour that is [example: about two hours thirty] of endurance against a planned flight time of [example: one hour], minimum fuel on board and reserve satisfied."
       },
       {
        "c": "Fuel pump",
@@ -1611,7 +1611,7 @@
       {
        "c": "Altimeter",
        "r": "SET and CHECKED",
-       "spoken": "Altimeter — QNH [example: one zero two one] from the ATIS, set on both altimeters and crosschecked, transition to local procedures done, circuit altitude one thousand feet above airfield level."
+       "spoken": "Altimeters — QNH [example: one zero one three] set on both altimeters, indicated altitude checked against field elevation; circuit altitude as published for the aerodrome — one thousand feet above airfield level for a standard circuit."
       },
       {
        "c": "Briefing for approach",
@@ -2225,7 +2225,7 @@
       {
        "c": "Transponder",
        "r": "CHECK MODE \"GND\"",
-       "spoken": "Transponder — mode GND selected and checked, altitude reporting off; check carried out after vacating the runway and passing the holding marks, on a straight section, normally at a standstill."
+       "spoken": "Transponder — mode GND selected and checked; check carried out after vacating the runway and passing the marks separating the runway from the taxi area, on a straight section, normally at a standstill."
       },
       {
        "c": "Lights",
@@ -2379,7 +2379,7 @@
       {
        "c": "Throttle",
        "r": "SET 1000 RPM",
-       "spoken": "Parking brake set — throttle set, one thousand RPM, engine stabilised for cooling before shutdown."
+       "spoken": "Parking brake set — throttle set, one thousand RPM, engine stabilised at that setting before the rest of the shutdown check."
       },
       {
        "c": "Avionics master switch & FLARM",
