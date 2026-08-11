@@ -294,6 +294,24 @@ h1 {
   font-size: 9.5px; letter-spacing: 0.4px; color: var(--text-faint);
   border: 1px solid var(--line-soft); border-radius: 999px; padding: 3px 8px;
 }
+.step-mem {
+  font-size: 9.5px; letter-spacing: 0.4px; font-weight: 700;
+  color: var(--violet); background: var(--violet-dim);
+  border: 1px solid rgba(199, 146, 234, 0.45); border-radius: 999px; padding: 3px 8px;
+}
+
+/* what the pilot actually says out loud */
+.step-spoken {
+  width: 100%; text-align: left; font-size: 13px; line-height: 1.55; color: var(--text);
+  background: var(--green-dim); border: 1px solid rgba(79, 217, 130, 0.28);
+  border-radius: 10px; padding: 10px 12px;
+  animation: answer-in 0.34s var(--ease) 0.04s backwards;
+  max-height: 30vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.spoken-label {
+  display: block; font-size: 9.5px; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--green); font-weight: 700; margin-bottom: 5px;
+}
 
 .step-prompt { font-size: 23px; font-weight: 650; line-height: 1.28; letter-spacing: -0.3px; }
 .step-prompt .prompt-pre {

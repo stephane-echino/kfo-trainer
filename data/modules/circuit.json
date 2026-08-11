@@ -288,7 +288,8 @@
       {
        "c": "Control",
        "r": "FREE and CORRECT",
-       "note": "AFM: no play or excessive friction. Steering is checked during taxi. Elevator trim: full travel, then back to take-off position."
+       "note": "AFM: no play or excessive friction. Steering is checked during taxi. Elevator trim: full travel, then back to take-off position.",
+       "spoken": "Controls — stick fully forward and fully back, fully left and fully right, ailerons and elevator moving with the stick and in the correct sense, rudder free both sides, no play and no excessive friction; nosewheel steering to be checked during taxi. Controls free and correct."
       },
       {
        "c": "Battery master switch",
@@ -297,15 +298,18 @@
       {
        "c": "Fuel",
        "r": "QUANTITY and ENDURANCE",
-       "note": "AFM: total usable 109 l; 1 l unusable. AVGAS 100 LL."
+       "note": "AFM: total usable 109 l; 1 l unusable. AVGAS 100 LL.",
+       "spoken": "Fuel — gauges checked, [example: one hundred and nine] litres on board out of one hundred and ten total, one hundred and nine usable, one litre unusable; at thirty-three litres per hour at two thousand five hundred RPM that is three hours eighteen minutes gross endurance, minus reserve. Quantity and endurance checked."
       },
       {
        "c": "Fuel valve",
-       "r": "OPEN"
+       "r": "OPEN",
+       "spoken": "Fuel valve — operation checked, lever fully open, on the fuller tank; auxiliary tank lever pushed in, closed, unless required."
       },
       {
        "c": "ELT",
-       "r": "CHECK ARMED (no red led)"
+       "r": "CHECK ARMED (no red led)",
+       "spoken": "ELT — switch on ARM, red LED out, no red LED. ELT armed."
       }
      ],
      "closing": "BEFORE ENGINE START CHECK COMPLETED"
@@ -354,7 +358,8 @@
       {
        "c": "Fuel pump",
        "r": "ON and PRESSURE CHECKED",
-       "note": "AFM: normal fuel pressure 35 to 550 mbar (0.5 to 8 psi)."
+       "note": "AFM: normal fuel pressure 35 to 550 mbar (0.5 to 8 psi).",
+       "spoken": "Fuel pump ON — fuel pressure checked in the green, between zero point five and eight PSI, that is thirty-five to five hundred and fifty millibars."
       },
       {
        "c": "Magnetos",
@@ -363,24 +368,32 @@
       },
       {
        "c": "Area",
-       "r": "CLEAR"
+       "r": "CLEAR",
+       "mem": true
       },
       {
        "c": "Throttle",
        "r": "INJECT DURING START",
-       "note": "AFM normal start: 2 or 3 injections, then throttle 1/4 forward."
+       "note": "AFM normal start: 2 or 3 injections, then throttle 1/4 forward.",
+       "mem": true
       },
       {
        "c": "Starter",
-       "r": "DEPRESSED (max 30 sec. then wait 1')"
+       "r": "DEPRESSED (max 30 sec. then wait 1')",
+       "mem": true,
+       "spoken": "Starter engaged — thirty seconds maximum continuous, then wait at least one minute before another attempt. Oil pressure must come up; if it is still zero after fifteen to twenty seconds, shut down and find the cause."
       },
       {
        "c": "Throttle",
-       "r": "SET 1000 RPM (1200 RPM with engine cold)"
+       "r": "SET 1000 RPM (1200 RPM with engine cold)",
+       "mem": true,
+       "spoken": "Throttle set — one thousand RPM with a warm engine, one thousand two hundred RPM with a cold engine, engine steady, warming up."
       },
       {
        "c": "Oil pressure",
-       "r": "CHECKED RISING (green arc)"
+       "r": "CHECKED RISING (green arc)",
+       "mem": true,
+       "spoken": "Oil pressure — rising, in the green arc, three point eight to six point five bar, that is fifty-five to ninety-five PSI. If it is still zero after fifteen to twenty seconds, shut down."
       }
      ],
      "closing": "STARTING ENGINE CHECK COMPLETED"
@@ -422,7 +435,8 @@
      "items": [
       {
        "c": "Navigation lights",
-       "r": "ON"
+       "r": "ON",
+       "spoken": "Navigation lights ON, strobe ON — all lights stay on for the whole flight, including the landing light, for conspicuity in haze, against the sun, at dusk and in busy circuits."
       },
       {
        "c": "Fuel pump",
@@ -434,15 +448,18 @@
       },
       {
        "c": "Voltmeter",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "spoken": "Alternator ON — voltmeter checked, needle in the green range, battery charging, no discharge."
       },
       {
        "c": "Pressure indicators",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "spoken": "Pressure indicators checked — oil pressure three point eight to six point five bar in the green, fuel pressure zero point five to eight PSI in the green, oil temperature rising towards the green, sixty to one hundred and eighteen degrees Celsius."
       },
       {
        "c": "Annunciator lights",
-       "r": "TESTED"
+       "r": "TESTED",
+       "spoken": "Annunciator lights tested — test button pressed, all warning lights illuminate, released, all lights out, no warning remaining."
       },
       {
        "c": "Avionics master switched & FLARM",
@@ -450,11 +467,13 @@
       },
       {
        "c": "Flaps",
-       "r": "UP"
+       "r": "UP",
+       "spoken": "Flaps — lever fully up, flaps up, indicator confirms zero, position checked visually."
       },
       {
        "c": "Altimeters",
-       "r": "SET and CHECKED"
+       "r": "SET and CHECKED",
+       "spoken": "Altimeters — QNH [example: one zero two one] set on both altimeters, field elevation [example: one thousand seven hundred and thirty feet] indicated on both, both agree, one hectopascal equals about twenty-seven feet."
       },
       {
        "c": "Avionics (COM, NAV, GPS)",
@@ -462,7 +481,8 @@
       },
       {
        "c": "Transponder",
-       "r": "SET and CHECKED"
+       "r": "SET and CHECKED",
+       "spoken": "Transponder — code [example slot: the assigned or local VFR code] set and crosschecked in the window, mode GND on the ground, ALT armed for departure, altitude readout checked against the altimeter."
       }
      ],
      "closing": "AFTER ENGINE CHECK COMPLETED"
@@ -580,12 +600,15 @@
       {
        "c": "Brakes and Steering",
        "r": "CHECKED",
-       "note": "Done only once clear of the parking area."
+       "note": "Done only once clear of the parking area.",
+       "mem": true
       },
       {
        "c": "Flight instruments (TC/PFD/HSI/Comp)",
        "r": "CHECKED",
-       "note": "SPHAIR: AI – ERECTED / STABLE; DG or HDG indicator – DECREASING in a left turn, INCREASING in a right turn. Scan one instrument at a time."
+       "note": "SPHAIR: AI – ERECTED / STABLE; DG or HDG indicator – DECREASING in a left turn, INCREASING in a right turn. Scan one instrument at a time.",
+       "mem": true,
+       "spoken": "Flight instruments checked in the turns, one instrument at a time — turn coordinator indicating the turn with the ball out, attitude indicator erected and stable, HSI decreasing in a left turn and increasing in a right turn, compass agreeing with the HSI."
       }
      ],
      "closing": "TAXI CHECK COMPLETED"
@@ -656,11 +679,13 @@
       },
       {
        "c": "Throttle",
-       "r": "SET 1000 RPM"
+       "r": "SET 1000 RPM",
+       "spoken": "Parking brake set — throttle set, one thousand RPM."
       },
       {
        "c": "Engine instruments",
-       "r": "GREEN ARC"
+       "r": "GREEN ARC",
+       "spoken": "Engine instruments — all in the green arc: tachometer green arc two thousand to two thousand seven hundred RPM with the red line at two thousand seven hundred, oil temperature sixty to one hundred and eighteen degrees Celsius, oil pressure three point eight to six point five bar, fuel pressure zero point five to eight PSI, cylinder head temperature below the red line at two hundred and sixty degrees Celsius."
       },
       {
        "c": "Rear and propeller area",
@@ -668,39 +693,55 @@
       },
       {
        "c": "Throttle",
-       "r": "SET 2000 RPM"
+       "r": "SET 2000 RPM",
+       "mem": true,
+       "spoken": "Rear and propeller area clear — throttle set, two thousand RPM, stabilised, engine instruments in the green."
       },
       {
        "c": "Magnetos",
-       "r": "CHECKED (max drop 175-max diff 50)"
+       "r": "CHECKED (max drop 175-max diff 50)",
+       "mem": true,
+       "spoken": "Magnetos checked at two thousand RPM — right magneto, drop [example: one hundred] RPM, both; left magneto, drop [example: one hundred and twenty] RPM, both; maximum drop one hundred and seventy-five RPM, maximum difference between left and right fifty RPM, engine running smoothly. Magnetos checked, back on BOTH."
       },
       {
        "c": "Carburator heater",
-       "r": "CHECKED (drop 100)"
+       "r": "CHECKED (drop 100)",
+       "mem": true,
+       "spoken": "Carburetor heat — hot, pulled, drop of about one hundred RPM, no rise and no rough running, cold, pushed, RPM back to two thousand. Carburetor heat checked. Always full hot or full cold, never an intermediate position."
       },
       {
        "c": "Mixture",
-       "r": "CHECKED (EGT and RPM)"
+       "r": "CHECKED (EGT and RPM)",
+       "mem": true,
+       "spoken": "Mixture checked — leaned progressively until the EGT rises and the RPM starts to drop, then back to full rich, fully up, RPM restored to two thousand."
       },
       {
        "c": "Engine instruments",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "mem": true
       },
       {
        "c": "Voltmeter",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "mem": true,
+       "spoken": "Voltmeter checked — in the green range at two thousand RPM, alternator on line, no discharge, no warning light."
       },
       {
        "c": "Annunciator lights",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "mem": true,
+       "spoken": "Annunciator lights checked — all out, no alternator, no oil pressure, no low voltage warning at two thousand RPM."
       },
       {
        "c": "Throttle idle",
-       "r": "CHECKED (600-650 rpm)"
+       "r": "CHECKED (600-650 rpm)",
+       "mem": true,
+       "spoken": "Throttle to idle — six hundred to six hundred and fifty RPM, engine steady, no tendency to stop, oil pressure above the idle red line of one point seven bar, twenty-five PSI. Idle checked, throttle back to one thousand RPM."
       },
       {
        "c": "Throttle",
-       "r": "SET 1000 RPM"
+       "r": "SET 1000 RPM",
+       "mem": true
       }
      ],
      "closing": "RUN UP CHECK COMPLETED"
@@ -744,11 +785,13 @@
       },
       {
        "c": "Fuel",
-       "r": "QUANTITY and ENDURANCE"
+       "r": "QUANTITY and ENDURANCE",
+       "spoken": "Fuel — [example: ninety] litres indicated, usable capacity one hundred and nine litres; at thirty-three litres per hour that is [example: two hours forty-five] of endurance against a planned flight time of [example: one hour], minimum fuel on board and reserve satisfied."
       },
       {
        "c": "Fuel pump",
-       "r": "ON and PRESSURE CHECKED"
+       "r": "ON and PRESSURE CHECKED",
+       "spoken": "Fuel pump ON — fuel pressure checked in the green, zero point five to eight PSI, thirty-five to five hundred and fifty millibars, pressure stable."
       },
       {
        "c": "Fuel valve",
@@ -756,7 +799,8 @@
       },
       {
        "c": "Mixture",
-       "r": "RICH or AS REQUIRED"
+       "r": "RICH or AS REQUIRED",
+       "spoken": "Mixture — full rich, lever fully up, and it stays full rich for take-off and climb; leaning only above five thousand feet in the climb. Always enrich before any power increase."
       },
       {
        "c": "Carburator heater",
@@ -772,11 +816,13 @@
       },
       {
        "c": "Trim",
-       "r": "SET FOR TAKE-OFF"
+       "r": "SET FOR TAKE-OFF",
+       "spoken": "Elevator trim — full travel checked nose up and nose down, then set back to the take-off position, trim set for take-off."
       },
       {
        "c": "Flaps",
-       "r": "FULL THEN UP 1ST NOTCH"
+       "r": "FULL THEN UP 1ST NOTCH",
+       "spoken": "Flaps — speed check not required on the ground, full down, second notch, travel checked, then back up to the first notch, take-off position, indicator and lever confirm first notch. Flap limit speed ninety-two knots, full flaps below eighty-one knots."
       },
       {
        "c": "Seats",
@@ -794,7 +840,8 @@
       {
        "c": "Departure briefing",
        "r": "COMPLETED",
-       "note": "The briefing is the last item of this check and is normally spoken aloud."
+       "note": "The briefing is the last item of this check and is normally spoken aloud.",
+       "spoken": "Departure briefing — runway [example: two four], concrete, dry, wind [example: ten knots headwind]. Speeds: rotate fifty-four knots, Vx seventy knots, Vy eighty knots, best glide seventy-eight knots, Vref sixty-two knots; initial climb to [example: four thousand five hundred feet] direction [example: Cudrefin]. Any malfunction before rotation: throttle idle, brakes, inform ATC. Engine failure after rotation below airfield elevation plus one thousand feet: speed according to flaps, seventy-eight knots flaps up, seventy-three knots first notch, land straight ahead within plus or minus forty-five degrees of the runway axis, full flaps when the landing is assured, Vref sixty-two knots. Engine failure above airfield elevation plus one thousand feet: seventy-eight knots, back to the opposite runway, full flaps when the landing is assured, Vref sixty-two knots. Briefing completed."
       }
      ],
      "closing": "BEFORE TAKE-OFF CHECK COMPLETED"
@@ -883,33 +930,42 @@
      "items": [
       {
        "c": "Landing and Taxi lights",
-       "r": "ON"
+       "r": "ON",
+       "mem": true
       },
       {
        "c": "Approach sectors",
        "r": "FREE",
-       "note": "SOP: the line up check is done before entering the runway and again when lined up."
+       "note": "SOP: the line up check is done before entering the runway and again when lined up.",
+       "mem": true
       },
       {
        "c": "Runway",
        "r": "IDENTIFIED",
-       "note": "SPHAIR: read the runway number (QFU) painted on the runway aloud; on parallel runways check L / C / R, and state clearly whether you line up on concrete or grass."
+       "note": "SPHAIR: read the runway number (QFU) painted on the runway aloud; on parallel runways check L / C / R, and state clearly whether you line up on concrete or grass.",
+       "mem": true,
+       "spoken": "Runway [example: two four] identified — number read on the runway surface, runway heading and gyro compass compared, agreeing within five degrees; approach sectors free, wind checked."
       },
       {
        "c": "Canopy",
-       "r": "CLOSED and LOCKED"
+       "r": "CLOSED and LOCKED",
+       "mem": true
       },
       {
        "c": "Power",
-       "r": "SET FULL (min 2200 RPM)"
+       "r": "SET FULL (min 2200 RPM)",
+       "mem": true,
+       "spoken": "Power set full — throttle fully forward in two to three seconds, minimum two thousand two hundred RPM at full throttle, engine instruments in the green, airspeed alive, rotate at fifty-four knots."
       },
       {
        "c": "Engine instruments",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "mem": true
       },
       {
        "c": "Annunciator lights",
-       "r": "CHECKED"
+       "r": "CHECKED",
+       "mem": true
       }
      ],
      "closing": "LINE UP CHECK COMPLETED"
@@ -1031,20 +1087,27 @@
      "items": [
       {
        "c": "Flaps",
-       "r": "UP"
+       "r": "UP",
+       "mem": true
       },
       {
        "c": "Fuel pump",
        "r": "OFF and PRESSURE CHECKED",
-       "note": "SPHAIR: switch the electric pump off only at the climb check, earliest 500 ft/AAL, and check fuel pressure in the green - if the mechanical pump had failed, the engine would stop."
+       "note": "SPHAIR: switch the electric pump off only at the climb check, earliest 500 ft/AAL, and check fuel pressure in the green - if the mechanical pump had failed, the engine would stop.",
+       "mem": true,
+       "spoken": "Fuel pump OFF — climb stabilised, and not before five hundred feet above the field; fuel pressure still checked in the green, zero point five to eight PSI, engine running smoothly."
       },
       {
        "c": "Transponder",
-       "r": "CHECK MODE \"ALT\""
+       "r": "CHECK MODE \"ALT\"",
+       "mem": true,
+       "spoken": "Transponder — mode ALT selected and checked, altitude reporting on, code [example slot: the code set before departure] still displayed."
       },
       {
        "c": "Power",
-       "r": "CHECK FULL POWER (lean for climb > 5000ft)"
+       "r": "CHECK FULL POWER (lean for climb > 5000ft)",
+       "mem": true,
+       "spoken": "Power — full power checked, throttle hard against the forward stop, engine instruments reading normal values, climb speed eighty knots; above five thousand feet, lean the mixture for the climb."
       }
      ],
      "closing": "CLIMB CHECK COMPLETED"
@@ -1323,7 +1386,8 @@
      "items": [
       {
        "c": "Altimeter",
-       "r": "SET and CHECKED"
+       "r": "SET and CHECKED",
+       "spoken": "Altimeter — QNH [example: one zero two one] set on both altimeters, both agreeing, cruise altitude [example: four thousand five hundred feet] checked; one hectopascal equals about twenty-seven feet."
       },
       {
        "c": "HSI",
@@ -1335,16 +1399,19 @@
       },
       {
        "c": "Fuel",
-       "r": "QUANTITY and ENDURANCE"
+       "r": "QUANTITY and ENDURANCE",
+       "spoken": "Fuel — [example: seventy] litres remaining, burn thirty-three litres per hour at two thousand five hundred RPM, [example: two hours] of endurance left, more than the time needed to destination plus reserve; check repeated at least every thirty minutes."
       },
       {
        "c": "Power",
        "r": "SET 2500 RPM or AS REQUIRED",
-       "note": "SOP GVMN: set cruise power 2400 RPM (max 2500 RPM)."
+       "note": "SOP GVMN: set cruise power 2400 RPM (max 2500 RPM).",
+       "spoken": "Power set — two thousand five hundred RPM, sixty-five percent, thirty-three litres per hour, or two thousand four hundred RPM as the club cruise setting, two thousand five hundred maximum; tachometer inside the green arc, red line two thousand seven hundred."
       },
       {
        "c": "Mixture",
-       "r": "SET (EGT Peak -50F at any altitude)"
+       "r": "SET (EGT Peak -50F at any altitude)",
+       "spoken": "Mixture set — leaned to EGT peak minus fifty degrees Fahrenheit, at any altitude; not over-leaned, engine running smoothly, and always enrich before any power increase."
       }
      ],
      "closing": "CRUISE CHECK COMPLETED"
@@ -1543,7 +1610,8 @@
       },
       {
        "c": "Altimeter",
-       "r": "SET and CHECKED"
+       "r": "SET and CHECKED",
+       "spoken": "Altimeter — QNH [example: one zero two one] from the ATIS, set on both altimeters and crosschecked, transition to local procedures done, circuit altitude one thousand feet above airfield level."
       },
       {
        "c": "Briefing for approach",
@@ -1723,32 +1791,42 @@
      "items": [
       {
        "c": "Landing and Taxi lights",
-       "r": "Check ON"
+       "r": "Check ON",
+       "mem": true
       },
       {
        "c": "Altimeter",
-       "r": "SET and CHECKED"
+       "r": "SET and CHECKED",
+       "mem": true
       },
       {
        "c": "Fuel",
-       "r": "QUANTITY and ENDURANCE"
+       "r": "QUANTITY and ENDURANCE",
+       "mem": true
       },
       {
        "c": "Fuel pump",
-       "r": "ON and PRESSURE CHECKED"
+       "r": "ON and PRESSURE CHECKED",
+       "mem": true,
+       "spoken": "Fuel pump ON — hand placed on the switch, switch identified, fuel pressure checked in the green, zero point five to eight PSI; approach check to be completed at the latest abeam the threshold."
       },
       {
        "c": "Carburator heater",
-       "r": "AS REQUIRED"
+       "r": "AS REQUIRED",
+       "mem": true,
+       "spoken": "Carburetor heat — as required, full hot or full cold, never an intermediate position; hot if icing conditions are suspected at reduced power, and a clearing burst of power every one thousand five hundred feet in the descent."
       },
       {
        "c": "Mixture",
-       "r": "FULL RICH or AS REQUIRED"
+       "r": "FULL RICH or AS REQUIRED",
+       "mem": true
       },
       {
        "c": "Flaps",
        "r": "1st NOTCH or AS REQUIRED",
-       "note": "Start as early as possible on downwind; check completed and approach configuration established at the latest abeam threshold."
+       "note": "Start as early as possible on downwind; check completed and approach configuration established at the latest abeam threshold.",
+       "mem": true,
+       "spoken": "Speed checked below ninety-two knots — flaps first notch, approach position, selected and indicated; speed eighty-five knots on downwind, trim set."
       }
      ],
      "closing": "APPROACH CHECK COMPLETED"
@@ -1917,15 +1995,19 @@
       {
        "c": "Flaps",
        "r": "FULL DOWN (extend below 81 KIAS)",
-       "note": "Established after the final turn if not done before."
+       "note": "Established after the final turn if not done before.",
+       "mem": true,
+       "spoken": "Speed checked below eighty-one knots — flaps full down, second notch, landing position, indicated; final approach speed sixty-two knots Vref plus wind correction, stabilised at the latest at the start of the last third of the approach."
       },
       {
        "c": "Mixture",
-       "r": "FULL RICH"
+       "r": "FULL RICH",
+       "mem": true
       },
       {
        "c": "Carburator heater",
-       "r": "COLD"
+       "r": "COLD",
+       "mem": true
       }
      ],
      "closing": "FINAL CHECK COMPLETED"
@@ -2142,7 +2224,8 @@
       },
       {
        "c": "Transponder",
-       "r": "CHECK MODE \"GND\""
+       "r": "CHECK MODE \"GND\"",
+       "spoken": "Transponder — mode GND selected and checked, altitude reporting off; check carried out after vacating the runway and passing the holding marks, on a straight section, normally at a standstill."
       },
       {
        "c": "Lights",
@@ -2295,7 +2378,8 @@
       },
       {
        "c": "Throttle",
-       "r": "SET 1000 RPM"
+       "r": "SET 1000 RPM",
+       "spoken": "Parking brake set — throttle set, one thousand RPM, engine stabilised for cooling before shutdown."
       },
       {
        "c": "Avionics master switch & FLARM",
@@ -2303,7 +2387,8 @@
       },
       {
        "c": "ELT",
-       "r": "CHECK NO RED LED"
+       "r": "CHECK NO RED LED",
+       "spoken": "Avionics master and FLARM off — the G5s switch themselves off automatically after forty-five seconds. ELT — armed, no red LED, not triggered by the landing."
       },
       {
        "c": "Throttle",
@@ -2312,7 +2397,8 @@
       {
        "c": "Magnetos",
        "r": "OFF then BOTH rapidly",
-       "note": "AFM: magneto cut-off test is done at idle, then back to L + R (Both)."
+       "note": "AFM: magneto cut-off test is done at idle, then back to L + R (Both).",
+       "spoken": "At idle, six hundred to six hundred and fifty RPM — magnetos off then rapidly back to BOTH; the engine hesitates, confirming both magnetos are correctly grounded, then throttle back to one thousand RPM."
       },
       {
        "c": "Throttle",
@@ -2345,7 +2431,8 @@
       {
        "c": "Flaps",
        "r": "DOWN",
-       "note": "Newer FR V10 revision prints this item as flaps 2nd notch."
+       "note": "Newer FR V10 revision prints this item as flaps 2nd notch.",
+       "spoken": "Flaps — down, second notch, landing position, lever confirmed; auxiliary tank lever pushed in, closed."
       },
       {
        "c": "Auxiliary tank lever",

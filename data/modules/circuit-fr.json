@@ -297,7 +297,8 @@
       {
        "c": "Commandes",
        "r": "LIBRES et COHERENTES",
-       "note": "AFM : commandes de vol libres, sans jeux ni frottement excessifs ; la direction est à vérifier au roulage. Trim de profondeur : débattements vérifiés puis ramenés à la position décollage."
+       "note": "AFM : commandes de vol libres, sans jeux ni frottement excessifs ; la direction est à vérifier au roulage. Trim de profondeur : débattements vérifiés puis ramenés à la position décollage.",
+       "spoken": "Commandes — manche plein avant, plein arrière, plein gauche, plein droite ; ailerons et profondeur suivent le manche dans le bon sens, palonnier libre des deux côtés, sans jeu ni frottement excessif ; la direction sera vérifiée au roulage. Commandes libres et cohérentes."
       },
       {
        "c": "Interrupteur batterie",
@@ -306,15 +307,18 @@
       {
        "c": "Essence",
        "r": "QUANTITE et ENDURANCE",
-       "note": "AFM : capacité totale consommable 109 l ; capacité inutilisable 1 l. AVGAS 100 LL."
+       "note": "AFM : capacité totale consommable 109 l ; capacité inutilisable 1 l. AVGAS 100 LL.",
+       "spoken": "Essence — jaugeurs vérifiés, [exemple : cent neuf] litres à bord sur cent dix litres au total, cent neuf consommables, un litre inutilisable ; à trente-trois litres par heure à deux mille cinq cents tours, cela fait trois heures dix-huit brut, moins la réserve. Quantité et endurance contrôlées."
       },
       {
        "c": "Robinet essence",
-       "r": "OUVERT"
+       "r": "OUVERT",
+       "spoken": "Robinet essence — fonctionnement vérifié, levier plein ouvert, sur le réservoir le plus plein ; poignée du réservoir auxiliaire poussée, fermée, sauf besoin."
       },
       {
        "c": "ELT",
-       "r": "CONTROLE ARME (led rouge éteinte)"
+       "r": "CONTROLE ARME (led rouge éteinte)",
+       "spoken": "ELT — interrupteur sur ARM, led rouge éteinte, aucune led rouge. ELT armé."
       }
      ],
      "closing": "CONTROLE AVANT MISE EN ROUTE TERMINE"
@@ -363,7 +367,8 @@
       {
        "c": "Pompe électrique",
        "r": "ENCLENCHEE et PRESSION CONTROLEE",
-       "note": "AFM : pression essence normale 35 à 550 mbar (0.5 à 8 psi)."
+       "note": "AFM : pression essence normale 35 à 550 mbar (0.5 à 8 psi).",
+       "spoken": "Pompe électrique enclenchée — pression essence contrôlée dans l'arc vert, entre zéro virgule cinq et huit PSI, soit trente-cinq à cinq cent cinquante millibars."
       },
       {
        "c": "Magnetos",
@@ -372,24 +377,32 @@
       },
       {
        "c": "Zone",
-       "r": "DEGAGEE"
+       "r": "DEGAGEE",
+       "mem": true
       },
       {
        "c": "Manette de gaz",
        "r": "INJECTEZ DURANT DEMARRAGE",
-       "note": "AFM, procédure normale : effectuer 2 ou 3 injections puis manette 1/4 en avant."
+       "note": "AFM, procédure normale : effectuer 2 ou 3 injections puis manette 1/4 en avant.",
+       "mem": true
       },
       {
        "c": "Démarreur",
-       "r": "MARCHE (max 30 sec. ensuite attendre 1')"
+       "r": "MARCHE (max 30 sec. ensuite attendre 1')",
+       "mem": true,
+       "spoken": "Démarreur actionné — trente secondes maximum en continu, puis attendre au moins une minute avant un nouveau démarrage. La pression d'huile doit monter ; si elle est nulle après quinze à vingt secondes, couper et rechercher la cause."
       },
       {
        "c": "Manette de gaz",
-       "r": "AJUSTE 1000 RPM (1200 si moteur froid)"
+       "r": "AJUSTE 1000 RPM (1200 si moteur froid)",
+       "mem": true,
+       "spoken": "Manette de gaz ajustée — mille tours/minute moteur chaud, mille deux cents tours/minute moteur froid, moteur stable, en chauffe."
       },
       {
        "c": "Pression d'huile",
-       "r": "CONTROLEE (arc vert)"
+       "r": "CONTROLEE (arc vert)",
+       "mem": true,
+       "spoken": "Pression d'huile — en augmentation, dans l'arc vert, trois virgule huit à six virgule cinq bar, soit cinquante-cinq à quatre-vingt-quinze PSI. Si elle est nulle après quinze à vingt secondes, couper."
       }
      ],
      "closing": "CONTROLE MISE EN ROUTE TERMINEE"
@@ -431,7 +444,8 @@
      "items": [
       {
        "c": "Feux de navigation",
-       "r": "ENCLENCHES"
+       "r": "ENCLENCHES",
+       "spoken": "Feux de navigation enclenchés, strobe enclenché — tous les feux, y compris le phare d'atterrissage, restent allumés pendant toute la durée du vol : brume, contre-jour, crépuscule, trafic dense en tour de piste."
       },
       {
        "c": "Pompe électrique",
@@ -443,15 +457,18 @@
       },
       {
        "c": "Voltmètre",
-       "r": "CONTROLE"
+       "r": "CONTROLE",
+       "spoken": "Alternateur enclenché — voltmètre contrôlé, aiguille en plage verte, batterie en charge, pas de décharge."
       },
       {
        "c": "Indicateurs de pression",
-       "r": "CONTROLE"
+       "r": "CONTROLE",
+       "spoken": "Indicateurs de pression contrôlés — pression d'huile trois virgule huit à six virgule cinq bar dans le vert, pression essence zéro virgule cinq à huit PSI dans le vert, température d'huile en montée vers le vert, soixante à cent dix-huit degrés Celsius."
       },
       {
        "c": "Voyants lumineux",
-       "r": "CONTROLES"
+       "r": "CONTROLES",
+       "spoken": "Voyants lumineux testés — bouton test enfoncé, tous les voyants s'allument, relâché, tous les voyants éteints, aucune alarme résiduelle."
       },
       {
        "c": "Interrupteur avionique & FLARM",
@@ -459,11 +476,13 @@
       },
       {
        "c": "Volets",
-       "r": "RENTRES"
+       "r": "RENTRES",
+       "spoken": "Volets — commande en position haute, volets rentrés, indicateur à zéro, position contrôlée visuellement."
       },
       {
        "c": "Altimètres",
-       "r": "REGLES et CONTROLES"
+       "r": "REGLES et CONTROLES",
+       "spoken": "Altimètres — QNH [exemple : un zéro deux un] réglé sur les deux altimètres, altitude terrain [exemple : mille sept cent trente pieds] affichée sur les deux, les deux concordent, un hectopascal égale environ vingt-sept pieds."
       },
       {
        "c": "Avionique (COM, NAV, GPS)",
@@ -471,7 +490,8 @@
       },
       {
        "c": "Transpondeur",
-       "r": "REGLE et CONTROLE"
+       "r": "REGLE et CONTROLE",
+       "spoken": "Transpondeur — code [emplacement d'exemple : code assigné ou code VFR local] réglé et recontrôlé dans la fenêtre, mode GND au sol, ALT armé pour le départ, affichage d'altitude comparé à l'altimètre."
       }
      ],
      "closing": "CONTROLE APRES MISE EN ROUTE TERMINEE"
@@ -589,12 +609,15 @@
       {
        "c": "Freins et direction",
        "r": "CONTROLES",
-       "note": "Ces contrôles ne se font qu'une fois l'aire de stationnement quittée."
+       "note": "Ces contrôles ne se font qu'une fois l'aire de stationnement quittée.",
+       "mem": true
       },
       {
        "c": "Instruments vols (TC/PFD/HSI/Comp)",
        "r": "CONTROLES",
-       "note": "SPHAIR : AI – ERECTED / STABLE ; DG ou indicateur de cap – DECREASING en virage à gauche, INCREASING en virage à droite. Méthode du SCANNING : ne contrôler qu'un seul instrument à la fois."
+       "note": "SPHAIR : AI – ERECTED / STABLE ; DG ou indicateur de cap – DECREASING en virage à gauche, INCREASING en virage à droite. Méthode du SCANNING : ne contrôler qu'un seul instrument à la fois.",
+       "mem": true,
+       "spoken": "Instruments de vol contrôlés en virage, un instrument à la fois — indicateur de virage qui indique le virage bille à l'extérieur, horizon artificiel érigé et stable, HSI décroissant en virage à gauche et croissant en virage à droite, compas cohérent avec le HSI."
       }
      ],
      "closing": "CONTROLE ROULAGE TERMINE"
@@ -665,11 +688,13 @@
       },
       {
        "c": "Manette de gaz",
-       "r": "AJUSTE 1000 RPM"
+       "r": "AJUSTE 1000 RPM",
+       "spoken": "Frein de parc bloqué — manette de gaz ajustée, mille tours/minute."
       },
       {
        "c": "Instruments moteur",
-       "r": "ARC VERT"
+       "r": "ARC VERT",
+       "spoken": "Instruments moteur — tous dans l'arc vert : tachymètre arc vert de deux mille à deux mille sept cents tours avec trait rouge à deux mille sept cents, température d'huile soixante à cent dix-huit degrés Celsius, pression d'huile trois virgule huit à six virgule cinq bar, pression essence zéro virgule cinq à huit PSI, température culasse en dessous du trait rouge à deux cent soixante degrés Celsius."
       },
       {
        "c": "Zone",
@@ -677,39 +702,55 @@
       },
       {
        "c": "Manette de gaz",
-       "r": "AJUSTE 2000 RPM"
+       "r": "AJUSTE 2000 RPM",
+       "mem": true,
+       "spoken": "Zone arrière et hélice dégagée — manette de gaz ajustée, deux mille tours/minute, stabilisé, instruments moteur au vert."
       },
       {
        "c": "Magnetos",
-       "r": "CONTROLES (baisse max 175- diff max 50)"
+       "r": "CONTROLES (baisse max 175- diff max 50)",
+       "mem": true,
+       "spoken": "Magnétos contrôlées à deux mille tours — magnéto droite, baisse [exemple : cent] tours, both ; magnéto gauche, baisse [exemple : cent vingt] tours, both ; baisse maximale cent soixante-quinze tours, écart maximal entre gauche et droite cinquante tours, moteur régulier. Magnétos contrôlées, retour sur BOTH."
       },
       {
        "c": "Réchauffage carburateur",
-       "r": "CONTROLE (baisse 100 rpm)"
+       "r": "CONTROLE (baisse 100 rpm)",
+       "mem": true,
+       "spoken": "Réchauffage carburateur — chaud, tiré, baisse d'environ cent tours/minute, pas de remontée ni d'irrégularité, froid, poussé, régime revenu à deux mille. Réchauffage carburateur contrôlé. Toujours en tout ou rien, plein chaud ou plein froid, jamais de position intermédiaire."
       },
       {
        "c": "Mixture",
-       "r": "CONTROLEE (EGT et RPM)"
+       "r": "CONTROLEE (EGT et RPM)",
+       "mem": true,
+       "spoken": "Mixture contrôlée — appauvrie progressivement jusqu'à la montée de l'EGT et la diminution du régime, puis retour plein riche, vers le haut, régime rétabli à deux mille tours."
       },
       {
        "c": "Instruments moteur",
-       "r": "CONTROLE"
+       "r": "CONTROLE",
+       "mem": true
       },
       {
        "c": "Voltmètre",
-       "r": "CONTROLE"
+       "r": "CONTROLE",
+       "mem": true,
+       "spoken": "Voltmètre contrôlé — en plage verte à deux mille tours, alternateur en ligne, pas de décharge, aucun voyant allumé."
       },
       {
        "c": "Voyants lumineux",
-       "r": "CONTROLE"
+       "r": "CONTROLE",
+       "mem": true,
+       "spoken": "Voyants lumineux contrôlés — tous éteints, pas d'alarme alternateur, pas d'alarme pression d'huile, pas d'alarme sous-tension à deux mille tours."
       },
       {
        "c": "Manette de gaz",
-       "r": "RALENTI (600-650 rpm)"
+       "r": "RALENTI (600-650 rpm)",
+       "mem": true,
+       "spoken": "Manette de gaz au ralenti — six cents à six cent cinquante tours/minute, moteur stable, aucune tendance à s'arrêter, pression d'huile au-dessus du trait rouge de ralenti à un virgule sept bar, vingt-cinq PSI. Ralenti contrôlé, manette de gaz ajustée à mille tours."
       },
       {
        "c": "Manette de gaz",
-       "r": "AJUSTE 1000 RPM"
+       "r": "AJUSTE 1000 RPM",
+       "mem": true
       }
      ],
      "closing": "CONTROLE POINT FIXE TERMINE"
@@ -753,11 +794,13 @@
       },
       {
        "c": "Essence",
-       "r": "QUANTITE and ENDURANCE"
+       "r": "QUANTITE and ENDURANCE",
+       "spoken": "Essence — [exemple : quatre-vingt-dix] litres affichés, capacité consommable cent neuf litres ; à trente-trois litres par heure cela donne [exemple : deux heures quarante-cinq] d'endurance pour un temps de vol prévu de [exemple : une heure], minimum fuel on board et réserve satisfaits."
       },
       {
        "c": "Pompe électrique",
-       "r": "ENCLENCHEE et PRESSION CONTROLEE"
+       "r": "ENCLENCHEE et PRESSION CONTROLEE",
+       "spoken": "Pompe électrique enclenchée — pression essence contrôlée dans le vert, zéro virgule cinq à huit PSI, trente-cinq à cinq cent cinquante millibars, pression stable."
       },
       {
        "c": "Robinet essence",
@@ -765,7 +808,8 @@
       },
       {
        "c": "Mixture",
-       "r": "RICHE ou SELON BESOIN"
+       "r": "RICHE ou SELON BESOIN",
+       "spoken": "Mixture — plein riche, manette vers le haut, et elle reste plein riche au décollage et en montée ; appauvrissement seulement au-dessus de cinq mille pieds en montée. Toujours enrichir avant une augmentation de puissance."
       },
       {
        "c": "Réchauffage carburateur",
@@ -781,11 +825,13 @@
       },
       {
        "c": "Trim",
-       "r": "REGLE pour DECOLLAGE"
+       "r": "REGLE pour DECOLLAGE",
+       "spoken": "Trim de profondeur — débattements vérifiés à cabrer et à piquer, puis ramené à la position décollage, trim réglé pour le décollage."
       },
       {
        "c": "Volets",
-       "r": "PLEIN SORTIS ensuite 1er CRAN"
+       "r": "PLEIN SORTIS ensuite 1er CRAN",
+       "spoken": "Volets — plein sortis, deuxième cran, débattement vérifié, puis retour au premier cran, position décollage, indicateur et commande confirment le premier cran. Vitesse limite volets quatre-vingt-douze nœuds, plein volets en dessous de quatre-vingt-un nœuds."
       },
       {
        "c": "Sièges",
@@ -803,7 +849,8 @@
       {
        "c": "Briefing de décollage",
        "r": "EFFECTUE",
-       "note": "Le briefing est le dernier point du groupe « contrôle avant décollage » et se fait normalement à haute voix."
+       "note": "Le briefing est le dernier point du groupe « contrôle avant décollage » et se fait normalement à haute voix.",
+       "spoken": "Briefing de décollage — piste [exemple : deux quatre], béton, sèche, vent [exemple : dix nœuds de face]. Vitesses : rotation cinquante-quatre nœuds, Vx soixante-dix nœuds, Vy quatre-vingts nœuds, meilleur plané soixante-dix-huit nœuds, Vref soixante-deux nœuds ; montée initiale à [exemple : quatre mille cinq cents pieds] direction [exemple : Cudrefin]. Toute malfonction avant rotation : puissance au ralenti, freinage, informer l'ATC. Panne moteur après rotation en dessous de l'altitude du terrain plus mille pieds : vitesse selon volets, soixante-dix-huit nœuds volets rentrés, soixante-treize nœuds premier cran, atterrissage droit devant à plus ou moins quarante-cinq degrés de l'axe de piste, pleins volets quand l'atterrissage est assuré, Vref soixante-deux nœuds. Panne moteur au-dessus de l'altitude du terrain plus mille pieds : soixante-dix-huit nœuds, retour piste opposée, pleins volets quand l'atterrissage est assuré, Vref soixante-deux nœuds. Briefing terminé."
       }
      ],
      "closing": "CONTROLE AVANT DECOLLAGE TERMINE"
@@ -892,33 +939,42 @@
      "items": [
       {
        "c": "Feux d'atterissage et de roulage",
-       "r": "ENCLENCHES"
+       "r": "ENCLENCHES",
+       "mem": true
       },
       {
        "c": "Secteurs d'approche",
        "r": "LIBRE",
-       "note": "SOP : le contrôle à l'alignement se fait avant d'entrer sur la piste, puis à nouveau une fois aligné."
+       "note": "SOP : le contrôle à l'alignement se fait avant d'entrer sur la piste, puis à nouveau une fois aligné.",
+       "mem": true
       },
       {
        "c": "Piste",
        "r": "IDENTIFIEE",
-       "note": "SPHAIR : pendant l'alignement, on lit à haute voix le numéro d'identification inscrit sur la piste (QFU) ; sur des pistes parallèles, assurez-vous en lisant les lettres L / C / R, et mettez clairement en évidence si le LINE UP se fait sur la piste en dur ou en herbe."
+       "note": "SPHAIR : pendant l'alignement, on lit à haute voix le numéro d'identification inscrit sur la piste (QFU) ; sur des pistes parallèles, assurez-vous en lisant les lettres L / C / R, et mettez clairement en évidence si le LINE UP se fait sur la piste en dur ou en herbe.",
+       "mem": true,
+       "spoken": "Piste [exemple : deux quatre] identifiée — numéro lu sur la piste, cap piste et compas gyroscopique comparés, concordance à moins de cinq degrés ; secteurs d'approche libres, vent contrôlé."
       },
       {
        "c": "Verrière",
-       "r": "FERMEE et VERROUILLEE"
+       "r": "FERMEE et VERROUILLEE",
+       "mem": true
       },
       {
        "c": "Manette de gaz",
-       "r": "PLEIN GAZ (min 2200 RPM)"
+       "r": "PLEIN GAZ (min 2200 RPM)",
+       "mem": true,
+       "spoken": "Plein gaz — manette en butée avant en deux à trois secondes, minimum deux mille deux cents tours/minute plein gaz, instruments moteur au vert, anémomètre vivant, rotation à cinquante-quatre nœuds."
       },
       {
        "c": "Instruments moteur",
-       "r": "CONTROLES"
+       "r": "CONTROLES",
+       "mem": true
       },
       {
        "c": "Voyants lumineux",
-       "r": "CONTROLES"
+       "r": "CONTROLES",
+       "mem": true
       }
      ],
      "closing": "CONTROLE A L'ALIGNMENT TERMINE"
@@ -1040,20 +1096,27 @@
      "items": [
       {
        "c": "Volets",
-       "r": "RENTRES"
+       "r": "RENTRES",
+       "mem": true
       },
       {
        "c": "Pompe électrique",
        "r": "DECLENCHEE et PRESSION CONTROLEE",
-       "note": "SPHAIR : la pompe électrique n'est déclenchée qu'au CLIMB CHECK, au plus tôt à 500 ft/AAL, et la pression carburant est contrôlée dans la plage verte - si la pompe mécanique était défectueuse, le moteur s'arrêterait."
+       "note": "SPHAIR : la pompe électrique n'est déclenchée qu'au CLIMB CHECK, au plus tôt à 500 ft/AAL, et la pression carburant est contrôlée dans la plage verte - si la pompe mécanique était défectueuse, le moteur s'arrêterait.",
+       "mem": true,
+       "spoken": "Pompe électrique déclenchée — montée stabilisée, et au plus tôt cinq cents pieds sol ; pression essence toujours contrôlée dans le vert, zéro virgule cinq à huit PSI, moteur régulier."
       },
       {
        "c": "Transpondeur",
-       "r": "CONTROLE MODE \"ALT\""
+       "r": "CONTROLE MODE \"ALT\"",
+       "mem": true,
+       "spoken": "Transpondeur — mode ALT sélectionné et contrôlé, report d'altitude actif, code [emplacement d'exemple : le code affiché avant le départ] toujours visible."
       },
       {
        "c": "Manette de gaz",
-       "r": "PLEIN GAZ (appauvrir en montée > 5000ft)"
+       "r": "PLEIN GAZ (appauvrir en montée > 5000ft)",
+       "mem": true,
+       "spoken": "Puissance — plein gaz contrôlé, manette en butée avant, instruments moteur aux valeurs normales, vitesse de montée quatre-vingts nœuds ; au-dessus de cinq mille pieds, appauvrir la mixture en montée."
       }
      ],
      "closing": "CONTRÔLE DE MONTEE TERMINE"
@@ -1332,7 +1395,8 @@
      "items": [
       {
        "c": "Altimètres",
-       "r": "REGLE et CONTROLE"
+       "r": "REGLE et CONTROLE",
+       "spoken": "Altimètre — QNH [exemple : un zéro deux un] réglé sur les deux altimètres, les deux concordent, altitude de croisière [exemple : quatre mille cinq cents pieds] contrôlée ; un hectopascal égale environ vingt-sept pieds."
       },
       {
        "c": "HSI",
@@ -1344,16 +1408,19 @@
       },
       {
        "c": "Essence",
-       "r": "QUANTITE et ENDURANCE"
+       "r": "QUANTITE et ENDURANCE",
+       "spoken": "Essence — [exemple : septante] litres restants, consommation trente-trois litres par heure à deux mille cinq cents tours, [exemple : deux heures] d'endurance restante, supérieure au temps jusqu'à destination plus la réserve ; contrôle répété au minimum toutes les trente minutes."
       },
       {
        "c": "Régime moteur",
        "r": "REGLE 2500 RPM ou SELON BESOIN",
-       "note": "SOP GVMN : régler la puissance de croisière à 2400 RPM (max 2500 RPM)."
+       "note": "SOP GVMN : régler la puissance de croisière à 2400 RPM (max 2500 RPM).",
+       "spoken": "Régime moteur réglé — deux mille cinq cents tours/minute, soixante-cinq pour cent, trente-trois litres par heure, ou deux mille quatre cents tours comme régime de croisière du club, deux mille cinq cents maximum ; tachymètre dans l'arc vert, trait rouge à deux mille sept cents."
       },
       {
        "c": "Mixture",
-       "r": "REGLE (EGT Peak -50F)"
+       "r": "REGLE (EGT Peak -50F)",
+       "spoken": "Mixture réglée — appauvrie à l'EGT peak moins cinquante degrés Fahrenheit, à toute altitude ; sans appauvrissement excessif, moteur régulier, et toujours enrichir avant une augmentation de puissance."
       }
      ],
      "closing": "CONTRÔLE DE CROISIERE TERMINE"
@@ -1552,7 +1619,8 @@
       },
       {
        "c": "Altimètres",
-       "r": "REGLE et CONTROLE"
+       "r": "REGLE et CONTROLE",
+       "spoken": "Altimètre — QNH [exemple : un zéro deux un] reçu de l'ATIS, réglé sur les deux altimètres et recontrôlé, transition selon les procédures locales effectuée, altitude de volte mille pieds sol."
       },
       {
        "c": "Briefing d'approche",
@@ -1732,32 +1800,42 @@
      "items": [
       {
        "c": "Feux d'atterissage et de roulage",
-       "r": "ENCLENCHES"
+       "r": "ENCLENCHES",
+       "mem": true
       },
       {
        "c": "Altimètres",
-       "r": "REGLE et CONTROLE"
+       "r": "REGLE et CONTROLE",
+       "mem": true
       },
       {
        "c": "Essence",
-       "r": "QUANTITE and ENDURANCE"
+       "r": "QUANTITE and ENDURANCE",
+       "mem": true
       },
       {
        "c": "Pompe électrique",
-       "r": "ENCLENCHEE et PRESSION CONTROLEE"
+       "r": "ENCLENCHEE et PRESSION CONTROLEE",
+       "mem": true,
+       "spoken": "Pompe électrique enclenchée — main posée sur l'interrupteur, interrupteur identifié, pression essence contrôlée dans le vert, zéro virgule cinq à huit PSI ; contrôle d'approche à terminer au plus tard au travers du seuil."
       },
       {
        "c": "Réchauffage carburateur",
-       "r": "SELON BESOIN"
+       "r": "SELON BESOIN",
+       "mem": true,
+       "spoken": "Réchauffage carburateur — selon besoin, plein chaud ou plein froid, jamais de position intermédiaire ; chaud si un givrage est suspecté à puissance réduite, et une remise de gaz de décrassage tous les mille cinq cents pieds en descente."
       },
       {
        "c": "Mixture",
-       "r": "RICHE ou SELON BESOIN"
+       "r": "RICHE ou SELON BESOIN",
+       "mem": true
       },
       {
        "c": "Volets",
        "r": "1er CRAN ou SELON BESOIN",
-       "note": "Dans le circuit, commencer le plus tôt possible sur le DOWNWIND ; l'APPROACH CHECK doit être terminé et l'APPROACH CONFIGURATION établie au plus tard à la position ABEAM THRESHOLD."
+       "note": "Dans le circuit, commencer le plus tôt possible sur le DOWNWIND ; l'APPROACH CHECK doit être terminé et l'APPROACH CONFIGURATION établie au plus tard à la position ABEAM THRESHOLD.",
+       "mem": true,
+       "spoken": "Vitesse contrôlée en dessous de quatre-vingt-douze nœuds — volets premier cran, position approche, sélectés et affichés ; vitesse quatre-vingt-cinq nœuds en vent arrière, trim réglé."
       }
      ],
      "closing": "CONTRÔLE D'APPROCHE TERMIN"
@@ -1926,15 +2004,19 @@
       {
        "c": "Volets",
        "r": "2me CRAN (sortie en dessous de 81 KIAS)",
-       "note": "Configuration établie après le FINAL TURN si cela n'a pas été fait auparavant."
+       "note": "Configuration établie après le FINAL TURN si cela n'a pas été fait auparavant.",
+       "mem": true,
+       "spoken": "Vitesse contrôlée en dessous de quatre-vingt-un nœuds — volets plein sortis, deuxième cran, position atterrissage, affichés ; vitesse de finale soixante-deux nœuds Vref plus correction de vent, stabilisée au plus tard au début du dernier tiers de l'approche."
       },
       {
        "c": "Mixture",
-       "r": "PLEIN RICHE"
+       "r": "PLEIN RICHE",
+       "mem": true
       },
       {
        "c": "Réchauffage carburateur",
-       "r": "FROID"
+       "r": "FROID",
+       "mem": true
       }
      ],
      "closing": "CONTROLE FINAL TERMINE"
@@ -2151,7 +2233,8 @@
       },
       {
        "c": "Transpondeur",
-       "r": "CONTROLE MODE \"GND\""
+       "r": "CONTROLE MODE \"GND\"",
+       "spoken": "Transpondeur — mode GND sélectionné et contrôlé, report d'altitude coupé ; contrôle effectué après avoir quitté la piste et dépassé les marques de séparation, sur un tronçon rectiligne, normalement à l'arrêt."
       },
       {
        "c": "Feux",
@@ -2304,7 +2387,8 @@
       },
       {
        "c": "Manette de gaz",
-       "r": "AJUSTE 1000 RPM"
+       "r": "AJUSTE 1000 RPM",
+       "spoken": "Frein de parc bloqué — manette de gaz ajustée, mille tours/minute, moteur stabilisé pour le refroidissement avant l'arrêt."
       },
       {
        "c": "Interrupteur avionique & FLARM",
@@ -2312,7 +2396,8 @@
       },
       {
        "c": "ELT",
-       "r": "CONTRÔLE ARME (led rouge éteinte)"
+       "r": "CONTRÔLE ARME (led rouge éteinte)",
+       "spoken": "Interrupteur avionique et FLARM déclenchés — les G5 s'éteignent automatiquement après quarante-cinq secondes. ELT — armé, aucune led rouge, non déclenché par l'atterrissage."
       },
       {
        "c": "Manette de gaz",
@@ -2321,7 +2406,8 @@
       {
        "c": "Magnetos",
        "r": "OFF then BOTH",
-       "note": "AFM : essais coupure magnétos au ralenti — coupé, puis L + R (« Both »)."
+       "note": "AFM : essais coupure magnétos au ralenti — coupé, puis L + R (« Both »).",
+       "spoken": "Au ralenti, six cents à six cent cinquante tours — magnétos coupées puis rapidement de nouveau sur BOTH ; le moteur marque une hésitation, ce qui confirme la mise à la masse des magnétos, puis manette de gaz à mille tours/minute."
       },
       {
        "c": "Manette de gaz",
@@ -2354,7 +2440,8 @@
       {
        "c": "Volets",
        "r": "2me CRAN",
-       "note": "Exposant d'origine dans le document : « 2me CRAN » (2e cran). L'ancienne révision EN V9 imprimait cet item « Flaps — DOWN »."
+       "note": "Exposant d'origine dans le document : « 2me CRAN » (2e cran). L'ancienne révision EN V9 imprimait cet item « Flaps — DOWN ».",
+       "spoken": "Volets — sortis, deuxième cran, position atterrissage, commande contrôlée ; poignée du réservoir auxiliaire poussée, fermée."
       },
       {
        "c": "Poignée réservoir auxiliaire",

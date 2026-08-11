@@ -49,6 +49,14 @@
           <span class="mode-desc" data-i18n="mode.exam.desc"></span>
         </span>
       </button>
+      <button class="mode-card" data-mode="memory">
+        <span class="mode-icon">🧠</span>
+        <span class="mode-text">
+          <span class="mode-name" data-i18n="mode.memory.name"></span>
+          <span class="mode-desc" data-i18n="mode.memory.desc"></span>
+        </span>
+        <span class="mode-progress" id="progress-memory"></span>
+      </button>
       <button class="mode-card" data-mode="review">
         <span class="mode-icon">🔁</span>
         <span class="mode-text">
@@ -111,6 +119,7 @@
       <div class="step-card" id="step-card">
         <div class="step-badges">
           <span class="step-kind" id="step-kind"></span>
+          <span class="step-mem hidden" id="step-mem"></span>
           <span class="step-source hidden" id="step-source"></span>
         </div>
         <div class="step-prompt" id="step-prompt"></div>
@@ -122,6 +131,7 @@
           <button class="rpm-set" id="rpm-set" data-i18n="rpm.set"></button>
         </div>
         <div class="step-answer hidden" id="step-answer"></div>
+        <div class="step-spoken hidden" id="step-spoken"></div>
         <div class="step-note hidden" id="step-note"></div>
         <div class="state-hint hidden" id="state-hint"></div>
         <div class="voice-feedback hidden" id="voice-feedback"></div>

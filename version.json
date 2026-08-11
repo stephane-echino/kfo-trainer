@@ -1,6 +1,32 @@
 {
- "version": "1.5.0",
+ "version": "1.6.0",
  "releases": [
+  {
+   "version": "1.6.0",
+   "date": "2026-08-11",
+   "en": {
+    "added": [
+     "\"Marked items\" mode — the 37 checklist items that carry a bar in the left margin of the PDF, in printed order, each check introduced by name. They are also badged 🧠 during the full flight.",
+     "\"Said out loud\" panel on 50 checklist items: the full spoken call with real values — fuel quantity and endurance, oil pressure limits, magneto drop figures, idle range, and so on.",
+     "Tap \"Check for updates\" twice to force a refresh — GitHub caches files for up to 10 minutes after a release."
+    ],
+    "changed": [
+     "The throttle call now states both cases explicitly (1000 RPM warm, 1200 RPM cold)."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Mode « Items marqués » — les 37 items de checklist portant une barre en marge gauche du PDF, dans l'ordre imprimé, chaque check annoncé par son nom. Ils sont aussi badgés 🧠 pendant le vol complet.",
+     "Panneau « Ce qui se dit » sur 50 items de checklist : l'annonce complète avec les vraies valeurs — quantité et endurance carburant, limites de pression d'huile, chutes magnétos, plage de ralenti, etc.",
+     "Tape deux fois sur « Vérifier les mises à jour » pour forcer le rafraîchissement — GitHub garde les fichiers en cache jusqu'à 10 minutes après une publication."
+    ],
+    "changed": [
+     "L'annonce de la manette de gaz précise désormais les deux cas (1000 RPM à chaud, 1200 RPM à froid)."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.5.0",
    "date": "2026-08-11",

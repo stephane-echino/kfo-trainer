@@ -83,6 +83,7 @@ async function boot() {
       const mode = card.dataset.mode;
       if (mode === 'flight') startTrainer('flight');
       else if (mode === 'review') startTrainer('review');
+      else if (mode === 'memory') startTrainer('memory');
       else if (mode === 'examiner') { requestWake(); examiner.start(mod, steps); show('screen-examiner'); }
       else if (mode === 'reference') { renderReference(); show('screen-reference'); }
     });
@@ -173,6 +174,8 @@ function renderHome() {
   $('progress-flight').textContent = pos > 0 ? t('home.resume', pct) : '';
   const missCount = Object.keys(store.getMisses()).length;
   $('progress-review').textContent = missCount ? t('home.toReview', missCount) : '';
+  const memCount = steps.filter(s => s.mem).length;
+  $('progress-memory').textContent = memCount ? `${memCount}` : '';
 
   const done = store.getPhaseDone();
   const currentPhase = steps[pos]?.phase.id;
@@ -397,8 +400,16 @@ function paintUpdateButton() {
   btn.textContent = pendingVersion ? t('update.available', pendingVersion) : t('update.check');
 }
 
+let forceArmed = false;
+
 async function onUpdateClick() {
   const btn = $('btn-update');
+  if (forceArmed) {          // second tap right after "up to date" → hard refresh
+    forceArmed = false;
+    btn.textContent = t('update.updating');
+    await applyUpdate(currentVersion());
+    return;
+  }
   if (pendingVersion) {
     btn.textContent = t('update.updating');
     await applyUpdate(pendingVersion);
@@ -413,9 +424,16 @@ async function onUpdateClick() {
       btn.textContent = t('update.updating');
       await applyUpdate(pendingVersion);
     } else {
+      // GitHub Pages caches version.json for up to 10 minutes, so "up to date"
+      // can be stale right after a release — offer a forced refresh.
       btn.classList.add('ready');
       btn.textContent = t('update.uptodate');
-      setTimeout(() => { btn.classList.remove('ready'); paintUpdateButton(); }, 2500);
+      forceArmed = true;
+      setTimeout(() => {
+        if (!forceArmed) return;
+        btn.textContent = t('update.force');
+      }, 1800);
+      setTimeout(() => { forceArmed = false; btn.classList.remove('ready'); paintUpdateButton(); }, 12000);
     }
   } catch {
     btn.textContent = t('update.offline');

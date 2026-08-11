@@ -34,6 +34,8 @@ export function createTrainer({ onExit }) {
       streak: $('streak-chip'),
       prompt: $('step-prompt'),
       answer: $('step-answer'),
+      spoken: $('step-spoken'),
+      mem: $('step-mem'),
       note: $('step-note'),
       stateHint: $('state-hint'),
       rpm: $('rpm-control'),
@@ -80,6 +82,13 @@ export function createTrainer({ onExit }) {
       const misses = store.getMisses();
       steps = allSteps.filter(s => misses[s.key]);
       index = 0;
+    } else if (sequence === 'memory') {
+      // items the checklist marks with a bar, kept in their printed order,
+      // each check introduced by its own opening step
+      const memBlocks = new Set(allSteps.filter(s => s.mem).map(s => `${s.phase.id}/${s.blockTitle}`));
+      steps = allSteps.filter(s =>
+        s.mem || (String(s.key).endsWith('/open') && memBlocks.has(`${s.phase.id}/${s.blockTitle}`)));
+      index = 0;
     } else if (sequence.startsWith('phase:')) {
       const pid = sequence.slice(6);
       steps = allSteps.filter(s => s.phase.id === pid);
@@ -118,6 +127,8 @@ export function createTrainer({ onExit }) {
     els.kind.className = `step-kind k-${s.kind}`;
     els.source.textContent = s.source || '';
     els.source.classList.toggle('hidden', !s.source);
+    els.mem.textContent = t('badge.mem');
+    els.mem.classList.toggle('hidden', !s.mem);
 
     // "Item 3 of 10" reads as a counter, not as the question
     const counter = /^(Item|Step|Étape) /.test(s.prompt) && /\d/.test(s.prompt);
@@ -127,9 +138,11 @@ export function createTrainer({ onExit }) {
 
     els.card.classList.remove('revealed');
     els.answer.classList.add('hidden');
+    els.spoken.classList.add('hidden');
     els.note.classList.add('hidden');
     els.stateHint.classList.add('hidden');
     els.voiceFb.classList.add('hidden');
+    if (s.spoken) els.spoken.innerHTML = `<span class="spoken-label">${esc(t('badge.spoken'))}</span>${esc(s.spoken)}`;
 
     // interactive throttle when the step sets an RPM value
     rpmGoal = store.getSettings().controls === false ? null : rpmTarget(s);
@@ -199,6 +212,7 @@ export function createTrainer({ onExit }) {
     els.card.classList.add('revealed');
     els.rpm.classList.add('hidden');
     els.answer.classList.remove('hidden');
+    if (s.spoken) els.spoken.classList.remove('hidden');
     if (s.note) els.note.classList.remove('hidden');
     if (hintFor(s, getLang())) els.stateHint.classList.remove('hidden');
     els.hint.textContent = s.graded ? t('hint.revealed') : t('hint.next');

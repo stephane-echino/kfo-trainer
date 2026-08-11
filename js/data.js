@@ -66,6 +66,8 @@ export function flattenSteps(mod, include = null) {
           sayTarget: `${it.c} ${it.r}`,
           challenge: it.c,
           response: it.r,
+          spoken: it.spoken || null,
+          mem: !!it.mem,
           num: i + 1,
         }));
         if (block.closing) push('close', {
