@@ -100,7 +100,9 @@ async function loadContent() {
   }
   if (lastErr) throw new Error('missing content');
   // progress keys are position-derived: reset them if the content moved
-  store.syncContentVersion(`${mod.id}@${mod.version}`);
+  // stamp the COURSE, not the module file: circuit.json and circuit-fr.json
+  // carry different ids, and the two languages share one progress scope
+  store.syncContentVersion(`${course.id}@${mod.version}`);
   rebuildSteps();
 }
 

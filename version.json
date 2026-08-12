@@ -1,6 +1,36 @@
 {
- "version": "1.32.3",
+ "version": "1.33.0",
  "releases": [
+  {
+   "version": "1.33.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Switching between English and French wiped the whole spaced-repetition schedule, the misses and the per-phase accuracy of the circuit course — while the setting promised \"progress is kept\". The two language files carried different ids, which the app read as the content having changed. Your progress now survives the switch, in both directions.",
+     "\"Clear missed steps\" also erased the entire review schedule — weeks of memory model gone from a button whose label only mentions misses. It now clears the misses and nothing else.",
+     "Voice check accepted an answer whose only error was the value or the side: \"left side clear\" scored 67% against \"right side clear\", \"flaps two\" scored 71% against FLAPS 1, \"two thousand RPM\" passed for 1000. A wrong flap notch, RPM or turn direction is now rejected outright — that is the whole point of the mode.",
+     "French numbers from 70 to 99 were converted to the wrong words, so any spoken French answer containing one could not match.",
+     "Mastery achievements were measured over the current session instead of the whole course, so a three-item review could unlock \"90% ready for the flight\".",
+     "The microphone kept listening and restarted itself after you left a session, staying on across the home screen and settings until the page was reloaded.",
+     "The wet-runway reminder quoted the AFM's dry-grass +15% figure as if it applied to a wet runway. The AFM publishes no wet-runway correction, and the reminder now says so."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Passer de l'anglais au français effaçait tout le planning de répétition espacée, les ratés et la maîtrise par phase du cours circuit — alors que le réglage promettait « la progression est conservée ». Les deux fichiers de langue portaient des identifiants différents, que l'app lisait comme un changement de contenu. Ta progression survit désormais au changement, dans les deux sens.",
+     "« Effacer les étapes ratées » supprimait aussi tout le planning de révision — des semaines de modèle mémoire perdues par un bouton dont l'intitulé ne parle que des ratés. Il n'efface plus que les ratés.",
+     "Le contrôle vocal acceptait une réponse dont la seule erreur était la valeur ou le côté : « left side clear » obtenait 67 % contre « right side clear », « flaps two » 71 % contre FLAPS 1, « deux mille tours » passait pour 1000. Un mauvais cran de volets, un mauvais régime ou un mauvais côté de virage est maintenant rejeté net — c'est précisément la raison d'être du mode.",
+     "Les nombres français de 70 à 99 étaient convertis en mots faux, donc toute réponse française en contenant une ne pouvait pas correspondre.",
+     "Les succès de maîtrise se calculaient sur la session en cours et non sur le cours entier : une révision de trois items pouvait débloquer « 90 % prêt pour le vol ».",
+     "Le micro continuait d'écouter et se relançait tout seul après la sortie d'une session, restant actif sur l'accueil et dans les réglages jusqu'au rechargement de la page.",
+     "Le rappel « piste mouillée » citait la majoration AFM de l'herbe sèche (+15 %) comme si elle s'appliquait au mouillé. L'AFM ne publie aucune correction pour piste mouillée, et le rappel le dit désormais."
+    ]
+   }
+  },
   {
    "version": "1.32.3",
    "date": "2026-08-12",

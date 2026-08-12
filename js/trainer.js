@@ -13,6 +13,7 @@ const $ = (id) => document.getElementById(id);
 
 export function createTrainer({ onExit }) {
   let steps = [];
+  let courseSteps = [];   // whole course — mastery is judged on this, not on the session
   let seqId = 'flight';
   let index = 0;
   let revealed = false;
@@ -94,7 +95,7 @@ export function createTrainer({ onExit }) {
     els.btnPrev.addEventListener('click', prev);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
-    els.btnBack.addEventListener('click', () => { stopVoice(); stopHandsFree(); saveAndNotifyExit(); });
+    els.btnBack.addEventListener('click', () => { stopVoice(true); stopHandsFree(); saveAndNotifyExit(); });
     els.btnVoice.addEventListener('click', toggleVoice);
     els.btnHf.addEventListener('click', toggleHandsFree);
     updateVoiceButton();
@@ -112,6 +113,7 @@ export function createTrainer({ onExit }) {
   // sequence: 'flight' (all steps) | 'review' (missed only) | 'phase:<id>'
   function start(allSteps, sequence) {
     seqId = sequence;
+    courseSteps = allSteps;
     if (sequence === 'review') {
       // everything the schedule says is due today, weakest boxes first so the
       // shakiest items come back while attention is freshest
@@ -265,7 +267,8 @@ export function createTrainer({ onExit }) {
   // Facts the achievement tests need that the store cannot answer on its own.
   function unlockContext() {
     const sched = store.getSched();
-    const graded = steps.filter(x => x.graded);
+    // measured over the course: a three-item review must not read as 90% ready
+    const graded = (courseSteps.length ? courseSteps : steps).filter(x => x.graded);
     let sum = 0, vitalSolid = 0, vitalTotal = 0;
     for (const x of graded) {
       const box = sched[x.key]?.box ?? 0;
@@ -704,7 +707,7 @@ export function createTrainer({ onExit }) {
 
   function stopVoice(turnOff = false) {
     recognizer?.stop();
-    if (turnOff) voiceOn = false;
+    if (turnOff) { voiceOn = false; updateVoiceButton(); }
   }
 
   function setVoicePref(on) {

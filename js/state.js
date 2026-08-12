@@ -115,8 +115,8 @@ const HINTS = [
     when: (s) => s.runway === 'wet',
     phase: 'before-takeoff',
     match: /briefing/i,
-    en: 'Runway wet today → say "wet" in the conditions line of the briefing. AFM landing distances: grass +15 %.',
-    fr: 'Piste mouillée aujourd\'hui → annonce « mouillée » dans la ligne conditions du briefing. AFM distances d\'atterrissage : herbe sèche +15 %.',
+    en: 'Runway wet today → say "wet" in the conditions line of the briefing. The AFM publishes no wet-runway correction — its only surface correction is dry grass +15 % — so expect degraded braking and plan accordingly.',
+    fr: 'Piste mouillée aujourd\'hui → annonce « mouillée » dans la ligne conditions du briefing. L\'AFM ne publie aucune correction piste mouillée — sa seule correction de surface est herbe sèche +15 % — donc freinage dégradé à prévoir.',
   },
   {
     when: (s) => s.wind === 'crosswind',

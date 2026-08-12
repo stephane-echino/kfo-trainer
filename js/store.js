@@ -55,7 +55,9 @@ export const store = {
     const m = store.getMisses();
     if (stepKey in m) { delete m[stepKey]; write(scoped('misses'), m); }
   },
-  resetMisses() { write(scoped('misses'), {}); write(scoped('sched'), {}); },
+  // Only the misses. The Leitner schedule is the memory model built over weeks
+  // and has its own reset — wiping it here would silently undo all of it.
+  resetMisses() { write(scoped('misses'), {}); },
 
   // ---------- spaced repetition (Leitner boxes) ----------
   // { [stepKey]: { box: 0..5, due: 'YYYY-MM-DD' } }
@@ -91,6 +93,9 @@ export const store = {
     const key = scoped('contentVersion');
     const seen = read(key, null);
     if (seen === version) return false;
+    // stamps used to carry the module file id ("circuit-fr@…"); the same content
+    // under another name must not count as a content change
+    if (seen && seen.replace(/-(fr|en)@/, '@') === version) { write(key, version); return false; }
     if (seen !== null) {
       write(scoped('sched'), {});
       write(scoped('misses'), {});

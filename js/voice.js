@@ -42,13 +42,18 @@ function frNumberToWords(n) {
   n = parseInt(n, 10);
   if (Number.isNaN(n)) return '';
   if (n in FR_WORDS) return FR_WORDS[n];
-  if (n < 100) {
+  // French has no word for 70, 80 or 90: 70-79 is soixante + 10..19,
+  // 80-99 is quatre-vingt + 0..19. A plain tens+units table gets these wrong.
+  if (n < 70) {
     const t = Math.floor(n / 10) * 10, u = n % 10;
     return `${FR_WORDS[t] || ''} ${FR_WORDS[u] || ''}`.trim();
   }
+  if (n < 80) return `soixante ${frNumberToWords(n - 60)}`.trim();
+  if (n < 100) return n === 80 ? 'quatre vingts' : `quatre vingt ${frNumberToWords(n - 80)}`.trim();
   if (n === 100) return 'cent';
   if (n % 1000 === 0 && n < 10000) return n === 1000 ? 'mille' : `${FR_WORDS[n / 1000]} mille`;
   if (n % 100 === 0 && n < 1000) return `${FR_WORDS[n / 100]} cent`;
+  if (n < 1000) return `${frNumberToWords(Math.floor(n / 100) * 100)} ${frNumberToWords(n % 100)}`;
   return String(n).split('').map(d => FR_WORDS[d]).join(' ');
 }
 
@@ -76,13 +81,61 @@ function tokens(text, lang = 'en') {
   return normalize(text, lang).split(' ').filter(w => w.length > 1 && !STOPWORDS.has(w));
 }
 
-// Score: fraction of target tokens present in what was heard.
+// A flap notch, an RPM, a side or an ordinal carries the meaning; the rest is
+// grammar. If the target demands one and it is absent from what was heard, the
+// answer is wrong however many other words matched — saying "flaps two" for
+// FLAPS 1, or "left" for "right side clear", is exactly what this mode exists
+// to catch.
+const KEY_WORDS = ['left', 'right', 'gauche', 'droite', ...Object.values(FR_ORDINALS)];
+
+const has = (norm, w) => new RegExp(`(^| )${w}( |$)`).test(norm);
+
+// Every token that can carry a numeric value, so a word form is not matched
+// inside a bigger number: "mille" must not satisfy 1000 inside "deux mille".
+const NUMBER_TOKENS = new Set([
+  ...Object.values(NUM_WORDS), 'hundred', 'thousand',
+  ...Object.values(FR_WORDS), 'cent', 'cents', 'mille',
+]);
+
+const isNumberToken = (w) => NUMBER_TOKENS.has(w) || /^\d+$/.test(w);
+
+function hasNumberWords(norm, words) {
+  const m = new RegExp(`(^| )${words}( |$)`).exec(norm);
+  if (!m) return false;
+  // the phrase must be the whole number, not a slice of a bigger one:
+  // "mille" is not 1000 inside "deux mille" nor inside "mille deux cents"
+  const before = norm.slice(0, m.index).trim().split(' ').pop() || '';
+  const after = norm.slice(m.index + m[0].length).trim().split(' ')[0] || '';
+  return !isNumberToken(before) && !isNumberToken(after);
+}
+
+function requiredValuesPresent(heardNorm, targetNorm, target, lang) {
+  // numbers may be heard as digits or as words: accept either.
+  // An ordinal ("2me CRAN") is not the cardinal 2 — normalize() already turned
+  // it into a word, and KEY_WORDS checks it.
+  for (const m of String(target).matchAll(/\d+(?!\s*(?:er|eme|me|e)\b)/gi)) {
+    const n = m[0];
+    const words = lang === 'fr' ? frNumberToWords(n) : numberToWords(n);
+    if (!has(heardNorm, n) && !(words && hasNumberWords(heardNorm, words))) return false;
+  }
+  for (const w of KEY_WORDS) {
+    if (has(targetNorm, w) && !has(heardNorm, w)) return false;
+  }
+  return true;
+}
+
+// Score: fraction of target tokens present in what was heard — but zero as soon
+// as a value the target requires is missing.
 export function matchScore(heard, target, lang = 'en') {
   const short = lang.slice(0, 2);
   const t = tokens(target, short);
   if (!t.length) return 0;
+
+  const heardNorm = normalize(heard, short);
+  const targetNorm = normalize(target, short);
+  if (!requiredValuesPresent(heardNorm, targetNorm, target, short)) return 0;
+
   const h = new Set(tokens(heard, short));
-  // digits already expanded to words on both sides
   const hits = t.filter(w => h.has(w)).length;
   return hits / t.length;
 }
