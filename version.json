@@ -1,6 +1,26 @@
 {
- "version": "1.15.0",
+ "version": "1.16.0",
  "releases": [
+  {
+   "version": "1.16.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Home screen rebuilt around what you came to do: all five modes now fit on one screen. Stats shrank to a single line, and the badges and flight conditions moved below the modes.",
+     "The flight in progress is highlighted and now tells you where you are — the phase and step you stopped on, instead of repeating how the mode works."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Accueil reconstruit autour de ce que tu viens faire : les cinq modes tiennent maintenant sur un écran. Les statistiques se réduisent à une ligne, et les badges et conditions de vol passent sous les modes.",
+     "Le vol en cours est mis en avant et indique où tu en es — la phase et l'étape où tu t'es arrêté, au lieu de répéter le fonctionnement du mode."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.15.0",
    "date": "2026-08-12",

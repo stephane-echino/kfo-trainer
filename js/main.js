@@ -289,6 +289,16 @@ function renderHome() {
   const pct = steps.length ? Math.min(100, Math.round((pos / steps.length) * 100)) : 0;
   const flightPill = $('progress-flight');
   flightPill.innerHTML = '';
+  // the flight in progress is the one thing to come back for — give it the weight,
+  // and say where you are rather than repeating how the mode works
+  const flightCard = document.querySelector('.mode-card[data-mode="flight"]');
+  flightCard?.classList.toggle('hero', pos > 0);
+  const flightDesc = flightCard?.querySelector('.mode-desc');
+  if (flightDesc) {
+    flightDesc.textContent = pos > 0
+      ? `${steps[pos]?.phase.title || ''} · ${t('home.step', pos + 1, steps.length)}`
+      : t('mode.flight.desc');
+  }
   if (pos > 0) {
     flightPill.append(t('home.resume', pct));
     const restart = document.createElement('span');
