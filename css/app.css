@@ -781,3 +781,18 @@ h1 {
   border: 1px solid rgba(95, 176, 247, 0.4); border-radius: 999px;
   padding: 3px 10px; z-index: 5; pointer-events: none;
 }
+
+/* The phase wall is 25 chips deep; collapsed it shows two rows and the phase
+   you are on, which is what you need to jump somewhere. */
+.phase-chips.collapsed {
+  max-height: 136px;   /* three rows — enough to preview long emergency names */
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+}
+.phase-more {
+  display: block; margin: 8px auto 0; font-size: 12px; font-weight: 650;
+  color: var(--text-dim); border: 1px solid var(--line-soft); border-radius: 999px;
+  padding: 7px 14px; min-height: 40px;
+}
+.phase-more:active { background: var(--bg-card); }

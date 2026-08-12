@@ -1,6 +1,24 @@
 {
- "version": "1.28.0",
+ "version": "1.29.0",
  "releases": [
+  {
+   "version": "1.29.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "The phase list folds to three rows with a \"show all\" button, taking about 560px off the home screen. Expanding it scrolls the phase you are on into view."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "La liste des phases se replie sur trois rangées avec un bouton « afficher tout », ce qui retire environ 560 px de l'accueil. En la dépliant, la phase où tu en es est amenée à l'écran."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.28.0",
    "date": "2026-08-12",

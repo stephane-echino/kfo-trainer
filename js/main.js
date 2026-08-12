@@ -383,6 +383,27 @@ function renderHome() {
     });
     chips.appendChild(btn);
   }
+  paintPhaseMore();
+}
+
+// The wall collapses to two rows; expanding it scrolls the phase you are on
+// into view so the button is useful rather than just longer.
+let phasesExpanded = false;
+
+function paintPhaseMore() {
+  const chips = $('phase-chips');
+  const more = $('btn-phase-more');
+  const count = chips.children.length;
+  chips.classList.toggle('collapsed', !phasesExpanded);
+  // nothing to expand if everything already fits
+  const overflows = phasesExpanded || chips.scrollHeight > chips.clientHeight + 2;
+  more.classList.toggle('hidden', !overflows && !phasesExpanded);
+  more.textContent = phasesExpanded ? t('home.showLess') : t('home.showAll', count);
+  more.onclick = () => {
+    phasesExpanded = !phasesExpanded;
+    paintPhaseMore();
+    if (phasesExpanded) chips.querySelector('.phase-chip.current')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  };
 }
 
 // ---------- reference ----------
