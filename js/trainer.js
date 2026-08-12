@@ -228,6 +228,7 @@ export function createTrainer({ onExit }) {
     const hint = hintFor(s, getLang());
     if (hint) els.stateHint.textContent = hint;
     els.answer.classList.toggle('long', !!s.answerLong);
+    els.card.classList.toggle('long-answer', !!s.answerLong);
     // dim the official item number so the response itself carries the eye
     const numbered = /^(\d+)\.\s/.exec(s.answer);
     if (numbered && !s.answerLong) {
@@ -383,12 +384,10 @@ export function createTrainer({ onExit }) {
   }
 
   // tapping the card past the reveal counts as "got it"
+  // Tapping on past a revealed card moves on without claiming you knew it.
+  // Grading stays deliberate (the ✓/✗ buttons): XP, streaks and the review
+  // schedule are only worth something if the cheapest gesture cannot earn them.
   function advanceFromTap() {
-    const s = get();
-    if (s && revealed && s.graded) {
-      store.clearMiss(s.key);
-      award(true);
-    }
     advance();
   }
 

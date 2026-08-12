@@ -1,6 +1,32 @@
 {
- "version": "1.23.0",
+ "version": "1.24.0",
  "releases": [
+  {
+   "version": "1.24.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Tapping past a revealed card now simply moves on. It no longer counts as \"got it\", no longer earns XP and no longer promotes the step in the review schedule — grading stays deliberate, on the ✓ and ✗ buttons. The cheapest gesture was the best paid one, which made the readiness gauge and the schedule meaningless.",
+     "On steps whose answer is a full sentence, the answer is now bigger than the question above it. The hierarchy was inverted on a quarter of the steps.",
+     "The reveal animation no longer blurs the text."
+    ],
+    "fixed": [
+     "The grade buttons could sit below the bottom of the screen on long steps, so you had to scroll to record an answer. Session screens are now fixed to the viewport and long cards scroll inside themselves."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Taper pour passer une carte révélée fait maintenant simplement avancer. Cela ne compte plus comme « su », ne rapporte plus d'XP et ne fait plus monter l'étape dans le planning de révision — la notation reste volontaire, sur les boutons ✓ et ✗. Le geste le moins coûteux était le mieux payé, ce qui vidait de sens la jauge et le planning.",
+     "Sur les étapes dont la réponse est une phrase, la réponse est désormais plus grande que la question au-dessus. La hiérarchie était inversée sur un quart des étapes.",
+     "L'animation de révélation ne floute plus le texte."
+    ],
+    "fixed": [
+     "Les boutons de notation pouvaient passer sous le bas de l'écran sur les étapes longues, obligeant à faire défiler pour noter. Les écrans de session sont maintenant calés sur la fenêtre et les cartes longues défilent à l'intérieur."
+    ]
+   }
+  },
   {
    "version": "1.23.0",
    "date": "2026-08-12",

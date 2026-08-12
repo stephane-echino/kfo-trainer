@@ -404,10 +404,16 @@ h1 {
   white-space: pre-line; letter-spacing: -0.3px;
   animation: answer-in 0.32s var(--ease);
 }
-.step-answer.long { font-size: 16px; font-weight: 550; text-align: left; line-height: 1.5; color: var(--text); }
+.step-answer.long { font-size: 18.5px; font-weight: 600; text-align: left; line-height: 1.45; color: var(--text); }
+/* when the answer is a sentence, the generic prompt above it must step back —
+   the answer is the content, the prompt is only the cue */
+.step-card.long-answer .step-prompt { font-size: 15px; font-weight: 550; color: var(--text-dim); }
+.step-card.long-answer .step-prompt .count { font-size: 11px; }
 .step-answer .num { color: var(--text-faint); font-weight: 700; }
 @keyframes answer-in {
-  from { opacity: 0; transform: translateY(10px) scale(0.985); filter: blur(3px); }
+  /* no blur: this plays on every reveal, and blurring the text you are trying
+     to read hundreds of times a flight is tiring rather than elegant */
+  from { opacity: 0; transform: translateY(8px); }
 }
 
 /* info panel for notes — reads as guidance, not as the answer */
@@ -731,4 +737,16 @@ h1 {
   font-size: 16px; font-weight: 650; color: var(--blue); line-height: 1.4;
   background: var(--blue-dim); border-radius: 10px; padding: 8px 12px;
   animation: answer-in 0.28s var(--ease);
+}
+
+/* A session screen never grows past the viewport: the grade buttons must stay
+   reachable, so overflowing content scrolls inside the card instead. */
+#screen-trainer.active,
+#screen-examiner.active {
+  height: 100dvh;
+  overflow: hidden;
+}
+#screen-trainer .step-area,
+#screen-examiner .step-area {
+  min-height: 0;          /* lets the flex child shrink below its content */
 }
