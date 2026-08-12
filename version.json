@@ -1,6 +1,40 @@
 {
- "version": "1.33.0",
+ "version": "1.34.0",
  "releases": [
+  {
+   "version": "1.34.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Hands-free now waits for the answer to actually finish speaking before moving on. Long call-outs — the fifty spoken forms run to 500 characters — were cut off after 2.6 seconds.",
+     "The hands-free prompt is the trigger, not the answer. It used to read the first quarter of the answer aloud, which gave it away: a radio card now announces \"controlled aerodrome, first call to GROUND\" and waits for you to make the call."
+    ],
+    "fixed": [
+     "A step could climb the review ladder several times in one day — answer it in the daily review, meet it again in the evening's flight, and it jumped two intervals. Only a step that is actually due can be promoted now; a miss still demotes at any time.",
+     "\"Ready for the flight\" rose when you switched content off in Settings, because the score was computed over the filtered scope. It is now always measured over the whole course.",
+     "Reading the answer aloud kept playing while the microphone reopened for the next step, so voice check could hear the phone and validate the wrong answer.",
+     "Finishing a flight in hands-free never ended the session: no summary, and the flight was never counted.",
+     "The examiner promoted vital actions past their 16-day cap.",
+     "The vital-actions stopwatch recorded a personal best on a run where nothing was answered."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Le mains libres attend désormais la fin réelle de la réponse avant d'enchaîner. Les annonces longues — les cinquante formes orales vont jusqu'à 500 caractères — étaient coupées au bout de 2,6 secondes.",
+     "L'amorce du mains libres est le déclencheur, pas la réponse. Elle lisait le premier quart de la réponse à voix haute, ce qui la donnait : une carte radio annonce maintenant « aérodrome contrôlé, premier appel à GROUND » et attend que tu passes le message."
+    ],
+    "fixed": [
+     "Une étape pouvait grimper plusieurs échelons dans la même journée — répondue à la révision du jour, recroisée le soir dans le vol complet, elle sautait deux intervalles. Seule une étape réellement due peut être promue ; un raté rétrograde toujours.",
+     "« Prêt pour le vol » montait quand tu désactivais du contenu dans les Réglages, le score étant calculé sur le périmètre filtré. Il est désormais toujours mesuré sur le cours entier.",
+     "La lecture de la réponse continuait pendant que le micro rouvrait pour l'étape suivante : le contrôle vocal pouvait entendre le téléphone et valider la mauvaise réponse.",
+     "Terminer un vol en mains libres ne clôturait jamais la session : pas de bilan, et le vol n'était pas comptabilisé.",
+     "L'examinateur promouvait les actions vitales au-delà de leur plafond de 16 jours.",
+     "Le chrono des actions vitales enregistrait un record sur un parcours où rien n'avait été noté."
+    ]
+   }
+  },
   {
    "version": "1.33.0",
    "date": "2026-08-12",

@@ -106,6 +106,7 @@ export function createExaminer({ onExit }) {
         q: `${s2.challenge} — ?`,
         a: s2.response,
         key: s2.key,
+        mem: s2.mem,
         long: (s2.response || '').length > 60,
       });
     }
@@ -135,6 +136,7 @@ export function createExaminer({ onExit }) {
         q: t('exam.spokenQ', `${s.challenge} — ${s.response}`),
         a: s.spoken,
         key: s.key,
+        mem: s.mem,
         long: true,
       });
     }
@@ -151,6 +153,7 @@ export function createExaminer({ onExit }) {
         q: t('exam.nextQ', shorten(prev.answer)),
         a,
         key: cur.key,
+        mem: cur.mem,
         long: a.length > 60,
       });
     }
@@ -229,7 +232,8 @@ export function createExaminer({ onExit }) {
     const q = get();
     if (q?.key) {
       if (ok) store.clearMiss(q.key); else store.addMiss(q.key);
-      store.recordAnswer(q.key, ok, todayIso());
+      // vital actions cap at box 4 here too, or they escape to 16 days
+      store.recordAnswer(q.key, ok, todayIso(), q.mem ? 4 : undefined);
     }
     if (ok) {
       store.addXp(6);

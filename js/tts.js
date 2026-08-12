@@ -38,8 +38,8 @@ function speakable(text, lang) {
   return out;
 }
 
-export function speak(text, lang = 'en-US') {
-  if (!synth || !text) return;
+export function speak(text, lang = 'en-US', onEnd = null) {
+  if (!synth || !text) { onEnd?.(); return; }
   try {
     synth.cancel();                            // never queue up a backlog
     const u = new SpeechSynthesisUtterance(speakable(text, lang));
@@ -47,9 +47,18 @@ export function speak(text, lang = 'en-US') {
     const v = pickVoice(lang);
     if (v) u.voice = v;
     u.rate = 0.95;
+    if (onEnd) {
+      let done = false;
+      const finish = () => { if (!done) { done = true; onEnd(); } };
+      u.onend = finish;
+      u.onerror = finish;
+      // iOS sometimes never fires onend; fall back on a length-based estimate
+      const estimate = Math.min(30000, 1200 + speakable(text, lang).length * 70);
+      setTimeout(finish, estimate);
+    }
     synth.speak(u);
   } catch {
-    /* speech is a bonus — never let it break the card flow */
+    onEnd?.();                                 // speech is a bonus, never a blocker
   }
 }
 

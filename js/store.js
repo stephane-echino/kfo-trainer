@@ -71,6 +71,12 @@ export const store = {
   recordAnswer(stepKey, ok, todayIso, maxBox = SR_INTERVALS.length - 1) {
     const sched = store.getSched();
     const cur = sched[stepKey] || { box: 0, due: todayIso };
+    // Only a step that is actually due earns a promotion. Answering the same
+    // step again before it is due — review this morning, full flight tonight,
+    // or a phase drill run five times — proves nothing about retention and must
+    // not skip rungs of the ladder. A miss always demotes: forgetting is signal
+    // whenever it happens.
+    if (ok && cur.due > todayIso) return cur;
     const box = ok ? Math.min(cur.box + 1, maxBox) : 0;
     sched[stepKey] = { box, due: addDays(todayIso, SR_INTERVALS[box]) };
     write(scoped('sched'), sched);

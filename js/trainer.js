@@ -111,9 +111,9 @@ export function createTrainer({ onExit }) {
   }
 
   // sequence: 'flight' (all steps) | 'review' (missed only) | 'phase:<id>'
-  function start(allSteps, sequence) {
+  function start(allSteps, sequence, wholeCourse) {
     seqId = sequence;
-    courseSteps = allSteps;
+    courseSteps = wholeCourse || allSteps;
     if (sequence === 'review') {
       // everything the schedule says is due today, weakest boxes first so the
       // shakiest items come back while attention is freshest
@@ -180,8 +180,12 @@ export function createTrainer({ onExit }) {
   const HF_ANSWER_DELAY = 4000;   // time to say it yourself
   const HF_NEXT_DELAY = 2600;     // time to hear the answer land
 
+  // The cue is what triggers the action: a checklist item's challenge, a
+  // call-out's "when", a flow step's own prompt. Never a slice of the answer —
+  // reading the first quarter of the answer aloud gives the answer away.
   function hfCue(step) {
-    return clueFor(step) || step.prompt || '';
+    if (!step) return '';
+    return step.challenge || step.prompt || '';
   }
 
   function toggleHandsFree() {
@@ -225,13 +229,16 @@ export function createTrainer({ onExit }) {
     hfTimer = setTimeout(() => {
       if (!handsFree) return;
       if (!revealed) reveal();
-      speak(s.spoken || s.answer, stepLang(s));
-      hfTimer = setTimeout(() => {
+      // wait for the answer to actually finish before moving on: a spoken
+      // call-out can run far longer than any fixed delay
+      speak(s.spoken || s.answer, stepLang(s), () => {
         if (!handsFree) return;
-        if (index >= steps.length - 1) { stopHandsFree(); return; }
-        advance();
-        hfPlay();
-      }, HF_NEXT_DELAY);
+        hfTimer = setTimeout(() => {
+          if (!handsFree) return;
+          advance();          // advance() ends the session on the last step
+          hfPlay();
+        }, HF_NEXT_DELAY);
+      });
     }, HF_ANSWER_DELAY);
   }
 
@@ -290,6 +297,9 @@ export function createTrainer({ onExit }) {
   function isEmergency() { return (store.getSettings().course || 'circuit') === 'emergency'; }
 
   function render() {
+    // the previous card's answer must not still be playing when the mic reopens,
+    // or the recogniser hears the phone and validates the wrong step
+    stopSpeaking();
     const s = get();
     if (!s) { renderEmpty(); return; }
     const phase = s.phase;
@@ -586,7 +596,7 @@ export function createTrainer({ onExit }) {
     // a timed drill reports seconds against your own best, not round minutes
     let timeLine = `${mins}′`;
     let beatRecord = false;
-    if (timed() && session) {
+    if (timed() && session && total > 0) {
       const elapsed = Date.now() - session.startedAt;
       const prev = store.getBestTime(seqId);
       const res = store.recordTime(seqId, elapsed);

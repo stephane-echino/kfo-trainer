@@ -22,7 +22,9 @@ const COURSES = [
 ];
 
 let mod = null;
-let steps = [];
+let steps = [];    // what to train — filtered by the "what to train" toggles
+let scored = [];   // what to score — the whole course, so narrowing the scope
+                   // can never make the student look more ready
 let trainer = null;
 let examiner = null;
 let wakeLock = null;
@@ -159,6 +161,7 @@ async function switchCourse(id) {
 function rebuildSteps() {
   const prevKey = steps[store.getPosition('flight')]?.key;
   steps = flattenSteps(mod, includeMap());
+  scored = flattenSteps(mod);            // unfiltered: the readiness denominator
   if (!steps.length) return;
   const exact = prevKey ? steps.findIndex(s => s.key === prevKey) : -1;
   store.setPosition('flight', exact >= 0
@@ -232,7 +235,7 @@ function startTrainer(seq) {
   const settings = store.getSettings();
   trainer.setVoicePref(settings.voice);
   requestWake();
-  trainer.start(steps, seq);
+  trainer.start(steps, seq, scored);
   show('screen-trainer');
 }
 
@@ -296,9 +299,10 @@ function renderBadges() {
 const TOP_BOX = 5;
 
 function readiness() {
-  if (!steps.length) return { pct: 0, seen: 0, solid: 0, total: 0 };
+  const pool = scored.length ? scored : steps;
+  if (!pool.length) return { pct: 0, seen: 0, solid: 0, total: 0 };
   const sched = store.getSched();
-  const graded = steps.filter(s => s.graded);
+  const graded = pool.filter(s => s.graded);
   if (!graded.length) return { pct: 0, seen: 0, solid: 0, total: 0 };
   let sum = 0, seen = 0, solid = 0;
   for (const s of graded) {
@@ -384,7 +388,7 @@ function renderHome() {
       const settings = store.getSettings();
       trainer.setVoicePref(settings.voice);
       requestWake();
-      trainer.start(steps, `phase:${phase.id}`);
+      trainer.start(steps, `phase:${phase.id}`, scored);
       show('screen-trainer');
     });
     chips.appendChild(btn);
