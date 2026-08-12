@@ -104,7 +104,7 @@ export const store = {
   getSettings() {
     const s = read('settings', {});
     return {
-      voice: false, wakelock: true, haptics: true, lang: defaultLang(),
+      voice: false, wakelock: true, haptics: true, speak: false, lang: defaultLang(),
       // which content types take part in training
       incRadio: true, incNotes: true, incBriefings: true, incCallouts: true, incChecklists: true, incFlows: true,
       ...s,

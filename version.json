@@ -1,6 +1,24 @@
 {
- "version": "1.19.0",
+ "version": "1.20.0",
  "releases": [
+  {
+   "version": "1.20.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Read the answer aloud (Settings). When you reveal a step, the app says it — call-outs in English, checklists in the module language. Abbreviations are expanded so it reads like a pilot: \"AJUSTE 1000 RPM\" is spoken \"mille tours par minute\", \"2me CRAN\" becomes \"deuxième cran\". Use earphones on the train."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Lire la réponse à voix haute (Réglages). Quand tu révèles une étape, l'app la prononce — annonces en anglais, checklists dans la langue du module. Les abréviations sont développées pour que ça se lise comme un pilote : « AJUSTE 1000 RPM » se dit « mille tours par minute », « 2me CRAN » devient « deuxième cran ». Mets des écouteurs dans le train."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.19.0",
    "date": "2026-08-12",

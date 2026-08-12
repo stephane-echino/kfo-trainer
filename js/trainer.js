@@ -7,6 +7,7 @@ import { haptic, burst, floatLabel, todayIso } from './fx.js';
 import { hintFor, rpmTarget, summary as conditionsSummary } from './state.js';
 import { getLang } from './i18n.js';
 import { checkUnlocks } from './achievements.js';
+import { speak, stopSpeaking } from './tts.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -86,7 +87,7 @@ export function createTrainer({ onExit }) {
     els.btnPrev.addEventListener('click', prev);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
-    els.btnBack.addEventListener('click', () => { stopVoice(); saveAndNotifyExit(); });
+    els.btnBack.addEventListener('click', () => { stopVoice(); stopSpeaking(); saveAndNotifyExit(); });
     els.btnVoice.addEventListener('click', toggleVoice);
     updateVoiceButton();
   }
@@ -279,6 +280,7 @@ export function createTrainer({ onExit }) {
     if (s.note) els.note.classList.remove('hidden');
     if (hintFor(s, getLang())) els.stateHint.classList.remove('hidden');
     els.hint.textContent = s.graded ? t('hint.revealed') : t('hint.next');
+    if (store.getSettings().speak) speak(s.spoken || s.answer, stepLang(s));
     stopVoice(false);
     haptic();
     setActionState();

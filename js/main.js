@@ -5,6 +5,7 @@ import { todayIso } from './fx.js';
 import { createTrainer } from './trainer.js';
 import { createExaminer } from './examiner.js';
 import { voiceSupported } from './voice.js';
+import { ttsSupported, speak } from './tts.js';
 import { t, setLang, getLang } from './i18n.js';
 import { APP_VERSION } from './version.js';
 import { fetchVersionInfo, cachedVersionInfo, isNewer, applyUpdate, currentVersion } from './updates.js';
@@ -549,6 +550,8 @@ function renderSettings() {
   const s = store.getSettings();
   $('set-voice').checked = s.voice && voiceSupported;
   $('set-voice').disabled = !voiceSupported;
+  $('set-speak').checked = s.speak && ttsSupported;
+  $('set-speak').disabled = !ttsSupported;
   $('set-wakelock').checked = s.wakelock;
   $('set-haptics').checked = s.haptics;
   $('voice-support-note').textContent = `${voiceSupported ? t('settings.voiceYes') : t('settings.voiceNo')} ${t('settings.storage')}`;
@@ -582,6 +585,11 @@ function renderSettings() {
   }
 
   $('set-voice').onchange = (e) => save({ voice: e.target.checked });
+  $('set-speak').onchange = (e) => {
+    save({ speak: e.target.checked });
+    // iOS only allows speech that starts from a user gesture — prime it here
+    if (e.target.checked) speak(t('settings.speak'), getLang() === 'fr' ? 'fr-FR' : 'en-US');
+  };
   $('set-wakelock').onchange = (e) => save({ wakelock: e.target.checked });
   $('set-haptics').onchange = (e) => save({ haptics: e.target.checked });
   $('set-controls').checked = s.controls !== false;
