@@ -1,6 +1,24 @@
 {
- "version": "1.38.0",
+ "version": "1.38.1",
  "releases": [
+  {
+   "version": "1.38.1",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Voice check now understands the ICAO digits — \"runway one niner\" reads the same as \"one nine\". Correct radio phraseology was being marked wrong."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Le contrôle vocal comprend les chiffres OACI — « runway one niner » vaut « one nine ». La phraséologie radio correcte était comptée fausse."
+    ]
+   }
+  },
   {
    "version": "1.38.0",
    "date": "2026-08-12",

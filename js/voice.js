@@ -84,9 +84,14 @@ function frVariants(n) {
   return [...v].filter(Boolean);
 }
 
+// ICAO says the digits differently on the radio: niner, tree, fife. Fold them
+// onto the plain words so a correct read-back is not penalised.
+const ICAO = [[/\bniner\b/g, 'nine'], [/\btree\b/g, 'three'], [/\bfife\b/g, 'five'], [/\bzeero\b/g, 'zero']];
+
 function normalize(text, lang = 'en') {
-  return (text || '')
-    .toLowerCase()
+  let out = (text || '').toLowerCase();
+  for (const [re, w] of ICAO) out = out.replace(re, w);
+  return out
     // strip accents first: the a-z filter below would otherwise split
     // "réchauffage" into "r chauffage"
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
