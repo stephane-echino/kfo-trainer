@@ -14,7 +14,9 @@
   /* text */
   --text: #eaeff9;
   --text-dim: #8e9cb8;
-  --text-faint: #63718d;
+  /* lifted to clear WCAG AA (4.5:1) on every surface — these are 9-11px labels,
+     and the app gets read on a train and in daylight */
+  --text-faint: #8693b0;
 
   /* accents */
   --amber: #f8bd4a;

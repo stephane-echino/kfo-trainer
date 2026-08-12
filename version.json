@@ -1,6 +1,24 @@
 {
- "version": "1.21.0",
+ "version": "1.22.0",
  "releases": [
+  {
+   "version": "1.22.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Small labels (step counters, sources, hints, stat captions) are lighter and now pass the WCAG AA contrast bar on every surface — they were below it, which showed on a train or in daylight."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Les petits libellés (compteurs d'étape, sources, indications, légendes de stats) sont plus clairs et passent désormais le seuil de contraste WCAG AA sur tous les fonds — ils étaient en dessous, ce qui se voyait dans le train ou en plein jour."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.21.0",
    "date": "2026-08-12",
