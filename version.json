@@ -1,6 +1,28 @@
 {
- "version": "1.16.0",
+ "version": "1.17.0",
  "releases": [
+  {
+   "version": "1.17.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Voice check now listens in the language of the step: French for the French checklists and technique flows, English for published call-outs and radio, which are spoken in English in both modules."
+    ],
+    "fixed": [
+     "Voice check could not match a French answer at all: accented words were being split apart (\"réchauffage\" became \"r chauffage\"), French numbers were compared against English words, and checklist ordinals like \"2me CRAN\" never matched \"deuxième\"."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Le contrôle vocal écoute désormais dans la langue de l'étape : français pour les checklists et les flows techniques, anglais pour les annonces publiées et la radio, qui se disent en anglais dans les deux modules."
+    ],
+    "fixed": [
+     "Le contrôle vocal ne pouvait pas reconnaître une réponse française : les mots accentués étaient coupés (« réchauffage » devenait « r chauffage »), les nombres français étaient comparés à des mots anglais, et les ordinaux de checklist comme « 2me CRAN » ne correspondaient jamais à « deuxième »."
+    ]
+   }
+  },
   {
    "version": "1.16.0",
    "date": "2026-08-12",

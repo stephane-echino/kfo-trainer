@@ -203,7 +203,7 @@ export function createTrainer({ onExit }) {
       : (voiceOn ? t('hint.sayListen') : t('hint.say'));
     setActionState();
 
-    if (voiceOn && s.sayTarget && recognizer) recognizer.start();
+    if (voiceOn && s.sayTarget && recognizer) recognizer.start(stepLang(s));
   }
 
   function renderEmpty() {
@@ -439,7 +439,7 @@ export function createTrainer({ onExit }) {
     updateVoiceButton();
     if (voiceOn) {
       ensureRecognizer();
-      if (get()?.sayTarget && !revealed) recognizer.start();
+      if (get()?.sayTarget && !revealed) recognizer.start(stepLang(get()));
     } else {
       stopVoice();
     }
@@ -450,6 +450,14 @@ export function createTrainer({ onExit }) {
     els.btnVoice.style.display = voiceSupported ? '' : 'none';
   }
 
+
+  // Callouts, radio and briefings are published in English in both modules;
+  // checklists and technique flows follow the module language.
+  function stepLang(step) {
+    if (!step) return 'en-US';
+    if (step.kind === 'callout' || step.kind === 'radio') return 'en-US';
+    return getLang() === 'fr' ? 'fr-FR' : 'en-US';
+  }
   let voiceErrors = 0;
   function ensureRecognizer() {
     if (recognizer) return;
@@ -459,7 +467,7 @@ export function createTrainer({ onExit }) {
         voiceErrors = 0;
         const s = get();
         if (!s || !s.sayTarget || revealed) return;
-        const score = matchScore(text, s.sayTarget);
+        const score = matchScore(text, s.sayTarget, stepLang(s));
         els.voiceFb.classList.remove('hidden');
         if (score >= 0.6) {
           els.voiceFb.className = 'voice-feedback good';
@@ -488,7 +496,7 @@ export function createTrainer({ onExit }) {
           // recognition ends on silence — restart while the step still wants a voice answer
           if (voiceErrors < 3 && get()?.sayTarget && !finished) {
             setTimeout(() => {
-              if (voiceOn && !revealed && !finished && get()?.sayTarget && recognizer) recognizer.start();
+              if (voiceOn && !revealed && !finished && get()?.sayTarget && recognizer) recognizer.start(stepLang(get()));
             }, 400);
           } else if (!lastHeard) {
             els.voiceFb.classList.add('hidden');

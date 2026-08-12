@@ -30,27 +30,58 @@ function numberToWords(n) {
   return String(n);
 }
 
-function normalize(text) {
+const FR_ORDINALS = { 1: 'premier', 2: 'deuxieme', 3: 'troisieme' };
+
+const FR_WORDS = {
+  0:'zero',1:'un',2:'deux',3:'trois',4:'quatre',5:'cinq',6:'six',7:'sept',8:'huit',9:'neuf',
+  10:'dix',11:'onze',12:'douze',13:'treize',14:'quatorze',15:'quinze',16:'seize',
+  20:'vingt',30:'trente',40:'quarante',50:'cinquante',60:'soixante',
+};
+
+function frNumberToWords(n) {
+  n = parseInt(n, 10);
+  if (Number.isNaN(n)) return '';
+  if (n in FR_WORDS) return FR_WORDS[n];
+  if (n < 100) {
+    const t = Math.floor(n / 10) * 10, u = n % 10;
+    return `${FR_WORDS[t] || ''} ${FR_WORDS[u] || ''}`.trim();
+  }
+  if (n === 100) return 'cent';
+  if (n % 1000 === 0 && n < 10000) return n === 1000 ? 'mille' : `${FR_WORDS[n / 1000]} mille`;
+  if (n % 100 === 0 && n < 1000) return `${FR_WORDS[n / 100]} cent`;
+  return String(n).split('').map(d => FR_WORDS[d]).join(' ');
+}
+
+function normalize(text, lang = 'en') {
   return (text || '')
     .toLowerCase()
+    // strip accents first: the a-z filter below would otherwise split
+    // "réchauffage" into "r chauffage"
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[’'']/g, ' ')
-    .replace(/(\d+)/g, (m) => ` ${m} ${numberToWords(m)} `)
+    // checklist ordinals: "1er CRAN", "2me CRAN" are said "premier", "deuxieme"
+    .replace(/\b(\d)\s*(?:er|eme|me|e)\b/g, (_, d) => ` ${FR_ORDINALS[d] || d} `)
+    .replace(/(\d+)/g, (m) => ` ${m} ${lang === 'fr' ? frNumberToWords(m) : numberToWords(m)} `)
     .replace(/[^a-z0-9 ]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
-const STOPWORDS = new Set(['and', 'or', 'the', 'a', 'an', 'to', 'of', 'in', 'on', 'for', 'with', 'then', 'as', 'at', 'is']);
+const STOPWORDS = new Set([
+  'and', 'or', 'the', 'a', 'an', 'to', 'of', 'in', 'on', 'for', 'with', 'then', 'as', 'at', 'is',
+  'et', 'ou', 'le', 'la', 'les', 'un', 'une', 'de', 'du', 'des', 'dans', 'sur', 'pour', 'avec', 'puis', 'au', 'aux', 'est',
+]);
 
-function tokens(text) {
-  return normalize(text).split(' ').filter(w => w.length > 1 && !STOPWORDS.has(w));
+function tokens(text, lang = 'en') {
+  return normalize(text, lang).split(' ').filter(w => w.length > 1 && !STOPWORDS.has(w));
 }
 
 // Score: fraction of target tokens present in what was heard.
-export function matchScore(heard, target) {
-  const t = tokens(target);
+export function matchScore(heard, target, lang = 'en') {
+  const short = lang.slice(0, 2);
+  const t = tokens(target, short);
   if (!t.length) return 0;
-  const h = new Set(tokens(heard));
+  const h = new Set(tokens(heard, short));
   // digits already expanded to words on both sides
   const hits = t.filter(w => h.has(w)).length;
   return hits / t.length;
@@ -61,10 +92,12 @@ export function createRecognizer({ onResult, onState }) {
   let rec = null;
   let active = false;
 
-  function start() {
+  // Published callouts are spoken in English even when the checklist is the
+  // French one, so the recogniser follows the step, not just the app language.
+  function start(lang = 'en-US') {
     if (active) return;
     rec = new SR();
-    rec.lang = 'en-US';
+    rec.lang = lang;
     rec.continuous = false;
     rec.interimResults = true;
     rec.maxAlternatives = 3;
