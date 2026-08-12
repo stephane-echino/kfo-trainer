@@ -2,6 +2,7 @@
 // speeds, memory flows ("what comes next", recitation) and scenarios.
 import { t } from './i18n.js';
 import { store } from './store.js';
+import { checkUnlocks } from './achievements.js';
 import { todayIso, floatLabel } from './fx.js';
 
 const $ = (id) => document.getElementById(id);
@@ -70,11 +71,35 @@ export function createExaminer({ onExit }) {
       });
     }
 
-    // A checklist is READ in the aircraft, never recalled by item position, so
-    // checklist items are not quizzed individually. Two things about them are
-    // fair game because they are memory work: the items the checklist marks
-    // with a bar (recited in printed order), and what you actually say aloud.
+    // A checklist is READ in the aircraft, never recalled by item position — so
+    // an item is never asked as "what is number 4?". It IS asked the way an
+    // instructor asks it: challenge, and you give the response.
     const memory = (s) => s.kind !== 'checklist' && s.kind !== 'note';
+
+    // 1a. challenge -> response, the question an instructor actually asks.
+    // Some challenges repeat inside one check with different responses (Throttle
+    // is set three times during the run-up); out of context those are ambiguous,
+    // so they are left out of the draw.
+    const byBlock = new Map();
+    for (const s2 of steps) {
+      if (!s2.challenge) continue;
+      const key = `${s2.phase.id}::${s2.blockTitle}`;
+      if (!byBlock.has(key)) byBlock.set(key, new Map());
+      const m = byBlock.get(key);
+      m.set(s2.challenge, (m.get(s2.challenge) || 0) + 1);
+    }
+    const unambiguous = steps.filter(s2 => {
+      if (!s2.challenge) return false;
+      return byBlock.get(`${s2.phase.id}::${s2.blockTitle}`)?.get(s2.challenge) === 1;
+    });
+    for (const s2 of pickRandom(unambiguous, 14)) {
+      qs.push({
+        tag: s2.blockTitle, kind: t('exam.kind.item'),
+        q: `${s2.challenge} — ?`,
+        a: s2.response,
+        long: (s2.response || '').length > 60,
+      });
+    }
 
     // 1b. recite the marked items of a check, in order
     const markedByBlock = new Map();
@@ -200,6 +225,8 @@ export function createExaminer({ onExit }) {
   function finish() {
     finished = true;
     const total = score.ok + score.miss;
+    // a clean sheet is worth an achievement
+    if (total === SESSION_SIZE && score.miss === 0) checkUnlocks(null, { examPerfect: true });
     els.score.textContent = t('exam.over');
     els.tag.textContent = '';
     els.kind.textContent = t('exam.result');

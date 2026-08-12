@@ -162,7 +162,7 @@ h1 {
 }
 .badges-row::-webkit-scrollbar { display: none; }
 .badge {
-  font-size: 14px; width: 27px; height: 27px; flex: 0 0 auto;
+  font-size: 17px; width: 34px; height: 34px; flex: 0 0 auto;
   display: grid; place-items: center;
   border-radius: 9px; background: var(--bg-card); border: 1px solid var(--line-soft);
   filter: grayscale(1); opacity: 0.3;

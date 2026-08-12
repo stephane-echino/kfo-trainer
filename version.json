@@ -1,6 +1,30 @@
 {
- "version": "1.29.0",
+ "version": "1.30.0",
  "releases": [
+  {
+   "version": "1.30.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Examiner asks checklist items the way an instructor does: the challenge, and you give the response — \"Trim — ?\" → \"SET FOR TAKE-OFF\". Never by position. Challenges that repeat inside one check with different responses (Throttle is set three times during the run-up) are left out, since out of context they have no single right answer.",
+     "Twelve achievements instead of eight, and they now track real mastery: 25/60/90% ready for the flight, every vital action solid, a perfect examiner session, the vital actions under a minute, a month of practice. They cannot be earned by tapping."
+    ],
+    "changed": [
+     "Badges are larger and legible on a phone."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "L'examinateur interroge les items de checklist comme le ferait un instructeur : l'intitulé, et tu donnes la réponse — « Trim — ? » → « REGLE pour DECOLLAGE ». Jamais par position. Les intitulés qui reviennent plusieurs fois dans un même check avec des réponses différentes (la manette de gaz est réglée trois fois au point fixe) sont écartés : hors contexte, ils n'ont pas de réponse unique.",
+     "Douze succès au lieu de huit, et ils suivent la maîtrise réelle : 25/60/90 % de préparation au vol, toutes les actions vitales solides, une session d'examinateur parfaite, les actions vitales en moins d'une minute, un mois de pratique. Ils ne s'obtiennent pas en tapant."
+    ],
+    "changed": [
+     "Les badges sont plus grands et lisibles sur un téléphone."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.29.0",
    "date": "2026-08-12",

@@ -104,7 +104,7 @@ export function createTrainer({ onExit }) {
     els.timer.classList.add('hidden');
     store.setPosition(seqId, index);
     // a partial session can still have earned something
-    if (session && (session.ok + session.miss) > 0 && !session.complete) checkUnlocks(session);
+    if (session && (session.ok + session.miss) > 0 && !session.complete) checkUnlocks(session, unlockContext());
     onExit();
   }
 
@@ -252,6 +252,24 @@ export function createTrainer({ onExit }) {
 
   function stopTimer() {
     if (timerId) { clearInterval(timerId); timerId = null; }
+  }
+
+
+  // Facts the achievement tests need that the store cannot answer on its own.
+  function unlockContext() {
+    const sched = store.getSched();
+    const graded = steps.filter(x => x.graded);
+    let sum = 0, vitalSolid = 0, vitalTotal = 0;
+    for (const x of graded) {
+      const box = sched[x.key]?.box ?? 0;
+      sum += Math.max(box, 0) / 5;
+      if (x.mem) { vitalTotal += 1; if (box >= 3) vitalSolid += 1; }
+    }
+    return {
+      readiness: graded.length ? Math.round((sum / graded.length) * 100) : 0,
+      vitalSolid, vitalTotal,
+      bestMemoryTime: store.getBestTime('memory'),
+    };
   }
 
   function get() { return steps[index]; }
@@ -563,7 +581,7 @@ export function createTrainer({ onExit }) {
       : esc(missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean'));
     if (beatRecord) burst(els.card, 26);
 
-    const fresh = checkUnlocks(session);
+    const fresh = checkUnlocks(session, unlockContext());
     const lines = [];
     if (missCount) lines.push(t('trainer.doneMiss', missCount));
     else if (total) lines.push(t('trainer.doneClean'));

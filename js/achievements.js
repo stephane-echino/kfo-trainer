@@ -1,9 +1,13 @@
-// Achievements — unlocked from stats after a session. Purely motivational.
+// Achievements — unlocked from stats after a session. Purely motivational, and
+// deliberately tied to real mastery (readiness, Leitner boxes, vital actions)
+// rather than to time spent, so they cannot be farmed by tapping.
 import { store } from './store.js';
 import { dayStreak } from './fx.js';
 
 const NS = 'kfo-trainer:achievements';
 
+// test(stats, session, ctx) — ctx carries facts the store alone cannot answer:
+//   { readiness, vitalSolid, vitalTotal, bestMemoryTime, examPerfect }
 export const ACHIEVEMENTS = [
   {
     id: 'first-flight', icon: '🛫',
@@ -12,10 +16,34 @@ export const ACHIEVEMENTS = [
     test: (s) => s.flights >= 1,
   },
   {
-    id: 'clean-flight', icon: '✨',
-    en: { name: 'Clean sweep', desc: 'A full flight without a single miss' },
-    fr: { name: 'Sans faute', desc: 'Un vol complet sans aucun raté' },
-    test: (s, ses) => ses && ses.complete && ses.miss === 0 && ses.ok > 20,
+    id: 'ready-25', icon: '🧭',
+    en: { name: 'Finding your way', desc: 'Reach 25% ready for the flight' },
+    fr: { name: 'Tu trouves tes marques', desc: 'Atteindre 25 % de préparation au vol' },
+    test: (s, ses, c) => (c?.readiness ?? 0) >= 25,
+  },
+  {
+    id: 'ready-60', icon: '⭐',
+    en: { name: 'Ahead of the aircraft', desc: 'Reach 60% ready for the flight' },
+    fr: { name: 'Devant l\'avion', desc: 'Atteindre 60 % de préparation au vol' },
+    test: (s, ses, c) => (c?.readiness ?? 0) >= 60,
+  },
+  {
+    id: 'ready-90', icon: '🏆',
+    en: { name: 'Checked out', desc: 'Reach 90% ready for the flight — this course is in your memory, not on the page' },
+    fr: { name: 'Lâché', desc: 'Atteindre 90 % de préparation — ce cours est dans ta mémoire, plus sur la feuille' },
+    test: (s, ses, c) => (c?.readiness ?? 0) >= 90,
+  },
+  {
+    id: 'vital-solid', icon: '⚠️',
+    en: { name: 'Hands know it', desc: 'Every vital action survived four days or more between reviews' },
+    fr: { name: 'Les mains savent', desc: 'Toutes les actions vitales tenues 4 jours ou plus entre deux révisions' },
+    test: (s, ses, c) => !!c?.vitalTotal && c.vitalSolid >= c.vitalTotal,
+  },
+  {
+    id: 'exam-perfect', icon: '🎓',
+    en: { name: 'Examiner impressed', desc: 'Answer all ten examiner questions correctly' },
+    fr: { name: 'Examinateur convaincu', desc: 'Répondre juste aux dix questions de l\'examinateur' },
+    test: (s, ses, c) => !!c?.examPerfect,
   },
   {
     id: 'streak-25', icon: '🔥',
@@ -30,28 +58,28 @@ export const ACHIEVEMENTS = [
     test: (s) => s.best >= 100,
   },
   {
-    id: 'days-3', icon: '📅',
-    en: { name: 'Building the habit', desc: 'Practise 3 days in a row' },
-    fr: { name: 'L\'habitude', desc: 'S\'entraîner 3 jours d\'affilée' },
-    test: (s) => dayStreak(s.days || {}) >= 3,
-  },
-  {
-    id: 'days-7', icon: '🗓️',
+    id: 'days-7', icon: '📅',
     en: { name: 'A full week', desc: 'Practise 7 days in a row' },
     fr: { name: 'Une semaine pleine', desc: 'S\'entraîner 7 jours d\'affilée' },
     test: (s) => dayStreak(s.days || {}) >= 7,
   },
   {
-    id: 'flights-10', icon: '🏅',
+    id: 'days-30', icon: '🗓️',
+    en: { name: 'A month of it', desc: 'Practise 30 days in a row' },
+    fr: { name: 'Un mois entier', desc: 'S\'entraîner 30 jours d\'affilée' },
+    test: (s) => dayStreak(s.days || {}) >= 30,
+  },
+  {
+    id: 'flights-10', icon: '🔁',
     en: { name: 'Ten circuits', desc: 'Complete 10 full flights' },
     fr: { name: 'Dix voltes', desc: 'Terminer 10 vols complets' },
     test: (s) => s.flights >= 10,
   },
   {
-    id: 'xp-5000', icon: '💎',
-    en: { name: 'Five thousand', desc: 'Reach 5000 XP' },
-    fr: { name: 'Cinq mille', desc: 'Atteindre 5000 XP' },
-    test: (s) => s.xp >= 5000,
+    id: 'quick-hands', icon: '⏱️',
+    en: { name: 'Quick hands', desc: 'Run the vital actions in under a minute' },
+    fr: { name: 'Mains rapides', desc: 'Dérouler les actions vitales en moins d\'une minute' },
+    test: (s, ses, c) => !!c?.bestMemoryTime && c.bestMemoryTime < 60000,
   },
 ];
 
@@ -64,14 +92,14 @@ export function unlocked() {
 }
 
 // Returns the achievements newly unlocked by this session.
-export function checkUnlocks(session) {
+export function checkUnlocks(session, ctx) {
   const stats = store.getStats();
   const have = unlocked();
   const fresh = [];
   for (const a of ACHIEVEMENTS) {
     if (have[a.id]) continue;
     let ok = false;
-    try { ok = a.test(stats, session); } catch { ok = false; }
+    try { ok = a.test(stats, session, ctx); } catch { ok = false; }
     if (ok) { have[a.id] = Date.now(); fresh.push(a); }
   }
   if (fresh.length) {
