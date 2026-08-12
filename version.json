@@ -1,6 +1,24 @@
 {
- "version": "1.22.0",
+ "version": "1.23.0",
  "releases": [
+  {
+   "version": "1.23.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Clue button on the card. Stuck on a step? Ask for a clue instead of giving up: a checklist item gives you back its challenge (\"Aircraft papers\") so you still have to retrieve the response, a call-out gives its opening words (\"SPEED BELOW…\"). A step answered after a clue earns 4 XP instead of 10 and does not extend the perfect streak — retrieving it yourself is what makes it stick."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Bouton indice sur la carte. Bloqué sur une étape ? Demande un indice plutôt que d'abandonner : un item de checklist te rend son intitulé (« Inspection pré vol ») pour que tu doives encore retrouver la réponse, une annonce te donne ses premiers mots (« SPEED BELOW… »). Une étape répondue après un indice vaut 4 XP au lieu de 10 et ne prolonge pas la série parfaite — c'est le fait de retrouver toi-même qui ancre."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.22.0",
    "date": "2026-08-12",

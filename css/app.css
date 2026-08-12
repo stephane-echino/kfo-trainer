@@ -717,3 +717,18 @@ h1 {
   -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 22px), transparent 100%);
   mask-image: linear-gradient(90deg, #000 calc(100% - 22px), transparent 100%);
 }
+
+/* Progressive clue — cued recall before giving the answer away */
+.clue-btn {
+  position: absolute; bottom: 10px; left: 12px;
+  font-size: 11px; font-weight: 650; color: var(--text-faint);
+  border: 1px solid var(--line-soft); border-radius: 999px; padding: 5px 11px;
+  transition: transform 0.12s var(--ease), color 0.2s, border-color 0.2s;
+}
+.clue-btn:active { transform: scale(0.92); }
+.clue-btn.used { color: var(--blue); border-color: rgba(95, 176, 247, 0.45); }
+.step-clue {
+  font-size: 16px; font-weight: 650; color: var(--blue); line-height: 1.4;
+  background: var(--blue-dim); border-radius: 10px; padding: 8px 12px;
+  animation: answer-in 0.28s var(--ease);
+}

@@ -21,6 +21,7 @@ export function createTrainer({ onExit }) {
   let voiceOn = false;
   let lastHeard = '';
   let rpmGoal = null;
+  let clueUsed = false;
   let session = null;   // { ok, miss, startedAt, xpStart, complete }
   let swipedAt = 0;     // timestamp of the last handled swipe
 
@@ -47,6 +48,8 @@ export function createTrainer({ onExit }) {
       rpmSlider: $('rpm-slider'),
       rpmSet: $('rpm-set'),
       voiceFb: $('voice-feedback'),
+      clue: $('step-clue'),
+      btnClue: $('btn-clue'),
       hint: $('step-hint'),
       btnPrev: $('btn-step-prev'),
       btnMiss: $('btn-step-miss'),
@@ -83,6 +86,7 @@ export function createTrainer({ onExit }) {
       els.rpmReadout.className = 'rpm-readout';
     });
     els.rpmSet.addEventListener('click', checkRpm);
+    els.btnClue.addEventListener('click', (e) => { e.stopPropagation(); showClue(); });
     bindSwipe($('step-area'));
     els.btnPrev.addEventListener('click', prev);
     els.btnMiss.addEventListener('click', () => grade(false));
@@ -130,6 +134,31 @@ export function createTrainer({ onExit }) {
     render();
   }
 
+
+  // Cued recall: give back the challenge (or the opening words) so the student
+  // can still retrieve the answer instead of being handed it. A step answered
+  // with a clue is worth less XP and does not count as a clean streak hit.
+  function clueFor(step) {
+    if (!step || step.kind === 'note') return null;
+    if (step.challenge) return step.challenge;
+    const words = String(step.answer || '').split(/\s+/);
+    if (words.length < 4) return null;
+    return `${words.slice(0, Math.max(2, Math.ceil(words.length / 4))).join(' ')}…`;
+  }
+
+  function showClue() {
+    const s = get();
+    if (!s || revealed) return;
+    const c = clueFor(s);
+    if (!c) return;
+    clueUsed = true;
+    els.clue.textContent = c;
+    els.clue.classList.remove('hidden');
+    els.btnClue.classList.add('used');
+    els.btnClue.textContent = t('clue.used');
+    haptic(6);
+  }
+
   function get() { return steps[index]; }
 
   // In the emergency course a marked item is a vital action to be done from
@@ -174,6 +203,11 @@ export function createTrainer({ onExit }) {
       (counter ? `<span class="count">${esc(s.prompt)}</span>` : esc(s.prompt));
 
     els.card.classList.remove('revealed');
+    clueUsed = false;
+    els.clue.classList.add('hidden');
+    els.btnClue.classList.remove('used');
+    els.btnClue.textContent = t('clue.ask');
+    els.btnClue.classList.toggle('hidden', !clueFor(s));
     els.answer.classList.add('hidden');
     els.spoken.classList.add('hidden');
     els.note.classList.add('hidden');
@@ -277,6 +311,9 @@ export function createTrainer({ onExit }) {
     revealed = true;
     els.card.classList.add('revealed');
     els.rpm.classList.add('hidden');
+    // the clue is contained in the answer — drop both once it is out
+    els.btnClue.classList.add('hidden');
+    els.clue.classList.add('hidden');
     els.answer.classList.remove('hidden');
     if (s.spoken) els.spoken.classList.remove('hidden');
     if (s.note) els.note.classList.remove('hidden');
@@ -316,14 +353,16 @@ export function createTrainer({ onExit }) {
   // XP and running streak — cosmetic motivation, never affects content.
   function award(ok) {
     if (session) session[ok ? 'ok' : 'miss'] += 1;
+    const clued = clueUsed;
     const cur = get();
     if (cur?.phase?.id) store.recordPhase(cur.phase.id, ok);
     const streak = store.bumpStreak(ok);
     if (ok) {
       const bonus = streak >= 20 ? 6 : streak >= 10 ? 4 : streak >= 5 ? 2 : 0;
-      store.addXp(10 + bonus);
-      floatLabel(els.card, `+${10 + bonus} XP`);
-      if (streak > 0 && streak % 10 === 0) {
+      const gained = clued ? 4 : 10 + bonus;   // a clued answer is worth less
+      store.addXp(gained);
+      floatLabel(els.card, `+${gained} XP`, clued ? '#5fb0f7' : undefined);
+      if (!clued && streak > 0 && streak % 10 === 0) {
         burst(els.streak, 20);
         haptic([10, 40, 14]);
       }

@@ -37,7 +37,8 @@ export function burst(anchor, count = 26) {
 }
 
 // Floating "+10 XP" style label near an element.
-export function floatLabel(anchor, text, color = '#4fd982') {
+export function floatLabel(anchor, text, color) {
+  color = color || '#4fd982';
   if (REDUCED || !anchor) return;
   const rect = anchor.getBoundingClientRect();
   const el = document.createElement('div');
