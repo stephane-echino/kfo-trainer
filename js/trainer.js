@@ -200,6 +200,12 @@ export function createTrainer({ onExit }) {
     hfPlay();
   }
 
+  // Any deliberate action takes back control: otherwise the pending timer would
+  // advance a second time and the voice would narrate a card you already left.
+  function userTookOver() {
+    if (handsFree) stopHandsFree();
+  }
+
   function stopHandsFree() {
     handsFree = false;
     clearTimeout(hfTimer);
@@ -416,6 +422,7 @@ export function createTrainer({ onExit }) {
       if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
       if (finished || !get()) return;
       swipedAt = Date.now();
+      userTookOver();
       if (dx < 0) { if (!revealed) reveal(); else advanceFromTap(); }
       else prev();
     }, { passive: true });
@@ -456,6 +463,7 @@ export function createTrainer({ onExit }) {
   }
 
   function grade(ok) {
+    userTookOver();
     const s = get();
     if (!s || !revealed) return;
     if (ok) store.clearMiss(s.key); else store.addMiss(s.key);
@@ -528,6 +536,7 @@ export function createTrainer({ onExit }) {
   }
 
   function prev() {
+    userTookOver();
     if (index === 0) return;
     index -= 1;
     if (seqId === 'flight') store.setPosition(seqId, index);

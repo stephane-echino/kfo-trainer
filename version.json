@@ -1,6 +1,24 @@
 {
- "version": "1.32.0",
+ "version": "1.32.1",
  "releases": [
+  {
+   "version": "1.32.1",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Grading a card, swiping or going back while hands-free was running let the loop advance a second time on its own: steps were skipped and the voice narrated a card you had already left. Any deliberate action now takes back control."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Noter une carte, balayer ou revenir en arrière pendant le mode mains libres laissait la boucle avancer une seconde fois toute seule : des étapes étaient sautées et la voix commentait une carte déjà quittée. Toute action volontaire reprend désormais la main."
+    ]
+   }
+  },
   {
    "version": "1.32.0",
    "date": "2026-08-12",
