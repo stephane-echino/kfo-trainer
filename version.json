@@ -1,6 +1,24 @@
 {
- "version": "1.38.1",
+ "version": "1.39.0",
  "releases": [
+  {
+   "version": "1.39.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Examiner questions now name the document their answer comes from — AFM §3, SPHAIR ch.13, the GVMN briefing, the checklist. The trainer cards already did; the examiner was the one place asking you to trust an answer with no source. The speed table is credited too, here and in Reference."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Les questions de l'examinateur nomment désormais le document d'où vient leur réponse — AFM §3, SPHAIR ch.13, le briefing GVMN, la checklist. Les cartes du trainer le faisaient déjà ; l'examinateur était le seul endroit qui demandait de croire une réponse sans source. Le tableau des vitesses est également crédité, ici et dans la Référence."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.38.1",
    "date": "2026-08-12",

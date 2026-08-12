@@ -22,6 +22,7 @@ export function createExaminer({ onExit }) {
       tag: $('exam-tag'),
       card: $('exam-card'),
       kind: $('exam-kind'),
+      source: $('exam-source'),
       question: $('exam-question'),
       answer: $('exam-answer'),
       hint: $('exam-hint'),
@@ -76,6 +77,7 @@ export function createExaminer({ onExit }) {
         tag: t('ref.speeds'), kind: t('exam.kind.speed'),
         q: `${s.code}${s.label ? ` — ${s.label}` : ''}?`,
         a: /^\d/.test(s.kias) ? `${s.kias} ${s.unit || 'KIAS'}` : s.kias,
+        source: mod.speedsSource || null,
       });
     }
 
@@ -107,6 +109,7 @@ export function createExaminer({ onExit }) {
         a: s2.response,
         key: s2.key,
         mem: s2.mem,
+        source: s2.source,
         long: (s2.response || '').length > 60,
       });
     }
@@ -116,16 +119,17 @@ export function createExaminer({ onExit }) {
     for (const s of steps) {
       if (!s.mem) continue;
       const key = `${s.phase.id}::${s.blockTitle}`;
-      if (!markedByBlock.has(key)) markedByBlock.set(key, { title: s.blockTitle, items: [] });
+      if (!markedByBlock.has(key)) markedByBlock.set(key, { title: s.blockTitle, items: [], source: s.source });
       markedByBlock.get(key).items.push(s.answer);
     }
-    for (const { title, items } of markedByBlock.values()) {
+    for (const { title, items, source } of markedByBlock.values()) {
       if (items.length < 2) continue;
       qs.push({
         tag: title, kind: t('exam.kind.marked'),
         q: t('exam.markedQ', title, items.length),
         a: items.join('\n'),
         long: true,
+        source,
       });
     }
 
@@ -137,6 +141,7 @@ export function createExaminer({ onExit }) {
         a: s.spoken,
         key: s.key,
         mem: s.mem,
+        source: s.source,
         long: true,
       });
     }
@@ -154,6 +159,7 @@ export function createExaminer({ onExit }) {
         a,
         key: cur.key,
         mem: cur.mem,
+        source: cur.source,
         long: a.length > 60,
       });
     }
@@ -163,11 +169,11 @@ export function createExaminer({ onExit }) {
     for (const s of steps) {
       if (!memory(s)) continue;
       const key = `${s.phase.id}::${s.blockTitle}`;
-      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [] });
+      if (!blocks.has(key)) blocks.set(key, { title: s.blockTitle, items: [], source: s.source });
       blocks.get(key).items.push(s.answer);
     }
     const seenRecites = new Set();
-    for (const { title, items } of blocks.values()) {
+    for (const { title, items, source } of blocks.values()) {
       if (items.length < 3) continue;
       const sig = `${title}::${items.join('|')}`;
       if (seenRecites.has(sig)) continue; // identical block repeated in another phase
@@ -177,12 +183,14 @@ export function createExaminer({ onExit }) {
         q: t('exam.reciteQ', title, items.length),
         a: items.map((it, i) => `${i + 1}. ${it}`).join('\n'),
         long: true,
+        source,
       });
     }
 
     // 5. scenarios from data
     for (const ex of mod.examiner || []) {
-      qs.push({ tag: ex.tag || t('exam.kind.scenario'), kind: t('exam.kind.scenario'), q: ex.q, a: ex.a, long: ex.a.length > 60 });
+      qs.push({ tag: ex.tag || t('exam.kind.scenario'), kind: t('exam.kind.scenario'),
+                 q: ex.q, a: ex.a, long: ex.a.length > 60, source: ex.source });
     }
 
     // A question is only distinguishable by what the card shows. Two blocks
@@ -207,6 +215,8 @@ export function createExaminer({ onExit }) {
     els.tag.textContent = q.tag;
     els.kind.textContent = q.kind;
     els.kind.className = 'step-kind k-callout';
+    els.source.textContent = q.source && q.source !== '—' ? q.source : '';
+    els.source.classList.toggle('hidden', !els.source.textContent);
     els.question.textContent = q.q;
     els.answer.textContent = q.a;
     els.answer.classList.add('hidden');
@@ -265,6 +275,7 @@ export function createExaminer({ onExit }) {
     els.tag.textContent = '';
     els.kind.textContent = t('exam.result');
     els.kind.className = 'step-kind k-checklist';
+    els.source.classList.add('hidden');
     els.question.textContent = !total
       ? t('exam.resultNone')
       : !completed

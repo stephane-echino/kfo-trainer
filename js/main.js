@@ -579,6 +579,12 @@ function refSpeedsCard() {
   div.className = 'ref-phase open';
   div.innerHTML = `<button class="ref-phase-head"><span></span><span class="chev">›</span></button>`;
   div.querySelector('.ref-phase-head span').textContent = t('ref.speeds');
+  if (mod.speedsSource) {
+    const src = document.createElement('span');
+    src.className = 'ref-source';
+    src.textContent = mod.speedsSource;
+    div.querySelector('.ref-phase-head span').appendChild(src);
+  }
   div.querySelector('.ref-phase-head').addEventListener('click', () => div.classList.toggle('open'));
   const body = document.createElement('div');
   body.className = 'ref-phase-body';
