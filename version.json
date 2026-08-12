@@ -1,6 +1,24 @@
 {
- "version": "1.32.2",
+ "version": "1.32.3",
  "releases": [
+  {
+   "version": "1.32.3",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Setting the throttle lever wrong scheduled the answer to appear a second later; moving on before then carried that timer to the next card and revealed it before you had a chance to answer. The timer is now cancelled when the card changes."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [],
+    "fixed": [
+     "Régler le levier de gaz à la mauvaise valeur programmait l'affichage de la réponse une seconde plus tard ; passer à la suite avant emportait ce minuteur sur la carte suivante et la révélait avant que tu aies pu répondre. Le minuteur est désormais annulé au changement de carte."
+    ]
+   }
+  },
   {
    "version": "1.32.2",
    "date": "2026-08-12",

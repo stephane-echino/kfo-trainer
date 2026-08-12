@@ -22,6 +22,7 @@ export function createTrainer({ onExit }) {
   let lastHeard = '';
   let rpmGoal = null;
   let clueUsed = false;
+  let rpmRevealTimer = null;
   let session = null;   // { ok, miss, startedAt, xpStart, complete }
   let swipedAt = 0;     // timestamp of the last handled swipe
 
@@ -322,6 +323,8 @@ export function createTrainer({ onExit }) {
       (counter ? `<span class="count">${esc(s.prompt)}</span>` : esc(s.prompt));
 
     els.card.classList.remove('revealed');
+    clearTimeout(rpmRevealTimer);
+    rpmRevealTimer = null;
     clueUsed = false;
     els.clue.classList.add('hidden');
     els.btnClue.classList.remove('used');
@@ -460,7 +463,10 @@ export function createTrainer({ onExit }) {
       floatLabel(els.rpm, '+5 XP');
       store.addXp(5);
     }
-    setTimeout(reveal, ok ? 420 : 1100);
+    // cancelled on the next render: otherwise leaving before it fires would
+    // reveal the following card before the student has answered it
+    clearTimeout(rpmRevealTimer);
+    rpmRevealTimer = setTimeout(reveal, ok ? 420 : 1100);
   }
 
   function grade(ok) {
