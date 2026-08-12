@@ -1,6 +1,30 @@
 {
- "version": "1.20.0",
+ "version": "1.21.0",
  "releases": [
+  {
+   "version": "1.21.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Strips that scroll sideways (phase context, conditions, badges) now fade at the edge so you can see there is more.",
+     "Tighter layout on short screens like the iPhone SE."
+    ],
+    "fixed": [
+     "Technique cards printed their title twice, once as the card header and once as the question."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Les bandeaux qui défilent latéralement (contexte de phase, conditions, badges) s'estompent au bord pour montrer qu'il y a une suite.",
+     "Mise en page resserrée sur les petits écrans type iPhone SE."
+    ],
+    "fixed": [
+     "Les cartes Technique affichaient leur titre deux fois, en en-tête et comme question."
+    ]
+   }
+  },
   {
    "version": "1.20.0",
    "date": "2026-08-12",

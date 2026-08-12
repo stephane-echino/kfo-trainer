@@ -155,7 +155,9 @@ export function createTrainer({ onExit }) {
     else moveDot(els.circuit, phase.map);
 
     els.progress.style.width = `${(index / Math.max(steps.length - 1, 1)) * 100}%`;
-    els.blockTitle.textContent = s.blockTitle;
+    // a technique card uses its block title as the question — don't print it twice
+    const sameAsPrompt = (s.blockTitle || '').trim() === (s.prompt || '').trim();
+    els.blockTitle.textContent = sameAsPrompt ? '' : s.blockTitle;
 
     els.kind.textContent = kindLabel(s.kind);
     els.kind.className = `step-kind k-${s.kind}`;
