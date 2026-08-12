@@ -566,6 +566,9 @@ export function createTrainer({ onExit }) {
   function finish() {
     stopVoice();
     stopTimer();
+    // the summary is its own kind of card: drop the last step's styling, which
+    // otherwise dims the score through the long-answer rule
+    els.card.classList.remove('long-answer', 'k-note');
     finished = true;
     index = 0; // so exiting after completion doesn't re-save a stale position
     if (seqId === 'flight') {
@@ -604,16 +607,37 @@ export function createTrainer({ onExit }) {
       timeLine = fmt(elapsed) + (beatRecord ? ` · ${t('timer.record')}` : (prev !== null ? ` · ${t('timer.best', fmt(prev))}` : ''));
     }
 
+    // what the session actually changed in the schedule — the point of grading
+    const sched = store.getSched();
+    const today = todayIso();
+    let backToday = 0, backLater = 0;
+    for (const st of steps) {
+      const e = sched[st.key];
+      if (!e) continue;
+      if (e.due <= today) backToday += 1; else backLater += 1;
+    }
+    const nextLine = total
+      ? (backToday
+          ? t('summary.backToday', backToday)
+          : (backLater ? t('summary.backLater', backLater) : ''))
+      : '';
+
     els.prompt.innerHTML = total
       ? `<span class="summary-score">${pct}<span class="pct">%</span></span>
-         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗ · +${xp} XP · ${timeLine}</span>`
+         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗ · +${xp} XP · ${timeLine}</span>
+         ${nextLine ? `<span class="summary-next">${esc(nextLine)}</span>` : ''}`
       : esc(missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean'));
     if (beatRecord) burst(els.card, 26);
 
     const fresh = checkUnlocks(session, unlockContext());
     const lines = [];
-    if (missCount) lines.push(t('trainer.doneMiss', missCount));
-    else if (total) lines.push(t('trainer.doneClean'));
+    // With a scored session the summary already says what comes back and when;
+    // the running miss total would only contradict it with a different number.
+    if (!total) {
+      if (missCount) lines.push(t('trainer.doneMiss', missCount));
+    } else if (!session.miss) {
+      lines.push(t('trainer.doneClean'));
+    }
     for (const a of fresh) {
       const l = a[getLang()] || a.en;
       lines.push(`${a.icon} ${t('trainer.unlocked')} — ${l.name}: ${l.desc}`);

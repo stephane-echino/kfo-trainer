@@ -1,6 +1,30 @@
 {
- "version": "1.36.0",
+ "version": "1.37.0",
  "releases": [
+  {
+   "version": "1.37.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "The end-of-session card now says what the session changed: how many steps come back today, or how many are scheduled over the coming days. Grading is what builds the schedule, so the summary should show it."
+    ],
+    "changed": [],
+    "fixed": [
+     "The session score was rendered in a dimmed green, inheriting the styling of the last card instead of its own.",
+     "The summary showed two different counts of steps to review — one for the session, one running total — which contradicted each other."
+    ]
+   },
+   "fr": {
+    "added": [
+     "La carte de fin de session dit désormais ce que la session a changé : combien d'étapes reviennent aujourd'hui, ou combien sont programmées pour les jours qui viennent. C'est la notation qui construit le planning, le bilan doit donc le montrer."
+    ],
+    "changed": [],
+    "fixed": [
+     "Le score de session s'affichait en vert terni, héritant du style de la dernière carte au lieu du sien.",
+     "Le bilan affichait deux comptes d'étapes à revoir différents — un pour la session, un cumulé — qui se contredisaient."
+    ]
+   }
+  },
   {
    "version": "1.36.0",
    "date": "2026-08-12",
