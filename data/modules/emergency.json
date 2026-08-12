@@ -1,0 +1,1541 @@
+{
+ "id": "emergency",
+ "name": "Emergencies — HB-KFO",
+ "version": "1.0.0",
+ "aircraft": "HB-KFO",
+ "speeds": [
+  {
+   "code": "Glide EFATO",
+   "kias": "73",
+   "label": "AFM, after take-off"
+  },
+  {
+   "code": "Best glide",
+   "kias": "78",
+   "label": "flaps up"
+  },
+  {
+   "code": "Vref",
+   "kias": "62",
+   "label": "final, flaps 2nd notch"
+  },
+  {
+   "code": "Go-around",
+   "kias": "65",
+   "label": "AFM go-around speed"
+  },
+  {
+   "code": "Climb gradient",
+   "kias": "75",
+   "label": "AFM go-around climb"
+  },
+  {
+   "code": "Vr",
+   "kias": "54",
+   "label": "rotation"
+  },
+  {
+   "code": "Glide ratio",
+   "kias": "9.3 ×",
+   "label": "altitude, no wind",
+   "unit": ""
+  }
+ ],
+ "examiner": [
+  {
+   "q": "Engine failure on the take-off run and enough runway remains. What do you do?",
+   "a": "Close the throttle fully and stop on the runway axis, braking as required. From the briefing: throttle idle, brakes applied, inform ATC (radio).",
+   "tag": "rejected take-off"
+  },
+  {
+   "q": "And if not enough runway remains? Give me the six actions.",
+   "a": "Throttle lever fully closed (pull), brakes brake hard, mixture idle cut-off (down), fuel valve closed, magneto switch off, battery switch off.",
+   "tag": "rejected take-off"
+  },
+  {
+   "q": "Engine stops at 300 ft after take-off. Give me the AFM procedure in order.",
+   "a": "Glide speed (73 kt) 135 km/h, mixture idle cut-off (down), fuel valve closed, magneto switch off, battery switch off. Land straight ahead with only small heading changes; never turn back.",
+   "tag": "EFATO below 1000 ft"
+  },
+  {
+   "q": "Give me the GVMN briefing figures for an engine failure below airfield altitude + 1000 ft.",
+   "a": "Speed according to flaps setting (78 KIAS flaps up, 73 KIAS flaps 1 notch), maximum +/- 45 degrees of RWY axis (or flight path), full flaps when landing is ensured, speed Vref 62 KIAS.",
+   "tag": "EFATO below 1000 ft"
+  },
+  {
+   "q": "Same failure above airfield altitude + 1000 ft. What changes?",
+   "a": "Speed 78 KIAS, back to opposite runway, full flaps when landing is ensured, speed Vref 62 KIAS. Turn towards the opposite runway in the circuit direction briefed for the day — SPHAIR prints a left turn only as a briefing example. The AFM has no turn-back procedure.",
+   "tag": "EFATO above 1000 ft"
+  },
+  {
+   "q": "Why is a downwind landing after a turn back dangerous?",
+   "a": "Even when the turn back succeeds, the landing is made difficult by the added tailwind, and after the turn the aircraft is offset from the field axis. A 180 is only considered above 1000 ft/AAL.",
+   "tag": "turn-back rule"
+  },
+  {
+   "q": "Engine fails in the cruise. What speed and how far can you glide?",
+   "a": "Best glide speed, flaps up, 145 km/h (78 kt). In these conditions and without wind the aircraft covers about 9.3 times its altitude.",
+   "tag": "engine failure in flight"
+  },
+  {
+   "q": "Give me the five items of the in-flight restart, and the condition to start it.",
+   "a": "Only if the altitude is judged sufficient. Fuel valve open, electric pump on, mixture full rich (up), throttle 1/4 of travel forward, magneto switch on L + R (Both). If the propeller is still turning it should restart; if stopped, use the starter.",
+   "tag": "engine restart"
+  },
+  {
+   "q": "The engine does not restart. Give me the forced landing drill, engine off.",
+   "a": "Seat belts and harness tight, electric pump off, mixture idle cut-off, throttle fully closed, magneto switch off, fuel valve closed, alternator field off, battery switch off. On final: approach speed (62 kt) 115 km/h, flaps fully down, canopy unlocked.",
+   "tag": "forced landing"
+  },
+  {
+   "q": "Precautionary landing in a field with the engine running: what speeds and flap settings?",
+   "a": "Inspection passes at 130 km/h (70 kt), flaps take-off position (1st notch); precautionary approach 120 km/h (65 kt), flaps landing position (2nd notch). On final unlock the canopy. Before touching: magnetos off, battery off.",
+   "tag": "precautionary landing"
+  },
+  {
+   "q": "The canopy is jammed. What do you do?",
+   "a": "Canopy handle to the open position. Release the two canopy jettison levers on the armrests, on either side of the instrument panel, and bring them to the vertical position.",
+   "tag": "canopy jammed"
+  },
+  {
+   "q": "Engine fire on the ground during start. What do you do first, and why?",
+   "a": "Let the engine run with fuel valve closed, electric pump off, throttle full power (push), mixture idle cut-off. This makes the engine swallow the fuel accumulated in the intake pipes after excessive priming.",
+   "tag": "engine fire ground"
+  },
+  {
+   "q": "Engine fire in flight. Give me the seven items.",
+   "a": "Fuel valve closed, throttle full power (push) until the engine stops, mixture idle cut-off, electric pump off, alternator field off, cabin heating and ventilation off, best glide speed (78 kt) 145 km/h. No restart attempt.",
+   "tag": "engine fire in flight"
+  },
+  {
+   "q": "Electrical fire in the cabin. What is the drill?",
+   "a": "Cabin ventilation reduce, alternator field off, battery switch off, battery breaker pulled, alternator breaker pulled. Land quickly if the fire persists.",
+   "tag": "electrical fire"
+  },
+  {
+   "q": "Mandatory go-around. Give me the AFM procedure in order.",
+   "a": "Carburettor heat off (pushed) checked, throttle full throttle (push), speed (65 kt) 120 km/h, flaps progressively back to take-off position (1st notch), climb gradient (75 kt) 140 km/h. The SOP callouts are GO AROUND, set T/O PWR, SPEED ABOVE 60 FLAPS 1, climb 70 KIAS.",
+   "tag": "go-around"
+  },
+  {
+   "q": "The engine runs rough. In what order do you look for the cause?",
+   "a": "Carburettor icing, mixture too rich or too lean, impurities in the fuel circuit (check fuel pressure, electric pump on), ignition failure: magnetos L, then R, then back to Both; keep the best position, nearest airfield at reduced power.",
+   "tag": "rough running"
+  },
+  {
+   "q": "Oil pressure is dropping. What do you monitor and what do you do?",
+   "a": "Monitor the oil temperature. If it rises abnormally into the red zone, reduce the power and reach the nearest airfield, prepared for a possible forced landing in a field.",
+   "tag": "oil pressure"
+  },
+  {
+   "q": "Carburettor icing: why never an intermediate carb heat position, and what approach speed if the airframe is iced?",
+   "a": "Always all-or-nothing, full hot or full cold: an intermediate position can in some cases make the icing worse. With extremely rapid ice formation, carry out a forced landing. More than 0.5 cm (0.2 in) on the leading edge raises the stall speed; use 135 km/h (73 kt) on approach.",
+   "tag": "icing"
+  },
+  {
+   "q": "Amber alternator failure light. First action, then what if it persists?",
+   "a": "Switch the alternator field off then on again to reset the overvoltage relay. If the failure persists: alternator field off, switch off all non-essential electrical equipment, land as soon as possible. The engine runs normally.",
+   "tag": "alternator failure"
+  },
+  {
+   "q": "You enter an unintentional spin with flaps out. Give me the recovery.",
+   "a": "Throttle idle (pull), rudder full against the direction of rotation, elevator neutral, ailerons neutral; as soon as the rotation stops, rudder neutral and pull out within the flight envelope limits. Retract the flaps as quickly as possible.",
+   "tag": "spin recovery"
+  },
+  {
+   "q": "The elevator control disconnects. How do you fly and land?",
+   "a": "Stabilise level, flaps up, at 130 km/h (70 kt) with the elevator trim and the throttle. Do not touch the trim again; control the descent angle with the throttle only, and reduce power only on short final close to the ground.",
+   "tag": "elevator failure"
+  }
+ ],
+ "phases": [
+  {
+   "id": "aborted-takeoff",
+   "title": "Rejected take-off",
+   "subtitle": "Engine failure or malfunction during the take-off run",
+   "map": {
+    "point": "roll"
+   },
+   "context": [
+    {
+     "k": "Decision",
+     "v": "Abort if minimum power is not reached"
+    },
+    {
+     "k": "Rule of thumb",
+     "v": "50/70 — 70% of take-off speed by mid-runway"
+    },
+    {
+     "k": "Vr",
+     "v": "54 KIAS"
+    },
+    {
+     "k": "Doubt",
+     "v": "In case of doubt, reject"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "title": "ENGINE FAILURE ON TAKE-OFF (ground roll) — IF ENOUGH RUNWAY REMAINS",
+     "source": "AFM §3",
+     "text": "Close the throttle fully and stop on the runway axis, braking as required. This is the first branch printed in the AFM: the shutdown drill below applies only when there is not enough runway left."
+    },
+    {
+     "type": "checklist",
+     "title": "ENGINE FAILURE ON TAKE-OFF (ground roll) — IF NOT ENOUGH RUNWAY REMAINS",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Throttle lever",
+       "r": "FULLY CLOSED (pull)",
+       "mem": true
+      },
+      {
+       "c": "Brakes",
+       "r": "BRAKE HARD",
+       "mem": true
+      },
+      {
+       "c": "Mixture",
+       "r": "IDLE CUT-OFF (down)",
+       "mem": true
+      },
+      {
+       "c": "Fuel valve",
+       "r": "CLOSED",
+       "mem": true
+      },
+      {
+       "c": "Magneto switch",
+       "r": "OFF",
+       "mem": true
+      },
+      {
+       "c": "Battery switch",
+       "r": "OFF",
+       "mem": true
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "IMMEDIATE ACTIONS — any malfunction before rotation",
+     "source": "TO Briefing GVMN",
+     "intro": "Memory items from the departure briefing. Say them aloud before every take-off, act on them without a checklist.",
+     "steps": [
+      {
+       "do": "Throttle idle",
+       "say": "Throttle idle"
+      },
+      {
+       "do": "Brakes applied",
+       "say": "Breaks applied",
+       "note": "Printed \"Breaks applied\" in the club briefing — the action is brakes applied. Holding the runway centreline with rudder is SPHAIR ch.12 (12.4.5), not the GVMN briefing."
+      },
+      {
+       "do": "Inform ATC (Radio)",
+       "say": "Inform ATC (Radio)"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Abort criteria",
+     "source": "SPHAIR ch.12",
+     "text": "Abort immediately if the engine does not reach the minimum power needed during the take-off run. Failure before VR, or just after leaving the runway, means stopping on the runway remaining; on short runways take the best ground in the runway axis. Rule of thumb 50/70: 70% of take-off speed by mid-runway."
+    },
+    {
+     "type": "note",
+     "title": "Keeping the axis (12.4.5)",
+     "source": "SPHAIR ch.12",
+     "text": "Correct reaction during the run: hold the runway centreline with the rudder, and in case of doubt reject the take-off. Hesitant rudder lets the aircraft leave the centreline; pulling it off the ground and correcting back with ailerons risks a wingtip strike."
+    }
+   ]
+  },
+  {
+   "id": "efato-low",
+   "title": "Engine failure after take-off, below 1000 ft AAL",
+   "subtitle": "Land straight ahead — no turn back",
+   "map": {
+    "point": "upwind",
+    "altFt": 500
+   },
+   "context": [
+    {
+     "k": "AFM glide speed",
+     "v": "(73 kt) 135 km/h"
+    },
+    {
+     "k": "GVMN glide",
+     "v": "78 KIAS flaps up / 73 KIAS flaps 1 notch"
+    },
+    {
+     "k": "Landing sector",
+     "v": "± 45° of RWY axis (GVMN)"
+    },
+    {
+     "k": "Vref",
+     "v": "62 KIAS"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "ENGINE FAILURE IMMEDIATELY AFTER TAKE-OFF",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Glide speed",
+       "r": "(73 kt) 135 km/h",
+       "mem": true,
+       "note": "SPHAIR ch.12 (12.8.3): the first vital reaction is to lower the nose immediately and take the glide attitude. The line below is an app training callout, not AFM or SPHAIR text.",
+       "spoken": "Engine failure — nose down immediately, glide attitude, seventy-three knots, one hundred and thirty-five kilometres per hour."
+      },
+      {
+       "c": "Mixture",
+       "r": "IDLE CUT-OFF (down)",
+       "mem": true
+      },
+      {
+       "c": "Fuel valve",
+       "r": "CLOSED",
+       "mem": true
+      },
+      {
+       "c": "Magneto switch",
+       "r": "OFF",
+       "mem": true
+      },
+      {
+       "c": "Battery switch",
+       "r": "OFF",
+       "mem": true
+      }
+     ]
+    },
+    {
+     "type": "briefing",
+     "title": "Engine failure after rotation below airfield altitude + 1000 ft",
+     "source": "TO Briefing GVMN",
+     "intro": "Example for LSGN: 2500 ft. This is the wording briefed before every take-off.",
+     "steps": [
+      {
+       "do": "Speed according to flaps setting",
+       "say": "Speed according to flaps setting (78 KIAS flaps up, 73 KIAS flaps 1 notch)"
+      },
+      {
+       "do": "Landing sector",
+       "say": "Maximum +/- 45 Degrees of RWY axes (or flight path)"
+      },
+      {
+       "do": "Flaps",
+       "say": "Full flaps when landing is ensured"
+      },
+      {
+       "do": "Approach speed",
+       "say": "Speed Vref 62 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Emergency sector sequence",
+     "source": "SPHAIR ch.12",
+     "intro": "The remaining height is probably not enough for the full standard procedure. Flying the aircraft to the ground in a suitable direction is what matters.",
+     "steps": [
+      {
+       "do": "ENGINE FAILURE — glide attitude",
+       "say": "ENGINE FAILURE"
+      },
+      {
+       "do": "Flaps out as required"
+      },
+      {
+       "do": "As far as possible: run the emergency procedures, unlock the doors"
+      },
+      {
+       "do": "Choose a landing field within +/- 30 degrees either side of the runway axis. NO TURN BACK."
+      },
+      {
+       "do": "After touchdown: brake immediately, switch everything off, leave the aircraft"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "AFM important note",
+     "source": "AFM §3",
+     "text": "Land straight ahead, making only small heading changes to avoid obstacles. Never attempt to turn back towards the runway, because the altitude after take-off generally does not allow it."
+    },
+    {
+     "type": "note",
+     "title": "±30° or ±45°",
+     "source": "TO Briefing GVMN",
+     "text": "SPHAIR gives max. 30 degrees either side of the runway axis for the emergency landing; the GVMN briefing gives +/- 45 degrees. Apply the GVMN briefing for HB-KFO, knowing the SPHAIR reference."
+    },
+    {
+     "type": "note",
+     "title": "73 kt and 78 kt — same rule",
+     "source": "AFM §3 / SPHAIR 12.8.1",
+     "text": "Immediately after take-off the aircraft is at flaps 1st notch (AFM §4, p. 4.09) — the configuration where the AFM's (73 kt) 135 km/h and the GVMN briefing's 73 KIAS 1-notch figure are the same number. The GVMN's 78 KIAS applies once the flaps are up and matches the AFM flaps-up best glide, (78 kt) 145 km/h (AFM §3). SPHAIR 12.8.1: in every abnormal situation related to take-off, AFM procedures are used exclusively."
+    }
+   ]
+  },
+  {
+   "id": "efato-high",
+   "title": "Engine failure above airfield altitude + 1000 ft",
+   "subtitle": "The only case where a return to the opposite runway may be considered",
+   "map": {
+    "point": "crosswind",
+    "altFt": 1000
+   },
+   "context": [
+    {
+     "k": "Gate",
+     "v": "Airfield altitude + 1000 ft (eg. LSGN 2500 ft)"
+    },
+    {
+     "k": "Glide",
+     "v": "78 KIAS"
+    },
+    {
+     "k": "Vref",
+     "v": "62 KIAS"
+    },
+    {
+     "k": "Landing",
+     "v": "Opposite runway"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "briefing",
+     "title": "Engine failure after rotation above airfield altitude + 1000 ft",
+     "source": "TO Briefing GVMN",
+     "intro": "Briefed aloud before every take-off, together with the low case.",
+     "steps": [
+      {
+       "do": "Speed",
+       "say": "Speed 78 KIAS"
+      },
+      {
+       "do": "Turn back",
+       "say": "Back to opposite runway"
+      },
+      {
+       "do": "Flaps",
+       "say": "Full flaps when landing is ensured"
+      },
+      {
+       "do": "Approach speed",
+       "say": "Speed Vref 62 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Above 1000 ft/AAL",
+     "source": "SPHAIR ch.12",
+     "intro": "Departure briefing example, abnormal / emergency item 3. An example of what to brief, not a procedure.",
+     "steps": [
+      {
+       "do": "Turn towards the opposite runway in the circuit direction briefed for the day",
+       "note": "SPHAIR 12.2.1 prints the example as \"virage à gauche\" — a left turn. It is briefing wording, not a direction to apply: the turn follows the circuit direction and the wind at the field of the day."
+      },
+      {
+       "do": "Land on the runway in the opposite direction"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "The AFM has no turn-back procedure",
+     "source": "AFM §3",
+     "text": "For an engine failure immediately after take-off the AFM prints an unconditional instruction: land straight ahead, never attempt to turn back towards the runway. It contains no turn-back procedure at all. The return to the opposite runway is a GVMN/SPHAIR provision, valid only above airfield altitude + 1000 ft."
+    },
+    {
+     "type": "note",
+     "title": "Why the turn back needs height",
+     "source": "SPHAIR ch.12",
+     "text": "The turn back needs far more height than it appears at first glance. A tight turn without engine needs speed, and that speed is paid for by a large loss of altitude; the stronger the headwind, the harder it gets. After the turn the aircraft is offset from the axis of the landing field."
+    },
+    {
+     "type": "note",
+     "title": "Downwind landing warning",
+     "source": "SPHAIR ch.12",
+     "text": "It is dangerous to land downwind after a turn back. Even when the turn back succeeds, the landing is made difficult by the added influence of the tailwind. A 180 to land on the opposite runway is only to be considered above 1000 ft/AAL."
+    }
+   ]
+  },
+  {
+   "id": "engine-failure-cruise",
+   "title": "Engine failure in flight",
+   "subtitle": "Best glide, then the restart drill",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Best glide, flaps up",
+     "v": "145 km/h (78 kt)"
+    },
+    {
+     "k": "Glide ratio",
+     "v": "about 9.3 x altitude, no wind"
+    },
+    {
+     "k": "Restart",
+     "v": "Only if the altitude is judged sufficient"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "IMMEDIATE ACTION — glide",
+     "source": "AFM §3",
+     "intro": "Take the best glide speed first, in every case. The altitude judgement below governs only whether the restart drill that follows is attempted (AFM §3: \"if the altitude is judged sufficient to attempt an engine restart\").",
+     "steps": [
+      {
+       "do": "Take the best glide speed, flaps up — 145 km/h (78 KIAS)",
+       "note": "In these conditions and without wind the aircraft covers about 9.3 times its altitude."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "ENGINE RESTART IN FLIGHT — IF THE ALTITUDE IS SUFFICIENT",
+     "source": "AFM §3",
+     "intro": "Only if the altitude is judged sufficient to attempt a restart — otherwise go directly to the forced landing drill.",
+     "items": [
+      {
+       "c": "Fuel valve",
+       "r": "OPEN"
+      },
+      {
+       "c": "Electric pump",
+       "r": "ON"
+      },
+      {
+       "c": "Mixture",
+       "r": "FULL RICH (up)"
+      },
+      {
+       "c": "Throttle lever",
+       "r": "1/4 OF TRAVEL FORWARD"
+      },
+      {
+       "c": "Magneto switch",
+       "r": "L + R (\"BOTH\")"
+      }
+     ],
+     "closing": "If the propeller is still turning, the engine should restart."
+    },
+    {
+     "type": "flow",
+     "title": "If it does not restart",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Propeller stopped — operate the starter"
+      },
+      {
+       "do": "Engine still not starting — prepare a field landing following the engine-off forced landing procedure"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "How far can you glide",
+     "source": "AFM §3",
+     "text": "Best glide speed, flaps up, 145 km/h (78 KIAS). In these conditions and without wind the aircraft covers about 9.3 times its altitude."
+    },
+    {
+     "type": "note",
+     "title": "Reading that figure honestly",
+     "source": "App note",
+     "text": "9.3 times the altitude is a straight-line, no-wind distance, not a circle of reachable ground. It shrinks going downwind, with every turn, with any speed error, and it takes no account of the elevation of the ground below. Treat it as a best case and keep a margin."
+    }
+   ]
+  },
+  {
+   "id": "forced-landing",
+   "title": "Forced landing in a field, engine off",
+   "subtitle": "Choose a suitable field first",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Glide",
+     "v": "145 km/h (78 kt) flaps up, then 115 km/h (62 kt) on final with full flaps"
+    },
+    {
+     "k": "First action",
+     "v": "Choose a suitable field"
+    },
+    {
+     "k": "On final",
+     "v": "Flaps fully down, canopy unlocked"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "FORCED LANDING IN A FIELD, ENGINE OFF",
+     "source": "AFM §3",
+     "intro": "Choose a suitable field.",
+     "items": [
+      {
+       "c": "Seat belts and harness",
+       "r": "TIGHT"
+      },
+      {
+       "c": "Electric pump",
+       "r": "OFF"
+      },
+      {
+       "c": "Mixture",
+       "r": "IDLE CUT-OFF (down)"
+      },
+      {
+       "c": "Throttle lever",
+       "r": "FULLY CLOSED (pull)"
+      },
+      {
+       "c": "Magneto switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Fuel valve",
+       "r": "CLOSED"
+      },
+      {
+       "c": "Alternator field",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery switch",
+       "r": "OFF"
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "FINAL",
+     "source": "AFM §3 / §4 (p. 4.12)",
+     "intro": "AFM §3 prints two items for the final segment, flaps and canopy. The approach speed is added from AFM §4 so that the 78 kt glide is not the only speed in view on a full-flap final.",
+     "items": [
+      {
+       "c": "Flaps",
+       "r": "FULLY DOWN"
+      },
+      {
+       "c": "Canopy",
+       "r": "UNLOCKED",
+       "note": "If it jams, apply the canopy blocking note below — AFM §3 (p. 3.04)."
+      },
+      {
+       "c": "Approach speed",
+       "r": "(62 kt) 115 km/h",
+       "note": "AFM §4 (p. 4.03 and 4.12): final approach speed (62 kt) 115 km/h, flaps in landing position (2nd notch). The GVMN briefing gives the same Vref 62 KIAS."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "If the canopy jams",
+     "source": "AFM §3 (p. 3.04)",
+     "text": "Canopy handle to the \"open\" position. Release the two canopy jettison levers located on the armrests, on either side of the instrument panel, and bring them to the vertical position."
+    },
+    {
+     "type": "flow",
+     "title": "After touchdown",
+     "source": "SPHAIR ch.12",
+     "steps": [
+      {
+       "do": "Brake immediately"
+      },
+      {
+       "do": "Switch everything off"
+      },
+      {
+       "do": "Leave the aircraft"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Controlled arrival",
+     "source": "SPHAIR ch.12",
+     "text": "For every emergency landing the aircraft must be brought onto the ground or onto the water under control. A fall from even a small height, through loss of speed, leaves very little chance of survival."
+    }
+   ]
+  },
+  {
+   "id": "precautionary-landing",
+   "title": "Precautionary landing in a field, engine running",
+   "subtitle": "Inspect the field, then a slow precautionary approach",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Inspection passes",
+     "v": "130 km/h (70 kt), flaps take-off (1st notch)"
+    },
+    {
+     "k": "Precautionary approach",
+     "v": "120 km/h (65 kt), flaps landing (2nd notch)"
+    },
+    {
+     "k": "On final",
+     "v": "Unlock the canopy"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Procedure",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Inspect the chosen field, making several low-speed passes if needed at 130 km/h (70 kt), flaps in take-off position (1st notch)"
+      },
+      {
+       "do": "Fly a precautionary approach at 120 km/h (65 kt), flaps in landing position (2nd notch)"
+      },
+      {
+       "do": "On final, unlock the canopy"
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "BEFORE TOUCHING THE GROUND",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Magneto switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery switch",
+       "r": "OFF"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "If the canopy jams",
+     "source": "AFM §3 (p. 3.04)",
+     "text": "Canopy handle to the \"open\" position. Release the two canopy jettison levers located on the armrests, on either side of the instrument panel, and bring them to the vertical position."
+    }
+   ]
+  },
+  {
+   "id": "engine-fire-ground",
+   "title": "Engine fire on the ground, at start",
+   "subtitle": "Let the engine run and swallow the fuel",
+   "map": {
+    "point": "parking"
+   },
+   "context": [
+    {
+     "k": "Principle",
+     "v": "Let the engine run, fuel valve closed"
+    },
+    {
+     "k": "Throttle",
+     "v": "Full power (push)"
+    },
+    {
+     "k": "If it persists",
+     "v": "Everything off, evacuate"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "ENGINE FIRE AT START — LET THE ENGINE RUN WITH",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Fuel valve",
+       "r": "CLOSED"
+      },
+      {
+       "c": "Electric pump",
+       "r": "OFF"
+      },
+      {
+       "c": "Throttle lever",
+       "r": "FULL POWER (push)"
+      },
+      {
+       "c": "Mixture",
+       "r": "IDLE CUT-OFF (down)"
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "IF THE FIRE PERSISTS",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Magneto switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Alternator field",
+       "r": "OFF"
+      }
+     ],
+     "closing": "Evacuate the aircraft and try to put the fire out with the means available: extinguishers, or failing that blankets, clothing, thrown sand."
+    },
+    {
+     "type": "note",
+     "title": "Why run the engine",
+     "source": "AFM §3",
+     "text": "The purpose of this manoeuvre is to make the engine \"swallow\" the fuel accumulated in the intake pipes, generally following excessive priming during a difficult start."
+    }
+   ]
+  },
+  {
+   "id": "engine-fire-flight",
+   "title": "Engine fire in flight",
+   "subtitle": "Starve the engine, then glide to a field",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Throttle",
+     "v": "Full power (push) until the engine stops"
+    },
+    {
+     "k": "Glide",
+     "v": "(78 kt) 145 km/h"
+    },
+    {
+     "k": "Restart",
+     "v": "Never attempt one"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "ENGINE FIRE IN FLIGHT",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Fuel valve",
+       "r": "CLOSED"
+      },
+      {
+       "c": "Throttle lever",
+       "r": "FULL POWER (push) UNTIL THE ENGINE STOPS"
+      },
+      {
+       "c": "Mixture",
+       "r": "IDLE CUT-OFF (down)"
+      },
+      {
+       "c": "Electric pump",
+       "r": "OFF"
+      },
+      {
+       "c": "Alternator field",
+       "r": "OFF"
+      },
+      {
+       "c": "Cabin heating and ventilation",
+       "r": "OFF"
+      },
+      {
+       "c": "Adopt best glide speed",
+       "r": "(78 kt) 145 km/h"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Then",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Prepare a field landing following the procedures described in the \"Forced landing, engine off\" chapter"
+      },
+      {
+       "do": "Do not attempt any engine restart"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cabin-fire",
+   "title": "Fire in the cabin",
+   "subtitle": "Smoke clearance, then the electrical drill",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Smoke",
+     "v": "Open the ventilation fully"
+    },
+    {
+     "k": "Electrical fire",
+     "v": "Reduce ventilation, everything off"
+    },
+    {
+     "k": "If it persists",
+     "v": "Land quickly"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "IMMEDIATE ACTIONS",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Put the fire out by every means available (extinguisher optional)"
+      },
+      {
+       "do": "To clear the smoke, open the ventilation fully"
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "FIRE OF ELECTRICAL ORIGIN",
+     "source": "AFM §3",
+     "intro": "Burning insulation produces a characteristic smell.",
+     "items": [
+      {
+       "c": "Cabin ventilation",
+       "r": "REDUCE"
+      },
+      {
+       "c": "Alternator field",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery breaker",
+       "r": "PULLED"
+      },
+      {
+       "c": "Alternator breaker",
+       "r": "PULLED"
+      }
+     ],
+     "closing": "Land quickly if the fire persists."
+    }
+   ]
+  },
+  {
+   "id": "go-around-mandatory",
+   "title": "Mandatory go-around",
+   "subtitle": "When you must break off, and how",
+   "map": {
+    "point": "short-final"
+   },
+   "context": [
+    {
+     "k": "AFM go-around",
+     "v": "Carb heat off first, full throttle, (65 kt) 120 km/h"
+    },
+    {
+     "k": "AFM climb",
+     "v": "(75 kt) 140 km/h, flaps progressively to 1st notch"
+    },
+    {
+     "k": "SOP callouts",
+     "v": "\"GO AROUND\" — \"SPEED ABOVE 60, FLAPS 1\""
+    },
+    {
+     "k": "SOP climb",
+     "v": "70 KIAS"
+    },
+    {
+     "k": "Go-around low",
+     "v": "Rotate only after VREF + 10"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "REMISE DE GAZ / GO-AROUND",
+     "source": "AFM §4 (p. 4.13)",
+     "intro": "The aircraft's own go-around procedure, in the printed order. The AFM sequences carburettor heat before the throttle.",
+     "items": [
+      {
+       "c": "Carburettor heat",
+       "r": "OFF (pushed) — CHECKED"
+      },
+      {
+       "c": "Throttle lever",
+       "r": "FULL THROTTLE (push)"
+      },
+      {
+       "c": "Speed",
+       "r": "(65 kt) 120 km/h"
+      },
+      {
+       "c": "Flaps",
+       "r": "BRING PROGRESSIVELY BACK TO TAKE-OFF POSITION (1st notch)"
+      },
+      {
+       "c": "Climb gradient",
+       "r": "(75 kt) 140 km/h"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "In case of missed approach",
+     "source": "SOP GVMN",
+     "intro": "Club procedure and callouts, verbatim.",
+     "steps": [
+      {
+       "do": "Announce the go-around",
+       "say": "GO AROUND"
+      },
+      {
+       "do": "Set T/O PWR"
+      },
+      {
+       "do": "Flaps to take-off position",
+       "say": "SPEED ABOVE 60, FLAPS 1"
+      },
+      {
+       "do": "Climb with 70 KIAS"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "AFM and SOP do not give the same figures",
+     "source": "AFM §4 / SOP GVMN",
+     "text": "AFM §4 (p. 4.13) puts carburettor heat off before full throttle, then 120 km/h (65 kt), flaps progressively to the 1st notch, climb 140 km/h (75 kt). SOP GVMN calls \"SPEED ABOVE 60, FLAPS 1\" and climbs 70 KIAS. Know both: the callouts are the school's, the governing figures are the AFM's."
+    },
+    {
+     "type": "flow",
+     "title": "GO AROUND — SPHAIR, identical high and low",
+     "source": "SPHAIR ch.13",
+     "intro": "Power, Performance, Action — used when the AFM prescribes no other method. For HB-KFO the AFM does prescribe one: see the AFM §4 (p. 4.13) block above.",
+     "steps": [
+      {
+       "do": "Power — FULL THROTTLE"
+      },
+      {
+       "do": "Carburetor Heat — OFF"
+      },
+      {
+       "do": "SIMULTANEOUSLY:"
+      },
+      {
+       "do": "Attitude — NOSE UP"
+      },
+      {
+       "do": "Speed — CHECKED"
+      },
+      {
+       "do": "Flaps — TAKE-OFF POSITION"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Important — printed under the SPHAIR procedure",
+     "source": "SPHAIR ch.13 (13.8.5)",
+     "text": "Verbatim: « Important : La procédure de GO AROUND, en particulier celle de la rentrée des résistances, dépend du type d'avion. C'est pour cela qu'il faut suivre les indications de l'AFM. » Go-around flap handling is type-dependent: follow the AFM §4 (p. 4.13) block above."
+    },
+    {
+     "type": "flow",
+     "title": "When you must break off",
+     "source": "SPHAIR ch.13",
+     "intro": "Missed approach and balked landing criteria.",
+     "steps": [
+      {
+       "do": "The approach is too high or can no longer be stabilised"
+      },
+      {
+       "do": "The separation from the preceding aircraft becomes too small"
+      },
+      {
+       "do": "Any uncertainty remains about how the approach is developing"
+      },
+      {
+       "do": "It is ordered by air traffic control"
+      },
+      {
+       "do": "A landing prohibition is signalled or announced by RTF"
+      },
+      {
+       "do": "The runway is not clear"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Go-around low",
+     "source": "SPHAIR ch.13",
+     "text": "After the GATE the attitude is already strongly nose-up and total drag very high. No additional rotation must occur; if needed increase speed with a nose-down attitude change. A brief touchdown is possible and must not be prevented. Rotate to the climb attitude only after VREF + 10."
+    },
+    {
+     "type": "note",
+     "title": "After the go-around",
+     "source": "SPHAIR 13.8.6 / 12.5.5 + app note",
+     "text": "Full flap retraction and switching the fuel pump off are the standard after take-off procedures (SPHAIR 13.8.6). The CLIMB CHECK is flown at the end of a GO AROUND as well and ends the phase (SPHAIR 12.5.5). Trim: set a known value first, fine trim after stabilisation (app guidance)."
+    }
+   ]
+  },
+  {
+   "id": "mislanding",
+   "title": "Mislanding",
+   "subtitle": "Three causes, one answer",
+   "map": {
+    "point": "landing"
+   },
+   "context": [
+    {
+     "k": "Rule",
+     "v": "If a safe landing is no longer possible, go around immediately"
+    },
+    {
+     "k": "Never",
+     "v": "Try to force the landing with the elevator"
+    },
+    {
+     "k": "Bounce",
+     "v": "Full power and GO AROUND"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Three causes and the correct reaction",
+     "source": "SPHAIR ch.13",
+     "steps": [
+      {
+       "do": "Round-out started too high (GATE too high) — the aircraft ends up nose-high above the runway near the stall. Go around immediately.",
+       "note": "If you hesitate too long before going around, the aircraft will drop its nose."
+      },
+      {
+       "do": "Round-out started too late (GATE too low) — the gear touches with a high rate of descent and the aircraft bounces. Go around immediately.",
+       "note": "Trying to force the landing by pushing on the elevator ends with a shock on the nosewheel and certainly with an accident."
+      },
+      {
+       "do": "Excessive elevator correction — you miss the start of the round-out and pull excessively close to the ground. Full power and GO AROUND."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Principle",
+     "source": "SPHAIR ch.13",
+     "text": "If a critical situation arises during the landing, the go-around is the simplest and safest way out. Attempts to \"save\" a mislanding can damage the aircraft or even cause an accident."
+    }
+   ]
+  },
+  {
+   "id": "engine-roughness",
+   "title": "Engine vibration and rough running",
+   "subtitle": "Four causes, checked in order",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Order",
+     "v": "Carb ice, mixture, fuel, ignition"
+    },
+    {
+     "k": "Magnetos",
+     "v": "\"L\", then \"R\", then back to \"Both\""
+    },
+    {
+     "k": "Then",
+     "v": "Nearest airfield, reduced power"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Check in this order",
+     "source": "AFM §3",
+     "intro": "Vibration and rough running generally come from one of these causes.",
+     "steps": [
+      {
+       "do": "Carburettor icing — see the ICING procedure"
+      },
+      {
+       "do": "Mixture set too rich or too lean — adjust the mixture (see section 4)"
+      },
+      {
+       "do": "Impurities in the fuel system — check the fuel pressure, switch the electric pump on"
+      },
+      {
+       "do": "Ignition failure — magneto switch to \"L\", then to \"R\", then back to \"Both\""
+      },
+      {
+       "do": "Select the position giving the best engine running and reach the nearest airfield at reduced power, mixture set to obtain smooth engine running"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "oil-pressure-loss",
+   "title": "Loss of oil supply",
+   "subtitle": "Oil pressure drop — watch the temperature",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Trigger",
+     "v": "Oil pressure drop"
+    },
+    {
+     "k": "Watch",
+     "v": "Oil temperature rising into the red zone"
+    },
+    {
+     "k": "Then",
+     "v": "Reduce power, nearest airfield"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "If the oil pressure drops",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Monitor the oil temperature"
+      },
+      {
+       "do": "If it rises abnormally (red zone) — reduce the power"
+      },
+      {
+       "do": "Reach the nearest airfield, prepared for a possible forced landing in a field"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "icing",
+   "title": "Icing",
+   "subtitle": "Carburettor and airframe icing",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Carb heat",
+     "v": "Full hot (pull), all-or-nothing"
+    },
+    {
+     "k": "Very rapid icing",
+     "v": "Carry out a forced landing"
+    },
+    {
+     "k": "Ice on leading edge",
+     "v": "more than 0.5 cm (0.2 in) raises the stall speed"
+    },
+    {
+     "k": "Approach if iced",
+     "v": "135 km/h (73 kt)"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "IMMEDIATE ACTIONS",
+     "source": "AFM §3",
+     "intro": "Proceed as follows when you are caught out by icing.",
+     "steps": [
+      {
+       "do": "Carburettor heat — HOT (pull)"
+      },
+      {
+       "do": "Increase the power in order to keep ice formation to a minimum"
+      },
+      {
+       "do": "Switch the pitot heat on (if fitted)"
+      },
+      {
+       "do": "Set the air conditioning to full hot and direct the whole flow onto the windscreen (\"demist\" position), to clear the ice from it quickly"
+      },
+      {
+       "do": "Turn back or change altitude to get an outside temperature less critical for icing"
+      },
+      {
+       "do": "Consider landing at the next aerodrome"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Rapid icing, then stall speed and approach",
+     "source": "AFM §3",
+     "text": "With extremely rapid ice formation, carry out a forced landing. Remember that a layer of more than 0.5 cm (0.2 in) on the leading edge increases the stall speed noticeably. If necessary use an approach speed higher than normal: 135 km/h (73 kt)."
+    },
+    {
+     "type": "note",
+     "title": "Carburettor heat remarks",
+     "source": "AFM §3",
+     "text": "If carburettor heat must be kept on permanently, the mixture must imperatively be adjusted with the mixture lever to obtain smooth engine running. Always use carburettor heat all-or-nothing (full hot or full cold); an intermediate position can in some cases make the icing worse."
+    }
+   ]
+  },
+  {
+   "id": "alternator-failure",
+   "title": "Electrical generation failure",
+   "subtitle": "Amber \"alternator failure\" light",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Symptom",
+     "v": "Amber alternator failure light, voltage decreasing"
+    },
+    {
+     "k": "First action",
+     "v": "Alternator field OFF then ON again"
+    },
+    {
+     "k": "Engine",
+     "v": "Runs normally on magnetos"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "If the amber light comes on",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Alternator field — SWITCH OFF THEN SWITCH ON AGAIN",
+       "note": "The purpose is to reset the overvoltage relay, which can trip after a transient overvoltage."
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "If the failure persists",
+     "source": "AFM §3",
+     "steps": [
+      {
+       "do": "Alternator field — OFF"
+      },
+      {
+       "do": "Switch off all electrical equipment not indispensable to the continuation of the flight"
+      },
+      {
+       "do": "Land as soon as possible to have the electrical system checked"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Symptoms and effect",
+     "source": "AFM §3",
+     "text": "The alternator failure shows as the amber \"alternator failure\" light on the annunciator panel and a progressive drop of the system voltage on the voltmeter. An alternator failure does not prevent the engine from running normally."
+    }
+   ]
+  },
+  {
+   "id": "elevator-failure",
+   "title": "Elevator control failure",
+   "subtitle": "Fly on trim and throttle",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Stabilise",
+     "v": "Level, flaps up, 130 km/h (70 kt)"
+    },
+    {
+     "k": "Angle of descent",
+     "v": "Throttle only"
+    },
+    {
+     "k": "Reduce power",
+     "v": "Only on short final, close to the ground"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "flow",
+     "title": "Loss of elevator control effectiveness",
+     "source": "AFM §3",
+     "intro": "Accidental disconnection of the elevator control.",
+     "steps": [
+      {
+       "do": "Stabilise the aircraft in level flight, flaps up, at 130 km/h (70 kt), using the elevator trim and the throttle"
+      },
+      {
+       "do": "Do not touch the trim again, and control the angle of descent with the throttle only"
+      },
+      {
+       "do": "Reduce the power only on short final, close to the ground"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "spin-recovery",
+   "title": "Unintentional spin",
+   "subtitle": "Standard recovery",
+   "map": {
+    "point": "areaHigh"
+   },
+   "context": [
+    {
+     "k": "Rudder",
+     "v": "Full, opposite to the rotation"
+    },
+    {
+     "k": "Elevator and ailerons",
+     "v": "Neutral"
+    },
+    {
+     "k": "Pull out",
+     "v": "Within the flight envelope limits"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "SPIN RECOVERY",
+     "source": "AFM §3",
+     "items": [
+      {
+       "c": "Throttle lever",
+       "r": "IDLE (pull)"
+      },
+      {
+       "c": "Rudder",
+       "r": "FULL, AGAINST THE DIRECTION OF ROTATION"
+      },
+      {
+       "c": "Elevator",
+       "r": "NEUTRAL"
+      },
+      {
+       "c": "Ailerons",
+       "r": "NEUTRAL"
+      },
+      {
+       "c": "As soon as the rotation stops",
+       "r": "RUDDER NEUTRAL AND PULL OUT WITHIN THE FLIGHT ENVELOPE LIMITS"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Flaps",
+     "source": "AFM §3",
+     "text": "If the flaps are extended at the moment the spin starts, retract them as quickly as possible."
+    }
+   ]
+  },
+  {
+   "id": "night-failures",
+   "title": "Night VFR failures",
+   "subtitle": "Additif 2 — additional to Section 3",
+   "map": {
+    "point": "area"
+   },
+   "context": [
+    {
+     "k": "Scope",
+     "v": "Additif 2, Section 3 (p. 7.09) — completes the Section 3 procedures"
+    },
+    {
+     "k": "Backup lighting",
+     "v": "Lighting 2 and the torch"
+    },
+    {
+     "k": "Battery failure",
+     "v": "Breakers off, then battery and alternator on"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "title": "Scope condition",
+     "source": "AFM Additif 2 — VFR de nuit, Section 1 (p. 7.08)",
+     "text": "These procedures complete those of Section 3 and apply only to an aircraft equipped for night VFR. The p. 7.08 list adds to the day-VFR equipment, among others: artificial horizon, turn indicator, directional gyro, variometer, anti-collision, navigation, taxi and landing lights, panel lighting, spare fuses, electric torch. Two further conditions from the same page: the DR 400/140 B is eligible for night VFR in non-icing conditions only, and only where major modification no. 56 (panel lighting) is embodied — check that HB-KFO qualifies."
+    },
+    {
+     "type": "checklist",
+     "title": "LIGHTING 1 FAILURE",
+     "source": "AFM Additif 2 — VFR de nuit, Section 3 (p. 7.09)",
+     "items": [
+      {
+       "c": "Lighting 2",
+       "r": "ON"
+      },
+      {
+       "c": "Lighting 1 fuse",
+       "r": "CHECKED"
+      }
+     ],
+     "closing": "If the failure persists, lighting 2 and the torch serve as emergency lighting."
+    },
+    {
+     "type": "checklist",
+     "title": "LIGHT (PHARES) FAILURE — landing and taxi lights",
+     "source": "AFM Additif 2 — VFR de nuit, Section 3 (p. 7.09)",
+     "items": [
+      {
+       "c": "Phares switch / circuit breaker",
+       "r": "CHECKED",
+       "note": "The AFM heading is \"Panne de phares\", plural. The night-VFR equipment list (p. 7.08) names both a landing light (feu d'atterrissage) and a taxi light (feu de roulage), so both are in scope."
+      }
+     ]
+    },
+    {
+     "type": "checklist",
+     "title": "BATTERY FAILURE",
+     "source": "AFM Additif 2 — VFR de nuit, Section 3 (p. 7.09)",
+     "intro": "If, following a complete battery failure, the alternator de-excites and causes a total loss of electrical supply.",
+     "items": [
+      {
+       "c": "Battery, alternator and radio circuit breakers (if fitted)",
+       "r": "OFF"
+      },
+      {
+       "c": "Battery switch",
+       "r": "ON"
+      },
+      {
+       "c": "Alternator switch",
+       "r": "ON"
+      }
+     ],
+     "closing": "Confirm that the circuits are powered again. Switch back on only the equipment necessary for the safety of the flight."
+    }
+   ]
+  }
+ ]
+}

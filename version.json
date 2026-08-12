@@ -1,6 +1,32 @@
 {
- "version": "1.14.0",
+ "version": "1.15.0",
  "releases": [
+  {
+   "version": "1.15.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "New course — EMERGENCIES: 18 situations from the AFM section 3 and SPHAIR, from a rejected take-off to a spin recovery, engine failures, fires, forced and precautionary landings, icing, alternator and elevator failures. 11 vital actions marked to be known by heart, plus 21 examiner scenarios. Switch course at the top of the home screen.",
+     "The emergency course replaces the circuit map with a situation band showing WHEN each emergency applies — ground, take-off, in flight, circuit, landing."
+    ],
+    "changed": [
+     "Cards now carry their own header (type, source, check name), so a card reads as one block instead of a floating title.",
+     "Cards hug their content and no longer stretch into a large empty area."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Nouveau cours — URGENCES : 18 situations tirées de l'AFM section 3 et de SPHAIR, du décollage interrompu à la sortie de vrille, en passant par les pannes moteur, les feux, l'atterrissage forcé et de précaution, le givrage, la panne d'alternateur et de profondeur. 11 actions vitales marquées à savoir par cœur, plus 21 scénarios d'examinateur. Change de cours en haut de l'accueil.",
+     "Le cours Urgences remplace la carte de volte par une bande de situation qui montre QUAND chaque urgence s'applique — sol, décollage, en vol, volte, atterrissage."
+    ],
+    "changed": [
+     "Les cartes portent désormais leur propre en-tête (type, source, nom du check) : une carte se lit comme un bloc au lieu d'un titre flottant.",
+     "Les cartes s'ajustent à leur contenu et ne s'étirent plus sur une grande zone vide."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.14.0",
    "date": "2026-08-12",

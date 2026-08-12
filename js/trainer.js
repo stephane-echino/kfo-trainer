@@ -1,6 +1,6 @@
 // Chair-flying engine: say it out loud → tap to reveal → grade → next.
 import { store } from './store.js';
-import { renderCircuit, moveDot } from './circuit.js';
+import { renderCircuit, moveDot, renderSituationBand, moveBand } from './circuit.js';
 import { voiceSupported, createRecognizer, matchScore } from './voice.js';
 import { t } from './i18n.js';
 import { haptic, burst, floatLabel, todayIso } from './fx.js';
@@ -53,6 +53,23 @@ export function createTrainer({ onExit }) {
       btnBack: $('btn-trainer-back'),
       btnVoice: $('btn-voice-toggle'),
     });
+  }
+
+  // The circuit course gets the pattern map; the emergency course gets a
+  // situation band, because a pattern drawing says nothing about a cabin fire.
+  let mapMode = 'circuit';
+
+  function setMapMode(mode) {
+    if (mode === mapMode && els.circuit.childElementCount) return;
+    mapMode = mode;
+    if (mode === 'band') {
+      renderSituationBand(els.circuit, {
+        ground: t('band.ground'), takeoff: t('band.takeoff'), inflight: t('band.inflight'),
+        circuit: t('band.circuit'), landing: t('band.landing'),
+      });
+    } else {
+      renderCircuit(els.circuit);
+    }
   }
 
   function init() {
@@ -128,7 +145,9 @@ export function createTrainer({ onExit }) {
       ...conds,
       ...(phase.context || []).map(c => `<span>${c.k ? `${esc(c.k)} ` : ''}<b>${esc(c.v)}</b></span>`),
     ].join('<span class="ctx-sep">·</span>');
-    moveDot(els.circuit, phase.map);
+    setMapMode((store.getSettings().course || 'circuit') === 'emergency' ? 'band' : 'circuit');
+    if (mapMode === 'band') moveBand(els.circuit, phase.map);
+    else moveDot(els.circuit, phase.map);
 
     els.progress.style.width = `${(index / Math.max(steps.length - 1, 1)) * 100}%`;
     els.blockTitle.textContent = s.blockTitle;

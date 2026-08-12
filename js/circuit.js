@@ -94,3 +94,43 @@ export function moveDot(container, map) {
   const alt = container.querySelector('#circuit-alt');
   if (alt) alt.textContent = map?.altFt ? `${map.altFt} ft AAL` : '';
 }
+
+// ---------------------------------------------------------------------------
+// Situation band — used by the emergency course, where a traffic-pattern
+// drawing would be decorative at best and misleading at worst (11 of the 18
+// emergency phases sit in the training area). This says *when* the emergency
+// applies, which is the thing worth learning.
+// ---------------------------------------------------------------------------
+
+const BANDS = [
+  { id: 'ground', points: ['parking', 'taxi', 'holding', 'lineup', 'exit'] },
+  { id: 'takeoff', points: ['roll', 'upwind', 'crosswind', 'departure'] },
+  { id: 'inflight', points: ['area', 'areaHigh', 'rejoin'] },
+  { id: 'circuit', points: ['downwindEarly', 'downwind', 'downwindLate', 'base', 'final'] },
+  { id: 'landing', points: ['short-final', 'landing'] },
+];
+
+export function renderSituationBand(container, labels) {
+  container.innerHTML = `<div class="sitband">${BANDS.map(b => `
+    <div class="sitband-seg" data-band="${b.id}">
+      <span class="sitband-bar"></span>
+      <span class="sitband-label">${labels[b.id] || b.id}</span>
+    </div>`).join('')}</div>`;
+}
+
+export function moveBand(container, map) {
+  const point = map?.point;
+  const active = BANDS.find(b => b.points.includes(point))?.id;
+  for (const seg of container.querySelectorAll('.sitband-seg')) {
+    seg.classList.toggle('active', seg.dataset.band === active);
+  }
+  const alt = map?.altFt;
+  const activeSeg = container.querySelector('.sitband-seg.active');
+  container.querySelectorAll('.sitband-alt').forEach(e => e.remove());
+  if (alt && activeSeg) {
+    const tag = document.createElement('span');
+    tag.className = 'sitband-alt';
+    tag.textContent = `${alt} ft`;
+    activeSeg.appendChild(tag);
+  }
+}
