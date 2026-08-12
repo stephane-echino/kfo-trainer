@@ -24,7 +24,7 @@
   },
   {
    "code": "Vcc",
-   "kias": "90-(76 at ceiling altitude)",
+   "kias": "90-(76 au plafond)",
    "label": "montée de croisière",
    "unit": "KIAS"
   },

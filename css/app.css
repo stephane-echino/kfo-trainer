@@ -324,7 +324,7 @@ h1 {
 .step-block-title:empty { display: none; }
 
 .step-card {
-  position: relative; flex: 0 1 auto; max-height: 100%; overflow-y: auto;
+  position: relative; flex: 0 1 auto; max-height: 100%;
   -webkit-overflow-scrolling: touch;
   background: linear-gradient(165deg, var(--bg-card-2), var(--bg-card) 60%);
   border: 1px solid var(--line-soft); border-radius: var(--radius);
@@ -334,7 +334,12 @@ h1 {
   min-height: 46dvh;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.035) inset, 0 12px 34px rgba(0, 0, 0, 0.34);
   transition: transform 0.13s var(--ease), border-color 0.25s;
-  touch-action: manipulation; overflow: hidden;
+  touch-action: manipulation;
+  /* x hidden, y scrollable. Written as one shorthand on purpose: an earlier
+     `overflow-y: auto` here was clobbered by a later `overflow: hidden` in this
+     same rule, which silently truncated the longest cards — unacceptable on an
+     emergency procedure. Splitting them back also forces x to auto. */
+  overflow: hidden auto;
 }
 .step-card:active { transform: scale(0.988); }
 .step-card.revealed { border-color: rgba(248, 189, 74, 0.28); }
@@ -404,7 +409,12 @@ h1 {
   white-space: pre-line; letter-spacing: -0.3px;
   animation: answer-in 0.32s var(--ease);
 }
-.step-answer.long { font-size: 18.5px; font-weight: 600; text-align: left; line-height: 1.45; color: var(--text); }
+.step-answer.long {
+  font-size: 18.5px; font-weight: 600; text-align: left; line-height: 1.45;
+  color: #f6d79a;                       /* still reads as "the answer" */
+  border-left: 3px solid var(--amber);
+  padding-left: 12px; width: 100%;
+}
 /* when the answer is a sentence, the generic prompt above it must step back —
    the answer is the content, the prompt is only the cue */
 .step-card.long-answer .step-prompt { font-size: 15px; font-weight: 550; color: var(--text-dim); }
@@ -552,12 +562,18 @@ h1 {
   font-size: 9.5px; letter-spacing: 0.3px; text-transform: none; font-weight: 500;
   color: var(--text-faint); border: 1px solid var(--line-soft); border-radius: 999px; padding: 2px 7px;
 }
+/* Two columns rather than flex space-between: the right-hand side is often a
+   whole sentence (up to 183 characters on a flow step), and ragged-left
+   paragraphs are unreadable. */
 .ref-item {
-  display: flex; justify-content: space-between; gap: 12px; padding: 6px 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 12px; padding: 6px 0;
   font-size: 13.5px; border-bottom: 1px dotted var(--line-soft);
 }
+/* numbered flow/briefing lines: "4." must not eat half the width */
+.ref-item.numbered { grid-template-columns: 1.9em minmax(0, 1fr); }
 .ref-item .c { color: var(--text); }
-.ref-item .r { color: var(--amber); text-align: right; font-weight: 650; }
+.ref-item .r { color: var(--amber); text-align: left; font-weight: 650; }
 .ref-note {
   font-size: 12.5px; color: var(--text-dim); padding: 8px 10px; line-height: 1.5; white-space: pre-line;
   background: var(--bg-raise); border-left: 2px solid var(--line); border-radius: 8px; margin: 6px 0;

@@ -1,6 +1,36 @@
 {
- "version": "1.30.0",
+ "version": "1.31.0",
  "releases": [
+  {
+   "version": "1.31.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Reference now reads in two aligned columns. Responses were right-aligned, which turned every long line — a third of the circuit, half the emergencies — into a ragged paragraph.",
+     "A revealed long answer is amber with a rule down its left edge, so revealing produces an answer rather than more grey text."
+    ],
+    "fixed": [
+     "Cards could not scroll: an `overflow: hidden` later in the same CSS rule silently overrode the scrolling, so the end of the longest cards was unreachable. On an emergency procedure that is the one bug that matters.",
+     "Leaving the Examiner after three questions announced \"3/3 — examiner is impressed\" and could unlock the perfect-session badge. It now says the session was stopped, and the badge needs a full ten.",
+     "Examiner misses vanished. Questions that map to a step now feed the daily review; speeds and scenarios still write nothing, since no step lies behind them.",
+     "Vcc read \"90-(76 at ceiling altitude)\" in the French module."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "La Référence se lit désormais en deux colonnes alignées. Les réponses étaient alignées à droite, ce qui transformait chaque ligne longue — un tiers du circuit, la moitié des urgences — en paragraphe en drapeau.",
+     "Une réponse longue révélée est en ambre avec un filet à gauche : révéler produit une réponse, plus un simple surplus de texte gris."
+    ],
+    "fixed": [
+     "Les cartes ne pouvaient pas défiler : un « overflow: hidden » plus bas dans la même règle CSS écrasait le défilement, rendant la fin des cartes les plus longues inatteignable. Sur une procédure d'urgence, c'est le seul bug qui compte.",
+     "Quitter l'Examinateur après trois questions annonçait « 3/3 — l'examinateur est impressionné » et pouvait débloquer le succès de session parfaite. Il indique maintenant que la session a été interrompue, et le succès exige les dix questions.",
+     "Les ratés de l'Examinateur disparaissaient. Les questions rattachées à une étape alimentent désormais la révision du jour ; les vitesses et scénarios n'écrivent toujours rien, faute d'étape derrière eux.",
+     "Vcc affichait « 90-(76 at ceiling altitude) » dans le module français."
+    ]
+   }
+  },
   {
    "version": "1.30.0",
    "date": "2026-08-12",

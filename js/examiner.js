@@ -37,8 +37,9 @@ export function createExaminer({ onExit }) {
     els.card.addEventListener('click', onTap);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
-    // single handler slot — finish() swaps it for the "new session" handler
-    els.btnQuit.onclick = finish;
+    // single handler slot — finish() swaps it for the "new session" handler.
+    // Wrapped so the click Event is not passed as `completed`.
+    els.btnQuit.onclick = () => finish(false);
     els.btnBack.addEventListener('click', onExit);
   }
 
@@ -55,7 +56,7 @@ export function createExaminer({ onExit }) {
     dayCredited = false;
     // start() owns the quit button — finish() repurposes it, so reclaim it here
     els.btnQuit.textContent = t('exam.end');
-    els.btnQuit.onclick = finish;
+    els.btnQuit.onclick = () => finish(false);
     render();
   }
 
@@ -97,6 +98,7 @@ export function createExaminer({ onExit }) {
         tag: s2.blockTitle, kind: t('exam.kind.item'),
         q: `${s2.challenge} — ?`,
         a: s2.response,
+        key: s2.key,
         long: (s2.response || '').length > 60,
       });
     }
@@ -125,6 +127,7 @@ export function createExaminer({ onExit }) {
         tag: s.blockTitle, kind: t('exam.kind.spoken'),
         q: t('exam.spokenQ', `${s.challenge} — ${s.response}`),
         a: s.spoken,
+        key: s.key,
         long: true,
       });
     }
@@ -140,6 +143,7 @@ export function createExaminer({ onExit }) {
         tag: cur.blockTitle, kind: t('exam.kind.next'),
         q: t('exam.nextQ', shorten(prev.answer)),
         a,
+        key: cur.key,
         long: a.length > 60,
       });
     }
@@ -178,7 +182,7 @@ export function createExaminer({ onExit }) {
 
   function render() {
     const q = get();
-    if (!q) { finish(); return; }
+    if (!q) { finish(true); return; }
     els.score.textContent = t('exam.score', index + 1, questions.length, score.ok, score.miss);
     els.tag.textContent = q.tag;
     els.kind.textContent = q.kind;
@@ -213,27 +217,36 @@ export function createExaminer({ onExit }) {
     // an examiner session is real practice: it earns and it counts for the day
     if (!dayCredited) { dayCredited = true; store.touchDay(todayIso()); }
     store.bumpStreak(ok);
+    // questions that map 1:1 to a step feed the review schedule; speeds and
+    // scenarios have no step behind them, so nothing is written for those
+    const q = get();
+    if (q?.key) {
+      if (ok) store.clearMiss(q.key); else store.addMiss(q.key);
+      store.recordAnswer(q.key, ok, todayIso());
+    }
     if (ok) {
       store.addXp(6);
       floatLabel(els.card, '+6 XP');
     }
-    if (index >= questions.length - 1) { finish(); return; }
+    if (index >= questions.length - 1) { finish(true); return; }
     index += 1;
     render();
   }
 
-  function finish() {
+  function finish(completed = false) {
     finished = true;
     const total = score.ok + score.miss;
-    // a clean sheet is worth an achievement
-    if (total === SESSION_SIZE && score.miss === 0) checkUnlocks(null, { examPerfect: true });
+    // a clean sheet is worth an achievement — only over a whole session
+    if (completed && total === SESSION_SIZE && score.miss === 0) checkUnlocks(null, { examPerfect: true });
     els.score.textContent = t('exam.over');
     els.tag.textContent = '';
     els.kind.textContent = t('exam.result');
     els.kind.className = 'step-kind k-checklist';
-    els.question.textContent = total
-      ? (score.ok === total ? t('exam.resultPerfect', score.ok, total) : t('exam.resultPartial', score.ok, total))
-      : t('exam.resultNone');
+    els.question.textContent = !total
+      ? t('exam.resultNone')
+      : !completed
+        ? t('exam.resultStopped', score.ok, total)
+        : (score.ok === total ? t('exam.resultPerfect', score.ok, total) : t('exam.resultPartial', score.ok, total));
     els.answer.classList.add('hidden');
     els.answer.textContent = '';
     els.hint.textContent = t('exam.overHint');

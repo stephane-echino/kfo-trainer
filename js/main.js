@@ -532,7 +532,8 @@ function filterReference(query) {
 function refItem(c, r, note) {
   const wrap = document.createElement('div');
   const row = document.createElement('div');
-  row.className = 'ref-item';
+  // a bare ordinal ("4.") gets a narrow first column
+  row.className = /^\d+\.$/.test(String(c).trim()) ? 'ref-item numbered' : 'ref-item';
   row.innerHTML = `<span class="c"></span><span class="r"></span>`;
   row.querySelector('.c').textContent = c;
   row.querySelector('.r').textContent = r;
