@@ -858,3 +858,10 @@ h1 {
   display: block; margin-top: 12px; font-size: 12.5px; font-weight: 500;
   color: var(--blue); line-height: 1.45;
 }
+
+/* What the number does not measure. Small, but never hidden: a percentage
+   called "procedures in memory" must not be read as "ready to fly". */
+.readiness-caveat {
+  font-size: 10.5px; line-height: 1.45; color: var(--text-faint);
+  margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line-soft);
+}

@@ -508,14 +508,17 @@ export function createTrainer({ onExit }) {
     if (!s || !revealed) return;
     if (ok) store.clearMiss(s.key); else store.addMiss(s.key);
     // every graded answer schedules when the step should come back
-    if (s.graded) store.recordAnswer(s.key, ok, todayIso(), s.mem ? 4 : undefined);
+    if (s.graded) store.recordAnswer(s.key, ok, todayIso(), s.mem ? 4 : undefined, { cued: clueUsed });
     if (s.graded) award(ok);
     advance(ok);
   }
 
   // XP and running streak — cosmetic motivation, never affects content.
   function award(ok) {
-    if (session) session[ok ? 'ok' : 'miss'] += 1;
+    if (session) {
+      session[ok ? 'ok' : 'miss'] += 1;
+      if (ok && clueUsed) session.cued = (session.cued || 0) + 1;
+    }
     // a session interrupted mid-flight still counts as practice for today
     if (session && !session.dayCredited) {
       session.dayCredited = true;
@@ -524,7 +527,8 @@ export function createTrainer({ onExit }) {
     const clued = clueUsed;
     const cur = get();
     if (cur?.phase?.id) store.recordPhase(cur.phase.id, ok);
-    const streak = store.bumpStreak(ok);
+    // a clued hit is neutral for the run: it neither extends nor breaks it
+    const streak = (ok && clued) ? store.getStats().streak : store.bumpStreak(ok);
     if (ok) {
       const bonus = streak >= 20 ? 6 : streak >= 10 ? 4 : streak >= 5 ? 2 : 0;
       const gained = clued ? 4 : 10 + bonus;   // a clued answer is worth less
@@ -644,7 +648,7 @@ export function createTrainer({ onExit }) {
 
     els.prompt.innerHTML = total
       ? `<span class="summary-score">${pct}<span class="pct">%</span></span>
-         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗ · +${xp} XP · ${timeLine}</span>
+         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗${session.cued ? ` · ${t('summary.cued', session.cued)}` : ''} · +${xp} XP · ${timeLine}</span>
          ${nextLine ? `<span class="summary-next">${esc(nextLine)}</span>` : ''}`
       : esc(missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean'));
     if (beatRecord) burst(els.card, 26);

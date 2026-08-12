@@ -68,7 +68,7 @@ export const store = {
 
   // maxBox caps how far a step can climb. Vital actions stop at box 4 (16 days)
   // so they keep coming back — they are the ones you cannot look up in flight.
-  recordAnswer(stepKey, ok, todayIso, maxBox = SR_INTERVALS.length - 1) {
+  recordAnswer(stepKey, ok, todayIso, maxBox = SR_INTERVALS.length - 1, opts = {}) {
     const sched = store.getSched();
     const cur = sched[stepKey] || { box: 0, due: todayIso };
     // Only a step that is actually due earns a promotion. Answering the same
@@ -77,6 +77,14 @@ export const store = {
     // not skip rungs of the ladder. A miss always demotes: forgetting is signal
     // whenever it happens.
     if (ok && cur.due > todayIso) return cur;
+    // An answer found with a clue in hand does not predict free recall in the
+    // aircraft. Hold the box and keep it due today rather than promoting it —
+    // due tomorrow would freeze the item for the day.
+    if (ok && opts.cued) {
+      sched[stepKey] = { box: cur.box, due: todayIso };
+      write(scoped('sched'), sched);
+      return sched[stepKey];
+    }
     const box = ok ? Math.min(cur.box + 1, maxBox) : 0;
     sched[stepKey] = { box, due: addDays(todayIso, SR_INTERVALS[box]) };
     write(scoped('sched'), sched);

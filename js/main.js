@@ -331,6 +331,8 @@ function renderReadiness() {
   $('readiness-pct').textContent = `${r.pct}%`;
   $('readiness-fill').style.width = `${r.pct}%`;
   $('readiness-sub').textContent = t('ready.sub', r.seen, r.total, r.solid);
+  // the number measures wording and sequence; say plainly what it leaves out
+  $('readiness-caveat').textContent = t('ready.caveat');
 }
 
 function renderHome() {

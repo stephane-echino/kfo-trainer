@@ -1,6 +1,32 @@
 {
- "version": "1.40.0",
+ "version": "1.41.0",
  "releases": [
+  {
+   "version": "1.41.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "The gauge now states what it does not measure, right under the number: the lookout, holding the numbers, the flare, the decision, the radio while you configure. A percentage is easy to read as \"ready to fly\"."
+    ],
+    "changed": [
+     "\"Ready for the flight\" is now \"Procedures in memory\", and the 90% badge is \"Off the page\" rather than \"Checked out\". The app measures wording and sequence — it cannot measure whether you can fly."
+    ],
+    "fixed": [
+     "An answer found with a clue promoted the step up the review ladder exactly like an unaided one, and extended the streak — despite the app claiming otherwise. A clued answer now holds its box, stays due today, and leaves the streak untouched. The session summary counts them separately."
+    ]
+   },
+   "fr": {
+    "added": [
+     "La jauge annonce désormais ce qu'elle ne mesure pas, juste sous le chiffre : le regard dehors, la tenue des paramètres, l'arrondi, la décision, la radio pendant que tu configures. Un pourcentage se lit trop facilement comme « prêt à voler »."
+    ],
+    "changed": [
+     "« Prêt pour le vol » devient « Procédures en mémoire », et le succès à 90 % « Sans la feuille » plutôt que « Lâché ». L'app mesure le libellé et l'enchaînement — elle ne peut pas mesurer si tu sais piloter."
+    ],
+    "fixed": [
+     "Une réponse trouvée avec un indice faisait monter l'étape dans le planning exactement comme une réponse libre, et prolongeait la série — alors que l'app affirmait le contraire. Une réponse avec indice garde sa boîte, reste due aujourd'hui, et laisse la série intacte. Le bilan les compte à part."
+    ]
+   }
+  },
   {
    "version": "1.40.0",
    "date": "2026-08-12",

@@ -17,20 +17,20 @@ export const ACHIEVEMENTS = [
   },
   {
     id: 'ready-25', icon: '🧭',
-    en: { name: 'Finding your way', desc: 'Reach 25% ready for the flight' },
-    fr: { name: 'Tu trouves tes marques', desc: 'Atteindre 25 % de préparation au vol' },
+    en: { name: 'Finding your way', desc: 'Reach 25% of this course held in memory' },
+    fr: { name: 'Tu trouves tes marques', desc: 'Atteindre 25 % du cours tenu en mémoire' },
     test: (s, ses, c) => (c?.readiness ?? 0) >= 25,
   },
   {
     id: 'ready-60', icon: '⭐',
-    en: { name: 'Ahead of the aircraft', desc: 'Reach 60% ready for the flight' },
-    fr: { name: 'Devant l\'avion', desc: 'Atteindre 60 % de préparation au vol' },
+    en: { name: 'Ahead of the aircraft', desc: 'Reach 60% of this course held in memory' },
+    fr: { name: 'Devant l\'avion', desc: 'Atteindre 60 % du cours tenu en mémoire' },
     test: (s, ses, c) => (c?.readiness ?? 0) >= 60,
   },
   {
     id: 'ready-90', icon: '🏆',
-    en: { name: 'Checked out', desc: 'Reach 90% ready for the flight — this course is in your memory, not on the page' },
-    fr: { name: 'Lâché', desc: 'Atteindre 90 % de préparation — ce cours est dans ta mémoire, plus sur la feuille' },
+    en: { name: 'Off the page', desc: 'Reach 90% of this course held in memory — the wording and the sequence, not the flying' },
+    fr: { name: 'Sans la feuille', desc: 'Atteindre 90 % du cours tenu en mémoire — le libellé et l\'enchaînement, pas le pilotage' },
     test: (s, ses, c) => (c?.readiness ?? 0) >= 90,
   },
   {
