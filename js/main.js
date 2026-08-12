@@ -111,18 +111,27 @@ async function loadContent() {
 // Courses whose module file actually exists; probed once at boot so the
 // switcher never offers content that has not shipped yet.
 let availableCourses = ['circuit'];
+// A HEAD request never reaches the service-worker cache (the fetch handler
+// only serves GET), so offline every probe failed and the course switcher
+// vanished — stranding the student on whichever course was saved.
+async function moduleExists(url) {
+  try {
+    if (window.caches && await caches.match(url, { ignoreSearch: true })) return true;
+  } catch { /* no CacheStorage in this context */ }
+  try {
+    return (await fetch(url, { method: 'HEAD' })).ok;
+  } catch {
+    return false;
+  }
+}
+
 async function probeCourses() {
   const lang = getLang();
   const found = [];
   for (const c of COURSES) {
-    try {
-      const res = await fetch(`./data/modules/${c.file[lang] || c.file.en}.json`, { method: 'HEAD' });
-      if (res.ok) { found.push(c.id); continue; }
-    } catch { /* fall through to the EN probe */ }
-    try {
-      const res = await fetch(`./data/modules/${c.file.en}.json`, { method: 'HEAD' });
-      if (res.ok) found.push(c.id);
-    } catch { /* not available */ }
+    const localized = `./data/modules/${c.file[lang] || c.file.en}.json`;
+    const english = `./data/modules/${c.file.en}.json`;
+    if (await moduleExists(localized) || await moduleExists(english)) found.push(c.id);
   }
   availableCourses = found.length ? found : ['circuit'];
   renderCourseSwitch();

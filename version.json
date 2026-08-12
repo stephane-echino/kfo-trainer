@@ -1,6 +1,34 @@
 {
- "version": "1.34.0",
+ "version": "1.35.0",
  "releases": [
+  {
+   "version": "1.35.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "The examiner now tells you when a session unlocked an achievement, instead of leaving you to find it later on the home screen."
+    ],
+    "fixed": [
+     "Offline, the course switcher vanished and left you stuck on whichever course was saved: availability was probed with a request type the offline cache never answers.",
+     "Twenty-one steps of published English wording inside the French modules (the GVMN briefing lines, ROTATE, GO AROUND, the taxi call-outs) were read by the French voice and listened for in French. The language now travels with the step, not with the module.",
+     "The same drill written twice in the data produced one examiner question with two different correct answers.",
+     "The readiness card looked pressable but did nothing when tapped."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "L'examinateur annonce désormais qu'une session a débloqué un succès, au lieu de te laisser le découvrir plus tard sur l'accueil."
+    ],
+    "fixed": [
+     "Hors ligne, le sélecteur de cours disparaissait et te laissait bloqué sur le cours enregistré : la disponibilité était sondée avec un type de requête auquel le cache hors-ligne ne répond jamais.",
+     "Vingt et une étapes rédigées en anglais publié à l'intérieur des modules français (les lignes du briefing GVMN, ROTATE, GO AROUND, les annonces de roulage) étaient lues par la voix française et écoutées en français. La langue voyage désormais avec l'étape, pas avec le module.",
+     "Le même exercice écrit deux fois dans les données produisait une question d'examinateur avec deux réponses correctes différentes.",
+     "La carte de préparation semblait pressable mais ne faisait rien."
+    ]
+   }
+  },
   {
    "version": "1.34.0",
    "date": "2026-08-12",

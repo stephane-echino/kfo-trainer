@@ -226,16 +226,19 @@
      "steps": [
       {
        "do": "Gaz réduits",
-       "say": "Throttle idle"
+       "say": "Throttle idle",
+       "lang": "en"
       },
       {
        "do": "Freins appliqués",
        "say": "Breaks applied",
-       "note": "Imprimé « Breaks applied » dans le briefing du club — l'action est freins appliqués. Tenir l'axe de piste au palonnier relève du SPHAIR ch.12 (12.4.5), pas du briefing GVMN."
+       "note": "Imprimé « Breaks applied » dans le briefing du club — l'action est freins appliqués. Tenir l'axe de piste au palonnier relève du SPHAIR ch.12 (12.4.5), pas du briefing GVMN.",
+       "lang": "en"
       },
       {
        "do": "Informer l'ATC (radio)",
-       "say": "Inform ATC (Radio)"
+       "say": "Inform ATC (Radio)",
+       "lang": "en"
       }
      ]
     },
@@ -322,7 +325,8 @@
      "steps": [
       {
        "do": "Vitesse selon la configuration volets",
-       "say": "Speed according to flaps setting (78 KIAS flaps up, 73 KIAS flaps 1 notch)"
+       "say": "Speed according to flaps setting (78 KIAS flaps up, 73 KIAS flaps 1 notch)",
+       "lang": "en"
       },
       {
        "do": "Secteur d'atterrissage",
@@ -330,11 +334,13 @@
       },
       {
        "do": "Volets",
-       "say": "Full flaps when landing is ensured"
+       "say": "Full flaps when landing is ensured",
+       "lang": "en"
       },
       {
        "do": "Vitesse d'approche",
-       "say": "Speed Vref 62 KIAS"
+       "say": "Speed Vref 62 KIAS",
+       "lang": "en"
       }
      ]
     },
@@ -346,7 +352,8 @@
      "steps": [
       {
        "do": "PANNE MOTEUR — assiette de plané",
-       "say": "ENGINE FAILURE"
+       "say": "ENGINE FAILURE",
+       "lang": "en"
       },
       {
        "do": "Volets sortis à la demande"
@@ -417,7 +424,8 @@
      "steps": [
       {
        "do": "Vitesse",
-       "say": "Speed 78 KIAS"
+       "say": "Speed 78 KIAS",
+       "lang": "en"
       },
       {
        "do": "Demi-tour",
@@ -425,11 +433,13 @@
       },
       {
        "do": "Volets",
-       "say": "Full flaps when landing is ensured"
+       "say": "Full flaps when landing is ensured",
+       "lang": "en"
       },
       {
        "do": "Vitesse d'approche",
-       "say": "Speed Vref 62 KIAS"
+       "say": "Speed Vref 62 KIAS",
+       "lang": "en"
       }
      ]
     },
@@ -1017,7 +1027,8 @@
       },
       {
        "do": "Volets en position décollage",
-       "say": "SPEED ABOVE 60, FLAPS 1"
+       "say": "SPEED ABOVE 60, FLAPS 1",
+       "lang": "en"
       },
       {
        "do": "Monter à 70 KIAS"

@@ -717,7 +717,7 @@ h1 {
   border: 1px solid var(--line-soft);
   transition: transform 0.14s var(--ease), border-color 0.2s;
 }
-.readiness:active { transform: scale(0.985); }
+
 .readiness-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .readiness-label {
   font-size: 11px; text-transform: uppercase; letter-spacing: 1.1px;

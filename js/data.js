@@ -44,6 +44,9 @@ export function flattenSteps(mod, include = null) {
         phase, blockTitle,
         kind: block.type,
         source: block.source || null,
+        // published English wording can sit inside a French module (GVMN
+        // briefing lines, SPHAIR call-outs) — speech follows this, not the UI
+        lang: block.lang || null,
         graded: block.type !== 'note',
         ...s,
       });
@@ -85,6 +88,7 @@ export function flattenSteps(mod, include = null) {
           answerLong: (st.say ? st.say : st.do).length > 60,
           note: combineNote(st),
           sayTarget: st.say || st.do,
+          lang: st.lang || block.lang || null,
         }));
       } else if (block.type === 'callout' || block.type === 'radio') {
         block.items.forEach((it, i) => push(i, {

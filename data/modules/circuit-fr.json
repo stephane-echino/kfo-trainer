@@ -630,16 +630,19 @@
      "steps": [
       {
        "do": "Frein de parc — BLOQUE",
-       "say": "Parking Brake – SET"
+       "say": "Parking Brake – SET",
+       "lang": "en"
       },
       {
        "do": "Manette de gaz — AJUSTE 1000 RPM",
-       "say": "Power – ….SET"
+       "say": "Power – ….SET",
+       "lang": "en"
       },
       {
        "do": "Feu de roulage — DECLENCHE",
        "say": "Taxi Light – OFF",
-       "note": "À chaque arrêt, laisser la roue de proue en position neutre."
+       "note": "À chaque arrêt, laisser la roue de proue en position neutre.",
+       "lang": "en"
       }
      ]
     },
@@ -1020,7 +1023,8 @@
       },
       {
        "do": "A Vrotate 54 KIAS, amener l'avion à l'assiette de décollage",
-       "say": "ROTATE"
+       "say": "ROTATE",
+       "lang": "en"
       },
       {
        "do": "Montée à Vx 70 KIAS"
@@ -1264,7 +1268,8 @@
       {
        "do": "Puissance de montée — RÉGLÉE, PLEIN GAZ",
        "say": "Climb Power SET",
-       "note": "Hélice à pas fixe : la montée est exécutée à pleine puissance, la manette des gaz en butée avant."
+       "note": "Hélice à pas fixe : la montée est exécutée à pleine puissance, la manette des gaz en butée avant.",
+       "lang": "en"
       },
       {
        "do": "Assiette de montée — ADAPTÉE AU TYPE DE MONTÉE",
@@ -1336,7 +1341,8 @@
       {
        "do": "Puissance — réduire à la puissance de croisière selon les PERFORMANCE TABLES de l'AFM",
        "say": "Power ….. SET",
-       "note": "Ne réduire que lorsque la vitesse de vol n'augmente plus."
+       "note": "Ne réduire que lorsque la vitesse de vol n'augmente plus.",
+       "lang": "en"
       },
       {
        "do": "Trim — réglé, après la réduction de puissance",
@@ -1594,7 +1600,8 @@
       },
       {
        "do": "Ajuster la puissance selon le type de descente exécuté",
-       "say": "Power ADJUST"
+       "say": "Power ADJUST",
+       "lang": "en"
       },
       {
        "do": "Trimmer une fois l'assiette stabilisée",
@@ -2146,7 +2153,8 @@
      "steps": [
       {
        "do": "Décider la remise de gaz",
-       "say": "GO AROUND"
+       "say": "GO AROUND",
+       "lang": "en"
       },
       {
        "do": "Afficher la puissance de décollage (T/O PWR)",
@@ -2171,11 +2179,13 @@
       },
       {
        "do": "Rotation",
-       "say": "SPEED ABOVE 54, ROTATE"
+       "say": "SPEED ABOVE 54, ROTATE",
+       "lang": "en"
       },
       {
        "do": "Contrôler un taux de montée positif, puis volets 1er cran",
-       "say": "SPEED ABOVE 60, POSITIVE ROC, FLAPS 1"
+       "say": "SPEED ABOVE 60, POSITIVE ROC, FLAPS 1",
+       "lang": "en"
       },
       {
        "do": "Monter à 70 KIAS, puis selon la procédure"

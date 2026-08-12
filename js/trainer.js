@@ -664,6 +664,8 @@ export function createTrainer({ onExit }) {
   // checklists and technique flows follow the module language.
   function stepLang(step) {
     if (!step) return 'en-US';
+    // the data can say so explicitly (English wording inside a French module)
+    if (step.lang) return step.lang === 'fr' ? 'fr-FR' : 'en-US';
     if (step.kind === 'callout' || step.kind === 'radio') return 'en-US';
     return getLang() === 'fr' ? 'fr-FR' : 'en-US';
   }

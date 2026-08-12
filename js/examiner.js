@@ -1,9 +1,9 @@
 // Examiner mode: 10 random questions per session, drawn from
 // speeds, memory flows ("what comes next", recitation) and scenarios.
-import { t } from './i18n.js';
+import { t, getLang } from './i18n.js';
 import { store } from './store.js';
 import { checkUnlocks } from './achievements.js';
-import { todayIso, floatLabel } from './fx.js';
+import { todayIso, floatLabel, burst } from './fx.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -185,7 +185,17 @@ export function createExaminer({ onExit }) {
       qs.push({ tag: ex.tag || t('exam.kind.scenario'), kind: t('exam.kind.scenario'), q: ex.q, a: ex.a, long: ex.a.length > 60 });
     }
 
-    return qs;
+    // A question is only distinguishable by what the card shows. Two blocks
+    // written differently in the data (the same taxi drill once with `say`
+    // wording and once with `do` wording) would otherwise appear as one
+    // question with two different correct answers.
+    const seenQ = new Set();
+    return qs.filter(q => {
+      const sig = `${q.kind}::${q.q}`;
+      if (seenQ.has(sig)) return false;
+      seenQ.add(sig);
+      return true;
+    });
   }
 
   function get() { return questions[index]; }
@@ -248,7 +258,9 @@ export function createExaminer({ onExit }) {
     finished = true;
     const total = score.ok + score.miss;
     // a clean sheet is worth an achievement — only over a whole session
-    if (completed && total === SESSION_SIZE && score.miss === 0) checkUnlocks(null, { examPerfect: true });
+    const fresh = completed
+      ? checkUnlocks(null, { examPerfect: total === SESSION_SIZE && score.miss === 0 })
+      : [];
     els.score.textContent = t('exam.over');
     els.tag.textContent = '';
     els.kind.textContent = t('exam.result');
@@ -260,6 +272,15 @@ export function createExaminer({ onExit }) {
         : (score.ok === total ? t('exam.resultPerfect', score.ok, total) : t('exam.resultPartial', score.ok, total));
     els.answer.classList.add('hidden');
     els.answer.textContent = '';
+    if (fresh.length) {
+      const lang = getLang();
+      els.answer.textContent = fresh
+        .map(a => { const l = a[lang] || a.en; return `${a.icon} ${t('trainer.unlocked')} — ${l.name}: ${l.desc}`; })
+        .join('\n');
+      els.answer.classList.remove('hidden');
+      els.answer.classList.add('long');
+      burst(els.card, 26);
+    }
     els.hint.textContent = t('exam.overHint');
     revealed = false;
     setActionState();
