@@ -1,0 +1,385 @@
+{
+ "id": "walkaround",
+ "name": "Tour de l'avion — HB-KFO",
+ "version": "1.0.0",
+ "aircraft": "HB-KFO",
+ "speeds": [],
+ "speedsSource": null,
+ "examiner": [],
+ "phases": [
+  {
+   "id": "cabin",
+   "title": "Cabine, avant le tour",
+   "map": {
+    "point": "cabin"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "title": "Ce que ce cours n'enseigne pas",
+     "source": "—",
+     "text": "Ce cours enseigne le cheminement de l'AFM et le libellé des vérifications. Il n'enseigne pas le jugement : à quoi ressemble un enfoncement d'amortisseur normal, comment purger et lire un échantillon, ce qui cloue l'avion au sol. Fais-toi montrer ça par ton instructeur, avion sous les yeux."
+    },
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — CABINE, AVANT LE TOUR",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Contact magnétos",
+       "r": "sur « OFF »"
+      },
+      {
+       "c": "Commandes",
+       "r": "libérées"
+      },
+      {
+       "c": "Volets",
+       "r": "fonctionnement vérifié"
+      },
+      {
+       "c": "Interrupteur batterie",
+       "r": "marche"
+      },
+      {
+       "c": "Quantité d'essence",
+       "r": "vérifiée"
+      },
+      {
+       "c": "Interrupteur batterie",
+       "r": "coupé"
+      },
+      {
+       "c": "Documents avion",
+       "r": "présence vérifiée"
+      },
+      {
+       "c": "Bagages",
+       "r": "arrimage vérifié"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Avant de sortir",
+     "source": "AFM p. 4.04",
+     "steps": [
+      {
+       "do": "Vérifier le débattement des gouvernes, puis faire le tour de l'avion en commençant par le côté gauche du fuselage."
+      }
+     ]
+    }
+   ],
+   "subtitle": "En place, avant de sortir faire le tour"
+  },
+  {
+   "id": "s1",
+   "title": "1 — Côté gauche du fuselage",
+   "map": {
+    "point": "s1"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 1 — CÔTÉ GAUCHE DU FUSELAGE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Bouchon de réservoir",
+       "r": "en place, verrouillé"
+      },
+      {
+       "c": "Prise statique",
+       "r": "propre, non obstruée"
+      },
+      {
+       "c": "Purge de réservoir principal",
+       "r": "actionnée (droite ou gauche selon l'inclinaison de l'avion)"
+      }
+     ]
+    }
+   ],
+   "subtitle": "Le tour commence ici"
+  },
+  {
+   "id": "s2",
+   "title": "2 — Empennage",
+   "map": {
+    "point": "s2"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 2 — EMPENNAGE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Empennage horizontal",
+       "r": "état de surface, articulation sans jeu"
+      },
+      {
+       "c": "Gouverne de direction",
+       "r": "articulation et jeux vérifiés"
+      }
+     ]
+    }
+   ],
+   "subtitle": "Arrière de l'avion"
+  },
+  {
+   "id": "s3",
+   "title": "3 — Côté droit du fuselage",
+   "map": {
+    "point": "s3"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 3 — CÔTÉ DROIT DU FUSELAGE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Prise statique",
+       "r": "propre, non obstruée"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "title": "4 — Aile droite",
+   "map": {
+    "point": "s4"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 4 — AILE DROITE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Volets et ailerons",
+       "r": "articulations et état vérifiés"
+      },
+      {
+       "c": "Saumons, feux de navigation si installés (option)",
+       "r": "état vérifié"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "title": "5 — Train principal droit",
+   "map": {
+    "point": "s5"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 5 — TRAIN PRINCIPAL DROIT",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Avertisseur de décrochage",
+       "r": "propre, débattement vérifié"
+      },
+      {
+       "c": "Train principal droit",
+       "r": "fixation et état carénage vérifiés, enfoncement amortisseur normal, pneu gonflé"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "title": "6 — Moteur et hélice",
+   "map": {
+    "point": "s6"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 6 — MOTEUR ET HÉLICE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Purge de circuit carburant",
+       "r": "actionnée"
+      },
+      {
+       "c": "Niveau d'huile",
+       "r": "vérifié, bouchon vissé, trappe refermée"
+      },
+      {
+       "c": "Fixation capot moteur",
+       "r": "vérifiée"
+      },
+      {
+       "c": "Hélice",
+       "r": "propre, en bon état"
+      },
+      {
+       "c": "Cône d'hélice",
+       "r": "absence de jeu"
+      },
+      {
+       "c": "Prises d'air",
+       "r": "propres, non obstruées"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "title": "7 — Train avant",
+   "map": {
+    "point": "s7"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 7 — TRAIN AVANT",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Train avant",
+       "r": "fixation et état carénage vérifiés, enfoncement amortisseur normal, pneu gonflé, fourche de manœuvre retirée"
+      },
+      {
+       "c": "Tuyaux d'échappement",
+       "r": "rigides"
+      },
+      {
+       "c": "Propreté verrière",
+       "r": "vérifiée"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "title": "8 — Train principal gauche",
+   "map": {
+    "point": "s8"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 8 — TRAIN PRINCIPAL GAUCHE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Train principal gauche",
+       "r": "fixation et état carénage vérifiés, enfoncement amortisseur normal, pneu gonflé"
+      },
+      {
+       "c": "Pitot",
+       "r": "propre, non obstrué"
+      },
+      {
+       "c": "Phares si installés (option)",
+       "r": "glace propre"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "title": "9 — Aile gauche",
+   "map": {
+    "point": "s9"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "INSPECTION PRÉ-VOL — 9 — AILE GAUCHE",
+     "source": "AFM p. 4.04–4.05",
+     "items": [
+      {
+       "c": "Saumons, feux de navigation si installés (option)",
+       "r": "état vérifié"
+      },
+      {
+       "c": "Volets, ailerons",
+       "r": "articulations et état vérifiés"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Escale",
+     "source": "AFM p. 4.04",
+     "text": "Cette inspection peut être réduite en escale."
+    }
+   ],
+   "subtitle": "Fin du tour"
+  }
+ ]
+}

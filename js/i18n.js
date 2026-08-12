@@ -6,6 +6,8 @@ const STR = {
   en: {
     'course.circuit': 'Circuit',
     'course.emergency': 'Emergencies',
+    'course.walkaround': 'Walk-around',
+    'walk.plan': 'AFM walk-around route',
     'mode.flight.name': 'Full flight',
     'mode.flight.desc': 'Say each step out loud, tap to reveal, tap to advance',
     'mode.exam.name': 'Examiner',
@@ -176,6 +178,8 @@ const STR = {
   fr: {
     'course.circuit': 'Circuit',
     'course.emergency': 'Urgences',
+    'course.walkaround': 'Tour de l\'avion',
+    'walk.plan': 'Cheminement AFM',
     'mode.flight.name': 'Vol complet',
     'mode.flight.desc': 'Dis chaque étape à voix haute, tape pour révéler, tape pour avancer',
     'mode.exam.name': 'Examinateur',

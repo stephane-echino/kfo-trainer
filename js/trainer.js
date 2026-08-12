@@ -1,6 +1,6 @@
 // Chair-flying engine: say it out loud → tap to reveal → grade → next.
 import { store } from './store.js';
-import { renderCircuit, moveDot, renderSituationBand, moveBand } from './circuit.js';
+import { renderCircuit, moveDot, renderSituationBand, moveBand, renderWalkPlan, moveStation } from './circuit.js';
 import { voiceSupported, createRecognizer, matchScore } from './voice.js';
 import { t } from './i18n.js';
 import { haptic, burst, floatLabel, todayIso } from './fx.js';
@@ -70,7 +70,9 @@ export function createTrainer({ onExit }) {
   function setMapMode(mode) {
     if (mode === mapMode && els.circuit.childElementCount) return;
     mapMode = mode;
-    if (mode === 'band') {
+    if (mode === 'plan') {
+      renderWalkPlan(els.circuit, t('walk.plan'));
+    } else if (mode === 'band') {
       renderSituationBand(els.circuit, {
         ground: t('band.ground'), takeoff: t('band.takeoff'), inflight: t('band.inflight'),
         circuit: t('band.circuit'), landing: t('band.landing'),
@@ -332,8 +334,10 @@ export function createTrainer({ onExit }) {
       ...conds,
       ...(phase.context || []).map(c => `<span>${c.k ? `${esc(c.k)} ` : ''}<b>${esc(c.v)}</b></span>`),
     ].join('<span class="ctx-sep">·</span>');
-    setMapMode((store.getSettings().course || 'circuit') === 'emergency' ? 'band' : 'circuit');
+    const course = store.getSettings().course || 'circuit';
+    setMapMode(course === 'emergency' ? 'band' : course === 'walkaround' ? 'plan' : 'circuit');
     if (mapMode === 'band') moveBand(els.circuit, phase.map);
+    else if (mapMode === 'plan') moveStation(els.circuit, phase.map);
     else moveDot(els.circuit, phase.map);
 
     els.progress.style.width = `${(index / Math.max(steps.length - 1, 1)) * 100}%`;

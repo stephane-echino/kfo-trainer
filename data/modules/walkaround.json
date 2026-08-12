@@ -1,0 +1,385 @@
+{
+ "id": "walkaround",
+ "name": "Walk-around — HB-KFO",
+ "version": "1.0.0",
+ "aircraft": "HB-KFO",
+ "speeds": [],
+ "speedsSource": null,
+ "examiner": [],
+ "phases": [
+  {
+   "id": "cabin",
+   "title": "Cabin, before the walk",
+   "map": {
+    "point": "cabin"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "note",
+     "title": "What this course does not teach",
+     "source": "—",
+     "text": "This course teaches the AFM walk-around route and the wording of each check. It does not teach judgement: what a normal shock-absorber compression looks like, how to drain and read a fuel sample, what grounds the aircraft. Have your instructor show you that, at the aircraft."
+    },
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — CABIN, BEFORE THE WALK",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Magneto switch",
+       "r": "OFF"
+      },
+      {
+       "c": "Controls",
+       "r": "released"
+      },
+      {
+       "c": "Flaps",
+       "r": "operation checked"
+      },
+      {
+       "c": "Battery switch",
+       "r": "on"
+      },
+      {
+       "c": "Fuel quantity",
+       "r": "checked"
+      },
+      {
+       "c": "Battery switch",
+       "r": "off"
+      },
+      {
+       "c": "Aircraft papers",
+       "r": "presence checked"
+      },
+      {
+       "c": "Baggage",
+       "r": "securing checked"
+      }
+     ]
+    },
+    {
+     "type": "flow",
+     "title": "Before stepping out",
+     "source": "AFM p. 4.04",
+     "steps": [
+      {
+       "do": "Check full and free movement of the controls, then walk around the aircraft starting at the left side of the fuselage."
+      }
+     ]
+    }
+   ],
+   "subtitle": "In the seat, before stepping out"
+  },
+  {
+   "id": "s1",
+   "title": "1 — Left side of the fuselage",
+   "map": {
+    "point": "s1"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 1 — LEFT SIDE OF THE FUSELAGE",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Fuel filler cap",
+       "r": "in place, locked"
+      },
+      {
+       "c": "Static port",
+       "r": "clean, unobstructed"
+      },
+      {
+       "c": "Main tank drain",
+       "r": "operated (right or left depending on how the aircraft is standing)"
+      }
+     ]
+    }
+   ],
+   "subtitle": "The walk starts here"
+  },
+  {
+   "id": "s2",
+   "title": "2 — Tail",
+   "map": {
+    "point": "s2"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 2 — TAIL",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Horizontal tail",
+       "r": "surface condition, hinge free of play"
+      },
+      {
+       "c": "Rudder",
+       "r": "hinge and play checked"
+      }
+     ]
+    }
+   ],
+   "subtitle": "Rear of the aircraft"
+  },
+  {
+   "id": "s3",
+   "title": "3 — Right side of the fuselage",
+   "map": {
+    "point": "s3"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 3 — RIGHT SIDE OF THE FUSELAGE",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Static port",
+       "r": "clean, unobstructed"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "title": "4 — Right wing",
+   "map": {
+    "point": "s4"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 4 — RIGHT WING",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Flaps and ailerons",
+       "r": "hinges and condition checked"
+      },
+      {
+       "c": "Wingtips, navigation lights if fitted (option)",
+       "r": "condition checked"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "title": "5 — Right main gear",
+   "map": {
+    "point": "s5"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 5 — RIGHT MAIN GEAR",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Stall warner",
+       "r": "clean, travel checked"
+      },
+      {
+       "c": "Right main gear",
+       "r": "fairing attachment and condition checked, shock absorber compression normal, tyre inflated"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "title": "6 — Engine and propeller",
+   "map": {
+    "point": "s6"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 6 — ENGINE AND PROPELLER",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Fuel system drain",
+       "r": "operated"
+      },
+      {
+       "c": "Oil level",
+       "r": "checked, cap screwed on, hatch closed"
+      },
+      {
+       "c": "Engine cowling attachment",
+       "r": "checked"
+      },
+      {
+       "c": "Propeller",
+       "r": "clean, in good condition"
+      },
+      {
+       "c": "Spinner",
+       "r": "free of play"
+      },
+      {
+       "c": "Air intakes",
+       "r": "clean, unobstructed"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "title": "7 — Nose gear",
+   "map": {
+    "point": "s7"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 7 — NOSE GEAR",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Nose gear",
+       "r": "fairing attachment and condition checked, shock absorber compression normal, tyre inflated, tow bar removed"
+      },
+      {
+       "c": "Exhaust pipes",
+       "r": "rigid"
+      },
+      {
+       "c": "Canopy cleanliness",
+       "r": "checked"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "title": "8 — Left main gear",
+   "map": {
+    "point": "s8"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 8 — LEFT MAIN GEAR",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Left main gear",
+       "r": "fairing attachment and condition checked, shock absorber compression normal, tyre inflated"
+      },
+      {
+       "c": "Pitot",
+       "r": "clean, unobstructed"
+      },
+      {
+       "c": "Landing lights if fitted (option)",
+       "r": "lens clean"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "title": "9 — Left wing",
+   "map": {
+    "point": "s9"
+   },
+   "context": [
+    {
+     "k": "AFM",
+     "v": "p. 4.04–4.05"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "checklist",
+     "title": "PRE-FLIGHT INSPECTION — 9 — LEFT WING",
+     "source": "AFM p. 4.04–4.05 (translated from the French original)",
+     "items": [
+      {
+       "c": "Wingtips, navigation lights if fitted (option)",
+       "r": "condition checked"
+      },
+      {
+       "c": "Flaps, ailerons",
+       "r": "hinges and condition checked"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "title": "Turnaround",
+     "source": "AFM p. 4.04",
+     "text": "This inspection may be reduced on a turnaround."
+    }
+   ],
+   "subtitle": "End of the walk"
+  }
+ ]
+}

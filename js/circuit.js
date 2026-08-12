@@ -134,3 +134,57 @@ export function moveBand(container, map) {
     activeSeg.appendChild(tag);
   }
 }
+
+// ---------------------------------------------------------------------------
+// Walk-around plan — a top view of the aircraft with the nine AFM stations,
+// laid out like the diagram on AFM p. 4.04. Seeing *where* you are on the
+// airframe is the whole point of a walk-around.
+// ---------------------------------------------------------------------------
+
+const STATIONS = {
+  cabin: { x: 160, y: 62 },
+  s1: { x: 138, y: 82 },   // left side of the fuselage — the walk starts here
+  s2: { x: 160, y: 118 },  // tail
+  s3: { x: 182, y: 82 },   // right side of the fuselage
+  s4: { x: 268, y: 54 },   // right wing
+  s5: { x: 199, y: 76 },   // right main gear
+  s6: { x: 160, y: 30 },   // engine and propeller
+  s7: { x: 160, y: 47 },   // nose gear
+  s8: { x: 121, y: 76 },   // left main gear
+  s9: { x: 52, y: 54 },    // left wing
+};
+
+export function renderWalkPlan(container, label) {
+  const dots = Object.entries(STATIONS)
+    .filter(([id]) => id !== 'cabin')
+    .map(([id, p], i) => `
+      <circle class="walk-dot" data-station="${id}" cx="${p.x}" cy="${p.y}" r="8" />
+      <text class="walk-num" data-station="${id}" x="${p.x}" y="${p.y + 3.2}" text-anchor="middle">${i + 1}</text>`)
+    .join('');
+  container.innerHTML = `
+  <svg viewBox="0 0 320 132" aria-hidden="true">
+    <!-- fuselage -->
+    <path class="plane-body" d="M 160 14 C 168 22, 170 40, 170 60 L 170 96 L 176 112 L 176 120 L 144 120 L 144 112 L 150 96 L 150 60 C 150 40, 152 22, 160 14 Z" />
+    <!-- wings -->
+    <path class="plane-body" d="M 150 52 L 44 58 L 44 68 L 150 72 Z" />
+    <path class="plane-body" d="M 170 52 L 276 58 L 276 68 L 170 72 Z" />
+    <!-- tailplane -->
+    <path class="plane-body" d="M 150 104 L 116 108 L 116 115 L 150 114 Z" />
+    <path class="plane-body" d="M 170 104 L 204 108 L 204 115 L 170 114 Z" />
+    <!-- cabin -->
+    <rect class="plane-cabin" x="151" y="44" width="18" height="26" rx="7" />
+    ${dots}
+    <text class="circuit-label" id="walk-label" x="160" y="10" text-anchor="middle"></text>
+  </svg>`;
+  const l = container.querySelector('#walk-label');
+  if (l) l.textContent = label || '';
+}
+
+export function moveStation(container, map) {
+  const id = map?.point;
+  for (const el of container.querySelectorAll('[data-station]')) {
+    el.classList.toggle('active', el.dataset.station === id);
+  }
+  const l = container.querySelector('#walk-label');
+  if (l) l.textContent = id === 'cabin' ? (l.dataset.cabin || '') : '';
+}

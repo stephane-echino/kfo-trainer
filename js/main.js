@@ -19,6 +19,7 @@ const $ = (id) => document.getElementById(id);
 const COURSES = [
   { id: 'circuit', icon: '🛫', file: { en: 'circuit', fr: 'circuit-fr' } },
   { id: 'emergency', icon: '🚨', file: { en: 'emergency', fr: 'emergency-fr' } },
+  { id: 'walkaround', icon: '🔍', file: { en: 'walkaround', fr: 'walkaround-fr' } },
 ];
 
 let mod = null;

@@ -1,6 +1,26 @@
 {
- "version": "1.41.0",
+ "version": "1.42.0",
  "releases": [
+  {
+   "version": "1.42.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "New course — WALK-AROUND. The app used to start with the aircraft already checked: the whole pre-flight was one line, \"Cockpit and outside checks — COMPLETED\". The AFM carries a full inspection on pages 4.04-4.05 — eight cabin items, the route, and 24 checks across nine numbered stations — and it had never been extracted. It is now a third course, copied verbatim, with a top view of the DR400 that highlights the station you are on.",
+     "The course opens on what it does NOT teach: the wording and the route, not the judgement — what a normal shock-absorber compression looks like, how to read a fuel sample, what grounds the aircraft. That is for your instructor, at the aircraft. This is the one phase of a flight where nobody catches your mistake."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Nouveau cours — TOUR DE L'AVION. L'app commençait avec l'avion déjà vérifié : toute la prévol tenait en une ligne, « Inspection pré vol — EFFECTUEE ». L'AFM contient une inspection complète pages 4.04-4.05 — huit points cabine, le cheminement, et 24 vérifications en neuf stations numérotées — et elle n'avait jamais été extraite. C'est désormais un troisième cours, recopié verbatim, avec une vue de dessus du DR400 qui met en évidence la station où tu es.",
+     "Le cours s'ouvre sur ce qu'il n'enseigne PAS : le libellé et le cheminement, pas le jugement — à quoi ressemble un enfoncement d'amortisseur normal, comment lire un échantillon de purge, ce qui cloue l'avion au sol. Ça, c'est ton instructeur, avion sous les yeux. C'est la seule phase du vol où personne ne rattrape ton erreur."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.41.0",
    "date": "2026-08-12",

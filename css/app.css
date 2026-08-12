@@ -865,3 +865,20 @@ h1 {
   font-size: 10.5px; line-height: 1.45; color: var(--text-faint);
   margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line-soft);
 }
+
+/* Walk-around plan */
+.plane-body { fill: #202b45; stroke: #46567f; stroke-width: 1.5; }
+.plane-cabin { fill: #101728; stroke: #46567f; stroke-width: 1.2; }
+.walk-dot {
+  fill: var(--bg-card); stroke: var(--line); stroke-width: 1.5;
+  transition: fill 0.3s, stroke 0.3s, r 0.3s var(--ease);
+}
+.walk-dot.active {
+  fill: var(--amber); stroke: var(--amber); r: 10;
+  filter: drop-shadow(0 0 6px rgba(248, 189, 74, 0.7));
+}
+.walk-num {
+  fill: var(--text-faint); font-size: 9px; font-weight: 700;
+  pointer-events: none; transition: fill 0.3s;
+}
+.walk-num.active { fill: #10192b; font-size: 10px; }
