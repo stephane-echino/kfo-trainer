@@ -64,10 +64,12 @@ export const store = {
   // and are covered by the full flight instead.
   getSched() { return read(scoped('sched'), {}); },
 
-  recordAnswer(stepKey, ok, todayIso) {
+  // maxBox caps how far a step can climb. Vital actions stop at box 4 (16 days)
+  // so they keep coming back — they are the ones you cannot look up in flight.
+  recordAnswer(stepKey, ok, todayIso, maxBox = SR_INTERVALS.length - 1) {
     const sched = store.getSched();
     const cur = sched[stepKey] || { box: 0, due: todayIso };
-    const box = ok ? Math.min(cur.box + 1, SR_INTERVALS.length - 1) : 0;
+    const box = ok ? Math.min(cur.box + 1, maxBox) : 0;
     sched[stepKey] = { box, due: addDays(todayIso, SR_INTERVALS[box]) };
     write(scoped('sched'), sched);
     return sched[stepKey];
@@ -80,6 +82,23 @@ export const store = {
   },
 
   resetSched() { write(scoped('sched'), {}); },
+
+  // Step keys are `${phase.id}/${blockIndex}/${itemIndex}` — derived from
+  // position. Editing a module would hand one item's boxes to another, and the
+  // app would certify mastery on the wrong line. Stamp the content version and
+  // start the schedule over when it moves.
+  syncContentVersion(version) {
+    const key = scoped('contentVersion');
+    const seen = read(key, null);
+    if (seen === version) return false;
+    if (seen !== null) {
+      write(scoped('sched'), {});
+      write(scoped('misses'), {});
+      write(scoped('phaseStats'), {});
+    }
+    write(key, version);
+    return seen !== null;
+  },
 
   // best time on a timed drill, in ms, per course
   getBestTime(seq) { return read(scoped(`best:${seq}`), null); },

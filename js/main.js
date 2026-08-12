@@ -99,6 +99,8 @@ async function loadContent() {
     } catch (e) { lastErr = e; }
   }
   if (lastErr) throw new Error('missing content');
+  // progress keys are position-derived: reset them if the content moved
+  store.syncContentVersion(`${mod.id}@${mod.version}`);
   rebuildSteps();
 }
 
@@ -194,6 +196,8 @@ async function boot() {
   $('ref-search').addEventListener('input', (e) => filterReference(e.target.value));
   $('btn-settings-back').addEventListener('click', () => show('screen-home'));
   $('btn-changelog-back').addEventListener('click', () => show('screen-home'));
+  $('btn-ach-back').addEventListener('click', () => show('screen-home'));
+  $('badges-row').addEventListener('click', openAchievements);
 
   renderVersionLine();
   renderHome();
@@ -718,6 +722,40 @@ async function onUpdateClick() {
     btn.textContent = t('update.offline');
     setTimeout(paintUpdateButton, 2500);
   }
+}
+
+
+// ---------- achievements sheet ----------
+function openAchievements() {
+  const area = $('ach-area');
+  area.innerHTML = '';
+  const have = unlocked();
+  const lang = getLang();
+  // earned first, so the sheet opens on what you have rather than what you lack
+  const sorted = [...ACHIEVEMENTS].sort((a, b) => (have[b.id] ? 1 : 0) - (have[a.id] ? 1 : 0));
+  for (const a of sorted) {
+    const got = !!have[a.id];
+    const l = a[lang] || a.en;
+    const row = document.createElement('div');
+    row.className = `ach-item ${got ? 'got' : 'locked'}`;
+    const icon = document.createElement('div');
+    icon.className = 'ach-icon';
+    icon.textContent = a.icon;
+    const text = document.createElement('div');
+    text.className = 'ach-text';
+    const name = document.createElement('div');
+    name.className = 'ach-name';
+    name.textContent = l.name;
+    const desc = document.createElement('div');
+    desc.className = 'ach-desc';
+    desc.textContent = l.desc;
+    text.appendChild(name);
+    text.appendChild(desc);
+    row.appendChild(icon);
+    row.appendChild(text);
+    area.appendChild(row);
+  }
+  show('screen-achievements');
 }
 
 // ---------- changelog ----------

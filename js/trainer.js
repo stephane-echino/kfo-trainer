@@ -460,7 +460,7 @@ export function createTrainer({ onExit }) {
     if (!s || !revealed) return;
     if (ok) store.clearMiss(s.key); else store.addMiss(s.key);
     // every graded answer schedules when the step should come back
-    if (s.graded) store.recordAnswer(s.key, ok, todayIso());
+    if (s.graded) store.recordAnswer(s.key, ok, todayIso(), s.mem ? 4 : undefined);
     if (s.graded) award(ok);
     advance(ok);
   }

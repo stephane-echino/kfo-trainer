@@ -1,6 +1,36 @@
 {
- "version": "1.31.0",
+ "version": "1.32.0",
  "releases": [
+  {
+   "version": "1.32.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Tap the badge row to open the achievements sheet — what each one is called, what it needs, and which you already hold. A row of icons on a phone has no tooltip, so the conditions were invisible."
+    ],
+    "changed": [
+     "Vital actions never graduate out of the review queue: they stop at the 16-day box instead of leaving. They are the ones you cannot look up in flight.",
+     "The examiner guarantees three failure scenarios per draw. The hand-written scenarios are the sharpest content in the app and were surfacing about twice in ten.",
+     "The rewind arrow on the flight card has a wider hit area — missing it used to start the flight instead of rewinding it."
+    ],
+    "fixed": [
+     "Progress keys are derived from an item's position, so editing a course would have handed one item's review history to another and certified mastery on the wrong line. The content version is now stamped, and the schedule restarts if it moves."
+    ]
+   },
+   "fr": {
+    "added": [
+     "Tape la rangée de badges pour ouvrir la feuille des succès — leur nom, leur condition, et ceux que tu as déjà. Une rangée d'icônes sur un téléphone n'a pas d'infobulle : les conditions étaient invisibles."
+    ],
+    "changed": [
+     "Les actions vitales ne sortent jamais de la file de révision : elles s'arrêtent à la boîte de 16 jours au lieu d'en sortir. Ce sont celles qu'on ne peut pas aller lire en vol.",
+     "L'examinateur garantit trois scénarios de panne par tirage. Les scénarios rédigés à la main sont le contenu le plus tranchant de l'app et sortaient environ deux fois sur dix.",
+     "La flèche de retour au début sur la carte du vol a une zone de touche élargie — la rater lançait le vol au lieu de le rembobiner."
+    ],
+    "fixed": [
+     "Les clés de progression dérivent de la position d'un item : modifier un cours aurait transféré l'historique de révision d'un item à un autre et certifié une maîtrise sur la mauvaise ligne. La version du contenu est désormais estampillée, et le planning repart si elle bouge."
+    ]
+   }
+  },
   {
    "version": "1.31.0",
    "date": "2026-08-12",

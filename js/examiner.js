@@ -44,11 +44,18 @@ export function createExaminer({ onExit }) {
   }
 
   const SESSION_SIZE = 10;
+  const SCENARIO_QUOTA = 3;
 
   function start(mod, steps) {
     questions = buildQuestions(mod, steps);
     shuffle(questions);
-    questions = questions.slice(0, SESSION_SIZE);
+    // The hand-written failure scenarios are the sharpest content in the app and
+    // would otherwise surface about twice per draw. Guarantee a few every time.
+    const scenarioLabel = t('exam.kind.scenario');
+    const scenarios = questions.filter(q => q.kind === scenarioLabel).slice(0, SCENARIO_QUOTA);
+    const rest = questions.filter(q => !scenarios.includes(q));
+    questions = [...scenarios, ...rest.slice(0, SESSION_SIZE - scenarios.length)];
+    shuffle(questions);
     index = 0;
     score = { ok: 0, miss: 0 };
     revealed = false;

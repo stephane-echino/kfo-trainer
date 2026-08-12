@@ -812,3 +812,30 @@ h1 {
   padding: 7px 14px; min-height: 40px;
 }
 .phase-more:active { background: var(--bg-card); }
+
+
+/* The rewind control is a 20px glyph inside the flight card: missing it starts
+   the flight instead of rewinding it. Widen the hit area, not the layout. */
+.restart-btn { position: relative; }
+.restart-btn::after { content: ''; position: absolute; inset: -12px; }
+
+/* Achievements sheet — a badge row on a phone has no tooltip, so the row opens
+   a list that actually says what each one needs. */
+.badges-row { width: calc(100% - var(--pad) * 2); margin-inline: var(--pad); }
+.ach-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px; border: 1px solid var(--line-soft); border-radius: var(--radius);
+  margin-bottom: 8px; background: var(--bg-card);
+}
+.ach-item.locked { opacity: 0.55; }
+.ach-icon {
+  font-size: 20px; width: 40px; height: 40px; flex: 0 0 40px;
+  display: grid; place-items: center; border-radius: 11px;
+  background: var(--bg-raise); border: 1px solid var(--line-soft);
+}
+.ach-item.got .ach-icon { background: var(--amber-dim); border-color: rgba(248, 189, 74, 0.45); }
+.ach-item.locked .ach-icon { filter: grayscale(1); }
+.ach-text { flex: 1; min-width: 0; }
+.ach-name { font-size: 15px; font-weight: 650; }
+.ach-item.got .ach-name { color: var(--amber); }
+.ach-desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.45; margin-top: 3px; }
