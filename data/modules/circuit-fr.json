@@ -574,20 +574,20 @@
      "items": [
       {
        "when": "Aérodrome contrôlé — premier appel à GROUND",
-       "say": "LOCARNO GROUND — HB-CFR — CESSNA 172 — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "LOCARNO GROUND — {{callsign}} — {{type}} — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Collationnement de l'autorisation de roulage",
-       "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — HB-CFR",
-       "note": "Collationner l'instruction de roulage, la piste et le QNH, en terminant par son indicatif.",
+       "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — {{callsign}}",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Aérodrome non contrôlé — annoncer son intention, pas de REQUEST",
-       "say": "LOMMIS AERODROME — HB-CFR — CESSNA 172 — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "LOMMIS AERODROME — {{callsign}} — {{type}} — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       }
      ]
@@ -947,24 +947,24 @@
      "items": [
       {
        "when": "Prêt au point d'attente, aérodrome non contrôlé",
-       "say": "HB-CFR, READY FOR DEPARTURE, RUNWAY 24",
-       "note": "Adaptez l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}}, READY FOR DEPARTURE, RUNWAY 24",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Piste et approche libres - annonce de votre intention",
-       "say": "HB-CFR, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
+       "say": "{{callsign}}, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
        "note": "Sur un aérodrome non contrôlé il n'y a pas d'autorisation : vous annoncez votre intention, en tenant compte de ce que les autres pilotes ont annoncé.",
        "lang": "en"
       },
       {
        "when": "Prêt au point d'attente, aérodrome contrôlé avec TOWER",
-       "say": "HB-CFR, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE",
+       "say": "{{callsign}}, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE",
        "lang": "en"
       },
       {
        "when": "Collationnement de l'autorisation de décoller",
-       "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, HB-CFR",
+       "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, {{callsign}}",
        "note": "WILCO confirme que vous effectuerez le report de position demandé par la tour.",
        "lang": "en"
       }
@@ -1791,32 +1791,32 @@
      "items": [
       {
        "when": "Premier appel à l'arrivée, aérodrome contrôlé",
-       "say": "LOCARNO TOWER, HB-CFR, CESSNA 172, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "LOCARNO TOWER, {{callsign}}, {{type}}, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Collationnement de l'instruction d'intégration",
-       "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, HB-CFR",
-       "note": "La tour a donné : JOIN AND REPORT DOWNWIND, RUNWAY 26 CENTER, QNH 1021. Adapter l'indicatif et la station aux procédures locales.",
+       "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, {{callsign}}",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Premier appel à l'arrivée, aérodrome non contrôlé",
-       "say": "LOMMIS AERODROME, HB-CFR, CESSNA 172, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "LOMMIS AERODROME, {{callsign}}, {{type}}, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "À la verticale du terrain, aérodrome non contrôlé",
-       "say": "HB-CFR, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}}, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Établi en vent arrière",
-       "say": "HB-CFR, DOWNWIND, RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}}, DOWNWIND, RUNWAY 24",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       }
      ]
@@ -1921,14 +1921,14 @@
      "items": [
       {
        "when": "Aérodrome contrôlé, annonce vent arrière",
-       "say": "HB-CFR — DOWNWIND RUNWAY 26 CENTER",
-       "note": "La tour répond p. ex. NUMBER 1, RUNWAY 26 CENTER — collationner. Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}} — DOWNWIND RUNWAY 26 CENTER",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Aérodrome non contrôlé, annonce vent arrière",
-       "say": "HB-CFR — DOWNWIND — RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}} — DOWNWIND — RUNWAY 24",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       }
      ]
@@ -2054,14 +2054,14 @@
      "items": [
       {
        "when": "Aérodrome contrôlé, annonce finale",
-       "say": "HB-CFR — FINAL RUNWAY 26 CENTER",
-       "note": "La tour : WIND CALM — RUNWAY 26 CENTER — CLEARED TO LAND ; collationner la piste et l'autorisation. Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}} — FINAL RUNWAY 26 CENTER",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Aérodrome non contrôlé, annonce finale",
-       "say": "HB-CFR — FINAL — RUNWAY 24 — FOR LANDING",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}} — FINAL — RUNWAY 24 — FOR LANDING",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       }
      ]
@@ -2325,25 +2325,25 @@
      "items": [
       {
        "when": "Piste quittée",
-       "say": "HB-CFR — RUNWAY 26 CENTER VACATED",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "{{callsign}} — RUNWAY 26 CENTER VACATED",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "La tour vous transfère au Ground — readback",
-       "say": "121.7 — HB-CFR",
+       "say": "121.7 — {{callsign}}",
        "note": "Réponse à « CONTACT LOCARNO GROUND ON 121.7 ». Si l'aérodrome n'a pas de GROUND, l'autorisation de rouler est délivrée directement par la TOWER.",
        "lang": "en"
       },
       {
        "when": "Premier appel au Ground",
-       "say": "LOCARNO GROUND — HB-CFR — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
-       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "say": "LOCARNO GROUND — {{callsign}} — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
+       "note": "Ton indicatif et ton type sont insérés automatiquement. La station, la piste et les points de report restent l'exemple SPHAIR — adapte-les à ton terrain.",
        "lang": "en"
       },
       {
        "when": "Le Ground autorise — readback",
-       "say": "TAXI TO FUEL STATION — HB-CFR",
+       "say": "TAXI TO FUEL STATION — {{callsign}}",
        "lang": "en"
       }
      ]
@@ -2546,5 +2546,6 @@
    ]
   }
  ],
- "speedsSource": "Checklist FR V10"
+ "speedsSource": "Checklist FR V10",
+ "aircraftType": "DR 400"
 }

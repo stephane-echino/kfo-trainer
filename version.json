@@ -1,6 +1,26 @@
 {
- "version": "1.42.0",
+ "version": "1.43.0",
  "releases": [
+  {
+   "version": "1.43.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "The radio calls now use your own callsign and type. The SPHAIR examples are written for HB-CFR, a Cessna 172, and you were rehearsing that identity twenty-four times a flight — an identity you would then have to unlearn on the radio, under load, in English. Every call now reads HB-KFO, DR 400.",
+     "The notes on those cards were half wrong afterwards and have been rewritten: your callsign and type are filled in, but the station, runway and reporting points are still the SPHAIR example and remain yours to adapt."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Les messages radio utilisent désormais ton indicatif et ton type. Les exemples SPHAIR sont écrits pour HB-CFR, un Cessna 172, et tu répétais cette identité vingt-quatre fois par vol — une identité qu'il aurait fallu désapprendre à la radio, sous charge, en anglais. Chaque message dit maintenant HB-KFO, DR 400.",
+     "Les notes de ces cartes devenaient à moitié fausses et ont été réécrites : ton indicatif et ton type sont insérés, mais la station, la piste et les points de report restent l'exemple SPHAIR et sont à adapter à ton terrain."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.42.0",
    "date": "2026-08-12",

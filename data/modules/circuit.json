@@ -564,18 +564,18 @@
      "items": [
       {
        "when": "Controlled aerodrome — first call to GROUND",
-       "say": "LOCARNO GROUND — HB-CFR — CESSNA 172 — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "LOCARNO GROUND — {{callsign}} — {{type}} — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Readback of the taxi clearance",
-       "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — HB-CFR",
-       "note": "Read back taxi instruction, runway and QNH, ending with your callsign."
+       "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — {{callsign}}",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Uncontrolled aerodrome — state intention, no REQUEST",
-       "say": "LOMMIS AERODROME — HB-CFR — CESSNA 172 — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "LOMMIS AERODROME — {{callsign}} — {{type}} — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       }
      ]
     },
@@ -929,21 +929,21 @@
      "items": [
       {
        "when": "Ready at the holding point, uncontrolled aerodrome",
-       "say": "HB-CFR, READY FOR DEPARTURE, RUNWAY 24",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "{{callsign}}, READY FOR DEPARTURE, RUNWAY 24",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Runway and approach clear - announcing your intention",
-       "say": "HB-CFR, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
+       "say": "{{callsign}}, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
        "note": "At an uncontrolled aerodrome there is no clearance: you state your intention, taking into account what other pilots have announced."
       },
       {
        "when": "Ready at the holding point, controlled aerodrome with TOWER",
-       "say": "HB-CFR, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE"
+       "say": "{{callsign}}, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE"
       },
       {
        "when": "Reading back the take-off clearance",
-       "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, HB-CFR",
+       "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, {{callsign}}",
        "note": "WILCO confirms you will make the position report the tower asked for."
       }
      ]
@@ -1751,28 +1751,28 @@
      "items": [
       {
        "when": "First call, controlled aerodrome, inbound",
-       "say": "LOCARNO TOWER, HB-CFR, CESSNA 172, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "LOCARNO TOWER, {{callsign}}, {{type}}, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Readback of the joining instruction",
-       "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, HB-CFR",
-       "note": "Tower gave: JOIN AND REPORT DOWNWIND, RUNWAY 26 CENTER, QNH 1021. Adapt callsign/station to local procedures."
+       "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, {{callsign}}",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "First call, uncontrolled aerodrome, inbound",
-       "say": "LOMMIS AERODROME, HB-CFR, CESSNA 172, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "LOMMIS AERODROME, {{callsign}}, {{type}}, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Overhead the field, uncontrolled",
-       "say": "HB-CFR, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "{{callsign}}, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Established downwind",
-       "say": "HB-CFR, DOWNWIND, RUNWAY 24",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "{{callsign}}, DOWNWIND, RUNWAY 24",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       }
      ]
     }
@@ -1875,13 +1875,13 @@
      "items": [
       {
        "when": "Controlled aerodrome, downwind report",
-       "say": "HB-CFR — DOWNWIND RUNWAY 26 CENTER",
-       "note": "Tower answers e.g. NUMBER 1, RUNWAY 26 CENTER — read it back. Adapt callsign/station to local procedures."
+       "say": "{{callsign}} — DOWNWIND RUNWAY 26 CENTER",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Uncontrolled aerodrome, downwind report",
-       "say": "HB-CFR — DOWNWIND — RUNWAY 24",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "{{callsign}} — DOWNWIND — RUNWAY 24",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       }
      ]
     },
@@ -2002,13 +2002,13 @@
      "items": [
       {
        "when": "Controlled aerodrome, final report",
-       "say": "HB-CFR — FINAL RUNWAY 26 CENTER",
-       "note": "Tower: WIND CALM — RUNWAY 26 CENTER — CLEARED TO LAND; read back runway and clearance. Adapt callsign/station to local procedures."
+       "say": "{{callsign}} — FINAL RUNWAY 26 CENTER",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Uncontrolled aerodrome, final report",
-       "say": "HB-CFR — FINAL — RUNWAY 24 — FOR LANDING",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "{{callsign}} — FINAL — RUNWAY 24 — FOR LANDING",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       }
      ]
     },
@@ -2266,22 +2266,22 @@
      "items": [
       {
        "when": "Runway vacated",
-       "say": "HB-CFR — RUNWAY 26 CENTER VACATED",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "{{callsign}} — RUNWAY 26 CENTER VACATED",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Tower transfers you to Ground — readback",
-       "say": "121.7 — HB-CFR",
+       "say": "121.7 — {{callsign}}",
        "note": "Answer to \"CONTACT LOCARNO GROUND ON 121.7\". If the aerodrome has no GROUND, taxi clearance is given directly by TOWER."
       },
       {
        "when": "First call on Ground",
-       "say": "LOCARNO GROUND — HB-CFR — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
-       "note": "Adapt callsign/station to local procedures."
+       "say": "LOCARNO GROUND — {{callsign}} — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
+       "note": "Your callsign and type are filled in automatically. The station, runway and reporting points are still the SPHAIR example — adapt them to your aerodrome."
       },
       {
        "when": "Ground approves — readback",
-       "say": "TAXI TO FUEL STATION — HB-CFR"
+       "say": "TAXI TO FUEL STATION — {{callsign}}"
       }
      ]
     }
@@ -2481,5 +2481,6 @@
    ]
   }
  ],
- "speedsSource": "Checklist EN V9"
+ "speedsSource": "Checklist EN V9",
+ "aircraftType": "DR 400"
 }

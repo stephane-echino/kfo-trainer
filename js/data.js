@@ -22,10 +22,31 @@ import { t } from './i18n.js';
 //   }]
 // }
 
+// The SPHAIR radio examples are written for another aircraft. Substituting the
+// student's own identity here — one place, before anything else sees the data —
+// means the trainer, Reference, search, speech and the examiner all rehearse
+// the callsign they will actually transmit.
+function substitute(node, values) {
+  if (typeof node === 'string') {
+    return node.replace(/\{\{(\w+)\}\}/g, (m, k) => (k in values ? values[k] : m));
+  }
+  if (Array.isArray(node)) return node.map(n => substitute(n, values));
+  if (node && typeof node === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(node)) out[k] = substitute(v, values);
+    return out;
+  }
+  return node;
+}
+
 export async function loadModule(id) {
   const res = await fetch(`./data/modules/${id}.json`);
   if (!res.ok) throw new Error(`Cannot load module ${id}`);
-  return res.json();
+  const mod = await res.json();
+  return substitute(mod, {
+    callsign: mod.aircraft || 'HB-KFO',
+    type: mod.aircraftType || 'DR 400',
+  });
 }
 
 // One trainer step = one tap-to-reveal unit.
