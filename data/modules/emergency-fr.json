@@ -45,107 +45,128 @@
   {
    "q": "Panne moteur au roulage au décollage et il reste suffisamment de piste. Que faites-vous ?",
    "a": "Réduire à fond les gaz et s'arrêter dans l'axe, en freinant à la demande. Du briefing : gaz réduits, freins appliqués, informer l'ATC (radio).",
-   "tag": "décollage interrompu"
+   "tag": "décollage interrompu",
+   "source": "AFM §3 / TO Briefing GVMN"
   },
   {
    "q": "Et s'il ne reste pas suffisamment de piste ? Donnez-moi les six actions.",
    "a": "Manette de gaz réduire à fond (tirer), freins freiner énergiquement, mixture étouffoir (vers le bas), robinet d'essence fermé, contact magnétos coupé, interrupteur batterie coupé.",
-   "tag": "décollage interrompu"
+   "tag": "décollage interrompu",
+   "source": "AFM §3"
   },
   {
    "q": "Le moteur s'arrête à 300 ft après le décollage. Donnez-moi la procédure AFM dans l'ordre.",
    "a": "Vitesse de plané (73 kt) 135 km/h, mixture étouffoir (vers le bas), robinet d'essence fermé, contact magnétos coupé, interrupteur batterie coupé. Atterrir droit devant en ne faisant que de petits changements de cap ; ne jamais faire demi-tour.",
-   "tag": "panne après décollage sous 1000 ft"
+   "tag": "panne après décollage sous 1000 ft",
+   "source": "AFM §3"
   },
   {
    "q": "Donnez-moi les chiffres du briefing GVMN pour une panne moteur sous l'altitude terrain + 1000 ft.",
    "a": "Vitesse selon la configuration volets (78 KIAS volets rentrés, 73 KIAS volets 1er cran), maximum +/- 45 degrés de l'axe de piste (ou de la trajectoire), volets tout sortis quand l'atterrissage est assuré, vitesse Vref 62 KIAS.",
-   "tag": "panne après décollage sous 1000 ft"
+   "tag": "panne après décollage sous 1000 ft",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Même panne au-dessus de l'altitude terrain + 1000 ft. Qu'est-ce qui change ?",
    "a": "Vitesse 78 KIAS, retour vers la piste opposée, volets tout sortis quand l'atterrissage est assuré, vitesse Vref 62 KIAS. Virer vers la piste opposée dans le sens du circuit briefé pour la journée — le SPHAIR n'imprime un virage à gauche qu'à titre d'exemple de briefing. L'AFM ne contient aucune procédure de demi-tour.",
-   "tag": "panne après décollage au-dessus de 1000 ft"
+   "tag": "panne après décollage au-dessus de 1000 ft",
+   "source": "TO Briefing GVMN / SPHAIR ch.12 (12.2.1) / AFM §3"
   },
   {
    "q": "Pourquoi un atterrissage vent arrière après un demi-tour est-il dangereux ?",
    "a": "Même lorsque le demi-tour réussit, l'atterrissage est rendu difficile par le vent arrière supplémentaire, et après le virage l'avion se retrouve décalé de l'axe du terrain. Un 180 n'est à envisager qu'au-dessus de 1000 ft/AAL.",
-   "tag": "règle du demi-tour"
+   "tag": "règle du demi-tour",
+   "source": "SPHAIR ch.12"
   },
   {
    "q": "Le moteur tombe en panne en croisière. Quelle vitesse et jusqu'où pouvez-vous planer ?",
    "a": "Vitesse de meilleure finesse, volets rentrés, 145 km/h (78 kt). Dans ces conditions et sans vent, l'avion parcourt environ 9,3 fois son altitude.",
-   "tag": "panne moteur en vol"
+   "tag": "panne moteur en vol",
+   "source": "AFM §3"
   },
   {
    "q": "Donnez-moi les cinq points de la remise en route en vol, et la condition pour l'entreprendre.",
    "a": "Seulement si l'altitude est jugée suffisante. Robinet d'essence ouvert, pompe électrique marche, mixture plein riche (vers le haut), manette des gaz 1/4 de la course en avant, contact magnétos sur L + R (Both). Si l'hélice tourne encore, le moteur devrait se remettre en route ; si elle est calée, actionner le démarreur.",
-   "tag": "remise en route moteur"
+   "tag": "remise en route moteur",
+   "source": "AFM §3"
   },
   {
    "q": "Le moteur ne repart pas. Donnez-moi la procédure d'atterrissage forcé, moteur en panne.",
    "a": "Ceintures et harnais serrés, pompe électrique arrêt, mixture étouffoir, manette des gaz plein réduit, contact magnétos coupé, robinet d'essence fermé, excitation alternateur coupé, interrupteur batterie coupé. En finale : vitesse d'approche (62 kt) 115 km/h, volets tout sortis, verrière déverrouillée.",
-   "tag": "atterrissage forcé"
+   "tag": "atterrissage forcé",
+   "source": "AFM §3 / §4 (p. 4.03 et 4.12)"
   },
   {
    "q": "Atterrissage de précaution en campagne moteur en marche : quelles vitesses et quelles positions de volets ?",
    "a": "Passages de reconnaissance à 130 km/h (70 kt), volets en position décollage (1er cran) ; approche de précaution 120 km/h (65 kt), volets en position atterrissage (2e cran). En finale, déverrouiller la verrière. Avant de toucher : magnétos coupé, batterie coupé.",
-   "tag": "atterrissage de précaution"
+   "tag": "atterrissage de précaution",
+   "source": "AFM §3"
   },
   {
    "q": "La verrière est bloquée. Que faites-vous ?",
    "a": "Poignée de verrière en position ouvert. Dégager les deux leviers de largage verrière situés sur les accoudoirs, de part et d'autre du tableau de bord, et les amener en position verticale.",
-   "tag": "verrière bloquée"
+   "tag": "verrière bloquée",
+   "source": "AFM §3 (p. 3.04)"
   },
   {
    "q": "Feu moteur au sol pendant la mise en route. Que faites-vous en premier, et pourquoi ?",
    "a": "Laisser tourner le moteur avec robinet d'essence fermé, pompe électrique arrêt, manette des gaz plein gaz (pousser), mixture étouffoir. Cette manœuvre fait avaler par le moteur l'essence accumulée dans les pipes d'admission après un excès d'injections.",
-   "tag": "feu moteur au sol"
+   "tag": "feu moteur au sol",
+   "source": "AFM §3"
   },
   {
    "q": "Feu moteur en vol. Donnez-moi les sept points.",
    "a": "Robinet essence fermé, manette des gaz plein gaz (pousser) jusqu'à l'arrêt moteur, mixture étouffoir, pompe électrique arrêt, excitation alternateur coupé, chauffage cabine et ventilation coupés, vitesse de finesse maxi (78 kt) 145 km/h. Aucune tentative de remise en route.",
-   "tag": "feu moteur en vol"
+   "tag": "feu moteur en vol",
+   "source": "AFM §3"
   },
   {
    "q": "Feu d'origine électrique dans la cabine. Quelle est la procédure ?",
    "a": "Ventilation de la cabine réduire, excitation de l'alternateur coupé, interrupteur batterie coupé, breaker batterie tiré, breaker alternateur tiré. Atterrir rapidement si le feu persiste.",
-   "tag": "feu électrique"
+   "tag": "feu électrique",
+   "source": "AFM §3"
   },
   {
    "q": "Remise de gaz obligatoire. Donnez-moi la procédure AFM dans l'ordre.",
    "a": "Réchauffage carburateur coupé (enfoncé) vérifié, manette des gaz plein gaz (pousser), vitesse (65 kt) 120 km/h, volets ramenés progressivement en position décollage (1er cran), pente de montée (75 kt) 140 km/h. Les annonces SOP sont GO AROUND, afficher T/O PWR, SPEED ABOVE 60 FLAPS 1, montée 70 KIAS.",
-   "tag": "remise de gaz"
+   "tag": "remise de gaz",
+   "source": "AFM §4 (p. 4.13) / SOP GVMN"
   },
   {
    "q": "Le moteur tourne irrégulièrement. Dans quel ordre cherchez-vous la cause ?",
    "a": "Givrage au carburateur, mélange trop riche ou trop pauvre, impuretés dans le circuit carburant (vérifier la pression d'essence, pompe électrique en fonction), défaillance d'allumage : magnétos sur L, puis R, puis retour sur Both ; garder la meilleure position, terrain le plus proche à régime réduit.",
-   "tag": "fonctionnement irrégulier"
+   "tag": "fonctionnement irrégulier",
+   "source": "AFM §3"
   },
   {
    "q": "La pression d'huile baisse. Que surveillez-vous et que faites-vous ?",
    "a": "Surveiller la température d'huile. Si elle s'élève anormalement en zone rouge, réduire la puissance et rejoindre le terrain le plus proche en se préparant à un éventuel atterrissage en campagne.",
-   "tag": "pression d'huile"
+   "tag": "pression d'huile",
+   "source": "AFM §3"
   },
   {
    "q": "Givrage carburateur : pourquoi jamais de position intermédiaire du réchauffage, et quelle vitesse d'approche si la cellule est givrée ?",
    "a": "Toujours en tout ou rien, plein chaud ou plein froid : une position intermédiaire peut, dans certains cas, aggraver le givrage. Lors d'une formation de glace extrêmement rapide, effectuer un atterrissage forcé. Plus de 0.5 cm (0.2 in) sur le bord d'attaque augmente la vitesse de décrochage ; adopter 135 km/h (73 kt) en approche.",
-   "tag": "givrage"
+   "tag": "givrage",
+   "source": "AFM §3"
   },
   {
    "q": "Voyant ambre panne alternateur. Première action, puis que faire si la panne persiste ?",
    "a": "Couper puis réenclencher l'excitation alternateur pour réarmer le relai de surtension. Si la panne persiste : excitation alternateur coupée, couper tous les équipements électriques non indispensables, se poser dès que possible. Le moteur fonctionne normalement.",
-   "tag": "panne alternateur"
+   "tag": "panne alternateur",
+   "source": "AFM §3"
   },
   {
    "q": "Vous entrez en vrille involontaire avec les volets sortis. Donnez-moi la sortie.",
    "a": "Manette des gaz réduit (tirer), direction à fond contre le sens de rotation, profondeur au neutre, ailerons au neutre ; dès l'arrêt de la rotation, direction au neutre et ressource en respectant les limites du domaine de vol. Rentrer les volets au plus vite.",
-   "tag": "sortie de vrille"
+   "tag": "sortie de vrille",
+   "source": "AFM §3"
   },
   {
    "q": "La commande de profondeur se déconnecte. Comment volez-vous et comment atterrissez-vous ?",
    "a": "Stabiliser en vol horizontal, volets rentrés, à 130 km/h (70 kt) à l'aide du trim de profondeur et des gaz. Ne plus toucher au trim ; contrôler l'angle de descente avec les gaz uniquement et ne réduire qu'en courte finale, à proximité du sol.",
-   "tag": "panne de profondeur"
+   "tag": "panne de profondeur",
+   "source": "AFM §3"
   }
  ],
  "phases": [

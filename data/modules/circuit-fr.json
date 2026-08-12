@@ -69,127 +69,152 @@
   {
    "q": "Vous êtes à 400 ft en montée initiale au départ de LSGN, volets 1, et le moteur s'arrête. L'altitude du terrain + 1000 ft correspond à 2500 ft. Que faites-vous exactement ?",
    "a": "Vitesse selon la configuration volets : 78 KIAS volets rentrés, 73 KIAS volets 1 cran. Maximum +- 45 degrés de l'axe de piste (ou de la trajectoire). Volets pleins quand l'atterrissage est assuré. Vitesse Vref 62 KIAS.",
-   "tag": "EFATO below 1000 ft"
+   "tag": "EFATO below 1000 ft",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Même panne, mais vous êtes déjà au-dessus de l'altitude du terrain + 1000 ft (p. ex. 2500 ft pour LSGN). Qu'est-ce qui change dans le briefing ?",
    "a": "Vitesse 78 KIAS, retour vers la piste opposée, volets pleins quand l'atterrissage est assuré, vitesse Vref 62 KIAS. Le retour vers la piste opposée ne peut être envisagé qu'au-dessus du seuil altitude terrain + 1000 ft.",
-   "tag": "EFATO above 1000 ft"
+   "tag": "EFATO above 1000 ft",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Fonctionnement irrégulier du moteur pendant le roulement au décollage, avant la rotation. Donnez-moi les trois actions de votre briefing départ.",
    "a": "Manette des gaz au ralenti, freins appliqués, informer l'ATC (radio).",
-   "tag": "malfunction before rotation"
+   "tag": "malfunction before rotation",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Pourquoi le demi-tour vers le terrain est-il interdit à basse hauteur après le décollage ?",
    "a": "AFM : atterrir droit devant, avec seulement de petits changements de cap pour éviter les obstacles ; ne jamais tenter de retour vers la piste, car l'altitude après le décollage ne le permet généralement pas. Demi-tour uniquement au-dessus de altitude terrain + 1000 ft.",
-   "tag": "turn-back rule"
+   "tag": "turn-back rule",
+   "source": "AFM §3 + TO Briefing GVMN"
   },
   {
    "q": "Quel est le vent traversier maximal démontré pour HB-KFO ?",
    "a": "22 kt (40 km/h). Il figure dans le tableau des vitesses de la check-list sous Xwind 22 et dans l'AFM comme vent traversier démontré, section décollage par vent traversier.",
-   "tag": "limits / crosswind"
+   "tag": "limits / crosswind",
+   "source": "AFM §4"
   },
   {
    "q": "Run-up : à quel régime vérifiez-vous les magnétos et quelles sont les deux limites ?",
    "a": "Manette des gaz « SET 2000 RPM ». Magnétos « CHECKED (max drop 175-max diff 50) » : chute max de 175 RPM entre (L) ou (R) et BOTH, différence max de 50 RPM entre (L) et (R).",
-   "tag": "limits / magnetos"
+   "tag": "limits / magnetos",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Quelle chute de régime attendez-vous au test du réchauffage carburateur, et à quelle puissance ?",
    "a": "« Carburator heater — CHECKED (drop 100) », effectué à 2000 RPM : tirer sur chaud, vérifier la chute d'environ 100 RPM, puis repousser sur froid.",
-   "tag": "run up / carb heat"
+   "tag": "run up / carb heat",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Quel régime de ralenti devez-vous constater pendant le run-up, et quel est le dernier point de ce check ?",
    "a": "« Throttle idle — CHECKED (600-650 rpm) ». Dernier point : « Throttle — SET 1000 RPM ».",
-   "tag": "limits / idle RPM"
+   "tag": "limits / idle RPM",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Le moteur ne démarre pas. Quelles sont les limitations du démarreur ?",
    "a": "« Starter — DEPRESSED (max 30 sec. then wait 1') ». AFM : éviter d'utiliser le démarreur plus de 30 secondes, et attendre au moins une minute avant toute nouvelle tentative de démarrage.",
-   "tag": "limits / starter"
+   "tag": "limits / starter",
+   "source": "Checklist EN V9 + AFM §4"
   },
   {
    "q": "Le moteur vient de démarrer. Que vérifiez-vous, et dans quel délai devez-vous le voir ?",
    "a": "« Oil pressure — CHECKED RISING (green arc) ». AFM : si la pression d'huile est nulle après 15 à 20 secondes, couper et chercher la cause. Arc vert 3.8-6.5 bar (55-95 psi), trait rouge ralenti minimum 1.70 bar (25 psi).",
-   "tag": "limits / oil pressure"
+   "tag": "limits / oil pressure",
+   "source": "Checklist EN V9 + AFM §2"
   },
   {
    "q": "Détaillez-moi les valeurs de régime du RUN UP CHECK.",
    "a": "Frein de parc SET, gaz SET 1000 RPM, instruments moteur GREEN ARC, zone dégagée, gaz SET 2000 RPM pour magnétos, réchauffage carbu et mélange, ralenti CHECKED (600-650 rpm), gaz SET 1000 RPM.",
-   "tag": "run up / RPM"
+   "tag": "run up / RPM",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Aligné. Quelle puissance affichez-vous et quel minimum devez-vous constater avant de partir ?",
    "a": "« Power — SET FULL (min 2200 RPM) » ; instruments moteur et voyants vérifiés. AFM décollage normal : régime plein gaz minimum 2200 RPM, vitesse de décollage 54 kt (100 km/h).",
-   "tag": "line up / take-off power"
+   "tag": "line up / take-off power",
+   "source": "Checklist EN V9 + AFM §4"
   },
   {
    "q": "Vous êtes en palier, mélange appauvri en croisière, et vous voulez maintenant monter. Que devez-vous faire d'abord avec le mélange, et pourquoi ?",
    "a": "AFM : TOUJOURS ENRICHIR LE MÉLANGE AVANT UNE AUGMENTATION DE PUISSANCE. Il faut veiller à ne pas appauvrir excessivement, pour éviter la surchauffe du moteur ; le mélange reste plein riche au décollage et en montée.",
-   "tag": "procedure logic / mixture"
+   "tag": "procedure logic / mixture",
+   "source": "AFM §4"
   },
   {
    "q": "Donnez-moi Vfe et Vfo et ce que chacune conditionne.",
    "a": "Volets (Vfe) 92 KIAS, sortie volets pleins (Vfo) 81 KIAS. Volets 1 en vent arrière : « SPEED BELOW 92, FLAPS 1 ». Volets pleins : sortir en dessous de 81 KIAS.",
-   "tag": "limits / flap speeds"
+   "tag": "limits / flap speeds",
+   "source": "Checklist EN V9 + SOP GVMN"
   },
   {
    "q": "Quand sélectionnez-vous exactement les volets 2 dans le circuit standard ?",
    "a": "Au Point Of Descent : « APPROACHING GLIDE » vitesse 85 KIAS, « SPEED BELOW 81, START DESCENT, FLAPS 2 », vitesse 80 KIAS puis maintenir 80 KIAS. Le FINAL CHECK confirme ensuite Flaps — FULL DOWN (sortie en dessous de 81 KIAS).",
-   "tag": "circuit / flaps 2"
+   "tag": "circuit / flaps 2",
+   "source": "SOP GVMN"
   },
   {
    "q": "En courte finale, la piste n'est pas dégagée. Donnez-moi la séquence de remise de gaz et les vitesses.",
    "a": "« GO AROUND » — afficher la puissance de décollage — « SPEED ABOVE 60, FLAPS 1 » — montée à 70 KIAS. Référence AFM : réchauffage carbu froid vérifié, plein gaz, vitesse 65 kt, volets progressivement en position décollage, montée 75 kt.",
-   "tag": "go around"
+   "tag": "go around",
+   "source": "SOP GVMN + AFM §4"
   },
   {
    "q": "Annonces pour un touch and go ?",
    "a": "Afficher la puissance de décollage — « SPEED ABOVE 54, ROTATE » — « SPEED ABOVE 60, POSITIVE ROC, FLAPS 1 » — montée à 70 KIAS, puis selon procédure.",
-   "tag": "touch and go"
+   "tag": "touch and go",
+   "source": "SOP GVMN"
   },
   {
    "q": "Pourquoi le réchauffage carburateur ne doit-il jamais être laissé à mi-course ?",
    "a": "AFM : toujours utiliser le réchauffage carburateur en tout ou rien (plein chaud ou plein froid) ; une position intermédiaire peut dans certains cas aggraver le givrage. Vérifié au run-up avec une chute d'environ 100 RPM, puis repoussé sur froid.",
-   "tag": "procedure logic / carb heat"
+   "tag": "procedure logic / carb heat",
+   "source": "AFM §3"
   },
   {
    "q": "Quels points de check-list imposent le mode du transpondeur, et vers quoi ?",
    "a": "CLIMB CHECK point 3 : Transponder — CHECK MODE « ALT ». AFTER LANDING CHECK point 3 : Transponder — CHECK MODE « GND ».",
-   "tag": "transponder"
+   "tag": "transponder",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Expliquez le principe du « First Push » et où s'appliquent PAT et APT.",
    "a": "À chaque changement de phase de vol, on commence toujours par pousser, soit la profondeur, soit la puissance. Mise en montée = PAT (Power, Attitude, Trim) ; palier depuis une montée = APT ; mise en descente = APT ; sortie de descente = PAT.",
-   "tag": "SPHAIR / First Push"
+   "tag": "SPHAIR / First Push",
+   "source": "SPHAIR ch.7 + ch.8"
   },
   {
    "q": "Vous montez à 1000 FPM vers 4500 ft. Quand commencez-vous la mise en palier et dans quel ordre ?",
    "a": "Anticiper de 1/10 du taux de montée : avec 1000 FPM commencer 100 ft avant, soit à 4400 ft. Ordre APT : Attitude SET, Power SET, Trim SET. La puissance n'est réduite qu'une fois que la vitesse cesse d'augmenter ; le trim après cela.",
-   "tag": "SPHAIR / 1/10 ROC"
+   "tag": "SPHAIR / 1/10 ROC",
+   "source": "SPHAIR ch.7"
   },
   {
    "q": "En finale vous êtes sous le plan. Qu'utilisez-vous pour l'angle et qu'utilisez-vous pour la vitesse ?",
    "a": "L'assiette contrôle le taux de descente / l'angle d'approche, la puissance contrôle la vitesse, corrigés simultanément et préventivement (PITCH / POWER PROPHYLAXIS). Seule exception : la descente d'approche initiale, volée « Speed on Stick », puissance à valeur fixe.",
-   "tag": "SPHAIR / pitch vs power"
+   "tag": "SPHAIR / pitch vs power",
+   "source": "SPHAIR ch.13"
   },
   {
    "q": "À la mise en virage, que faites-vous du lacet inverse ?",
    "a": "Compenser le lacet inverse par une action dosée au palonnier du côté du virage, la bille indiquant le dosage — « pied du côté où part la bille ». Sur les avions d'école de base, le lacet inverse doit toujours être compensé.",
-   "tag": "SPHAIR / adverse yaw"
+   "tag": "SPHAIR / adverse yaw",
+   "source": "SPHAIR ch.9"
   },
   {
    "q": "De combien augmente la vitesse de décrochage à 30 degrés d'inclinaison ?",
    "a": "Environ +7 % (p. ex. Vstall 60 KIAS devient 65 KIAS). Table AFM à 1000 kg, puissance réduite : volets rentrés 54 kt à 0 deg / 58 kt à 30 deg ; volets 1er cran 51 / 54 kt ; volets 2e cran 47 / 51 kt.",
-   "tag": "SPHAIR / stall in bank"
+   "tag": "SPHAIR / stall in bank",
+   "source": "SPHAIR ch.9 + AFM §5"
   },
   {
    "q": "De la rotation à l'altitude du circuit, donnez-moi les vitesses et les annonces.",
    "a": "Vrotate 54 KIAS « ROTATE », montée à Vx 70 KIAS. À 300 ft/AAL ou au-dessus : « CLEAR OF OBSTACLES », « SPEED ABOVE 70, FLAPS UP », montée à Vy 80 KIAS. Au-dessus de 2000 ft/AGL : montée à Vcc 85 KIAS.",
-   "tag": "initial climb"
+   "tag": "initial climb",
+   "source": "SOP GVMN"
   }
  ],
  "phases": [

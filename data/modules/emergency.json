@@ -45,107 +45,128 @@
   {
    "q": "Engine failure on the take-off run and enough runway remains. What do you do?",
    "a": "Close the throttle fully and stop on the runway axis, braking as required. From the briefing: throttle idle, brakes applied, inform ATC (radio).",
-   "tag": "rejected take-off"
+   "tag": "rejected take-off",
+   "source": "AFM §3 / TO Briefing GVMN"
   },
   {
    "q": "And if not enough runway remains? Give me the six actions.",
    "a": "Throttle lever fully closed (pull), brakes brake hard, mixture idle cut-off (down), fuel valve closed, magneto switch off, battery switch off.",
-   "tag": "rejected take-off"
+   "tag": "rejected take-off",
+   "source": "AFM §3"
   },
   {
    "q": "Engine stops at 300 ft after take-off. Give me the AFM procedure in order.",
    "a": "Glide speed (73 kt) 135 km/h, mixture idle cut-off (down), fuel valve closed, magneto switch off, battery switch off. Land straight ahead with only small heading changes; never turn back.",
-   "tag": "EFATO below 1000 ft"
+   "tag": "EFATO below 1000 ft",
+   "source": "AFM §3"
   },
   {
    "q": "Give me the GVMN briefing figures for an engine failure below airfield altitude + 1000 ft.",
    "a": "Speed according to flaps setting (78 KIAS flaps up, 73 KIAS flaps 1 notch), maximum +/- 45 degrees of RWY axis (or flight path), full flaps when landing is ensured, speed Vref 62 KIAS.",
-   "tag": "EFATO below 1000 ft"
+   "tag": "EFATO below 1000 ft",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Same failure above airfield altitude + 1000 ft. What changes?",
    "a": "Speed 78 KIAS, back to opposite runway, full flaps when landing is ensured, speed Vref 62 KIAS. Turn towards the opposite runway in the circuit direction briefed for the day — SPHAIR prints a left turn only as a briefing example. The AFM has no turn-back procedure.",
-   "tag": "EFATO above 1000 ft"
+   "tag": "EFATO above 1000 ft",
+   "source": "TO Briefing GVMN / SPHAIR ch.12 (12.2.1) / AFM §3"
   },
   {
    "q": "Why is a downwind landing after a turn back dangerous?",
    "a": "Even when the turn back succeeds, the landing is made difficult by the added tailwind, and after the turn the aircraft is offset from the field axis. A 180 is only considered above 1000 ft/AAL.",
-   "tag": "turn-back rule"
+   "tag": "turn-back rule",
+   "source": "SPHAIR ch.12"
   },
   {
    "q": "Engine fails in the cruise. What speed and how far can you glide?",
    "a": "Best glide speed, flaps up, 145 km/h (78 kt). In these conditions and without wind the aircraft covers about 9.3 times its altitude.",
-   "tag": "engine failure in flight"
+   "tag": "engine failure in flight",
+   "source": "AFM §3"
   },
   {
    "q": "Give me the five items of the in-flight restart, and the condition to start it.",
    "a": "Only if the altitude is judged sufficient. Fuel valve open, electric pump on, mixture full rich (up), throttle 1/4 of travel forward, magneto switch on L + R (Both). If the propeller is still turning it should restart; if stopped, use the starter.",
-   "tag": "engine restart"
+   "tag": "engine restart",
+   "source": "AFM §3"
   },
   {
    "q": "The engine does not restart. Give me the forced landing drill, engine off.",
    "a": "Seat belts and harness tight, electric pump off, mixture idle cut-off, throttle fully closed, magneto switch off, fuel valve closed, alternator field off, battery switch off. On final: approach speed (62 kt) 115 km/h, flaps fully down, canopy unlocked.",
-   "tag": "forced landing"
+   "tag": "forced landing",
+   "source": "AFM §3 / §4 (p. 4.03 et 4.12)"
   },
   {
    "q": "Precautionary landing in a field with the engine running: what speeds and flap settings?",
    "a": "Inspection passes at 130 km/h (70 kt), flaps take-off position (1st notch); precautionary approach 120 km/h (65 kt), flaps landing position (2nd notch). On final unlock the canopy. Before touching: magnetos off, battery off.",
-   "tag": "precautionary landing"
+   "tag": "precautionary landing",
+   "source": "AFM §3"
   },
   {
    "q": "The canopy is jammed. What do you do?",
    "a": "Canopy handle to the open position. Release the two canopy jettison levers on the armrests, on either side of the instrument panel, and bring them to the vertical position.",
-   "tag": "canopy jammed"
+   "tag": "canopy jammed",
+   "source": "AFM §3 (p. 3.04)"
   },
   {
    "q": "Engine fire on the ground during start. What do you do first, and why?",
    "a": "Let the engine run with fuel valve closed, electric pump off, throttle full power (push), mixture idle cut-off. This makes the engine swallow the fuel accumulated in the intake pipes after excessive priming.",
-   "tag": "engine fire ground"
+   "tag": "engine fire ground",
+   "source": "AFM §3"
   },
   {
    "q": "Engine fire in flight. Give me the seven items.",
    "a": "Fuel valve closed, throttle full power (push) until the engine stops, mixture idle cut-off, electric pump off, alternator field off, cabin heating and ventilation off, best glide speed (78 kt) 145 km/h. No restart attempt.",
-   "tag": "engine fire in flight"
+   "tag": "engine fire in flight",
+   "source": "AFM §3"
   },
   {
    "q": "Electrical fire in the cabin. What is the drill?",
    "a": "Cabin ventilation reduce, alternator field off, battery switch off, battery breaker pulled, alternator breaker pulled. Land quickly if the fire persists.",
-   "tag": "electrical fire"
+   "tag": "electrical fire",
+   "source": "AFM §3"
   },
   {
    "q": "Mandatory go-around. Give me the AFM procedure in order.",
    "a": "Carburettor heat off (pushed) checked, throttle full throttle (push), speed (65 kt) 120 km/h, flaps progressively back to take-off position (1st notch), climb gradient (75 kt) 140 km/h. The SOP callouts are GO AROUND, set T/O PWR, SPEED ABOVE 60 FLAPS 1, climb 70 KIAS.",
-   "tag": "go-around"
+   "tag": "go-around",
+   "source": "AFM §4 (p. 4.13) / SOP GVMN"
   },
   {
    "q": "The engine runs rough. In what order do you look for the cause?",
    "a": "Carburettor icing, mixture too rich or too lean, impurities in the fuel circuit (check fuel pressure, electric pump on), ignition failure: magnetos L, then R, then back to Both; keep the best position, nearest airfield at reduced power.",
-   "tag": "rough running"
+   "tag": "rough running",
+   "source": "AFM §3"
   },
   {
    "q": "Oil pressure is dropping. What do you monitor and what do you do?",
    "a": "Monitor the oil temperature. If it rises abnormally into the red zone, reduce the power and reach the nearest airfield, prepared for a possible forced landing in a field.",
-   "tag": "oil pressure"
+   "tag": "oil pressure",
+   "source": "AFM §3"
   },
   {
    "q": "Carburettor icing: why never an intermediate carb heat position, and what approach speed if the airframe is iced?",
    "a": "Always all-or-nothing, full hot or full cold: an intermediate position can in some cases make the icing worse. With extremely rapid ice formation, carry out a forced landing. More than 0.5 cm (0.2 in) on the leading edge raises the stall speed; use 135 km/h (73 kt) on approach.",
-   "tag": "icing"
+   "tag": "icing",
+   "source": "AFM §3"
   },
   {
    "q": "Amber alternator failure light. First action, then what if it persists?",
    "a": "Switch the alternator field off then on again to reset the overvoltage relay. If the failure persists: alternator field off, switch off all non-essential electrical equipment, land as soon as possible. The engine runs normally.",
-   "tag": "alternator failure"
+   "tag": "alternator failure",
+   "source": "AFM §3"
   },
   {
    "q": "You enter an unintentional spin with flaps out. Give me the recovery.",
    "a": "Throttle idle (pull), rudder full against the direction of rotation, elevator neutral, ailerons neutral; as soon as the rotation stops, rudder neutral and pull out within the flight envelope limits. Retract the flaps as quickly as possible.",
-   "tag": "spin recovery"
+   "tag": "spin recovery",
+   "source": "AFM §3"
   },
   {
    "q": "The elevator control disconnects. How do you fly and land?",
    "a": "Stabilise level, flaps up, at 130 km/h (70 kt) with the elevator trim and the throttle. Do not touch the trim again; control the descent angle with the throttle only, and reduce power only on short final close to the ground.",
-   "tag": "elevator failure"
+   "tag": "elevator failure",
+   "source": "AFM §3"
   }
  ],
  "phases": [

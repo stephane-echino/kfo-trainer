@@ -60,127 +60,152 @@
   {
    "q": "You are at 400 ft on the initial climb out of LSGN, flaps 1, and the engine quits. Airfield elevation plus 1000 ft is 2500 ft. What exactly do you do?",
    "a": "Speed according to flaps setting: 78 KIAS flaps up, 73 KIAS flaps 1 notch. Maximum +- 45 degrees of RWY axis (or flight path). Full flaps when landing is ensured. Speed Vref 62 KIAS.",
-   "tag": "EFATO below 1000 ft"
+   "tag": "EFATO below 1000 ft",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Same failure, but you are already above airfield altitude + 1000 ft (eg. for LSGN 2500 ft). What changes in the briefing?",
    "a": "Speed 78 KIAS, back to opposite runway, full flaps when landing is ensured, speed Vref 62 KIAS. Only above the airfield altitude + 1000 ft gate may a return to the opposite runway be considered.",
-   "tag": "EFATO above 1000 ft"
+   "tag": "EFATO above 1000 ft",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Rough running on the take-off roll, before rotation. Give me the three actions from your take-off briefing.",
    "a": "Throttle idle, brakes applied, inform ATC (radio).",
-   "tag": "malfunction before rotation"
+   "tag": "malfunction before rotation",
+   "source": "TO Briefing GVMN"
   },
   {
    "q": "Why is a turn-back to the field forbidden low after take-off?",
    "a": "AFM: land straight ahead, making only small heading changes to avoid obstacles; never attempt to turn back to the runway, because the altitude after take-off generally does not allow it. Turn back only above airfield altitude + 1000 ft.",
-   "tag": "turn-back rule"
+   "tag": "turn-back rule",
+   "source": "AFM §3 + TO Briefing GVMN"
   },
   {
    "q": "What is the maximum demonstrated crosswind for HB-KFO?",
    "a": "22 kt (40 km/h). It appears in the checklist speed table as Xwind 22 and in the AFM as the demonstrated crosswind, section take-off in crosswind.",
-   "tag": "limits / crosswind"
+   "tag": "limits / crosswind",
+   "source": "AFM §4"
   },
   {
    "q": "Run up: at what RPM do you check the magnetos and what are the two limits?",
    "a": "Throttle SET 2000 RPM. Magnetos — CHECKED (max drop 175-max diff 50): max 175 RPM drop between (L) or (R) and BOTH, max 50 RPM difference between (L) and (R).",
-   "tag": "limits / magnetos"
+   "tag": "limits / magnetos",
+   "source": "Checklist EN V9"
   },
   {
    "q": "What drop do you expect on the carburettor heat check, and at what power?",
    "a": "Carburator heater — CHECKED (drop 100), done at 2000 RPM: pull hot, check the drop of about 100 RPM, then push cold again.",
-   "tag": "run up / carb heat"
+   "tag": "run up / carb heat",
+   "source": "Checklist EN V9"
   },
   {
    "q": "What idle RPM must you see during the run up, and what is the last item of that check?",
    "a": "Throttle idle — CHECKED (600-650 rpm). Last item: Throttle — SET 1000 RPM.",
-   "tag": "limits / idle RPM"
+   "tag": "limits / idle RPM",
+   "source": "Checklist EN V9"
   },
   {
    "q": "The engine does not fire. What are the starter limitations?",
    "a": "Starter — DEPRESSED (max 30 sec. then wait 1'). AFM: avoid using the starter more than 30 seconds, and wait at least one minute before attempting a new start.",
-   "tag": "limits / starter"
+   "tag": "limits / starter",
+   "source": "Checklist EN V9 + AFM §4"
   },
   {
    "q": "Engine has just started. What do you check, and by when must you see it?",
    "a": "Oil pressure — CHECKED RISING (green arc). AFM: if oil pressure is nil after 15 to 20 seconds, shut down and look for the cause. Green arc 3.8-6.5 bar (55-95 psi), red line idle minimum 1.70 bar (25 psi).",
-   "tag": "limits / oil pressure"
+   "tag": "limits / oil pressure",
+   "source": "Checklist EN V9 + AFM §2"
   },
   {
    "q": "Walk me through the RPM values of the RUN UP CHECK.",
    "a": "Parking brake SET, throttle SET 1000 RPM, engine instruments GREEN ARC, area clear, throttle SET 2000 RPM for magnetos, carb heat and mixture, throttle idle CHECKED (600-650 rpm), throttle SET 1000 RPM.",
-   "tag": "run up / RPM"
+   "tag": "run up / RPM",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Lined up. What power do you set and what is the minimum you must see before going?",
    "a": "Power — SET FULL (min 2200 RPM); engine instruments and annunciator lights checked. AFM normal take-off: minimum full-throttle RPM 2200, take-off speed 54 kt (100 km/h).",
-   "tag": "line up / take-off power"
+   "tag": "line up / take-off power",
+   "source": "Checklist EN V9 + AFM §4"
   },
   {
    "q": "You are levelled off, leaned in cruise, and you now want to climb. What must you do first with the mixture, and why?",
    "a": "AFM: ALWAYS ENRICH THE MIXTURE BEFORE A POWER INCREASE. Care must be taken not to lean excessively, to avoid engine overheating; mixture stays full rich for take-off and climb.",
-   "tag": "procedure logic / mixture"
+   "tag": "procedure logic / mixture",
+   "source": "AFM §4"
   },
   {
    "q": "Give me Vfe and Vfo and what each one gates.",
    "a": "Flaps (Vfe) 92 KIAS, Flaps full ops (Vfo) 81 KIAS. Flaps 1 on downwind: 'SPEED BELOW 92, FLAPS 1'. Full flaps: extend below 81 KIAS.",
-   "tag": "limits / flap speeds"
+   "tag": "limits / flap speeds",
+   "source": "Checklist EN V9 + SOP GVMN"
   },
   {
    "q": "When exactly do you select flaps 2 in the standard circuit?",
    "a": "At the Point Of Descent: 'APPROACHING GLIDE' speed 85 KIAS, SPEED BELOW 81, START DESCENT, FLAPS 2, speed 80 KIAS and maintain 80 KIAS. FINAL CHECK then confirms Flaps — FULL DOWN (extend below 81 KIAS).",
-   "tag": "circuit / flaps 2"
+   "tag": "circuit / flaps 2",
+   "source": "SOP GVMN"
   },
   {
    "q": "Short final, the runway is not clear. Give me the go-around sequence and speeds.",
    "a": "'GO AROUND' — Set T/O PWR — 'SPEED ABOVE 60, FLAPS 1' — climb with 70 KIAS. AFM reference: carburettor heat cold checked, full throttle, speed 65 kt, flaps progressively back to take-off position, climb 75 kt.",
-   "tag": "go around"
+   "tag": "go around",
+   "source": "SOP GVMN + AFM §4"
   },
   {
    "q": "Callouts for a touch and go?",
    "a": "Set T/O PWR — 'SPEED ABOVE 54, ROTATE' — 'SPEED ABOVE 60, POSITIVE ROC, FLAPS 1' — climb with 70 KIAS, then according to proc.",
-   "tag": "touch and go"
+   "tag": "touch and go",
+   "source": "SOP GVMN"
   },
   {
    "q": "Why must carburettor heat never be left half way?",
    "a": "AFM: always use carburettor heat all-or-nothing (full hot or full cold); an intermediate position can in certain cases make the icing worse. Checked at run up with a drop of about 100 RPM, then pushed cold.",
-   "tag": "procedure logic / carb heat"
+   "tag": "procedure logic / carb heat",
+   "source": "AFM §3"
   },
   {
    "q": "Which checklist items drive the transponder mode, and to what?",
    "a": "CLIMB CHECK item 3: Transponder — CHECK MODE 'ALT'. AFTER LANDING CHECK item 3: Transponder — CHECK MODE 'GND'.",
-   "tag": "transponder"
+   "tag": "transponder",
+   "source": "Checklist EN V9"
   },
   {
    "q": "Explain the 'First Push' principle and where PAT and APT apply.",
    "a": "At every change of flight phase you always start by pushing, either the elevator or the power. Entering a climb = PAT (Power, Attitude, Trim); level off from a climb = APT; entering a descent = APT; leaving a descent = PAT.",
-   "tag": "SPHAIR / First Push"
+   "tag": "SPHAIR / First Push",
+   "source": "SPHAIR ch.7 + ch.8"
   },
   {
    "q": "You are climbing at 1000 FPM to 4500 ft. When do you start the level off and in what order?",
    "a": "Anticipate by 1/10 of the ROC: with 1000 FPM start 100 ft before, i.e. at 4400 ft. Order APT: Attitude SET, Power SET, Trim SET. Power is reduced only once the speed stops increasing; trim after that.",
-   "tag": "SPHAIR / 1/10 ROC"
+   "tag": "SPHAIR / 1/10 ROC",
+   "source": "SPHAIR ch.7"
   },
   {
    "q": "On final you are below the glide path. What do you use for the angle and what for the speed?",
    "a": "Pitch controls the rate of descent / approach angle, power controls the speed, corrected simultaneously and preventively (PITCH / POWER PROPHYLAXIS). Only exception: the initial approach descent, flown 'Speed on Stick' with power at a fixed value.",
-   "tag": "SPHAIR / pitch vs power"
+   "tag": "SPHAIR / pitch vs power",
+   "source": "SPHAIR ch.13"
   },
   {
    "q": "Rolling into a turn, what do you do about adverse yaw?",
    "a": "Compensate adverse yaw with a measured rudder input in the direction of the turn, the ball showing how much — 'put rudder on the side the ball goes'. With basic training aircraft adverse yaw must always be compensated.",
-   "tag": "SPHAIR / adverse yaw"
+   "tag": "SPHAIR / adverse yaw",
+   "source": "SPHAIR ch.9"
   },
   {
    "q": "How much does stall speed increase in a 30 degree bank?",
    "a": "About +7% (eg. Vstall 60 KIAS becomes 65 KIAS). AFM table at 1000 kg, power reduced: flaps up 54 kt at 0 deg / 58 kt at 30 deg; flaps 1st notch 51 / 54 kt; flaps 2nd notch 47 / 51 kt.",
-   "tag": "SPHAIR / stall in bank"
+   "tag": "SPHAIR / stall in bank",
+   "source": "SPHAIR ch.9 + AFM §5"
   },
   {
    "q": "From rotation to circuit altitude, give me the speeds and callouts.",
    "a": "Vrotate 54 KIAS 'ROTATE', climb with Vx 70 KIAS. At or above 300 ft/AAL: 'CLEAR OF OBSTACLES', 'SPEED ABOVE 70, FLAPS UP', climb with Vy 80 KIAS. Above 2000 ft/AGL: climb with Vcc 85 KIAS.",
-   "tag": "initial climb"
+   "tag": "initial climb",
+   "source": "SOP GVMN"
   }
  ],
  "phases": [

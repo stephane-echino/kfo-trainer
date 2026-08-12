@@ -1,6 +1,24 @@
 {
- "version": "1.39.0",
+ "version": "1.40.0",
  "releases": [
+  {
+   "version": "1.40.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "All 46 failure scenarios now name their source — AFM §3, the GVMN briefing, SPHAIR ch.12, the checklist. Each was traced back to the document it came from and then checked a second time; the check corrected two of them, including the oil-pressure figures, which come from AFM §2 limitations and not from the checklist, which prints no numbers at all. Every question in the examiner now says where its answer comes from."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Les 46 scénarios de panne nomment désormais leur source — AFM §3, briefing GVMN, SPHAIR ch.12, checklist. Chacun a été remonté à son document d'origine puis contrôlé une seconde fois ; le contrôle en a corrigé deux, dont les valeurs de pression d'huile, qui viennent des limitations AFM §2 et non de la checklist, laquelle ne donne aucun chiffre. Chaque question de l'examinateur dit maintenant d'où vient sa réponse."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.39.0",
    "date": "2026-08-12",
