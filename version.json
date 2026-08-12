@@ -1,6 +1,28 @@
 {
- "version": "1.43.0",
+ "version": "1.44.0",
  "releases": [
+  {
+   "version": "1.44.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "The daily review is now a session you can finish: 20 cards, with 5 new ones folded in among them. It used to hand you the whole backlog — \"46 due\" reads as a punishment on a Monday evening — and it could never show you anything new, because a step you have never answered has no schedule entry. The only door to new material was the full 292-step flight.",
+     "Overdue cards come back most-overdue first rather than weakest-box first, which was starving the high boxes and the vital actions permanently. The new cards are spread through the session rather than stacked at the front.",
+     "The home card announces the session rather than the arrears: \"20 cards · 5 new · 29 waiting\". The backlog stays visible — it is just no longer the headline."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "La révision du jour est devenue une session que tu peux finir : 20 cartes, dont 5 nouvelles glissées parmi les autres. Elle te tendait tout l'arriéré — « 46 dues » un lundi soir se lit comme une punition — et elle ne pouvait jamais rien te montrer de neuf, puisqu'une étape jamais répondue n'a pas d'entrée au planning. La seule porte vers du nouveau contenu était le vol complet de 292 étapes.",
+     "Les cartes en retard reviennent du plus en retard au moins en retard, et non de la boîte la plus faible à la plus forte, ce qui affamait en permanence les boîtes hautes et les actions vitales. Les nouvelles sont réparties dans la session au lieu d'être empilées au début.",
+     "La carte d'accueil annonce la session et non l'arriéré : « 20 cartes · 5 nouvelles · 29 en attente ». Le reliquat reste visible, il n'est simplement plus le titre."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.43.0",
    "date": "2026-08-12",

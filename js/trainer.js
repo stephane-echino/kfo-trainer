@@ -117,12 +117,31 @@ export function createTrainer({ onExit }) {
     seqId = sequence;
     courseSteps = wholeCourse || allSteps;
     if (sequence === 'review') {
-      // everything the schedule says is due today, weakest boxes first so the
-      // shakiest items come back while attention is freshest
-      const due = new Set(store.dueKeys(todayIso()));
+      // A bounded session with a few new cards in it. Unbounded, a backlog of
+      // "46 due" reads as a punishment and gets closed; and a step never
+      // answered has no schedule entry, so without this the only door to new
+      // material was the whole 292-step flight.
+      const today = todayIso();
       const sched = store.getSched();
-      steps = allSteps.filter(s => due.has(s.key));
-      steps.sort((a, b) => (sched[a.key]?.box ?? 0) - (sched[b.key]?.box ?? 0));
+      const due = new Set(store.dueKeys(today));
+      const overdue = allSteps.filter(s => due.has(s.key))
+        // most overdue first: sorting by box would starve the high boxes and
+        // the vital actions for ever
+        .sort((a, b) => (sched[a.key]?.due || today).localeCompare(sched[b.key]?.due || today));
+      const fresh = allSteps.filter(s => s.graded && !sched[s.key]);
+      const newCount = Math.min(REVIEW_NEW, Math.floor(REVIEW_BUDGET / 4), fresh.length);
+      const picked = overdue.slice(0, REVIEW_BUDGET - newCount);
+      const newOnes = fresh.slice(0, newCount);
+      // spread the new cards through the session instead of front-loading them:
+      // meeting five unknowns in a row is where a session gets abandoned
+      steps = [];
+      const every = newOnes.length ? Math.max(1, Math.floor((picked.length + newOnes.length) / newOnes.length)) : 0;
+      let ni = 0;
+      for (let i = 0; i < picked.length; i++) {
+        if (ni < newOnes.length && i > 0 && i % every === 0) steps.push(newOnes[ni++]);
+        steps.push(picked[i]);
+      }
+      while (ni < newOnes.length) steps.push(newOnes[ni++]);
       index = 0;
     } else if (sequence === 'memory') {
       // items the checklist marks with a bar, kept in their printed order,
@@ -181,6 +200,8 @@ export function createTrainer({ onExit }) {
   let hfTimer = null;
   const HF_ANSWER_DELAY = 4000;   // time to say it yourself
   const HF_NEXT_DELAY = 2600;     // time to hear the answer land
+  const REVIEW_BUDGET = 20;       // a session you can finish on one train leg
+  const REVIEW_NEW = 5;           // new cards folded into it
 
   // The cue is what triggers the action: a checklist item's challenge, a
   // call-out's "when", a flow step's own prompt. Never a slice of the answer —

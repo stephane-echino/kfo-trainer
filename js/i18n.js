@@ -201,7 +201,11 @@ const STR = {
     'home.disclaimer': "Aide à l'entraînement uniquement — pas pour l'exploitation.\nVole toujours selon les documents à jour de ton club.",
     'home.resume': (pct) => `reprendre · ${pct}%`,
     'home.toReview': (n) => `${n} à revoir`,
+    'home.session': (n, fresh, backlog) =>
+      `${n} carte${n > 1 ? 's' : ''}${fresh ? ` · ${fresh} nouvelle${fresh > 1 ? 's' : ''}` : ''}${backlog ? ` · ${backlog} en attente` : ''}`,
     'home.due': (n) => `${n} due${n > 1 ? 's' : ''}`,
+    'home.session': (n, fresh, backlog) =>
+      `${n} card${n > 1 ? 's' : ''}${fresh ? ` · ${fresh} new` : ''}${backlog ? ` · ${backlog} waiting` : ''}`,
     'home.restart': 'Recommencer le vol depuis le début',
     'home.step': (i, n) => `étape ${i} sur ${n}`,
     'update.check': '↻ Vérifier les mises à jour',

@@ -369,9 +369,17 @@ function renderHome() {
     flightPill.appendChild(restart);
   }
   // what the schedule says is due today, limited to steps the toggles keep
+  const sched = store.getSched();
   const due = new Set(store.dueKeys(todayIso()));
   const dueCount = steps.filter(s => due.has(s.key)).length;
-  $('progress-review').textContent = dueCount ? t('home.due', dueCount) : '';
+  const freshCount = steps.filter(s => s.graded && !sched[s.key]).length;
+  // announce the session, not the backlog: "20 cards · 5 new" invites, "46 due" does not
+  const newInSession = Math.min(5, 5, freshCount);
+  const sessionSize = Math.min(20, dueCount + newInSession);
+  const backlog = Math.max(0, dueCount - (sessionSize - newInSession));
+  $('progress-review').textContent = (dueCount || freshCount)
+    ? t('home.session', sessionSize, newInSession, backlog)
+    : '';
   const reviewDesc = document.querySelector('.mode-card[data-mode="review"] .mode-desc');
   if (reviewDesc) reviewDesc.textContent = t('mode.review.desc');
   const memCount = steps.filter(s => s.mem).length;
