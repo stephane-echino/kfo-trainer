@@ -1,6 +1,7 @@
 // App shell: screen routing, home rendering, reference browser, settings.
 import { loadModule, flattenSteps, combineNote } from './data.js';
 import { store } from './store.js';
+import { todayIso } from './fx.js';
 import { createTrainer } from './trainer.js';
 import { createExaminer } from './examiner.js';
 import { voiceSupported } from './voice.js';
@@ -312,10 +313,12 @@ function renderHome() {
     };
     flightPill.appendChild(restart);
   }
-  // count only misses Review can actually show — the toggles may hide some
-  const misses = store.getMisses();
-  const missCount = steps.filter(s => misses[s.key]).length;
-  $('progress-review').textContent = missCount ? t('home.toReview', missCount) : '';
+  // what the schedule says is due today, limited to steps the toggles keep
+  const due = new Set(store.dueKeys(todayIso()));
+  const dueCount = steps.filter(s => due.has(s.key)).length;
+  $('progress-review').textContent = dueCount ? t('home.due', dueCount) : '';
+  const reviewDesc = document.querySelector('.mode-card[data-mode="review"] .mode-desc');
+  if (reviewDesc) reviewDesc.textContent = t('mode.review.desc');
   const memCount = steps.filter(s => s.mem).length;
   $('progress-memory').textContent = memCount ? `${memCount}` : '';
 

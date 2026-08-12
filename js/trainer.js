@@ -100,8 +100,12 @@ export function createTrainer({ onExit }) {
   function start(allSteps, sequence) {
     seqId = sequence;
     if (sequence === 'review') {
-      const misses = store.getMisses();
-      steps = allSteps.filter(s => misses[s.key]);
+      // everything the schedule says is due today, weakest boxes first so the
+      // shakiest items come back while attention is freshest
+      const due = new Set(store.dueKeys(todayIso()));
+      const sched = store.getSched();
+      steps = allSteps.filter(s => due.has(s.key));
+      steps.sort((a, b) => (sched[a.key]?.box ?? 0) - (sched[b.key]?.box ?? 0));
       index = 0;
     } else if (sequence === 'memory') {
       // items the checklist marks with a bar, kept in their printed order,
@@ -299,6 +303,8 @@ export function createTrainer({ onExit }) {
     const s = get();
     if (!s || !revealed) return;
     if (ok) store.clearMiss(s.key); else store.addMiss(s.key);
+    // every graded answer schedules when the step should come back
+    if (s.graded) store.recordAnswer(s.key, ok, todayIso());
     if (s.graded) award(ok);
     advance(ok);
   }

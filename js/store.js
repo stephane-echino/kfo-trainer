@@ -10,6 +10,16 @@ function defaultLang() {
 let scope = 'circuit';
 const scoped = (key) => (scope === 'circuit' ? key : `${scope}:${key}`);
 
+// Days before a step comes back, per Leitner box. Box 0 means "again today".
+const SR_INTERVALS = [0, 1, 2, 4, 8, 16];
+
+function addDays(iso, days) {
+  if (!days) return iso;
+  const [y, m, d] = iso.split('-').map(Number);
+  const dt = new Date(y, m - 1, d + days);
+  return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
+}
+
 function read(key, fallback) {
   try {
     const raw = localStorage.getItem(`${NS}:${key}`);
@@ -45,7 +55,31 @@ export const store = {
     const m = store.getMisses();
     if (stepKey in m) { delete m[stepKey]; write(scoped('misses'), m); }
   },
-  resetMisses() { write(scoped('misses'), {}); },
+  resetMisses() { write(scoped('misses'), {}); write(scoped('sched'), {}); },
+
+  // ---------- spaced repetition (Leitner boxes) ----------
+  // { [stepKey]: { box: 0..5, due: 'YYYY-MM-DD' } }
+  // A step answered correctly comes back later and later; a missed step drops
+  // to box 0 and is due again the same day. Steps never answered have no entry
+  // and are covered by the full flight instead.
+  getSched() { return read(scoped('sched'), {}); },
+
+  recordAnswer(stepKey, ok, todayIso) {
+    const sched = store.getSched();
+    const cur = sched[stepKey] || { box: 0, due: todayIso };
+    const box = ok ? Math.min(cur.box + 1, SR_INTERVALS.length - 1) : 0;
+    sched[stepKey] = { box, due: addDays(todayIso, SR_INTERVALS[box]) };
+    write(scoped('sched'), sched);
+    return sched[stepKey];
+  },
+
+  // keys due on or before `todayIso`
+  dueKeys(todayIso) {
+    const sched = store.getSched();
+    return Object.keys(sched).filter(k => sched[k].due <= todayIso);
+  },
+
+  resetSched() { write(scoped('sched'), {}); },
 
   // rolling accuracy per phase: { [phaseId]: {ok, miss} }
   getPhaseStats() { return read(scoped('phaseStats'), {}); },

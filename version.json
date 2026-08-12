@@ -1,6 +1,24 @@
 {
- "version": "1.17.0",
+ "version": "1.18.0",
  "releases": [
+  {
+   "version": "1.18.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Spaced repetition. Every answer you grade now schedules when that step comes back: got it → 1 day, then 2, 4, 8, 16; missed → back the same day. \"Review\" becomes your daily queue and shows how many steps are due, weakest first. This is the part that actually moves a checklist into long-term memory — five minutes on the train, every day, beats one long session."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Répétition espacée. Chaque réponse que tu notes programme le retour de l'étape : su → 1 jour, puis 2, 4, 8, 16 ; raté → il revient le jour même. « Revoir » devient ta file du jour et affiche combien d'étapes sont dues, les plus fragiles d'abord. C'est ce qui fait vraiment passer une checklist en mémoire longue — cinq minutes dans le train, tous les jours, valent mieux qu'une longue session."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.17.0",
    "date": "2026-08-12",
