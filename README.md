@@ -53,6 +53,12 @@ course.
 |---|---|---|
 | Circuit | `circuit.json`, `circuit-fr.json` | 25 phases, full flight |
 | Emergencies | `emergency.json`, `emergency-fr.json` | 18 phases, AFM §3 + SPHAIR |
+| Walk-around | `walkaround.json`, `walkaround-fr.json` | 9 AFM stations, p. 4.04–4.05 |
+
+Radio examples come from SPHAIR and are written for another aircraft; `{{callsign}}` and
+`{{type}}` are substituted from the module's `aircraft` / `aircraftType` in `loadModule()`,
+so the student rehearses their own identity. Changing a module's content means bumping its
+`version` — but only when the content really changed, since that restarts the course schedule.
 
 Sources: GVMN checklist EN V9 / FR V10, GVMN SOP and Takeoff Briefing, AFM HB-KFO,
 SPHAIR Bases & Procedures. Checklist items are verbatim from the official checklists.
