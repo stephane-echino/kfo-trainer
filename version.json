@@ -1,6 +1,28 @@
 {
- "version": "1.32.1",
+ "version": "1.32.2",
  "releases": [
+  {
+   "version": "1.32.2",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "A technique card's text now reads in normal prose colour behind its amber rule. Whole paragraphs in amber were a wall of colour."
+    ],
+    "fixed": [
+     "On a card long enough to scroll, the text ran underneath the type and source badges. They now stay pinned at the top with the text fading out cleanly beneath them."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Le texte d'une carte Technique se lit désormais en couleur de prose derrière son filet ambre. Des paragraphes entiers en ambre faisaient un mur de couleur."
+    ],
+    "fixed": [
+     "Sur une carte assez longue pour défiler, le texte passait sous les badges de type et de source. Ils restent maintenant épinglés en haut, le texte s'estompant proprement dessous."
+    ]
+   }
+  },
   {
    "version": "1.32.1",
    "date": "2026-08-12",

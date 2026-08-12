@@ -348,6 +348,7 @@ export function createTrainer({ onExit }) {
     if (hint) els.stateHint.textContent = hint;
     els.answer.classList.toggle('long', !!s.answerLong);
     els.card.classList.toggle('long-answer', !!s.answerLong);
+    els.card.classList.toggle('k-note', s.kind === 'note');
     // dim the official item number so the response itself carries the eye
     const numbered = /^(\d+)\.\s/.exec(s.answer);
     if (numbered && !s.answerLong) {

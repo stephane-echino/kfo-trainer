@@ -328,7 +328,7 @@ h1 {
   -webkit-overflow-scrolling: touch;
   background: linear-gradient(165deg, var(--bg-card-2), var(--bg-card) 60%);
   border: 1px solid var(--line-soft); border-radius: var(--radius);
-  padding: 46px 18px 20px;
+  padding: 12px 18px 20px;
   display: flex; flex-direction: column; gap: 14px;
   align-items: center; justify-content: center; text-align: center;
   min-height: 46dvh;
@@ -346,8 +346,10 @@ h1 {
 
 /* badges row pinned at the top of the card */
 .step-badges {
-  position: absolute; top: 12px; left: 12px; right: 12px;
+  position: sticky; top: -20px; z-index: 2;
+  align-self: stretch; margin: -12px -18px 0; padding: 12px 18px 10px;
   display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;
+  background: linear-gradient(180deg, var(--bg-card-2) 0 86%, transparent);
 }
 .step-kind {
   font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700;
@@ -410,11 +412,13 @@ h1 {
   animation: answer-in 0.32s var(--ease);
 }
 .step-answer.long {
-  font-size: 18.5px; font-weight: 600; text-align: left; line-height: 1.45;
+  font-size: 17.5px; font-weight: 600; text-align: left; line-height: 1.5;
   color: #f6d79a;                       /* still reads as "the answer" */
   border-left: 3px solid var(--amber);
   padding-left: 12px; width: 100%;
 }
+/* a technique card's "answer" is a paragraph — prose colour, amber rule kept */
+.step-card.k-note .step-answer.long { color: var(--text); font-weight: 500; font-size: 16px; }
 /* when the answer is a sentence, the generic prompt above it must step back —
    the answer is the content, the prompt is only the cue */
 .step-card.long-answer .step-prompt { font-size: 15px; font-weight: 550; color: var(--text-dim); }
@@ -651,7 +655,7 @@ h1 {
 
 /* short screens (iPhone SE and friends): give the card the room it needs */
 @media (max-height: 700px) {
-  .step-card { min-height: 40dvh; padding-top: 42px; }
+  .step-card { min-height: 40dvh; }
   .circuit-wrap { padding-top: 2px; }
   .sitband-seg { padding: 5px 4px 5px; }
 }
