@@ -377,11 +377,15 @@ function renderHome() {
   const newInSession = Math.min(5, 5, freshCount);
   const sessionSize = Math.min(20, dueCount + newInSession);
   const backlog = Math.max(0, dueCount - (sessionSize - newInSession));
-  $('progress-review').textContent = (dueCount || freshCount)
-    ? t('home.session', sessionSize, newInSession, backlog)
-    : '';
+  // the pill stays a number; the make-up of the session goes on the description
+  // line, or it breaks the card title in two
+  $('progress-review').textContent = (dueCount || freshCount) ? String(sessionSize) : '';
   const reviewDesc = document.querySelector('.mode-card[data-mode="review"] .mode-desc');
-  if (reviewDesc) reviewDesc.textContent = t('mode.review.desc');
+  if (reviewDesc) {
+    reviewDesc.textContent = (dueCount || freshCount)
+      ? t('home.session', sessionSize, newInSession, backlog)
+      : t('mode.review.desc');
+  }
   const memCount = steps.filter(s => s.mem).length;
   $('progress-memory').textContent = memCount ? `${memCount}` : '';
 

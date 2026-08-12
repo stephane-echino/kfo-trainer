@@ -6,7 +6,7 @@ const STR = {
   en: {
     'course.circuit': 'Circuit',
     'course.emergency': 'Emergencies',
-    'course.walkaround': 'Walk-around',
+    'course.walkaround': 'Pre-flight',
     'walk.plan': 'AFM walk-around route',
     'mode.flight.name': 'Full flight',
     'mode.flight.desc': 'Say each step out loud, tap to reveal, tap to advance',
@@ -29,6 +29,9 @@ const STR = {
     'home.disclaimer': "Training aid only — not for operational use.\nAlways fly per your club's current documents.",
     'home.resume': (pct) => `resume · ${pct}%`,
     'home.toReview': (n) => `${n} to review`,
+    'home.session': (n, fresh, backlog) =>
+      `${n} card${n > 1 ? 's' : ''} today${fresh ? `, ${fresh} of them new` : ''}${backlog ? ` · ${backlog} still waiting` : ''}`,
+
     'home.due': (n) => `${n} due`,
     'home.restart': 'Start the flight over',
     'home.step': (i, n) => `step ${i} of ${n}`,
@@ -178,7 +181,7 @@ const STR = {
   fr: {
     'course.circuit': 'Circuit',
     'course.emergency': 'Urgences',
-    'course.walkaround': 'Tour de l\'avion',
+    'course.walkaround': 'Prévol',
     'walk.plan': 'Cheminement AFM',
     'mode.flight.name': 'Vol complet',
     'mode.flight.desc': 'Dis chaque étape à voix haute, tape pour révéler, tape pour avancer',
@@ -202,10 +205,8 @@ const STR = {
     'home.resume': (pct) => `reprendre · ${pct}%`,
     'home.toReview': (n) => `${n} à revoir`,
     'home.session': (n, fresh, backlog) =>
-      `${n} carte${n > 1 ? 's' : ''}${fresh ? ` · ${fresh} nouvelle${fresh > 1 ? 's' : ''}` : ''}${backlog ? ` · ${backlog} en attente` : ''}`,
+      `${n} carte${n > 1 ? 's' : ''} aujourd'hui${fresh ? `, dont ${fresh} nouvelle${fresh > 1 ? 's' : ''}` : ''}${backlog ? ` · ${backlog} encore en attente` : ''}`,
     'home.due': (n) => `${n} due${n > 1 ? 's' : ''}`,
-    'home.session': (n, fresh, backlog) =>
-      `${n} card${n > 1 ? 's' : ''}${fresh ? ` · ${fresh} new` : ''}${backlog ? ` · ${backlog} waiting` : ''}`,
     'home.restart': 'Recommencer le vol depuis le début',
     'home.step': (i, n) => `étape ${i} sur ${n}`,
     'update.check': '↻ Vérifier les mises à jour',

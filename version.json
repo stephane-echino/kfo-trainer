@@ -1,6 +1,28 @@
 {
- "version": "1.44.0",
+ "version": "1.44.1",
  "releases": [
+  {
+   "version": "1.44.1",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "The daily-review card reads \"19 cards today, 5 of them new\" on its description line, with just the number on the badge — the longer text was breaking the card title onto two lines. Three courses now fit on one row."
+    ],
+    "fixed": [
+     "The session line was showing in English inside the French interface."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "La carte de révision affiche « 19 cartes aujourd'hui, dont 5 nouvelles » sur sa ligne de description, la pastille ne portant que le nombre — le texte long cassait le titre en deux. Les trois cours tiennent maintenant sur une rangée."
+    ],
+    "fixed": [
+     "La ligne de session s'affichait en anglais dans l'interface française."
+    ]
+   }
+  },
   {
    "version": "1.44.0",
    "date": "2026-08-12",
