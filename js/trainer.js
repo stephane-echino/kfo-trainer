@@ -98,6 +98,8 @@ export function createTrainer({ onExit }) {
 
   function saveAndNotifyExit() {
     store.setPosition(seqId, index);
+    // a partial session can still have earned something
+    if (session && (session.ok + session.miss) > 0 && !session.complete) checkUnlocks(session);
     onExit();
   }
 
@@ -354,6 +356,11 @@ export function createTrainer({ onExit }) {
   // XP and running streak — cosmetic motivation, never affects content.
   function award(ok) {
     if (session) session[ok ? 'ok' : 'miss'] += 1;
+    // a session interrupted mid-flight still counts as practice for today
+    if (session && !session.dayCredited) {
+      session.dayCredited = true;
+      store.touchDay(todayIso());
+    }
     const clued = clueUsed;
     const cur = get();
     if (cur?.phase?.id) store.recordPhase(cur.phase.id, ok);

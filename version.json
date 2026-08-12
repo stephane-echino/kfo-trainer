@@ -1,6 +1,26 @@
 {
- "version": "1.24.0",
+ "version": "1.25.0",
  "releases": [
+  {
+   "version": "1.25.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "The Examiner now counts: correct answers earn XP, feed your streak and mark the day as practised. A ten-question session on the train left no trace before.",
+     "A session you leave part-way through still credits the day and can still unlock a badge. Only finishing the whole flight used to count, which is not how a train ride works."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "L'Examinateur compte désormais : les bonnes réponses rapportent de l'XP, alimentent la série et marquent le jour comme travaillé. Une session de dix questions dans le train ne laissait aucune trace.",
+     "Une session quittée en cours de route crédite quand même la journée et peut débloquer un succès. Seul un vol complet comptait, ce qui ne correspond pas à un trajet en train."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.24.0",
    "date": "2026-08-12",

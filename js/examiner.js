@@ -1,6 +1,8 @@
 // Examiner mode: 10 random questions per session, drawn from
 // speeds, memory flows ("what comes next", recitation) and scenarios.
 import { t } from './i18n.js';
+import { store } from './store.js';
+import { todayIso, floatLabel } from './fx.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -10,6 +12,7 @@ export function createExaminer({ onExit }) {
   let score = { ok: 0, miss: 0 };
   let revealed = false;
   let finished = false;
+  let dayCredited = false;
 
   const els = {};
   function bindEls() {
@@ -48,6 +51,7 @@ export function createExaminer({ onExit }) {
     score = { ok: 0, miss: 0 };
     revealed = false;
     finished = false;
+    dayCredited = false;
     // start() owns the quit button — finish() repurposes it, so reclaim it here
     els.btnQuit.textContent = t('exam.end');
     els.btnQuit.onclick = finish;
@@ -181,6 +185,13 @@ export function createExaminer({ onExit }) {
   function grade(ok) {
     if (finished || !revealed) return;
     if (ok) score.ok += 1; else score.miss += 1;
+    // an examiner session is real practice: it earns and it counts for the day
+    if (!dayCredited) { dayCredited = true; store.touchDay(todayIso()); }
+    store.bumpStreak(ok);
+    if (ok) {
+      store.addXp(6);
+      floatLabel(els.card, '+6 XP');
+    }
     if (index >= questions.length - 1) { finish(); return; }
     index += 1;
     render();
