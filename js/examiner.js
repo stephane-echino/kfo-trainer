@@ -191,7 +191,7 @@ export function createExaminer({ onExit }) {
     // question with two different correct answers.
     const seenQ = new Set();
     return qs.filter(q => {
-      const sig = `${q.kind}::${q.q}`;
+      const sig = `${q.tag}::${q.kind}::${q.q}`;
       if (seenQ.has(sig)) return false;
       seenQ.add(sig);
       return true;

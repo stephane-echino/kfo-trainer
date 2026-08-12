@@ -90,7 +90,9 @@ async function loadContent() {
   const course = currentCourse();
   store.setScope(course.id);
   const lang = getLang();
-  const tries = [course.file[lang], course.file.en, 'circuit'];
+  // never fall back to another course: loading circuit under the emergency
+  // scope would stamp the wrong content version and show the wrong material
+  const tries = [course.file[lang], course.file.en];
   let lastErr = null;
   for (const id of tries) {
     if (!id) continue;

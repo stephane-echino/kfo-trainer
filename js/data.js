@@ -98,6 +98,7 @@ export function flattenSteps(mod, include = null) {
           answerLong: it.say.length > 60,
           note: it.note || null,
           sayTarget: it.say,
+          lang: it.lang || block.lang || null,
         }));
       } else if (block.type === 'note') {
         push(0, {

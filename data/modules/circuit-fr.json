@@ -503,7 +503,8 @@
      "items": [
       {
        "when": "Avant de commencer à rouler",
-       "say": "Ventilation, Heater, Defroster — AS REQUIRED / Avionics — ON, SET / Directional gyro — SET"
+       "say": "Ventilation, Heater, Defroster — AS REQUIRED / Avionics — ON, SET / Directional gyro — SET",
+       "lang": "en"
       }
      ]
     },
@@ -549,17 +550,20 @@
       {
        "when": "Aérodrome contrôlé — premier appel à GROUND",
        "say": "LOCARNO GROUND — HB-CFR — CESSNA 172 — GRASS PARKING BRAVO — VFR TO GRENCHEN — INFORMATION TANGO — REQUEST TAXI",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Collationnement de l'autorisation de roulage",
        "say": "TAXI TO HOLDING BAY — RUNWAY 26 RIGHT — QNH 1016 — HB-CFR",
-       "note": "Collationner l'instruction de roulage, la piste et le QNH, en terminant par son indicatif."
+       "note": "Collationner l'instruction de roulage, la piste et le QNH, en terminant par son indicatif.",
+       "lang": "en"
       },
       {
        "when": "Aérodrome non contrôlé — annoncer son intention, pas de REQUEST",
        "say": "LOMMIS AERODROME — HB-CFR — CESSNA 172 — GRASS PARKING — VFR LOCAL FLIGHT — TAXI TO HOLDING POINT RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       }
      ]
     },
@@ -592,12 +596,14 @@
       {
        "when": "MOVE — avant que l'avion ne se déplace",
        "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED",
-       "note": "Contrôler et annoncer chaque élément ; l'espace devant, de côté et derrière l'avion doit être dégagé."
+       "note": "Contrôler et annoncer chaque élément ; l'espace devant, de côté et derrière l'avion doit être dégagé.",
+       "lang": "en"
       },
       {
        "when": "BRAKE CHECK — dès que l'on roule pour la première fois",
        "say": "Brakes – CHECKED",
-       "note": "Rouler très lentement tant que les freins ne sont pas contrôlés. Les actionner juste ce qu'il faut pour constater leur efficacité et leur symétrie — l'avion ne doit pas s'arrêter de rouler."
+       "note": "Rouler très lentement tant que les freins ne sont pas contrôlés. Les actionner juste ce qu'il faut pour constater leur efficacité et leur symétrie — l'avion ne doit pas s'arrêter de rouler.",
+       "lang": "en"
       }
      ]
     },
@@ -917,21 +923,25 @@
       {
        "when": "Prêt au point d'attente, aérodrome non contrôlé",
        "say": "HB-CFR, READY FOR DEPARTURE, RUNWAY 24",
-       "note": "Adaptez l'indicatif et la station aux procédures locales."
+       "note": "Adaptez l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Piste et approche libres - annonce de votre intention",
        "say": "HB-CFR, HOLDING POINT RUNWAY 24, LINE-UP AND TAKE-OFF, OUTBOUND WÄNGI",
-       "note": "Sur un aérodrome non contrôlé il n'y a pas d'autorisation : vous annoncez votre intention, en tenant compte de ce que les autres pilotes ont annoncé."
+       "note": "Sur un aérodrome non contrôlé il n'y a pas d'autorisation : vous annoncez votre intention, en tenant compte de ce que les autres pilotes ont annoncé.",
+       "lang": "en"
       },
       {
        "when": "Prêt au point d'attente, aérodrome contrôlé avec TOWER",
-       "say": "HB-CFR, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE"
+       "say": "HB-CFR, HOLDING POINT NOVEMBER, RUNWAY 19, READY FOR DEPARTURE",
+       "lang": "en"
       },
       {
        "when": "Collationnement de l'autorisation de décoller",
        "say": "RUNWAY 19, CLEARED FOR TAKE-OFF, WILCO, HB-CFR",
-       "note": "WILCO confirme que vous effectuerez le report de position demandé par la tour."
+       "note": "WILCO confirme que vous effectuerez le report de position demandé par la tour.",
+       "lang": "en"
       }
      ]
     },
@@ -1079,17 +1089,20 @@
      "items": [
       {
        "when": "A 300 ft/AAL ou au-dessus",
-       "say": "CLEAR OF OBSTACLES"
+       "say": "CLEAR OF OBSTACLES",
+       "lang": "en"
       },
       {
        "when": "Vitesse contrôlée, obstacles passés, assiette de montée stabilisée",
        "say": "SPEED ABOVE 70, FLAPS UP",
-       "note": "La rentrée des volets provoque une diminution brève mais sensible de la portance - à compenser en modifiant légèrement l'assiette - puis la vitesse augmente progressivement avec la diminution de la résistance."
+       "note": "La rentrée des volets provoque une diminution brève mais sensible de la portance - à compenser en modifiant légèrement l'assiette - puis la vitesse augmente progressivement avec la diminution de la résistance.",
+       "lang": "en"
       },
       {
        "when": "Configuration lisse, montée stabilisée",
        "say": "Climb with Vy 80KIAS",
-       "note": "Au-dessus de 2000 ft/AGL : montée à Vcc 85 KIAS."
+       "note": "Au-dessus de 2000 ft/AGL : montée à Vcc 85 KIAS.",
+       "lang": "en"
       }
      ]
     },
@@ -1201,11 +1214,13 @@
      "items": [
       {
        "when": "Après le lookout, avant un virage à gauche",
-       "say": "left side clear"
+       "say": "left side clear",
+       "lang": "en"
       },
       {
        "when": "Après le lookout, avant un virage à droite",
-       "say": "right side clear"
+       "say": "right side clear",
+       "lang": "en"
       }
      ]
     },
@@ -1336,7 +1351,8 @@
       {
        "do": "Assiette — variation mesurée et continue en direction nez bas",
        "say": "Attitude ….. ADJUST FOR LEVEL FLIGHT",
-       "note": "La phase d'accélération commence ; l'accroissement permanent de la pression sur les commandes doit être contrecarré à la main par une poussée progressive sur la commande de profondeur."
+       "note": "La phase d'accélération commence ; l'accroissement permanent de la pression sur les commandes doit être contrecarré à la main par une poussée progressive sur la commande de profondeur.",
+       "lang": "en"
       },
       {
        "do": "Puissance — réduire à la puissance de croisière selon les PERFORMANCE TABLES de l'AFM",
@@ -1346,11 +1362,13 @@
       },
       {
        "do": "Trim — réglé, après la réduction de puissance",
-       "say": "Trim ……… SET"
+       "say": "Trim ……… SET",
+       "lang": "en"
       },
       {
        "do": "Mixture — réglée pour l'altitude",
-       "say": "Mixture …. SET FOR ALTITUDE"
+       "say": "Mixture …. SET FOR ALTITUDE",
+       "lang": "en"
       },
       {
        "do": "Phare d'atterrissage — SELON BESOIN"
@@ -1439,7 +1457,8 @@
       {
        "when": "Contrôle de croisière terminé",
        "say": "CRUISE CHECK COMPLETED",
-       "note": "Répéter le contrôle de croisière après chaque changement d'altitude ou variation importante de température, mais au minimum toutes les 30 minutes."
+       "note": "Répéter le contrôle de croisière après chaque changement d'altitude ou variation importante de température, mais au minimum toutes les 30 minutes.",
+       "lang": "en"
       }
      ]
     },
@@ -1506,11 +1525,13 @@
      "items": [
       {
        "when": "Avant un virage à gauche",
-       "say": "left side clear"
+       "say": "left side clear",
+       "lang": "en"
       },
       {
        "when": "Avant un virage à droite",
-       "say": "right side clear"
+       "say": "right side clear",
+       "lang": "en"
       }
      ]
     },
@@ -1592,11 +1613,13 @@
       },
       {
        "do": "Régler la mixture pour la descente",
-       "say": "Mixture SET"
+       "say": "Mixture SET",
+       "lang": "en"
       },
       {
        "do": "Abaisser le nez à l'assiette de référence de descente",
-       "say": "Attitude FOR DESCENT"
+       "say": "Attitude FOR DESCENT",
+       "lang": "en"
       },
       {
        "do": "Ajuster la puissance selon le type de descente exécuté",
@@ -1610,7 +1633,8 @@
       },
       {
        "do": "Exécuter le CONTRÔLE DE DESCENTE",
-       "say": "DESCENT CHECK COMPLETED"
+       "say": "DESCENT CHECK COMPLETED",
+       "lang": "en"
       }
      ]
     },
@@ -1743,27 +1767,32 @@
       {
        "when": "Premier appel à l'arrivée, aérodrome contrôlé",
        "say": "LOCARNO TOWER, HB-CFR, CESSNA 172, VFR FLIGHT FROM BERN, BRISSAGO 3000 FEET, INFORMATION SIERRA, FOR LANDING",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Collationnement de l'instruction d'intégration",
        "say": "QNH 1021, REPORT DOWNWIND, RUNWAY 26 CENTER, HB-CFR",
-       "note": "La tour a donné : JOIN AND REPORT DOWNWIND, RUNWAY 26 CENTER, QNH 1021. Adapter l'indicatif et la station aux procédures locales."
+       "note": "La tour a donné : JOIN AND REPORT DOWNWIND, RUNWAY 26 CENTER, QNH 1021. Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Premier appel à l'arrivée, aérodrome non contrôlé",
        "say": "LOMMIS AERODROME, HB-CFR, CESSNA 172, SECTOR SOUTH 3500 FEET, VIA OVERHEAD, FOR LANDING",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "À la verticale du terrain, aérodrome non contrôlé",
        "say": "HB-CFR, OVERHEAD 3500 FEET, WILL JOIN DOWNWIND RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Établi en vent arrière",
        "say": "HB-CFR, DOWNWIND, RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       }
      ]
     }
@@ -1855,7 +1884,8 @@
       {
        "when": "En vent arrière, au plus tard au travers du seuil",
        "say": "SPEED BELOW 92, FLAPS 1",
-       "note": "Ensuite vitesse 85 KIAS, ajuster la puissance moteur pour maintenir la vitesse, puis compenser (trim)."
+       "note": "Ensuite vitesse 85 KIAS, ajuster la puissance moteur pour maintenir la vitesse, puis compenser (trim).",
+       "lang": "en"
       }
      ]
     },
@@ -1867,12 +1897,14 @@
       {
        "when": "Aérodrome contrôlé, annonce vent arrière",
        "say": "HB-CFR — DOWNWIND RUNWAY 26 CENTER",
-       "note": "La tour répond p. ex. NUMBER 1, RUNWAY 26 CENTER — collationner. Adapter l'indicatif et la station aux procédures locales."
+       "note": "La tour répond p. ex. NUMBER 1, RUNWAY 26 CENTER — collationner. Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Aérodrome non contrôlé, annonce vent arrière",
        "say": "HB-CFR — DOWNWIND — RUNWAY 24",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       }
      ]
     },
@@ -1921,17 +1953,20 @@
      "items": [
       {
        "when": "Au point de descente, vitesse 85 KIAS",
-       "say": "APPROACHING GLIDE"
+       "say": "APPROACHING GLIDE",
+       "lang": "en"
       },
       {
        "when": "Vitesse au-dessous de 81",
        "say": "START DESCENT, FLAPS 2",
-       "note": "Réduire la puissance moteur, prendre l'assiette de descente, puis vitesse 80 KIAS et trimmer."
+       "note": "Réduire la puissance moteur, prendre l'assiette de descente, puis vitesse 80 KIAS et trimmer.",
+       "lang": "en"
       },
       {
        "when": "En descente en base",
        "say": "MAINTAINS 80 KIAS",
-       "note": "Vitesse maintenue à 80 KIAS jusqu'au virage en finale."
+       "note": "Vitesse maintenue à 80 KIAS jusqu'au virage en finale.",
+       "lang": "en"
       }
      ]
     },
@@ -1943,7 +1978,8 @@
       {
        "when": "Dès qu'il est possible de juger l'angle d'approche",
        "say": "ABOVE/ON/BELOW GLIDE",
-       "note": "Corriger l'angle d'approche à l'aide de l'assiette de vol, et la vitesse à l'aide de la puissance moteur (vitesse d'approche intermédiaire)."
+       "note": "Corriger l'angle d'approche à l'aide de l'assiette de vol, et la vitesse à l'aide de la puissance moteur (vitesse d'approche intermédiaire).",
+       "lang": "en"
       }
      ]
     },
@@ -1994,12 +2030,14 @@
       {
        "when": "Aérodrome contrôlé, annonce finale",
        "say": "HB-CFR — FINAL RUNWAY 26 CENTER",
-       "note": "La tour : WIND CALM — RUNWAY 26 CENTER — CLEARED TO LAND ; collationner la piste et l'autorisation. Adapter l'indicatif et la station aux procédures locales."
+       "note": "La tour : WIND CALM — RUNWAY 26 CENTER — CLEARED TO LAND ; collationner la piste et l'autorisation. Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Aérodrome non contrôlé, annonce finale",
        "say": "HB-CFR — FINAL — RUNWAY 24 — FOR LANDING",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       }
      ]
     },
@@ -2095,7 +2133,8 @@
       {
        "when": "À la Power Gate",
        "say": "POWER — IDLE",
-       "note": "Amener la puissance du moteur au ralenti de manière fluide, mais pas brusque. L'avion devient « nose heavy » - contrecarrer cette tendance en maintenant rigoureusement l'AIMING POINT. La main droite reste à la manette des gaz jusqu'à la libération de la piste."
+       "note": "Amener la puissance du moteur au ralenti de manière fluide, mais pas brusque. L'avion devient « nose heavy » - contrecarrer cette tendance en maintenant rigoureusement l'AIMING POINT. La main droite reste à la manette des gaz jusqu'à la libération de la piste.",
+       "lang": "en"
       }
      ]
     },
@@ -2162,7 +2201,8 @@
       },
       {
        "do": "Contrôler la vitesse, puis volets 1er cran",
-       "say": "SPEED ABOVE 60, FLAPS 1"
+       "say": "SPEED ABOVE 60, FLAPS 1",
+       "lang": "en"
       },
       {
        "do": "Monter à 70 KIAS"
@@ -2261,21 +2301,25 @@
       {
        "when": "Piste quittée",
        "say": "HB-CFR — RUNWAY 26 CENTER VACATED",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "La tour vous transfère au Ground — readback",
        "say": "121.7 — HB-CFR",
-       "note": "Réponse à « CONTACT LOCARNO GROUND ON 121.7 ». Si l'aérodrome n'a pas de GROUND, l'autorisation de rouler est délivrée directement par la TOWER."
+       "note": "Réponse à « CONTACT LOCARNO GROUND ON 121.7 ». Si l'aérodrome n'a pas de GROUND, l'autorisation de rouler est délivrée directement par la TOWER.",
+       "lang": "en"
       },
       {
        "when": "Premier appel au Ground",
        "say": "LOCARNO GROUND — HB-CFR — RUNWAY 26 CENTER VACATED — REQUEST TAXI TO FUEL STATION",
-       "note": "Adapter l'indicatif et la station aux procédures locales."
+       "note": "Adapter l'indicatif et la station aux procédures locales.",
+       "lang": "en"
       },
       {
        "when": "Le Ground autorise — readback",
-       "say": "TAXI TO FUEL STATION — HB-CFR"
+       "say": "TAXI TO FUEL STATION — HB-CFR",
+       "lang": "en"
       }
      ]
     }
@@ -2331,12 +2375,14 @@
      "items": [
       {
        "when": "Avant de se mettre en mouvement (MOVE)",
-       "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED"
+       "say": "Taxi Area – CLEAR / Taxi Light – ON / Power – ….SET / Parking Brake – RELEASED",
+       "lang": "en"
       },
       {
        "when": "À chaque arrêt (STOP)",
        "say": "Parking Brake – SET / Power – ….SET / Taxi Light – OFF",
-       "note": "À chaque arrêt, roue de proue en position neutre : une roue de travers exige une puissance excessive à la remise en mouvement."
+       "note": "À chaque arrêt, roue de proue en position neutre : une roue de travers exige une puissance excessive à la remise en mouvement.",
+       "lang": "en"
       }
      ]
     },

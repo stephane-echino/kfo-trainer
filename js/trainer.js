@@ -185,8 +185,18 @@ export function createTrainer({ onExit }) {
   // reading the first quarter of the answer aloud gives the answer away.
   function hfCue(step) {
     if (!step) return '';
-    return step.challenge || step.prompt || '';
+    if (step.challenge) return step.challenge;              // checklist item
+    // A flow or briefing step's own prompt is only "step 3 of 7", which cues
+    // nothing in earphones. Name the drill it belongs to.
+    if ((step.kind === 'flow' || step.kind === 'briefing') && step.blockTitle) {
+      return `${step.blockTitle}, ${step.prompt || ''}`.trim();
+    }
+    return step.prompt || '';                               // callout/radio "when"
   }
+
+  // The cue is written in the interface language; only the answer can be
+  // published English inside a French module.
+  function cueLang() { return getLang() === 'fr' ? 'fr-FR' : 'en-US'; }
 
   function toggleHandsFree() {
     if (!ttsSupported) {
@@ -225,22 +235,32 @@ export function createTrainer({ onExit }) {
     if (!handsFree) return;
     const s = get();
     if (!s || finished) { stopHandsFree(); return; }
-    if (!revealed) speak(hfCue(s), stepLang(s));
-    hfTimer = setTimeout(() => {
+
+    const readAnswer = () => {
       if (!handsFree) return;
       if (!revealed) reveal();
-      // wait for the answer to actually finish before moving on: a spoken
-      // call-out can run far longer than any fixed delay
+      // move on only once the answer has actually finished: a spoken call-out
+      // runs far longer than any fixed delay
       speak(s.spoken || s.answer, stepLang(s), () => {
         if (!handsFree) return;
         hfTimer = setTimeout(() => {
           if (!handsFree) return;
-          advance();          // advance() ends the session on the last step
+          advance();            // advance() ends the session on the last step
           hfPlay();
         }, HF_NEXT_DELAY);
       });
-    }, HF_ANSWER_DELAY);
+    };
+
+    // the answer window is for you to speak, so it starts after the question
+    const afterCue = () => {
+      if (!handsFree) return;
+      hfTimer = setTimeout(readAnswer, HF_ANSWER_DELAY);
+    };
+
+    if (!revealed) speak(hfCue(s), cueLang(), afterCue);
+    else afterCue();
   }
+
 
 
   // ---------- stopwatch (vital-actions drill only) ----------

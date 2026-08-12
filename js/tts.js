@@ -38,7 +38,12 @@ function speakable(text, lang) {
   return out;
 }
 
+// The iOS fallback timer must be cancellable: left running, a stopped and
+// restarted hands-free loop would advance twice in parallel.
+let estimateTimer = null;
+
 export function speak(text, lang = 'en-US', onEnd = null) {
+  if (estimateTimer) { clearTimeout(estimateTimer); estimateTimer = null; }
   if (!synth || !text) { onEnd?.(); return; }
   try {
     synth.cancel();                            // never queue up a backlog
@@ -53,8 +58,9 @@ export function speak(text, lang = 'en-US', onEnd = null) {
       u.onend = finish;
       u.onerror = finish;
       // iOS sometimes never fires onend; fall back on a length-based estimate
-      const estimate = Math.min(30000, 1200 + speakable(text, lang).length * 70);
-      setTimeout(finish, estimate);
+      // generous: only a safety net for voices that never fire onend
+      const estimate = Math.min(90000, 1500 + speakable(text, lang).length * 90);
+      estimateTimer = setTimeout(finish, estimate);
     }
     synth.speak(u);
   } catch {
@@ -63,5 +69,6 @@ export function speak(text, lang = 'en-US', onEnd = null) {
 }
 
 export function stopSpeaking() {
+  if (estimateTimer) { clearTimeout(estimateTimer); estimateTimer = null; }
   try { synth?.cancel(); } catch { /* nothing to stop */ }
 }

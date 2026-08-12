@@ -21,16 +21,29 @@ function numberToWords(n) {
     const t = Math.floor(n / 10) * 10, u = n % 10;
     return `${NUM_WORDS[t]} ${NUM_WORDS[u]}`;
   }
-  if (n < 10000) {
-    // pilots read most numbers digit by digit or as "two thousand"
-    if (n % 1000 === 0) return `${NUM_WORDS[n / 1000]} thousand`;
-    if (n % 100 === 0 && n < 1000) return `${NUM_WORDS[n / 100]} hundred`;
-    return String(n).split('').map(d => NUM_WORDS[d]).join(' ');
+  if (n < 1000) {
+    const h = Math.floor(n / 100), r = n % 100;
+    return `${NUM_WORDS[h]} hundred${r ? ` ${numberToWords(r)}` : ''}`;
+  }
+  if (n < 100000) {
+    const th = Math.floor(n / 1000), r = n % 1000;
+    return `${numberToWords(th)} thousand${r ? ` ${numberToWords(r)}` : ''}`;
   }
   return String(n);
 }
 
+// Pilots say the same figure several ways: 1200 is "one thousand two hundred"
+// or "twelve hundred"; a runway or a code is read digit by digit. Any of them
+// must satisfy the value.
+function enVariants(n) {
+  const v = new Set([numberToWords(n)]);
+  if (n >= 1000 && n < 10000 && n % 100 === 0) v.add(`${numberToWords(n / 100)} hundred`);
+  v.add(String(n).split('').map(d => NUM_WORDS[d]).join(' '));
+  return [...v].filter(Boolean);
+}
+
 const FR_ORDINALS = { 1: 'premier', 2: 'deuxieme', 3: 'troisieme' };
+const EN_ORDINALS = { 1: 'first', 2: 'second', 3: 'third' };
 
 const FR_WORDS = {
   0:'zero',1:'un',2:'deux',3:'trois',4:'quatre',5:'cinq',6:'six',7:'sept',8:'huit',9:'neuf',
@@ -50,11 +63,25 @@ function frNumberToWords(n) {
   }
   if (n < 80) return `soixante ${frNumberToWords(n - 60)}`.trim();
   if (n < 100) return n === 80 ? 'quatre vingts' : `quatre vingt ${frNumberToWords(n - 80)}`.trim();
-  if (n === 100) return 'cent';
-  if (n % 1000 === 0 && n < 10000) return n === 1000 ? 'mille' : `${FR_WORDS[n / 1000]} mille`;
-  if (n % 100 === 0 && n < 1000) return `${FR_WORDS[n / 100]} cent`;
-  if (n < 1000) return `${frNumberToWords(Math.floor(n / 100) * 100)} ${frNumberToWords(n % 100)}`;
-  return String(n).split('').map(d => FR_WORDS[d]).join(' ');
+  if (n < 1000) {
+    const h = Math.floor(n / 100), r = n % 100;
+    const head = h === 1 ? 'cent' : `${FR_WORDS[h]} cent${r ? '' : 's'}`;
+    return r ? `${head} ${frNumberToWords(r)}` : head;
+  }
+  if (n < 100000) {
+    const th = Math.floor(n / 1000), r = n % 1000;
+    const head = th === 1 ? 'mille' : `${frNumberToWords(th)} mille`;
+    return r ? `${head} ${frNumberToWords(r)}` : head;
+  }
+  return String(n);
+}
+
+function frVariants(n) {
+  const v = new Set([frNumberToWords(n)]);
+  // "six cent" is also heard without the plural s
+  v.add(frNumberToWords(n).replace(/cents\b/g, 'cent'));
+  v.add(String(n).split('').map(d => FR_WORDS[d]).join(' '));
+  return [...v].filter(Boolean);
 }
 
 function normalize(text, lang = 'en') {
@@ -64,16 +91,19 @@ function normalize(text, lang = 'en') {
     // "réchauffage" into "r chauffage"
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[’'']/g, ' ')
-    // checklist ordinals: "1er CRAN", "2me CRAN" are said "premier", "deuxieme"
-    .replace(/\b(\d)\s*(?:er|eme|me|e)\b/g, (_, d) => ` ${FR_ORDINALS[d] || d} `)
+    // checklist ordinals: "1er CRAN" is said "premier", "1st NOTCH" is "first"
+    .replace(/\b(\d)\s*(?:er|eme|me|e|st|nd|rd|th)\b/g,
+      (_, d) => ` ${(lang === 'fr' ? FR_ORDINALS : EN_ORDINALS)[d] || d} `)
     .replace(/(\d+)/g, (m) => ` ${m} ${lang === 'fr' ? frNumberToWords(m) : numberToWords(m)} `)
     .replace(/[^a-z0-9 ]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
+// 'on' is deliberately NOT a stopword: for ten checklist items the entire
+// response is ON, and dropping it made "alternator off" score 100%.
 const STOPWORDS = new Set([
-  'and', 'or', 'the', 'a', 'an', 'to', 'of', 'in', 'on', 'for', 'with', 'then', 'as', 'at', 'is',
+  'and', 'or', 'the', 'a', 'an', 'to', 'of', 'in', 'for', 'with', 'then', 'as', 'at', 'is',
   'et', 'ou', 'le', 'la', 'les', 'un', 'une', 'de', 'du', 'des', 'dans', 'sur', 'pour', 'avec', 'puis', 'au', 'aux', 'est',
 ]);
 
@@ -86,7 +116,8 @@ function tokens(text, lang = 'en') {
 // answer is wrong however many other words matched — saying "flaps two" for
 // FLAPS 1, or "left" for "right side clear", is exactly what this mode exists
 // to catch.
-const KEY_WORDS = ['left', 'right', 'gauche', 'droite', ...Object.values(FR_ORDINALS)];
+const KEY_WORDS = ['left', 'right', 'gauche', 'droite', 'on', 'off',
+  ...Object.values(FR_ORDINALS), ...Object.values(EN_ORDINALS)];
 
 const has = (norm, w) => new RegExp(`(^| )${w}( |$)`).test(norm);
 
@@ -110,13 +141,19 @@ function hasNumberWords(norm, words) {
 }
 
 function requiredValuesPresent(heardNorm, targetNorm, target, lang) {
-  // numbers may be heard as digits or as words: accept either.
-  // An ordinal ("2me CRAN") is not the cardinal 2 — normalize() already turned
-  // it into a word, and KEY_WORDS checks it.
-  for (const m of String(target).matchAll(/\d+(?!\s*(?:er|eme|me|e)\b)/gi)) {
+  // Figures quoted in parentheses are reference values printed on the
+  // checklist, not part of what the pilot says: "CONTROLES (baisse max 175 -
+  // diff max 50)" is answered "contrôlés". Requiring them rejected correct
+  // answers outright.
+  const core = String(target).replace(/\([^)]*\)/g, ' ');
+  // numbers may be heard as digits or as any spoken form: accept any of them.
+  // An ordinal ("2me CRAN", "1st NOTCH") is not the cardinal — normalize() has
+  // already turned it into a word and KEY_WORDS checks it.
+  for (const m of core.matchAll(/\d+(?!\s*(?:er|eme|me|e|st|nd|rd|th)\b)/gi)) {
     const n = m[0];
-    const words = lang === 'fr' ? frNumberToWords(n) : numberToWords(n);
-    if (!has(heardNorm, n) && !(words && hasNumberWords(heardNorm, words))) return false;
+    if (has(heardNorm, n)) continue;
+    const variants = lang === 'fr' ? frVariants(n) : enVariants(n);
+    if (!variants.some(w => hasNumberWords(heardNorm, w))) return false;
   }
   for (const w of KEY_WORDS) {
     if (has(targetNorm, w) && !has(heardNorm, w)) return false;
@@ -128,11 +165,14 @@ function requiredValuesPresent(heardNorm, targetNorm, target, lang) {
 // as a value the target requires is missing.
 export function matchScore(heard, target, lang = 'en') {
   const short = lang.slice(0, 2);
-  const t = tokens(target, short);
+  // score against the spoken core: a parenthesis on the checklist is a printed
+  // reference ("CONTROLES (baisse max 175 - diff max 50)"), not words to recite
+  const core = String(target).replace(/\([^)]*\)/g, ' ').trim() || String(target);
+  const t = tokens(core, short);
   if (!t.length) return 0;
 
   const heardNorm = normalize(heard, short);
-  const targetNorm = normalize(target, short);
+  const targetNorm = normalize(core, short);
   if (!requiredValuesPresent(heardNorm, targetNorm, target, short)) return 0;
 
   const h = new Set(tokens(heard, short));

@@ -1,6 +1,42 @@
 {
- "version": "1.37.0",
+ "version": "1.38.0",
  "releases": [
+  {
+   "version": "1.38.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Hands-free waits for the question to finish before starting your four seconds. The delay used to begin when the question started, so a long one left almost no time to answer — and could be cut off mid-sentence.",
+     "Hands-free names the drill on a flow step instead of announcing \"step 3 of 7\", which cued nothing in earphones."
+    ],
+    "fixed": [
+     "Voice check rejected correct answers. Every figure printed on the checklist was required, including the reference values in parentheses — so \"magnétos contrôlés\" scored 0 against \"CONTROLES (baisse max 175 - diff max 50)\". Only the spoken part counts now.",
+     "Voice check could not recognise the common RPM settings: 1200, 2200 and 2500 were expanded digit by digit instead of \"twelve hundred\" or \"deux mille cinq cents\". Several spoken forms of a figure are now accepted.",
+     "\"ON\" was treated as a filler word, so answering \"alternator off\" to \"Alternator — ON\" scored 100%. ON and OFF now have to match.",
+     "English ordinals were not understood: \"flaps first notch\" scored 0 against FLAPS 1st NOTCH.",
+     "Seventy lines of published English inside the French modules — the radio phraseology, the SPHAIR call-outs, the GVMN briefing — are now marked as English so they are spoken and heard in English. Twenty-one were tagged before.",
+     "A missing course file fell back to loading the circuit content under the emergency course.",
+     "The speech fallback timer was never cancelled, so stopping and restarting hands-free could run two loops at once."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Le mains libres attend la fin de la question avant de lancer tes quatre secondes. Le délai partait au début de la question : sur une question longue il ne restait presque rien pour répondre — et elle pouvait être coupée en plein milieu.",
+     "Sur une étape de flow, le mains libres nomme l'exercice au lieu d'annoncer « étape 3 sur 7 », qui ne cuait rien dans des écouteurs."
+    ],
+    "fixed": [
+     "Le contrôle vocal rejetait des réponses correctes. Tout chiffre imprimé sur la checklist était exigé, y compris les valeurs de référence entre parenthèses — « magnétos contrôlés » obtenait 0 contre « CONTROLES (baisse max 175 - diff max 50) ». Seule la partie à réciter compte désormais.",
+     "Le contrôle vocal ne reconnaissait pas les régimes courants : 1200, 2200 et 2500 étaient épelés chiffre par chiffre au lieu de « mille deux cents » ou « deux mille cinq cents ». Plusieurs formes orales d'un même nombre sont maintenant acceptées.",
+     "« ON » était traité comme un mot outil : répondre « alternator off » à « Alternator — ON » donnait 100 %. ON et OFF doivent maintenant correspondre.",
+     "Les ordinaux anglais n'étaient pas compris : « flaps first notch » obtenait 0 contre FLAPS 1st NOTCH.",
+     "Soixante-dix lignes d'anglais publié à l'intérieur des modules français — la phraséologie radio, les annonces SPHAIR, le briefing GVMN — sont désormais marquées anglaises, donc prononcées et écoutées en anglais. Vingt et une l'étaient.",
+     "Un fichier de cours manquant faisait charger le contenu du circuit sous le cours urgences.",
+     "Le minuteur de repli de la synthèse vocale n'était jamais annulé : arrêter puis relancer le mains libres pouvait faire tourner deux boucles en parallèle."
+    ]
+   }
+  },
   {
    "version": "1.37.0",
    "date": "2026-08-12",

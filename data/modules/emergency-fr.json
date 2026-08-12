@@ -330,7 +330,8 @@
       },
       {
        "do": "Secteur d'atterrissage",
-       "say": "Maximum +/- 45 Degrees of RWY axes (or flight path)"
+       "say": "Maximum +/- 45 Degrees of RWY axes (or flight path)",
+       "lang": "en"
       },
       {
        "do": "Volets",
@@ -429,7 +430,8 @@
       },
       {
        "do": "Demi-tour",
-       "say": "Back to opposite runway"
+       "say": "Back to opposite runway",
+       "lang": "en"
       },
       {
        "do": "Volets",
@@ -1020,7 +1022,8 @@
      "steps": [
       {
        "do": "Annoncer la remise de gaz",
-       "say": "GO AROUND"
+       "say": "GO AROUND",
+       "lang": "en"
       },
       {
        "do": "Afficher la puissance de décollage (T/O PWR)"
