@@ -380,19 +380,25 @@ function renderHome() {
   for (const phase of mod.phases) {
     const btn = document.createElement('button');
     btn.className = 'phase-chip';
-    if (done[phase.id]) btn.classList.add('done');
-    if (phase.id === currentPhase) btn.classList.add('current');
     btn.textContent = phase.title;
-    // mastery, once there is enough signal to be meaningful
+    // Mastery, once there is enough signal to mean something. It then becomes
+    // the ONLY colour on the chip: having walked a phase once must never look
+    // like having learned it, so "visited" green is dropped as soon as a real
+    // accuracy is known.
     const st = phaseStats[phase.id];
     const seen = st ? st.ok + st.miss : 0;
     if (seen >= 5) {
       const pct = Math.round((st.ok / seen) * 100);
+      const band = pct >= 90 ? 'good' : pct >= 70 ? 'mid' : 'low';
+      btn.classList.add(`m-${band}`);
       const tag = document.createElement('span');
-      tag.className = `chip-pct ${pct >= 90 ? 'good' : pct >= 70 ? 'mid' : 'low'}`;
+      tag.className = `chip-pct ${band}`;
       tag.textContent = `${pct}%`;
       btn.appendChild(tag);
+    } else if (done[phase.id]) {
+      btn.classList.add('done');     // walked, but not yet enough answers to score
     }
+    if (phase.id === currentPhase) btn.classList.add('current');
     btn.addEventListener('click', () => {
       const settings = store.getSettings();
       trainer.setVoicePref(settings.voice);

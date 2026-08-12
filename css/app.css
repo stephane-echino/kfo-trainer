@@ -153,7 +153,10 @@ h1 {
 .mode-progress {
   font-size: 11px; color: var(--amber); font-variant-numeric: tabular-nums;
   white-space: nowrap; background: var(--amber-dim); padding: 4px 9px; border-radius: 999px;
+  flex: 0 0 auto; align-self: center;
 }
+/* the pill must never squeeze the title onto two lines */
+.mode-name { overflow-wrap: anywhere; }
 .mode-progress:empty { display: none; }
 
 .badges-row {
@@ -212,12 +215,16 @@ h1 {
   transition: transform 0.12s var(--ease), background 0.15s;
 }
 .phase-chip:active { transform: scale(0.94); background: var(--bg-raise); }
-.phase-chip.done { color: var(--green); border-color: rgba(79, 217, 130, 0.35); background: var(--green-dim); }
+.phase-chip.done { color: var(--text-dim); border-color: var(--line); background: var(--bg-raise); }
+/* mastery bands: the chip itself carries the verdict, not just the number */
+.phase-chip.m-good { color: var(--green); border-color: rgba(79, 217, 130, 0.4); background: var(--green-dim); }
+.phase-chip.m-mid  { color: var(--amber); border-color: rgba(248, 189, 74, 0.34); background: var(--amber-dim); }
+.phase-chip.m-low  { color: var(--red); border-color: rgba(244, 115, 100, 0.4); background: var(--red-dim); }
 .chip-pct { margin-left: 6px; font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .chip-pct.good { color: var(--green); }
 .chip-pct.mid { color: var(--amber); }
 .chip-pct.low { color: var(--red); }
-.phase-chip.current { color: var(--amber); border-color: var(--amber); background: var(--amber-dim); }
+.phase-chip.current { border-color: var(--text); box-shadow: 0 0 0 1px var(--text) inset; }
 
 .home-footer { margin-top: auto; padding: 22px var(--pad) calc(var(--safe-bottom) + 20px); text-align: center; }
 .version-line {

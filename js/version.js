@@ -1,3 +1,3 @@
 // App version shown in the home footer.
 // Deploy checklist: bump this AND `VERSION` in sw.js together.
-export const APP_VERSION = 'v1.35.0';
+export const APP_VERSION = 'v1.36.0';

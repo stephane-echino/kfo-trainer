@@ -1,6 +1,26 @@
 {
- "version": "1.35.0",
+ "version": "1.36.0",
  "releases": [
+  {
+   "version": "1.36.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Phase chips now carry one meaning instead of two. A phase you had merely walked through turned green — the same green as one you had mastered. Once a phase has enough answers to be scored, its accuracy is the only colour: green above 90%, amber above 70%, red below. Your current position is a white outline, which is about where you are, not how good you are.",
+     "Home screen tightened: the daily-review card no longer has its title broken in two by its badge, and the readiness line fits on one row."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Les puces de phase ne portent plus qu'un seul sens. Une phase seulement parcourue devenait verte — du même vert qu'une phase maîtrisée. Dès qu'une phase a assez de réponses pour être notée, sa précision est la seule couleur : vert au-dessus de 90 %, ambre au-dessus de 70 %, rouge en dessous. Ta position est un contour blanc, qui dit où tu es et non ce que tu vaux.",
+     "Accueil resserré : la carte de révision du jour n'a plus son titre coupé en deux par sa pastille, et la ligne de préparation tient sur une seule ligne."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.35.0",
    "date": "2026-08-12",
