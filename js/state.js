@@ -106,6 +106,8 @@ const HINTS = [
   {
     when: (s) => s.light === 'night',
     match: /Lights|Feux|Landing and Taxi|atterissage et de roulage/i,
+    // "Annunciator lights" and "Voyants lumineux" are panel warnings, not exterior lights
+    exclude: /Annunciator|Voyants|Warning lights/i,
     en: 'Night flight → all exterior lights on; instrument panel lighting set (LIGHTING 1/2/3).',
     fr: 'Vol de nuit → tous les feux extérieurs allumés ; éclairage du tableau réglé (LIGHTING 1/2/3).',
   },
@@ -139,6 +141,7 @@ export function hintFor(step, lang = 'en') {
     if (!h.when(st)) continue;
     if (h.phase && step.phase?.id !== h.phase) continue;
     if (h.match && !h.match.test(haystack)) continue;
+    if (h.exclude && h.exclude.test(haystack)) continue;
     return h[lang] || h.en;
   }
   return null;
@@ -148,6 +151,9 @@ export function hintFor(step, lang = 'en') {
 // Interactive throttle control: parse the RPM target printed on the step.
 // ---------------------------------------------------------------------------
 export function rpmTarget(step) {
+  // Only an actionable item gets a throttle to set. Prose blocks mention RPM
+  // figures in passing and must never turn into a control.
+  if (step.kind === 'note' || step.answerLong) return null;
   const text = step.answer || '';
   if (!/RPM|tr\/mn/i.test(text)) return null;
 

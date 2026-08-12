@@ -6,7 +6,7 @@ import { createExaminer } from './examiner.js';
 import { voiceSupported } from './voice.js';
 import { t, setLang, getLang } from './i18n.js';
 import { APP_VERSION } from './version.js';
-import { fetchVersionInfo, isNewer, applyUpdate, currentVersion } from './updates.js';
+import { fetchVersionInfo, cachedVersionInfo, isNewer, applyUpdate, currentVersion } from './updates.js';
 import { dayStreak } from './fx.js';
 import { CONDITIONS, getState, cycleCondition, randomize } from './state.js';
 import { ACHIEVEMENTS, unlocked, resetAchievements } from './achievements.js';
@@ -25,9 +25,20 @@ let trainer = null;
 let examiner = null;
 let wakeLock = null;
 
+function sessionActive() {
+  return $('screen-trainer').classList.contains('active') || $('screen-examiner').classList.contains('active');
+}
+
+let reloadPending = false;
+function reloadWhenIdle() {
+  reloadPending = true;
+}
+
 function show(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   $(screenId).classList.add('active');
+  // a worker update that arrived mid-session applies as soon as the session ends
+  if (reloadPending && !sessionActive()) { location.reload(); return; }
   if (screenId === 'screen-home') renderHome();
   window.scrollTo(0, 0);
 }
@@ -51,6 +62,10 @@ function applyStaticStrings() {
       small.textContent = t(smallKey);
       el.appendChild(small);
     }
+  }
+  // icon-only buttons carry their label for screen readers only
+  for (const el of document.querySelectorAll('[data-i18n-aria]')) {
+    el.setAttribute('aria-label', t(el.dataset.i18nAria));
   }
 }
 
@@ -132,8 +147,17 @@ async function switchCourse(id) {
   renderHome();
 }
 
+// The saved position is an index into the *filtered* list, so changing what to
+// train would leave it dangling. Remap it through the step key, which survives
+// a toggle being switched off and back on.
 function rebuildSteps() {
+  const prevKey = steps[store.getPosition('flight')]?.key;
   steps = flattenSteps(mod, includeMap());
+  if (!steps.length) return;
+  const exact = prevKey ? steps.findIndex(s => s.key === prevKey) : -1;
+  store.setPosition('flight', exact >= 0
+    ? exact
+    : Math.min(store.getPosition('flight'), steps.length - 1));
 }
 
 async function boot() {
@@ -261,8 +285,8 @@ function renderHome() {
   renderStats();
   renderBadges();
   renderConditions();
-  const pos = store.getPosition('flight');
-  const pct = steps.length ? Math.round((pos / steps.length) * 100) : 0;
+  const pos = Math.min(store.getPosition('flight'), Math.max(steps.length - 1, 0));
+  const pct = steps.length ? Math.min(100, Math.round((pos / steps.length) * 100)) : 0;
   const flightPill = $('progress-flight');
   flightPill.innerHTML = '';
   if (pos > 0) {
@@ -278,7 +302,9 @@ function renderHome() {
     };
     flightPill.appendChild(restart);
   }
-  const missCount = Object.keys(store.getMisses()).length;
+  // count only misses Review can actually show — the toggles may hide some
+  const misses = store.getMisses();
+  const missCount = steps.filter(s => misses[s.key]).length;
   $('progress-review').textContent = missCount ? t('home.toReview', missCount) : '';
   const memCount = steps.filter(s => s.mem).length;
   $('progress-memory').textContent = memCount ? `${memCount}` : '';
@@ -465,7 +491,11 @@ function refSpeedsCard() {
   body.className = 'ref-phase-body';
   const b = document.createElement('div');
   b.className = 'ref-block';
-  for (const s of mod.speeds || []) b.appendChild(refItem(`${s.code}${s.label ? ` — ${s.label}` : ''}`, `${s.kias}`));
+  for (const s of mod.speeds || []) {
+    // the card header already says KIAS — spell out anything measured otherwise
+    const unit = s.unit && s.unit !== 'KIAS' ? ` ${s.unit}` : '';
+    b.appendChild(refItem(`${s.code}${s.label ? ` — ${s.label}` : ''}`, `${s.kias}${unit}`));
+  }
   body.appendChild(b);
   div.appendChild(body);
   return div;
@@ -547,8 +577,7 @@ function releaseWake() {
   wakeLock = null;
 }
 document.addEventListener('visibilitychange', () => {
-  const inSession = $('screen-trainer').classList.contains('active') || $('screen-examiner').classList.contains('active');
-  if (document.visibilityState === 'visible' && inSession) requestWake();
+  if (document.visibilityState === 'visible' && sessionActive()) requestWake();
 });
 
 // ---------- updates ----------
@@ -558,6 +587,7 @@ let updateReloading = false; // guards against reload loops during an update
 
 // Silent check on launch: only paints the button, never interrupts.
 async function checkOnLaunch() {
+  versionInfo = cachedVersionInfo(); // so the changelog opens offline
   try {
     versionInfo = await fetchVersionInfo();
     if (isNewer(versionInfo.version)) {
@@ -622,7 +652,7 @@ async function openChangelog() {
   const area = $('changelog-area');
   area.innerHTML = '';
   if (!versionInfo) {
-    try { versionInfo = await fetchVersionInfo(); } catch { /* handled below */ }
+    try { versionInfo = await fetchVersionInfo(); } catch { versionInfo = cachedVersionInfo(); }
   }
   if (!versionInfo) {
     const p = document.createElement('p');
@@ -694,6 +724,11 @@ function registerSW() {
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (!hadController || updateReloading) return;
     updateReloading = true;
+    // never yank a session out from under the student — wait until they leave it
+    if (sessionActive()) {
+      reloadWhenIdle();
+      return;
+    }
     location.reload();
   });
 

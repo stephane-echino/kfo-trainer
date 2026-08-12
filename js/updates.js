@@ -8,10 +8,26 @@ import { APP_VERSION } from './version.js';
 
 const VERSION_FILE = './version.json';
 
+// Release notes are kept in localStorage, not in a cache entry: applyUpdate()
+// deletes every cache, and the notes should survive that so the changelog still
+// opens offline.
+const NOTES_KEY = 'kfo-trainer:versionInfo';
+
 export async function fetchVersionInfo() {
   const res = await fetch(`${VERSION_FILE}?t=${Date.now()}`, { cache: 'no-store' });
   if (!res.ok) throw new Error(`version.json: HTTP ${res.status}`);
-  return res.json();
+  const info = await res.json();
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(info)); } catch { /* quota — not critical */ }
+  return info;
+}
+
+export function cachedVersionInfo() {
+  try {
+    const raw = localStorage.getItem(NOTES_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
 }
 
 export function currentVersion() {

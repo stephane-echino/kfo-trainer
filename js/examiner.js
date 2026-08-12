@@ -48,6 +48,9 @@ export function createExaminer({ onExit }) {
     score = { ok: 0, miss: 0 };
     revealed = false;
     finished = false;
+    // start() owns the quit button — finish() repurposes it, so reclaim it here
+    els.btnQuit.textContent = t('exam.end');
+    els.btnQuit.onclick = finish;
     render();
   }
 
@@ -136,7 +139,7 @@ export function createExaminer({ onExit }) {
 
     // 5. scenarios from data
     for (const ex of mod.examiner || []) {
-      qs.push({ tag: ex.tag || 'Scenario', kind: 'Scenario', q: ex.q, a: ex.a, long: ex.a.length > 60 });
+      qs.push({ tag: ex.tag || t('exam.kind.scenario'), kind: t('exam.kind.scenario'), q: ex.q, a: ex.a, long: ex.a.length > 60 });
     }
 
     return qs;
@@ -199,7 +202,7 @@ export function createExaminer({ onExit }) {
     revealed = false;
     setActionState();
     els.btnQuit.textContent = t('exam.new');
-    els.btnQuit.onclick = () => { els.btnQuit.textContent = t('exam.end'); els.btnQuit.onclick = finish; restart(); };
+    els.btnQuit.onclick = restart; // start() restores the label and handler
   }
 
   let lastArgs = null;

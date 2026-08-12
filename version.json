@@ -1,6 +1,44 @@
 {
- "version": "1.13.0",
+ "version": "1.14.0",
  "releases": [
+  {
+   "version": "1.14.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Release notes now open offline — they are kept on the device after the first visit.",
+     "Pinch-to-zoom is allowed again; icon buttons announce themselves in the app's language."
+    ],
+    "fixed": [
+     "Changing what to train no longer loses your place in the flight: the position now follows the step itself, so switching a content type off and back on returns you exactly where you were (and the resume badge can never read over 100%).",
+     "An update arriving mid-session no longer reloads the app under you — it waits until you leave the session.",
+     "The throttle lever no longer appears on technique cards that merely mention an RPM figure.",
+     "The night-conditions hint no longer fires on \"Annunciator lights\", which are panel warnings, not exterior lights.",
+     "Examiner: after finishing a set, re-entering showed \"New set\" and could wipe a live session.",
+     "\"To review\" counted misses that Review could not show when a content type was switched off.",
+     "Max crosswind is shown as 22 kt, no longer mislabelled KIAS.",
+     "Vibration patterns were silently reduced to a single default tick."
+    ]
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Les notes de version s'ouvrent hors ligne — elles sont conservées sur l'appareil après la première visite.",
+     "Le zoom à deux doigts est de nouveau autorisé ; les boutons-icônes s'annoncent dans la langue de l'app."
+    ],
+    "fixed": [
+     "Changer ce que tu travailles ne fait plus perdre ta place dans le vol : la position suit désormais l'étape elle-même, donc désactiver puis réactiver un type de contenu te ramène exactement où tu étais (et le badge de reprise ne peut plus dépasser 100 %).",
+     "Une mise à jour arrivant en pleine session ne recharge plus l'app sous tes doigts — elle attend que tu sortes de la session.",
+     "Le levier de gaz n'apparaît plus sur les fiches technique qui ne font que mentionner un régime.",
+     "L'indice « conditions de nuit » ne se déclenche plus sur « Voyants lumineux », qui sont des alarmes de tableau, pas des feux extérieurs.",
+     "Examinateur : après une session terminée, revenir affichait « Nouveau » et pouvait effacer une session en cours.",
+     "« À revoir » comptait des ratés que la Révision ne pouvait pas afficher quand un type de contenu était désactivé.",
+     "Le vent traversier max s'affiche en 22 kt, et non plus étiqueté KIAS.",
+     "Les motifs de vibration étaient silencieusement réduits à un seul tic par défaut."
+    ]
+   }
+  },
   {
    "version": "1.13.0",
    "date": "2026-08-11",

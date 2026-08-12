@@ -491,10 +491,6 @@ export function createTrainer({ onExit }) {
   }
 
   // ---------- misc ----------
-  function haptic() {
-    if (store.getSettings().haptics && navigator.vibrate) navigator.vibrate(8);
-  }
-
   function esc(t) {
     return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
