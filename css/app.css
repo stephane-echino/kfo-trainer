@@ -750,3 +750,25 @@ h1 {
 #screen-examiner .step-area {
   min-height: 0;          /* lets the flex child shrink below its content */
 }
+
+/* ==========================================================================
+   Touch targets and map legibility
+   iOS asks for 44pt. Isolated controls get the full 44; dense chip lists get
+   40 — going to 44 there would add ~100px to the phase wall for 4px of reach.
+   (Settings checkboxes are inside <label> rows, so the whole row is the target.)
+   ========================================================================== */
+.icon-btn { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; }
+.lang-btn { min-height: 44px; }
+.dice-btn { min-width: 44px; min-height: 44px; }
+.phase-chip,
+.cond-chip,
+.train-toggle,
+.update-btn { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+.version-line { min-height: 40px; }
+.action-btn { min-height: 48px; }
+
+/* The circuit tracing sat at 1.5:1 against the background — visible on a bright
+   desk, not on a train. */
+.circuit-line { stroke: #46567f; }
+.circuit-rwy { fill: #6e80ad; }
+.circuit-label { fill: var(--text-faint); }

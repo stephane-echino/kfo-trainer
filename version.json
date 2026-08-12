@@ -1,6 +1,26 @@
 {
- "version": "1.26.0",
+ "version": "1.27.0",
  "releases": [
+  {
+   "version": "1.27.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [],
+    "changed": [
+     "Every button is now at least 40px tall, and isolated ones (back, headphones, mic, settings, dice, language) reach the 44px Apple asks for. Several were 31px.",
+     "The circuit map was drawn at 1.5:1 contrast — nearly invisible on a train. The tracing and runway are now clearly legible."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [],
+    "changed": [
+     "Tous les boutons font au moins 40 px de haut, et les boutons isolés (retour, casque, micro, réglages, dé, langue) atteignent les 44 px demandés par Apple. Plusieurs faisaient 31 px.",
+     "La carte de volte était tracée à 1,5:1 de contraste — quasi invisible dans un train. Le tracé et la piste sont maintenant nettement lisibles."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.26.0",
    "date": "2026-08-12",
