@@ -772,3 +772,12 @@ h1 {
 .circuit-line { stroke: #46567f; }
 .circuit-rwy { fill: #6e80ad; }
 .circuit-label { fill: var(--text-faint); }
+
+/* Live stopwatch — only on the vital-actions drill, where speed is the point */
+.timer-chip {
+  position: absolute; left: 10px; top: calc(var(--safe-top) + 46px);
+  font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums;
+  color: var(--blue); background: var(--blue-dim);
+  border: 1px solid rgba(95, 176, 247, 0.4); border-radius: 999px;
+  padding: 3px 10px; z-index: 5; pointer-events: none;
+}

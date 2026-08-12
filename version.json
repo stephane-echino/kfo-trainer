@@ -1,6 +1,24 @@
 {
- "version": "1.27.0",
+ "version": "1.28.0",
  "releases": [
+  {
+   "version": "1.28.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Stopwatch on the vital-actions drill. An emergency is about reacting, so that run is now timed to a tenth of a second and measured against your own previous best — beat it and the summary says so. No target time is shown, because none is published; the benchmark is you, yesterday. The full flight stays untimed."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Chrono sur les actions vitales. Une urgence, c'est une question de réaction : ce parcours est désormais chronométré au dixième de seconde et comparé à ton propre record — bats-le et le bilan te le dit. Aucun temps cible n'est affiché, car aucun n'est publié ; la référence, c'est toi hier. Le vol complet reste sans chrono."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.27.0",
    "date": "2026-08-12",

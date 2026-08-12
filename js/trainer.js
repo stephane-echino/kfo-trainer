@@ -37,6 +37,7 @@ export function createTrainer({ onExit }) {
       kind: $('step-kind'),
       source: $('step-source'),
       streak: $('streak-chip'),
+      timer: $('timer-chip'),
       prompt: $('step-prompt'),
       answer: $('step-answer'),
       spoken: $('step-spoken'),
@@ -99,6 +100,8 @@ export function createTrainer({ onExit }) {
   }
 
   function saveAndNotifyExit() {
+    stopTimer();
+    els.timer.classList.add('hidden');
     store.setPosition(seqId, index);
     // a partial session can still have earned something
     if (session && (session.ok + session.miss) > 0 && !session.complete) checkUnlocks(session);
@@ -136,6 +139,7 @@ export function createTrainer({ onExit }) {
     finished = false;
     session = { ok: 0, miss: 0, startedAt: Date.now(), xpStart: store.getStats().xp, complete: false };
     render();
+    startTimer();
   }
 
 
@@ -220,6 +224,34 @@ export function createTrainer({ onExit }) {
         hfPlay();
       }, HF_NEXT_DELAY);
     }, HF_ANSWER_DELAY);
+  }
+
+
+  // ---------- stopwatch (vital-actions drill only) ----------
+  // Emergency drills are about reacting, so this run is timed against your own
+  // previous best. No target time is shown: none is published.
+  let timerId = null;
+
+  function timed() { return seqId === 'memory'; }
+
+  function fmt(ms) {
+    const total = Math.round(ms / 100) / 10;
+    return total >= 60 ? `${Math.floor(total / 60)}′${String(Math.floor(total % 60)).padStart(2, '0')}″` : `${total.toFixed(1)}s`;
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (!timed()) { els.timer.classList.add('hidden'); return; }
+    els.timer.classList.remove('hidden');
+    els.timer.textContent = '0.0s';
+    timerId = setInterval(() => {
+      if (!session) return;
+      els.timer.textContent = fmt(Date.now() - session.startedAt);
+    }, 100);
+  }
+
+  function stopTimer() {
+    if (timerId) { clearInterval(timerId); timerId = null; }
   }
 
   function get() { return steps[index]; }
@@ -486,6 +518,7 @@ export function createTrainer({ onExit }) {
 
   function finish() {
     stopVoice();
+    stopTimer();
     finished = true;
     index = 0; // so exiting after completion doesn't re-save a stale position
     if (seqId === 'flight') {
@@ -513,10 +546,22 @@ export function createTrainer({ onExit }) {
     const mins = Math.max(1, Math.round(((Date.now() - (session?.startedAt || Date.now())) / 60000)));
     const missCount = Object.keys(store.getMisses()).length;
 
+    // a timed drill reports seconds against your own best, not round minutes
+    let timeLine = `${mins}′`;
+    let beatRecord = false;
+    if (timed() && session) {
+      const elapsed = Date.now() - session.startedAt;
+      const prev = store.getBestTime(seqId);
+      const res = store.recordTime(seqId, elapsed);
+      beatRecord = res.best && prev !== null;
+      timeLine = fmt(elapsed) + (beatRecord ? ` · ${t('timer.record')}` : (prev !== null ? ` · ${t('timer.best', fmt(prev))}` : ''));
+    }
+
     els.prompt.innerHTML = total
       ? `<span class="summary-score">${pct}<span class="pct">%</span></span>
-         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗ · +${xp} XP · ${mins}′</span>`
+         <span class="summary-line">${session.ok} ✓ · ${session.miss} ✗ · +${xp} XP · ${timeLine}</span>`
       : esc(missCount ? t('trainer.doneMiss', missCount) : t('trainer.doneClean'));
+    if (beatRecord) burst(els.card, 26);
 
     const fresh = checkUnlocks(session);
     const lines = [];

@@ -81,6 +81,14 @@ export const store = {
 
   resetSched() { write(scoped('sched'), {}); },
 
+  // best time on a timed drill, in ms, per course
+  getBestTime(seq) { return read(scoped(`best:${seq}`), null); },
+  recordTime(seq, ms) {
+    const cur = store.getBestTime(seq);
+    if (cur === null || ms < cur) { write(scoped(`best:${seq}`), ms); return { best: true, ms };  }
+    return { best: false, ms: cur };
+  },
+
   // rolling accuracy per phase: { [phaseId]: {ok, miss} }
   getPhaseStats() { return read(scoped('phaseStats'), {}); },
   recordPhase(phaseId, ok) {
