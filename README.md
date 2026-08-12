@@ -5,8 +5,13 @@ Robin DR400 **HB-KFO** (GVMN), in English or French.
 
 **How it works:** the app walks you through a complete flight, one step at a time.
 Say the step **out loud**, tap to reveal, grade yourself, tap for the next one.
-Missed steps are collected for targeted review, and accuracy is tracked per phase
-so you can see what to work on.
+
+Grading is deliberate: tapping past a card advances without claiming you knew it.
+Only the ✓/✗ buttons earn XP and schedule the step, so the cheapest gesture cannot
+inflate your progress. Every graded answer feeds a spaced-repetition schedule
+(1, 2, 4, 8, 16 days; a miss comes back the same day), and the home screen shows
+one honest number — **ready for the flight** — averaging how far each step has
+climbed that ladder.
 
 Live: <https://stephane-echino.github.io/kfo-trainer/> — open it in Safari on iPhone
 and add it to the home screen; it then runs fully offline.
@@ -15,11 +20,24 @@ and add it to the home screen; it then runs fully offline.
 
 - **Full flight** — the whole flight, step by step, with the circuit map
 - **Examiner** — random questions: speeds, memory flows, marked-item recitation,
-  spoken call-outs, failure scenarios. Checklist items are never asked by position:
-  in the aircraft a checklist is read, not recalled from memory.
-- **Marked items** — the checklist items carrying a bar in the PDF margin, in printed order
-- **Review misses** — replays only what you marked as missed
+  spoken call-outs, failure scenarios, and checklist items asked the way an
+  instructor asks them — challenge, you give the response. Never by position: in
+  the aircraft a checklist is read, not recalled from a rank. Challenges that
+  repeat inside one check with different responses (the throttle is set three
+  times during the run-up) are excluded, having no single right answer out of
+  context. Three failure scenarios are guaranteed per draw.
+- **Marked items / Vital actions** — the checklist items carrying a bar in the PDF
+  margin (or, in the emergency course, the actions done from memory), in printed
+  order and timed against your own best
+- **Daily review** — whatever the spaced-repetition schedule says is due today,
+  weakest boxes first. Vital actions cap at the 16-day box so they never leave it.
 - **Reference** — every checklist, flow, callout and speed, searchable
+
+Two aids sit on every card: **? clue** returns the challenge (or the opening words
+of a call-out) so you can still retrieve the answer yourself — worth less XP — and
+🎧 **hands-free** turns the session into challenge and response: the app reads the
+challenge, waits for you to answer aloud, reads the item back, and moves on.
+Optional speech reads the answer when you reveal it, in the language of the step.
 
 Flight conditions (engine warm/cold, day/night, dry/wet, calm/crosswind) change what
 the app expects: with a cold engine the throttle target after start is 1200 RPM, not 1000.
@@ -34,7 +52,7 @@ course.
 | Course | Files | State |
 |---|---|---|
 | Circuit | `circuit.json`, `circuit-fr.json` | 25 phases, full flight |
-| Emergencies | `emergency.json`, `emergency-fr.json` | in preparation |
+| Emergencies | `emergency.json`, `emergency-fr.json` | 18 phases, AFM §3 + SPHAIR |
 
 Sources: GVMN checklist EN V9 / FR V10, GVMN SOP and Takeoff Briefing, AFM HB-KFO,
 SPHAIR Bases & Procedures. Checklist items are verbatim from the official checklists.
@@ -73,6 +91,11 @@ the club and to SPHAIR.
 
 `mem: true` marks an item the student must know from memory. In the circuit course
 that means a bar in the checklist margin; in the emergency course, a vital action.
+
+**Step keys are position-derived** (`phaseId/blockIndex/itemIndex`), so editing a
+module would hand one item's review history to another. Bump the module's `version`
+whenever you change its content: the app stamps it and restarts that course's
+schedule rather than certifying mastery on the wrong line.
 
 ## Development
 
