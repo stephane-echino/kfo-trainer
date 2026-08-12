@@ -1,6 +1,28 @@
 {
- "version": "1.18.0",
+ "version": "1.19.0",
  "releases": [
+  {
+   "version": "1.19.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "\"Ready for the flight\" gauge on the home screen: one number telling you how much of the course is actually in long-term memory. It counts how far each step has climbed the 1-2-4-8-16 day ladder, not how much XP you collected — so it only moves when you genuinely remember things days later."
+    ],
+    "changed": [
+     "\"Review misses\" is now \"Daily review\", which is what it does."
+    ],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Jauge « Prêt pour le vol » sur l'accueil : un seul chiffre qui dit quelle part du cours est réellement en mémoire longue. Elle compte jusqu'où chaque étape a grimpé l'échelle 1-2-4-8-16 jours, pas l'XP accumulé — elle ne monte donc que si tu te souviens vraiment, des jours plus tard."
+    ],
+    "changed": [
+     "« Revoir les ratés » devient « Révision du jour », ce qui correspond à ce qu'il fait."
+    ],
+    "fixed": []
+   }
+  },
   {
    "version": "1.18.0",
    "date": "2026-08-12",

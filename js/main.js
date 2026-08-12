@@ -282,7 +282,37 @@ function renderBadges() {
   }
 }
 
+// Readiness = how deep this course sits in memory, not how much XP was earned.
+// A step contributes its Leitner box out of the top box; steps never answered
+// contribute nothing. Reaching 100% means every step survived the full 1-2-4-8-16
+// day ladder at least once.
+const TOP_BOX = 5;
+
+function readiness() {
+  if (!steps.length) return { pct: 0, seen: 0, solid: 0, total: 0 };
+  const sched = store.getSched();
+  const graded = steps.filter(s => s.graded);
+  if (!graded.length) return { pct: 0, seen: 0, solid: 0, total: 0 };
+  let sum = 0, seen = 0, solid = 0;
+  for (const s of graded) {
+    const box = sched[s.key]?.box ?? -1;
+    if (box >= 0) seen += 1;
+    if (box >= 3) solid += 1;
+    sum += Math.max(box, 0) / TOP_BOX;
+  }
+  return { pct: Math.round((sum / graded.length) * 100), seen, solid, total: graded.length };
+}
+
+function renderReadiness() {
+  const r = readiness();
+  $('readiness-label').textContent = t('ready.label');
+  $('readiness-pct').textContent = `${r.pct}%`;
+  $('readiness-fill').style.width = `${r.pct}%`;
+  $('readiness-sub').textContent = t('ready.sub', r.seen, r.total, r.solid);
+}
+
 function renderHome() {
+  renderReadiness();
   renderStats();
   renderBadges();
   renderConditions();
