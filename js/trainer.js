@@ -7,7 +7,7 @@ import { haptic, burst, floatLabel, todayIso } from './fx.js';
 import { hintFor, rpmTarget, summary as conditionsSummary } from './state.js';
 import { getLang } from './i18n.js';
 import { checkUnlocks } from './achievements.js';
-import { speak, stopSpeaking } from './tts.js';
+import { speak, stopSpeaking, ttsSupported } from './tts.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -56,6 +56,7 @@ export function createTrainer({ onExit }) {
       btnOk: $('btn-step-ok'),
       btnBack: $('btn-trainer-back'),
       btnVoice: $('btn-voice-toggle'),
+      btnHf: $('btn-handsfree'),
     });
   }
 
@@ -91,8 +92,9 @@ export function createTrainer({ onExit }) {
     els.btnPrev.addEventListener('click', prev);
     els.btnMiss.addEventListener('click', () => grade(false));
     els.btnOk.addEventListener('click', () => grade(true));
-    els.btnBack.addEventListener('click', () => { stopVoice(); stopSpeaking(); saveAndNotifyExit(); });
+    els.btnBack.addEventListener('click', () => { stopVoice(); stopHandsFree(); saveAndNotifyExit(); });
     els.btnVoice.addEventListener('click', toggleVoice);
+    els.btnHf.addEventListener('click', toggleHandsFree);
     updateVoiceButton();
   }
 
@@ -159,6 +161,65 @@ export function createTrainer({ onExit }) {
     els.btnClue.classList.add('used');
     els.btnClue.textContent = t('clue.used');
     haptic(6);
+  }
+
+
+  // ---------- hands-free ----------
+  // The app plays pilot monitoring: it reads the challenge, leaves you a beat to
+  // answer out loud, then reads the response and moves on. This is the mode for
+  // a train with earphones in, phone in a pocket.
+  let handsFree = false;
+  let hfTimer = null;
+  const HF_ANSWER_DELAY = 4000;   // time to say it yourself
+  const HF_NEXT_DELAY = 2600;     // time to hear the answer land
+
+  function hfCue(step) {
+    return clueFor(step) || step.prompt || '';
+  }
+
+  function toggleHandsFree() {
+    if (!ttsSupported) {
+      els.voiceFb.className = 'voice-feedback bad';
+      els.voiceFb.textContent = t('hf.unsupported');
+      els.voiceFb.classList.remove('hidden');
+      return;
+    }
+    handsFree ? stopHandsFree() : startHandsFree();
+  }
+
+  function startHandsFree() {
+    handsFree = true;
+    els.btnHf.classList.add('on');
+    els.voiceFb.className = 'voice-feedback listening';
+    els.voiceFb.textContent = t('hf.on');
+    els.voiceFb.classList.remove('hidden');
+    hfPlay();
+  }
+
+  function stopHandsFree() {
+    handsFree = false;
+    clearTimeout(hfTimer);
+    stopSpeaking();
+    els.btnHf.classList.remove('on');
+    els.voiceFb.classList.add('hidden');
+  }
+
+  function hfPlay() {
+    if (!handsFree) return;
+    const s = get();
+    if (!s || finished) { stopHandsFree(); return; }
+    if (!revealed) speak(hfCue(s), stepLang(s));
+    hfTimer = setTimeout(() => {
+      if (!handsFree) return;
+      if (!revealed) reveal();
+      speak(s.spoken || s.answer, stepLang(s));
+      hfTimer = setTimeout(() => {
+        if (!handsFree) return;
+        if (index >= steps.length - 1) { stopHandsFree(); return; }
+        advance();
+        hfPlay();
+      }, HF_NEXT_DELAY);
+    }, HF_ANSWER_DELAY);
   }
 
   function get() { return steps[index]; }
@@ -281,6 +342,7 @@ export function createTrainer({ onExit }) {
   }
 
   function onCardTap() {
+    if (handsFree) { stopHandsFree(); return; }   // taking back control stops the loop
     if (swipedAt && Date.now() - swipedAt < 400) return; // a flick can also fire a click
     if (finished || !get()) return;
     if (!revealed) reveal();
@@ -322,7 +384,7 @@ export function createTrainer({ onExit }) {
     if (s.note) els.note.classList.remove('hidden');
     if (hintFor(s, getLang())) els.stateHint.classList.remove('hidden');
     els.hint.textContent = s.graded ? t('hint.revealed') : t('hint.next');
-    if (store.getSettings().speak) speak(s.spoken || s.answer, stepLang(s));
+    if (!handsFree && store.getSettings().speak) speak(s.spoken || s.answer, stepLang(s));
     stopVoice(false);
     haptic();
     setActionState();

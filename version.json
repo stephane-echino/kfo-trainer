@@ -1,6 +1,24 @@
 {
- "version": "1.25.0",
+ "version": "1.26.0",
  "releases": [
+  {
+   "version": "1.26.0",
+   "date": "2026-08-12",
+   "en": {
+    "added": [
+     "Hands-free mode — the 🎧 button in a session. The app plays pilot monitoring: it reads the challenge (\"Aircraft papers\"), leaves you four seconds to answer out loud, then reads the full item back (\"Aircraft papers, on board\") and moves to the next one. Earphones in, phone in your pocket, eyes anywhere. Tap the card to take back control."
+    ],
+    "changed": [],
+    "fixed": []
+   },
+   "fr": {
+    "added": [
+     "Mode mains libres — le bouton 🎧 dans une session. L'app joue le pilote qui lit la checklist : elle annonce l'intitulé (« Inspection pré vol »), te laisse quatre secondes pour répondre à voix haute, puis relit l'item complet (« Inspection pré vol, EFFECTUEE ») et enchaîne. Écouteurs aux oreilles, téléphone dans la poche, yeux où tu veux. Tape la carte pour reprendre la main."
+    ],
+    "changed": [],
+    "fixed": []
+   }
+  },
   {
    "version": "1.25.0",
    "date": "2026-08-12",
